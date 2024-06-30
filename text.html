@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+   .summeryBoard {
+    width: 80%;
+    max-width: 900px;
+    background-color: white;
+    position: fixed;
+    left: 260px;
+    top: 450px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.firstLine, .secondLine, .thirdLine {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin: 0 10px;
+}
+
+.box img {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.taskImg {
+    height: 80px;
+}
+
+h2 {
+    font-size: 60px;
+    margin-bottom: 5px;
+}
+
+p {
+    font-size: 16px;
+    margin-top: 0;
+}
+
+    </style>
+</head>
+<body>
+
+   
+    <div class="summeryBoard">
+        <div class="firstLine">
+            <div class="box">
+                <img class="taskImg" src="img/pencil.png" alt="">
+                <div class="column">
+                    <h2>1</h2>
+                    <p>To Do</p>
+                </div>
+            </div>
+            <div class="box">
+                <img class="taskImg" src="img/check.png" alt="">
+                <div class="column">
+                    <h2>1</h2>
+                    <p>Done</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="secondLine">
+            <div class="box">
+                <img class="taskImg" src="img/arrows.png" alt="">
+                <div class="column">
+                    <h2>1</h2>
+                    <p>Urgent</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="column">
+                    <h2>October 16, 2022</h2>
+                    <p>Upcoming Deadline</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="thirdLine">
+            <div class="column">
+                <h2>5</h2>
+                <p>Tasks in Board</p>
+            </div>
+            <div class="column">
+                <h2>2</h2>
+                <p>Tasks In Progress</p>
+            </div>
+            <div class="column">
+                <h2>2</h2>
+                <p>Awaiting Feedback</p>
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="summeryBoard">
+
+      <div class="firstLine" >
+        
+       <div><img class="taskImg"  src="img/pencil.png" alt=""></div> 
+       <div class="column"><h2>1</h2> <p>To Do</p> </div>
+
+
+        <div><img class="taskImg"  src="img/check.png" alt=""> </div>
+        <div class="column"><h2>1</h2> <p>To Do</p> </div>
+      </div>
+
+
+      <div class="secondLine">
+        <div><img class="taskImg"  src="img/arrows.png" alt=""></div>
+        <div class="column"><h2>1</h2> <p>To Do</p> </div>
+      </div>
+
+      <div class="thirdLine" >
+        <div>
+          <h2>5</h2><br>
+          <p>Tasks in Board</p>
+        </div>
+
+        <div>
+          <h2>2</h2><br>
+          <p>Tasks in Progress</p>
+        </div>
+
+        <div>
+          <h2>2</h2><br>
+          <p>Awaiting Feedback </p>
+        </div>
+     </div>
+
+    </div>
+    
+</body>
+</html>
