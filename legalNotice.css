@@ -157,7 +157,6 @@ p {
   .legalNoticeHeadline{
     width: 500px;
     height: 73px;
-   
     font-size: 61px;
     font: 'inter';
     word-break: none;
@@ -185,6 +184,55 @@ p {
     color: rgb(20, 175, 241);
   }
   .textSize{
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
   }
+  
+  .Privacyh2{
+    margin-bottom: 15px;
+    margin-top: 50px;
+  }
+  .Helph2{
+    font-size: 27px;
+    font-weight: 700;
+  }
+  .helph3{
+    margin: 0px;
+    font-size: 20px;
+  }
+  
+ol {
+    list-style: decimal;
+    margin: 0;
+    padding: 0;
+}
+ol li {
+    margin-bottom: 20px; 
+    padding: 0px;
+}
+.helpList {
+    display: flex;
+    align-items: flex-start;
+  
+}
+.helpListNumber {
+    font-size: 26px;
+    font-weight: bold;
+    margin-right: 10px; 
+}
+.helpContent {
+    margin-left: 30px;
+}
+.helph3 {
+    margin: 0;
+    font-size: 20px;
+ }
+.textSizeHelp{
+  margin: 0 0 1px 0; 
+  font-size: 16px;
+  font-weight: 400;
+}
+.helpHeadline{
+  margin-bottom: 0px;
+}
+
