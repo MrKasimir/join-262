@@ -5,8 +5,14 @@ body{
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
+    font: 'inter';
+}
+p {
+  margin: 0px;
+ 
 }
 
+  /*Join SideBar */
 .joinSideBar {
     background-color: rgb(42, 54, 71);
     height: 100vh;
@@ -145,5 +151,40 @@ body{
     height: 100vh;
     width: 100%;
     background-color: rgb(246, 247, 248);
+    
   }
   
+  .legalNoticeHeadline{
+    width: 500px;
+    height: 73px;
+   
+    font-size: 61px;
+    font: 'inter';
+    word-break: none;
+    font-weight: 700;
+    margin: 0px;
+  }
+  .textContent{
+    position: fixed;
+    top: 206px;
+    left: 328px;
+    height: 100vh;
+    width: 1014px;
+    margin-left: 30px;
+  }
+
+  .textSections{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  h2{
+    margin: 0px;
+  }
+  .colorBlue{
+    color: rgb(20, 175, 241);
+  }
+  .textSize{
+    font-size: 16px;
+    font-weight: 400;
+  }
