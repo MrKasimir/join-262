@@ -12,7 +12,7 @@
     <div class="display-flex">
             <header class="joinSideBar">
                 <div class="LogoDiv">
-                  <img class="joinLogo" src="assets/imgs/JoinLogoWeiß.png" alt="" />
+                  <img class="joinLogo" src="assets/img/capa logo white blue transparent.png" alt="" />
                 </div>
           
                 <div class="Catagory">
@@ -44,22 +44,31 @@
 
         <div>
             <div>
-              <h1>Add Task</h1>
+              <h1 class="addTask-headline">Add Task</h1>
             </div>
 
-            <div class="display-flex">
+            <div class="display-flex div-for-all-inputs">
                 <div>
-                  <div>Title*
+                  <div class="addTask-input-fields-div">
+                    Title*
                     <input class="addTask-title-input" type="text">
                   </div>
 
-                  <div>
+                  <div class="addTask-input-fields-div">
                     Description
                     <input class="addTask-describtion-input" type="text">
                   </div>
 
-                  <div>
+                  <div class="addTask-input-fields-div ">
                     Assigned To
+                    <form class="" action="/action_page.php">
+                      <select class="addTask-contacts-multipychoice-input" name="contacts" id="contacts">
+                        <option value="Select Contact to assign">Select contact to assign</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                      </select>
+                    </form>
                   </div>
                 </div>
 
@@ -67,25 +76,38 @@
                 </div>
 
                 <div>
-                  <div>
+                  <div class="addTask-input-fields-div">
                     Due date*
-                    <input type="text">
+                    <input class="addTask-due-date-input" type="text">
                   </div>
 
-                  <div>
-                    <button class="addTask-button-">Urgent</button>
-                    <button class="addTask-button-">Medium =</button>
-                    <button class="addTask-button-">Low</button>
+                  <div class="addTask-input-fields-div">
+                    Prio
+                    <div>
+                      <button class="addTask-button">Urgent <img class="addTask-button-imgs" src="/assets/img/Prio up.png" alt=""></button>
+                      <button class="addTask-button yellow">Medium =</button>
+                      <button class="addTask-button">Low <img class="addTask-button-imgs" src="/assets/img/Prio-down.png" alt=""></button>
+                    </div>
                   </div>
 
-                  <div>
-                    Category*
-                    <input type="checkbox" name="" id="">
+                  <div class="addTask-input-fields-div ">
+                    Category
+                    <form class="" action="/action_page.php">
+                      <select class="addTask-contacts-multipychoice-input" name="contacts" id="contacts">
+                        <option value="Select Task Category">Select task category</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                      </select>
+                    </form>
                   </div>
 
-                  <div>
+                  <div class="addTask-input-fields-div">
                     Subtasks
-                    <input type="text">
+                    <input class="addTask-contacts-multipychoice-input" type="text">
+                </div>
+
+                  
                   </div>
                 </div>
             </div>
