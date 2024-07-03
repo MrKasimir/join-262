@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary Guest</title>
     <link rel="stylesheet" href="summary.css">
+  
 </head>
 <body>
+ 
+
     <header class="joinSideBar">
         <div class="LogoDiv">
           <img class="joinLogo" src="assets/img/joinlogo.png" alt="" />
@@ -47,15 +50,15 @@
           </div>
           <div class="descriptionImg">
             <img class="qmImg" src="assets/img/questionmark.png" alt="" />
-            <img class="circleImg" src="assets/img/circle.png" alt="" />
-            <p class="circleNameGuest">G</p>
+            <img onclick="openMenue()" class="circleImg" src="assets/img/circle.png" alt="" />
+            <p onclick="openMenue()" class="circleNameGuest">G</p>
           </div>
         </div>
         
-        <div class="logOut" >
-            <span class="sideMenuetext" >Legal Notic</span>
+        <div id="miniMenue" class="logOut displayNone" >
+            <span class="sideMenuetext1" >Legal Notic</span>
             <span class="sideMenuetext" > Privacy Policy</span>
-            <span class="sideMenuetext" > Log out</span>
+            <span class="sideMenuetext3" > Log out</span>
         </div>
   
         <div class="headline">
@@ -135,6 +138,6 @@
   
       </section>
     
-    
+      <script src="summary.js"></script>
 </body>
 </html>

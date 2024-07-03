@@ -322,6 +322,7 @@ p {
   gap: 20px;
   position: fixed;
   right: -2.5px;
+  cursor: pointer;
 }
 .circleName {
   color: rgb(20, 175, 241);
@@ -364,13 +365,49 @@ p {
   position: fixed;
   top: 123px;
   right: 20px;
-  padding-top: 20px;
   column-gap: 50px;
   border-radius: 25px 0 25px 25px;
   color: rgba(255, 255, 255, 0.733);
-  /* display: none; */
+  cursor: pointer;
+  gap: 20px;
+}
+
+.displayNone{
+  display: none;
 }
 .sideMenuetext{
-  padding-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  align-items: center;
+}
+.sideMenuetext1{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  align-items: center;
+  border-radius: 25px 0px 0px 0px;
+}
+.sideMenuetext3{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  align-items: center;
+  border-radius: 0px 0px 25px 25px;
+}
+.sideMenuetext:hover{
+  background-color: rgb(42, 54, 71);
+  color: #ffffff;
+}
+.sideMenuetext1:hover{
+  background-color: rgb(42, 54, 71);
+  color: #ffffff;
+}
+.sideMenuetext3:hover{
+  background-color: rgb(42, 54, 71);
+  color: #ffffff;
 }
 
