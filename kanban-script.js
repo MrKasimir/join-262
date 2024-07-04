@@ -1,3 +1,137 @@
+let tasks = [{
+    'id': 0,
+    'category': 'todo',
+    'title': 'Contact Form and Imprint',
+    'titleCategory': 'User Story',
+    'description': 'Create contact form & imprint page',
+    'priority': 'medium',
+    'assignedTo': 'AB',
+    'subtasks': 1,
+},
+{
+    'id': 1,
+    'category': 'inProgress',
+    'title': 'Kochwelt Page & Recipe Recommender',
+    'titleCategory': 'User Story',
+    'description': 'Build start page with recipe recommendation',
+    'priority': 'medium',
+    'assignedTo': 'CD',
+    'subtasks': 2,
+},
+{
+    'id': 2,
+    'category': 'awaitFeedback',
+    'title': 'Monthly Kochwelt Recipe',
+    'titleCategory': 'User Story',
+    'description': 'Implement monthly recipe portion and calculator',
+    'priority': 'low',
+    'assignedTo': 'EF',
+    'subtasks': 2,
+},
+{
+    'id': 3,
+    'category': 'awaitFeedback',
+    'title': 'Yearly Kochwelt Recipe',
+    'titleCategory': 'User Story',
+    'description': 'Implement yearly recipe portion and calculator',
+    'priority': 'low',
+    'assignedTo': 'EF',
+    'subtasks': 2,
+},
+{
+    'id': 4,
+    'category': 'done',
+    'title': 'Projektmeeting',
+    'titleCategory': 'User Story',
+    'description': 'Decide on next steps.',
+    'priority': 'low',
+    'assignedTo': 'EF',
+    'subtasks': 2,
+}
+
+];
+
+let currentDraggedElement;
+let currentDraggedCategory;
+let addedId = tasks.length - 1;
+
+
+
+// Ein Array für jede Kategorie erstellen
+// ein seperates array für alle  "todo - Karten", alle "in progress - Karten", alle "await feedback - Karten"
+function renderByCategory() {
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].category == 'todo') {
+            updateKanbanBoard(i, tasks[i].category);
+        }
+        if (tasks[i].category == 'inProgress') {
+            updateKanbanBoard(i, tasks[i].category);
+        }
+        if (tasks[i].category == 'awaitFeedback') {
+            updateKanbanBoard(i, tasks[i].category);
+        }
+        if (tasks[i].category == 'done') {
+            updateKanbanBoard(i, tasks[i].category);
+        }
+    }
+}
+
+function deleteKanbanBoard() {
+    document.getElementById('todo').innerHTML = '';
+    document.getElementById('inProgress').innerHTML = '';
+    document.getElementById('awaitFeedback').innerHTML = '';
+    document.getElementById('done').innerHTML = '';
+}
+
+function updateKanbanBoard(i, category) {
+    document.getElementById(category).innerHTML +=
+        `<div class="task-container" draggable="true" ondragstart="startDragging(${tasks[i].id})">
+    <div class="task-titlecategory">${tasks[i].titleCategory}</div>
+    <div class="task-title">${tasks[i].title}</div>
+    <div class="task-description">${tasks[i].description}</div>
+    <div class="task-subtask">${tasks[i].subtasks} / 2 subtasks</div>
+    <div class="task-assignee">${tasks[i].assignedTo}</div>
+    </div>`;
+}
+
+function moveTo(id) {
+    /*     tasks[id].category = 'done';
+        deleteKanbanBoard();
+        renderByCategory(); */
+}
+
+function moveTo(event) {
+    event.preventDefault();
+    const id = event.target.id;
+    console.log(`Dropped in: ${id}`);
+    if (id) { tasks[currentDraggedElement].category = id; }
+    event.target.classList.remove('highlight');
+    // Hier könnte Ihre Logik für das Bewegen des Elements sein
+    deleteKanbanBoard();
+    renderByCategory();
+}
+
+function startDragging(id) {
+    currentDraggedElement = id;
+    console.log(currentDraggedElement);
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+    const id = event.target.id;
+    console.log(`Currently dragging over: ${id}`);
+    if (id) { tasks[currentDraggedElement].category = id; }
+    event.target.classList.add('highlight');
+}
+
+function removeHighlight(event) {
+    const id = event.target.id;
+    console.log(`remove highlight: Drag-ID: ${id}`);
+    if (id) { tasks[currentDraggedElement].category = id; }
+    event.target.classList.remove('highlight');
+}
+
+
 // Task mit InputField hinzufügen:
 // Event-Listener Funktion für Enter-Taste
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -5,10 +139,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let task = document.getElementById('inputField').value;
         // Überprüfen, ob das Input-Feld nicht leer ist
         if (task.trim() !== '') {
-            todo.innerHTML += `<div class="task-container" draggable="true">${task}</div>`;
-            // Leeren des Input-Feldes
-            document.getElementById('inputField').value = '';
+            addedId ++;
+            tasks.push({
+                'id': addedId,
+                'category': 'todo',
+                'title': task,
+                'titleCategory': 'enter title category',
+                'description': 'enter description',
+                'priority': 'set priority',
+                'assignedTo': 'EF',
+                'subtasks': 0,
+            }
+            )
         }
+        deleteKanbanBoard();
+        renderByCategory();
     }
     // Event-Listener für die Enter-Taste hinzufügen
     document.getElementById('inputField').addEventListener('keypress', function (event) {
@@ -23,10 +168,19 @@ function createTask() {
     let task = document.getElementById('inputField').value;
     // Überprüfen, ob das Input-Feld nicht leer ist
     if (task.trim() !== '') {
-        todo.innerHTML += `<div class="task-container" draggable="true">${task}</div>`;
-        // Leeren des Input-Feldes
-        document.getElementById('inputField').value = '';
+        addedId ++;
+        tasks.push({
+            'id': addedId,
+            'category': 'todo',
+            'title': task,
+            'titleCategory': 'enter title category',
+            'description': 'enter description',
+            'priority': 'set priority',
+            'assignedTo': 'EF',
+            'subtasks': 0,
+        }
+        )
     }
+    deleteKanbanBoard();
+    renderByCategory();
 }
-
-// Task drag & dropbar machen:
