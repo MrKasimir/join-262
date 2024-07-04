@@ -298,17 +298,17 @@ body {
   }
 
   .addTask-title-input {
-    width: 440px;
-    height: 24px;
-    border-radius: 5px;
+    width: 740px;
+    height: 44px;
+    border-radius: 10px;
     border: 1px solid #D1D1D1
   
   }
 
   .addTask-describtion-input {
-    width: 440px;
+    width: 740px;
     height: 120px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #D1D1D1
   }
 
@@ -323,13 +323,14 @@ body {
   .addTask-input-fields-div {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     gap: 8px;
   }
 
   .addTask-headline {
     font-size: 61px;
     margin-left: 98px;
+    margin-top: 100px;
   }
 
   .div-for-all-inputs {
@@ -337,27 +338,28 @@ body {
   }
 
   .addTask-due-date-input {
-    width: 440px;
-    height: 24px;
-    border-radius: 5px;
+    width: 740px;
+    height: 44px;
+    border-radius: 10px;
     border: 1px solid #D1D1D1
   }
 
   .addTask-contacts-multipychoice-input {
-    width: 440px;
-    height: 30px;
-    border-radius: 5px;
+    width: 740px;
+    height: 44px;
+    border-radius: 10px;
     border: 1px solid #D1D1D1
   }
   
   .addTask-button {
-    width: 145px;
+    width: 245px;
     height: 48px;
     gap: 8px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0px 0px 4px 0px #0000001A;
     border: 1px solid #D1D1D1;
     background: #FFFFFF;
+
   }
 
   .yellow {
@@ -366,5 +368,10 @@ body {
   }
 
   .addTask-button-imgs {
-    width: 13px;
+    width: 20px;
+  }
+
+  .addTask-buttons-flex {
+    display: flex;
+    align-items: center;
   }
