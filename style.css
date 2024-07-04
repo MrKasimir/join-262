@@ -329,12 +329,12 @@ body {
 
   .addTask-headline {
     font-size: 61px;
-    margin-left: 98px;
+    margin-left: 110px;
     margin-top: 100px;
   }
 
   .div-for-all-inputs {
-    margin-left: 98px;
+    margin-left: 110px;
   }
 
   .addTask-due-date-input {
@@ -374,4 +374,28 @@ body {
   .addTask-buttons-flex {
     display: flex;
     align-items: center;
+  }
+
+  .addTask-clear-button {
+    width: 110px;
+    height: 56px;
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    background: #FFFFFF;
+  }
+
+  .addTask-creat-button {
+    width: 110px;
+    height: 56px;
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    background: #2A3647;
+    color: white;
+  }
+
+  .addTask-last-div {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 110px;
+    margin-top: 200px;
   }
