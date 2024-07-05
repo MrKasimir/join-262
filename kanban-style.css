@@ -137,6 +137,10 @@ body {
 .side-notice {
     color: white;
 }
+.joinSidebarLinks{
+    text-decoration: none;
+    color: white;
+}
 
 .board {
     background-color: transparent;

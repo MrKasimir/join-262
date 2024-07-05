@@ -40,6 +40,10 @@ body {
   height: 30px;
   width: 30px;
 }
+.joinSidebarLinks{
+  text-decoration: none;
+  color: white;
+}
 .iconsDiv {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -80,6 +84,7 @@ body {
 .iconsDiv4:hover {
   cursor: pointer;
   background-color: rgb(32, 42, 54);
+  color: white;
 }
 
 .legalNotice {
@@ -96,6 +101,8 @@ body {
 }
 .SideBarText {
   margin: 0;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.74);
 }
 
 /* upper content section */
@@ -163,6 +170,8 @@ body {
   margin-bottom: 20px;
   gap: 20px;
 }
+
+
 .thirdLine {
   width: 100%;
   height: 150px;
@@ -252,6 +261,40 @@ h2 {
   background-color: rgb(42, 54, 71);
   color: rgb(255, 255, 255);
 }
+
+.box svg .circle {
+  fill: #2A3647;
+}
+
+.box svg .pen {
+  fill: white;
+}
+
+.box:hover svg .circle {
+  fill: white;
+}
+
+.box:hover svg .pen {
+  fill: rgb(42, 54, 71);
+}
+
+
+.new-svg .circle {
+  fill: #2A3647;
+}
+
+.new-svg .checkmark {
+  stroke: rgb(252, 252, 252);
+}
+
+.box:hover .new-svg .circle {
+  fill: white;
+}
+
+.box:hover .new-svg .checkmark {
+  stroke: rgb(42, 54, 71);
+}
+
 .box2 {
   display: flex;
   align-items: center;

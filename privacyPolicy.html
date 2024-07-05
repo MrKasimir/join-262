@@ -5,49 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy</title>
     <link rel="stylesheet" href="legalNotice.css">
+    <script>
+      function openMenue() {
+    let miniMenue = document.querySelector('.logOut');
+    if (miniMenue.classList.contains('displayNone')) {
+        miniMenue.classList.remove('displayNone');
+    } else {
+        miniMenue.classList.add('displayNone');
+    }
+}
+    </script>
 </head>
 <body>
-    <header class="joinSideBar">
-        <div class="LogoDiv">
-          <img class="joinLogo" src="assets/img/joinlogo.png" alt="" />
-        </div>
-  
-        <div class="Catagory">
-          <div class="iconsDiv">
-            <img class="sideBarIcons" src="assets/img/summery.png" alt="" />
-            <p>Summery</p>
-          </div>
-          <div class="iconsDiv">
-            <img class="sideBarIcons" src="assets/img/addTask.png" alt="" />
-            <p>Add Task</p>
-          </div>
-          <div class="iconsDiv3">
-            <img class="sideBarIcons" src="assets/img/Board.png" alt="" />
-            <p>Board</p>
-          </div>
-          <div class="iconsDiv4">
-            <img class="sideBarIcons" src="assets/img/contacts.png" alt="" />
-            <p>Contacts</p>
-          </div>
-        </div>
-  
-        <div class="legalNotice">
-          <p class="SideBarText">Privacy Policy</p>
-          <br />
-          <p class="SideBarText">Legal notice</p>
-        </div>
-      </header>
-      
-      <div class="description">
-        <div>
-          <p class="descriptionHeadline">Kanban Project Management Tool</p>
-        </div>
-        <div class="descriptionImg">
-          <img class="qmImg" src="assets/img/questionmark.png" alt="" />
-          <img class="circleImg" src="assets/img/circle.png" alt="" />
-          <p class="circleName">G</p>
-        </div>
+  <header class="joinSideBar">
+    <div class="LogoDiv">
+      <img class="joinLogo" src="assets/img/joinlogo.png" alt="" />
+    </div>
+    <div class="Catagory">
+      <div class="iconsDiv">
+        <img class="sideBarIcons" src="assets/img/summery.png" alt="" />
+        <a class="joinSidebarLinks" href="summaryUser.html">Summary</a>
       </div>
+      <div class="iconsDiv">
+        <img class="sideBarIcons" src="assets/img/addTask.png" alt="" />
+        <a class="joinSidebarLinks" href="AddTask.html">Add Task</a>
+      </div>
+      <div class="iconsDiv3">
+        <img class="sideBarIcons" src="assets/img/Board.png" alt="" />
+        <a class="joinSidebarLinks" href="kanban-board.html">Board</a>
+      </div>
+      <div class="iconsDiv4">
+        <img class="sideBarIcons" src="assets/img/contacts.png" alt="" />
+        <a class="joinSidebarLinks" href="contact/contact list.html">Contacts</a>
+      </div>
+    </div>
+
+   
+    <div class="legalNotice">
+      <a class="SideBarText" href="legalNotice.html">Legal Notice</a>
+      <br />
+      <a class="SideBarText" href="privacyPolicy.html">Privacy Policy</a>
+    </div>
+  </header>
+      
+     
+  <div class="description">
+    <div>
+      <p class="descriptionHeadline">Kanban Project Management Tool</p>
+    </div>
+    <div class="descriptionImg">
+      <a href="help.html">
+      <img class="qmImg" src="assets/img/questionmark.png" alt="" />
+      </a>
+      <img onclick="openMenue()" class="circleImg" src="assets/img/circle.png" alt="" />
+      <p onclick="openMenue()" class="circleName">G</p>
+    </div>
+  </div>
+
+  
+  <div id="miniMenue" class="logOut displayNone" >
+    <span class="sideMenuetext1" >Legal Notic</span>
+    <span class="sideMenuetext" > Privacy Policy</span>
+    <span class="sideMenuetext3" > Log out</span>
+</div>
 
       <section class="rightSideContent">
 
