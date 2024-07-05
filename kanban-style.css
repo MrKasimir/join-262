@@ -29,6 +29,10 @@ body {
     border-radius: 2px;
     color: transparent;
 }
+.joinSidebarLinks{
+    text-decoration: none;
+    color: white;
+}
 
 .board {
     background-color: transparent;

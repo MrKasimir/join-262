@@ -196,6 +196,10 @@ body {
     width: 260px;
     column-gap: 30px;
   }
+  .joinSidebarLinks{
+    text-decoration: none;
+    color: white;
+  }
   
   .joinLogo {
     width: 100px;

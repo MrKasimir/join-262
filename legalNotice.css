@@ -235,4 +235,8 @@ ol li {
 .helpHeadline{
   margin-bottom: 0px;
 }
+.joinSidebarLinks{
+  text-decoration: none;
+  color: white;
+}
 

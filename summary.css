@@ -40,6 +40,10 @@ body {
   height: 30px;
   width: 30px;
 }
+.joinSidebarLinks{
+  text-decoration: none;
+  color: white;
+}
 .iconsDiv {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -80,6 +84,7 @@ body {
 .iconsDiv4:hover {
   cursor: pointer;
   background-color: rgb(32, 42, 54);
+  color: white;
 }
 
 .legalNotice {
