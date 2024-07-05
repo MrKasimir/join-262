@@ -170,6 +170,8 @@ body {
   margin-bottom: 20px;
   gap: 20px;
 }
+
+
 .thirdLine {
   width: 100%;
   height: 150px;
@@ -259,6 +261,40 @@ h2 {
   background-color: rgb(42, 54, 71);
   color: rgb(255, 255, 255);
 }
+
+.box svg .circle {
+  fill: #2A3647;
+}
+
+.box svg .pen {
+  fill: white;
+}
+
+.box:hover svg .circle {
+  fill: white;
+}
+
+.box:hover svg .pen {
+  fill: rgb(42, 54, 71);
+}
+
+
+.new-svg .circle {
+  fill: #2A3647;
+}
+
+.new-svg .checkmark {
+  stroke: rgb(252, 252, 252);
+}
+
+.box:hover .new-svg .circle {
+  fill: white;
+}
+
+.box:hover .new-svg .checkmark {
+  stroke: rgb(42, 54, 71);
+}
+
 .box2 {
   display: flex;
   align-items: center;
