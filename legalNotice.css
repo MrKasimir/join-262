@@ -135,6 +135,7 @@ p {
     position: fixed;
     right: 72px;
     font-size: 20px;
+    cursor: pointer;
   }
   
   .descriptionHeadline {
@@ -148,6 +149,7 @@ p {
   .circleImg {
     height: 56px;
     width: 56px;
+    cursor: pointer;
   }
 
   .rightSideContent{
@@ -241,5 +243,60 @@ ol li {
 .joinSidebarLinks{
   text-decoration: none;
   color: white;
+}
+.logOut {
+  height: 160px;
+  background-color: rgb(32, 42, 54);
+  width: 150px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 123px;
+  right: 20px;
+  column-gap: 50px;
+  border-radius: 25px 0 25px 25px;
+  color: rgba(255, 255, 255, 0.733);
+  cursor: pointer;
+  gap: 20px;
+}
+.displayNone{
+  display: none;
+}
+.sideMenuetext{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  align-items: center;
+}
+.sideMenuetext1{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  align-items: center;
+  border-radius: 25px 0px 0px 0px;
+}
+.sideMenuetext3{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  align-items: center;
+  border-radius: 0px 0px 25px 25px;
+}
+.sideMenuetext:hover{
+  background-color: rgb(42, 54, 71);
+  color: #ffffff;
+}
+.sideMenuetext1:hover{
+  background-color: rgb(42, 54, 71);
+  color: #ffffff;
+}
+.sideMenuetext3:hover{
+  background-color: rgb(42, 54, 71);
+  color: #ffffff;
 }
 
