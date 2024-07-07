@@ -3,32 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="summary.css">
 
-    <link rel="icon" href="./assets/img/Capa 2 blue transparent.png" type="image/x-icon" width="16px">
-   
+    <link rel="icon" href="./assets/img/capa logo white blue transparent.png" type="image/x-icon" width="16px">
+
     <title>Join</title>
     <script src="./js/script.js"></script>
+
+    <style>
+        .under-construction-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: white;
+            position: fixed;
+            left: 30vw;
+            top: 30vh;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 4px 8px 0 rgba(255, 182, 193, 0.6), 0 6px 20px 0 rgba(255, 182, 193, 0.6);
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .under-construction-container.fade-in {
+            opacity: 1;
+        }
+
+        li,
+        a,
+        h1 {
+            color: #2A3647;
+        }
+
+        li:hover,
+        a:hover {
+            color: black;
+            font-style: italic;
+        }
+    </style>
+
+    <script>
+        function init() {
+            const underConstruction = document.querySelector('.under-construction-container');
+            underConstruction.classList.add('fade-in'); // Klasse hinzufügen, um einzublenden
+        }
+        window.onload = init; // init() beim Laden der Seite aufrufen
+    </script>
+
+
 </head>
 
-<body>
-    <h1>Join-262 im Aufbau</h1>
-    <nav>
-        <ul>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signUp.html">signUp</a></li>
-            <li><a href="summaryGuest.html">SummaryGuest</a></li>
-            <li><a href="summaryUser.html">SummaryUser</a></li>
-            <li><a href="contacts.html">contacts</a></li>
-            <li><a href="AddTask.html">AddTask</a></li>
-            <li><a href="kanban-board.html">kanban-board</a></li>
-            <li><a href="help.html">Help seite</a></li>
-            <li><a href="text.html">text</a></li>
-            <li><a href="privacyPolicy.html">Privacy Policy</a></li>
-            <li><a href="legalNotice.html">Legal Notice</a></li>
-        </ul>
-    </nav>
+<body onload="init();">
+    <script src="summary.js"></script>
+    <header class="joinSideBar">
+        <div class="LogoDiv">
+            <img class="joinLogo" src="assets/img/joinlogo.png" alt="" />
+        </div>
+        <div class="Catagory">
+            <div class="iconsDiv">
+                <img class="sideBarIcons" src="assets/img/summery.png" alt="" />
+                <a class="joinSidebarLinks" href="summaryUser.html">Summary</a>
+            </div>
+            <div class="iconsDiv">
+                <img class="sideBarIcons" src="assets/img/addTask.png" alt="" />
+                <a class="joinSidebarLinks" href="AddTask.html">Add Task</a>
+            </div>
+            <div class="iconsDiv3">
+                <img class="sideBarIcons" src="assets/img/Board.png" alt="" />
+                <a class="joinSidebarLinks" href="kanban-board.html">Board</a>
+            </div>
+            <div class="iconsDiv4">
+                <img class="sideBarIcons" src="assets/img/contacts.png" alt="" />
+                <a class="joinSidebarLinks" href="contact/contact list.html">Contacts</a>
+            </div>
+        </div>
 
+        <div class="legalNotice">
+            <a class="SideBarText" href="legalNotice.html">Legal Notice</a>
+            <br />
+            <a class="SideBarText" href="privacyPolicy.html">Privacy Policy</a>
+        </div>
+    </header>
+
+    <section class="rightContent">
+        <div class="description">
+            <div>
+                <p class="descriptionHeadline">Kanban Project Management Tool</p>
+            </div>
+            <div class="descriptionImg">
+                <a href="help.html">
+                    <img class="qmImg" src="assets/img/questionmark.png" alt="" />
+                </a>
+                <img onclick="openMenue()" class="circleImg" src="assets/img/circle.png" alt="" />
+                <p onclick="openMenue()" class="circleName">DM</p>
+            </div>
+        </div>
+
+        <div class="under-construction-container">
+            <h1>Join-262 im Aufbau</h1>
+            <nav>
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signUp.html">signUp</a></li>
+                    <li><a href="summaryGuest.html">SummaryGuest</a></li>
+                    <li><a href="summaryUser.html">SummaryUser</a></li>
+                    <li><a href="contacts.html">contacts</a></li>
+                    <li><a href="AddTask.html">AddTask</a></li>
+                    <li><a href="kanban-board.html">kanban-board</a></li>
+                    <li><a href="help.html">Help seite</a></li>
+                    <li><a href="text.html">text</a></li>
+                    <li><a href="privacyPolicy.html">Privacy Policy</a></li>
+                    <li><a href="legalNotice.html">Legal Notice</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
 </body>
 
 </html>
