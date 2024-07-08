@@ -28,7 +28,7 @@ body {
     justify-content: center;
   }
 
-.headline-Login-sign-up {
+.headline-Login--up {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -337,7 +337,7 @@ body {
   .addTask-headline {
     font-size: 61px;
     margin-left: 110px;
-    margin-top: 100px;
+    margin-top: 200px;
   }
 
   .div-for-all-inputs {
@@ -405,4 +405,47 @@ body {
     justify-content: space-between;
     margin-left: 110px;
     margin-top: 200px;
+  }
+
+  .description {
+    position: fixed;
+    left: 260px;
+    width: 91%;
+    height: 96px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 4px 0px #0000001a;
+  }
+
+  .descriptionHeadline {
+    margin-left: 100px;
+    font-size: 18px;
+  }
+
+  .descriptionImg {
+    display: flex;
+    align-items: center;
+    margin-right: 53px;
+    gap: 20px;
+    position: fixed;
+    right: -2.5px;
+    cursor: pointer;
+  }
+
+  .qmImg {
+    height: 20px;
+  }
+
+  .circleImg {
+    height: 56px;
+    width: 56px;
+  }
+
+  .circleName {
+    color: rgb(20, 175, 241);
+    z-index: 999;
+    position: fixed;
+    right: 62px;
   }
