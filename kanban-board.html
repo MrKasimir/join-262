@@ -13,33 +13,86 @@
 </head>
 
 <body onload="renderByCategory()">
-    <div class="header">/*drag&drop in progress*/</div>
 
     <div class="mainframe">
-        <div class="sidebar"></div>
+        <div class="sidebar">
+
+            <div class="LogoDiv">
+                <img class="joinLogo" src="assets/img/capa logo white blue transparent.png" alt="" />
+            </div>
+
+            <div class="side-menu">
+                <div class="Catagory">
+                    <div class="iconsDiv">
+                      <img class="sideBarIcons" src="assets/img/summery.png" alt="" />
+                      <p>Summary</p>
+                    </div>
+                    <div class="iconsDiv">
+                      <img class="sideBarIcons" src="assets/img/addTask.png" alt="" />
+                      <p>Add Task</p>
+                    </div>
+                    <div class="iconsDiv">
+                      <img class="sideBarIcons" src="assets/img/Board.png" alt="" />
+                      <p>Board</p>
+                    </div>
+                    <div class="iconsDiv">
+                      <img class="sideBarIcons" src="assets/img/contacts.png" alt="" />
+                      <p>Contacts</p>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="side-notice">
+                <p class="SideBarText">Privacy Policy</p>
+                <p class="SideBarText">Legal notice</p>
+            </div>
+        </div>
 
         <div class="board">
+            <div class="header">
+                <div class="header-title">Kanban Project Management Tool</div>
+                <div class="top-right-menu">
+                    <div class="circle-border">?</div>
+                    <div class="circle-border">SM</div>
+                </div>
+            </div>
             <div class="input-container">
-                <input id="inputField" placeholder="Find Task"></input>
-                <div class="button" onclick="createTask()">Add task +</div>
-                <div id="content">
-                    <!-- hier werden die tasks rein gerendert -->
+                <div class="header-title bold-font">Board</div>
+                <div class="top-right-menu">
+                    <input id="inputField" placeholder="Find Task"></input>
+                    <div class="button" onclick="createTask()">Add task +</div>
                 </div>
             </div>
 
             <div class="dragdrop-container">
-                <div class="board-category"><h3>Todo</h3><div>+</div></div>
-                <div class="board-category"><h3>In Progress</h3><div>+</div></div>
-                <div class="board-category"><h3>Await Feedback</h3><div>+</div></div>
-                <div class="board-category"><h3>Done</h3><div>+</div></div>
+                <div class="board-category">
+                    <h3>Todo</h3>
+                    <div>+</div>
+                </div>
+                <div class="board-category">
+                    <h3>In Progress</h3>
+                    <div>+</div>
+                </div>
+                <div class="board-category">
+                    <h3>Await Feedback</h3>
+                    <div>+</div>
+                </div>
+                <div class="board-category">
+                    <h3>Done</h3>
+                    <div>+</div>
+                </div>
             </div>
             <div class="dragdrop-container">
-                <div id="todo" ondrop="moveTo(event)" ondragover="allowDrop(event)" ondragleave="removeHighlight(event)" class="standard-container"></div>
-                <div id="inProgress" ondrop="moveTo(event)" ondragover="allowDrop(event)" ondragleave="removeHighlight(event)" class="standard-container"></div>
-                <div id="awaitFeedback" ondrop="moveTo(event)" ondragover="allowDrop(event)" ondragleave="removeHighlight(event)" class="standard-container"></div>
-                <div id="done" ondrop="moveTo(event)" ondragover="allowDrop(event)" ondragleave="removeHighlight(event)" class="standard-container"></div>
+                <div id="todo" ondrop="moveTo(event)" ondragover="allowDrop(event)" ondragleave="removeHighlight(event)"
+                    class="standard-container"></div>
+                <div id="inProgress" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                    ondragleave="removeHighlight(event)" class="standard-container"></div>
+                <div id="awaitFeedback" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                    ondragleave="removeHighlight(event)" class="standard-container"></div>
+                <div id="done" ondrop="moveTo(event)" ondragover="allowDrop(event)" ondragleave="removeHighlight(event)"
+                    class="standard-container"></div>
             </div>
-    </div>
+        </div>
 
 </body>
 

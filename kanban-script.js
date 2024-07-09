@@ -81,6 +81,8 @@ function deleteKanbanBoard() {
     document.getElementById('inProgress').innerHTML = '';
     document.getElementById('awaitFeedback').innerHTML = '';
     document.getElementById('done').innerHTML = '';
+    document.getElementById('inputField').value = '';
+    countCategoryInputs();
 }
 
 function updateKanbanBoard(i, category) {
@@ -106,7 +108,6 @@ function moveTo(event) {
     console.log(`Dropped in: ${id}`);
     if (id) { tasks[currentDraggedElement].category = id; }
     event.target.classList.remove('highlight');
-    // Hier könnte Ihre Logik für das Bewegen des Elements sein
     deleteKanbanBoard();
     renderByCategory();
 }
@@ -139,7 +140,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let task = document.getElementById('inputField').value;
         // Überprüfen, ob das Input-Feld nicht leer ist
         if (task.trim() !== '') {
-            addedId ++;
+            addedId++;
             tasks.push({
                 'id': addedId,
                 'category': 'todo',
@@ -168,7 +169,7 @@ function createTask() {
     let task = document.getElementById('inputField').value;
     // Überprüfen, ob das Input-Feld nicht leer ist
     if (task.trim() !== '') {
-        addedId ++;
+        addedId++;
         tasks.push({
             'id': addedId,
             'category': 'todo',
@@ -183,4 +184,57 @@ function createTask() {
     }
     deleteKanbanBoard();
     renderByCategory();
+}
+
+// folgender Abschnitt muss komplett in CLEAN CODE REVIEW
+// nächster Schritt: Empty Categories rendern
+let numberTodos = 0;
+let numberInProgress = 0;
+let numberAwaitFeedback = 0;
+let numberDone = 0;
+
+function countCategoryInputs() {
+    for (let i = 0; i < tasks.length; i++) {
+        let currentCategory = tasks[i].category;
+        if (currentCategory == 'todo') {
+            numberTodos++;
+        }
+        if (currentCategory == 'inProgress') {
+            numberInProgress++;
+        }
+        if (currentCategory == 'awaitFeedback') {
+            numberAwaitFeedback++;
+        }
+        if (currentCategory == 'done') {
+            numberDone++;
+        }
+    }
+    console.log(numberTodos);
+    console.log(numberInProgress);
+    console.log(numberAwaitFeedback);
+    console.log(numberDone);
+
+    if (numberTodos == 0){
+        renderEmptyCategoy('todo');
+    }
+    if (numberInProgress == 0){
+        renderEmptyCategoy('inProgress');
+    }
+    if (numberAwaitFeedback == 0){
+        renderEmptyCategoy('awaitFeedback');
+    }
+    if (numberDone == 0){
+        renderEmptyCategoy('done');
+    }
+    numberTodos = 0;
+    numberInProgress = 0;
+    numberAwaitFeedback = 0;
+    numberDone = 0;
+}
+function renderEmptyCategoy(category){
+    document.getElementById(category).innerHTML +=
+        `<div class="task-container">
+    <div class="task-title">currently empty</div>
+
+    </div>`;
 }
