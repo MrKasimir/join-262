@@ -8,14 +8,14 @@
 
 function onloadFunc(){
    //deletData("/name");
-   postData("user", {"Name":"Enes kalkan"});
-   loadData();
+   postData("user", {"Name":"Enes kalkan"}); // sind uns nocht nicht sicher wie wir daten am besten rein pushen 
+   loadData(); // kann der path angegeben werden z.B "User"
 }
 
-const Base_URL = "https://join-test-9e37f-default-rtdb.europe-west1.firebasedatabase.app/"
+const Base_URL = "https://join-test-9e37f-default-rtdb.europe-west1.firebasedatabase.app/" //einfach euren Firebase link einfügen 
 
 
-async function loadData(path=""){
+async function loadData(path=""){ // funktion um daten von firebase zu laden 
    let response = await fetch(Base_URL + path +".json");
    let responsetoJson =  await response.json();
    console.log(responsetoJson);
@@ -23,9 +23,9 @@ async function loadData(path=""){
 
 
 
-async function postData(path="", data={}){
+async function postData(path="", data={}){ // funktion um daten zu pushen 
    let response = await fetch(Base_URL + path +".json",{
-       method: "POST",
+       method: "POST", // methode kann geändert werden in "PUT", "DELETE", "PATCH" ,"GET"
        header: {
            "Content-Type": "application/json",
        },
@@ -37,7 +37,7 @@ async function postData(path="", data={}){
 
 
 
-async function deletData(path=""){
+async function deletData(path=""){ // funktion um daten aus firebase zu löschen 
    let response = await fetch(Base_URL + path +".json",{
        method: "DELETE",
      
@@ -91,11 +91,11 @@ async function deletData(path=""){
         function addContact() {
             const userId = auth.currentUser.uid;
             const contactName = document.getElementById('contactName').value;
-            const contactPhone = document.getElementById('contactPhone').value;
+            const contactEmail = document.getElementById('contactEmail').value;
 
             database.ref('users/' + userId + '/contacts').push({
                 name: contactName,
-                phone: contactPhone
+                email: contactEmail
             }).then(() => {
                 alert('Contact added');
                 fetchContacts();
@@ -114,7 +114,7 @@ async function deletData(path=""){
                     snapshot.forEach((childSnapshot) => {
                         const contact = childSnapshot.val();
                         const li = document.createElement('li');
-                        li.textContent = `Name: ${contact.name}, Phone: ${contact.phone}`;
+                        li.textContent = `Name: ${contact.name}, Phone: ${contact.email}`;
                         contactList.appendChild(li);
                     });
                 }).catch((error) => {
