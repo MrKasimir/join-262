@@ -1,7 +1,8 @@
    
    const Base_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
 
-   
+   // Sign UP
+
    function onSignUpName(Name) {
         //deletData("/name");
         postData("User_ID", {"Name": Name});  
@@ -50,4 +51,30 @@
      }
 
 
-     //
+     // Login ´
+
+     function onload(){
+      
+        console.log(responsetoJson);
+     }
+
+     async function loadData(path="User_ID"){ // funktion um daten von firebase zu laden 
+        let response = await fetch(Base_URL + path +".json");
+        let responsetoJson =  await response.json();
+        console.log(responsetoJson);
+     }
+     
+
+     function loginButtonOnClick() {
+        loadData(path);
+        if (condition) {
+            
+        } else {
+            alert("Email oder Passwort ist Falsch")
+        }
+     }
+
+     function getInputData(){
+        const Email = document.getElementById('Login-mail-input')
+        const Password = document.getElementById('Login-password-input')
+     }

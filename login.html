@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="Css/style.css">
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </head>
-<body>
+<body> 
 
     <header class="header-login-sign-up">
         <img class="Join-Logo" src="./assets/img/Capa 2 blue transparent.png" alt="">
@@ -26,19 +26,19 @@
 
             <form >
                     <div> 
-                        <input class="email-input" id="mail-input" type="text" placeholder="Email" required>
+                        <input class="email-input" id="Login-mail-input" type="text" placeholder="Email" required>
                     </div>
                 
     
                     <div>
-                        <input class="password-input" type="text" placeholder="Password " required>
+                        <input id="Login-password-input" class="password-input" type="text" placeholder="Password " required>
                     </div>
     
                     <input class="margin-left" type="checkbox"> Remember me
                 
     
                 <div class="button-section-from-login">
-                    <button class="Login-button">Log in</button> 
+                    <button onclick="loginButtonOnClick()" class="Login-button">Log in</button> 
     
                     <button class="guest-login-button">Guest Log in</button>
                 </div>
