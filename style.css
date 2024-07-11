@@ -43,6 +43,11 @@ body {
     height: 3px;
     margin-bottom: 30px;
 }
+.underlineDiv{
+  width: 430px;
+  display: flex;
+  justify-content: center;
+}
 
 
 .email-input {
