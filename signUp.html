@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="./Css/style.css">
+    <script src="js/SignUpLoginScript.js"></script>
 </head>
 <body>
     <header class="header-login-sign-up">
@@ -22,15 +22,15 @@
                 </div>
     
                 <div class="display-block">
-                    <div><input class="input-fields-sign-up" placeholder="Name" type="text" required></div>
-                    <div><input class="input-fields-sign-up" placeholder="Email" type="text" required></div>
-                    <div><input class="input-fields-sign-up" placeholder="Password" type="text" required></div>
-                    <div><input class="input-fields-sign-up" placeholder="Confirm Password" type="text" required></div>
+                    <div><input id="SignUp-Name" class="input-fields-sign-up" placeholder="Name" type="text" required></div>
+                    <div><input id="SignUp-Email" class="input-fields-sign-up" placeholder="Email" type="text" required></div>
+                    <div><input id="SignUp-Password" class="input-fields-sign-up" placeholder="Password" type="text" required></div>
+                    <div><input id="SignUp-ConfirmPassword" class="input-fields-sign-up" placeholder="Confirm Password" type="text" required></div>
                     <div class="accept-privacy"><button class="regtangle-button"> </button>    i accept the <a class="privacy-link" href="">privacy policy</a></div>
                 </div>
     
                 <div class="justify-content-center">
-                    <button class="last-commit-for-signup-button">Sign up</button>
+                    <button onclick="SignUp()" class="last-commit-for-signup-button">Sign up</button>
                 </div>
             </div>
         </div>
