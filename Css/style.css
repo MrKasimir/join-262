@@ -454,3 +454,11 @@ body {
     position: fixed;
     right: 62px;
   }
+
+  .margin-left {
+    margin-left: 40px;
+  }
+
+  .margin-left-signUp {
+    margin-left: 80px;
+  }
