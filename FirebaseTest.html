@@ -128,9 +128,67 @@ async function deletData(path=""){ // funktion um daten aus firebase zu löschen
                 fetchContacts();
             }
         });
-    </script>
+
+
+
+
+
+
+
+        function getValue(id){
+    return document.getElementById(id).value.trim();
+}
+
+function getTaskFromForm(){
+    const priorityElement = document.querySelector(".prioBTNS .active"); // Find the active priority button
+    const priority = priorityElement ? priorityElement.id : "";
+  
+    const task = {
+      title: getValue("taskTitle"),
+      description: getValue("taskDescriptionArea"),
+      dueDate: getValue("taskDate"),
+      category: getValue("task_category"),
+      priority,
+      assignetTo: assignedToList,
+      subtasks: subtask,
+      currentState: "to-do",
+    };
+    return task;
+}
+
+async function createTask() {
+    const task = getTaskFromForm();
+    const BASE_URL ="";
+  
+    try {
+      showLoadingOverlay(); // Show loading overlay before making the request
+  
+      const response = await fetch(databaseUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task),
+      });
+  
+      if (response.ok) {
+        // Redirect to board.html after a short delay to show the loading indicator
+        setTimeout(() => {
+          window.location.href = "board.html";
+        }, 1000);
+      } else {
+        console.error("Failed to create task");
+        removeLoadingOverlay(); // Remove loading overlay if there is an error
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      removeLoadingOverlay(); // Remove loading overlay if there is an error
+    }
+  }
 
     </script>
+
+    
 </head>
 <body>
     
