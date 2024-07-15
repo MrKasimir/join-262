@@ -78,3 +78,59 @@
         const Email = document.getElementById('Login-mail-input')
         const Password = document.getElementById('Login-password-input')
      }
+
+
+
+
+
+
+
+async function loadData(path = "User") { // Function to load data from Firebase
+    try {
+        let response = await fetch(Base_URL + path + ".json");
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        let responsetoJson = await response.json();
+        console.log(responsetoJson);
+        return responsetoJson;
+    } catch (error) {
+        console.error("There has been a problem with your fetch operation:", error);
+    }
+}
+
+function loginButtonOnClick() {
+    const { email, password } = getInputData();
+    loadData().then(users => {
+        if (users) {
+            let userFound = false;
+            for (let userId in users) {
+                let user = users[userId];
+                if (user.Email === email && user.Passwort === password) {
+                    userFound = true;
+                    console.log("Login successful");
+                    // Process further after successful login
+                    break;
+                }
+            }
+            if (!userFound) {
+                alert("Email oder Passwort ist Falsch");
+            }
+        } else {
+            alert("Error loading user data");
+        }
+    });
+}
+
+function getInputData() {
+    const email = document.getElementById('Login-mail-input').value;
+    const password = document.getElementById('Login-password-input').value;
+    return { email, password };
+}
+
+// Call this function on page load
+function onload() {
+    loadData().then(responsetoJson => {
+        console.log(responsetoJson);
+    });
+}
