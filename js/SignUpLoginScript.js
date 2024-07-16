@@ -1,4 +1,16 @@
+const Contacts = {
+    name: "Enes Klakan",
+    email: "enes@hotmail.com",
+    password: "12345",
+
+}
+
+
+
+
+
 const Base_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
+
 
 async function fetchHighestUserID() {
     try {
@@ -22,10 +34,10 @@ async function fetchHighestUserID() {
     }
 }
 
-async function postData(path = "User/User(collection)", data = {}) { // function to push data 
+async function postData(path = "User/User(collection)", data = {}) {
     try {
         let response = await fetch(Base_URL + path + ".json", {
-            method: "POST", // method can be changed to "PUT", "DELETE", "PATCH" ,"GET"
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -42,9 +54,9 @@ async function onSignUp(userData) {
     try {
         let highestID = await fetchHighestUserID();
         let newUserID = `UserID_${highestID + 1}`;
-        postData(`User/${newUserID}`, userData)
-            .then(response => console.log("User created:", response))
-            .catch(error => console.error("Error creating user:", error));
+        let response = await postData(`User/${newUserID}`, userData);
+        console.log("User created:", response);
+        clearInput(); // Clear the inputs after the user has been created
     } catch (error) {
         console.error("Error in onSignUp:", error);
     }
@@ -73,6 +85,17 @@ function checkPassword(Password, confirmPassword, userData) {
     }
 }
 
+/*function clearInput() {
+    document.getElementById('SignUp-Name').value = '';
+    document.getElementById('SignUp-Email').value = '';
+    document.getElementById('SignUp-Password').value = '';
+    document.getElementById('SignUp-ConfirmPassword').value = '';
+}
+    */
+
+// Event listener for the sign-up button
+document.getElementById('SignUp-Button').addEventListener('click', SignUpButtonOnClick);
+
 // Call this function on page load
 function onload() {
    // Load initial data if needed
@@ -82,7 +105,7 @@ function onload() {
 }
 
      // Login ´
-    /*
+    
      
      function onload(){
       
@@ -95,7 +118,7 @@ function onload() {
         console.log(responsetoJson);
      }
         
-      */
+      
     
 
     
