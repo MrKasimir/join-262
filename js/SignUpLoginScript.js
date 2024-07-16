@@ -1,16 +1,6 @@
-const Contacts = {
-    name: "Enes Klakan",
-    email: "enes@hotmail.com",
-    password: "12345",
-
-}
-
-
-
-
-
 const Base_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
-
+// SIGNUP
+let Contacts = [];
 
 async function fetchHighestUserID() {
     try {
@@ -56,10 +46,16 @@ async function onSignUp(userData) {
         let newUserID = `UserID_${highestID + 1}`;
         let response = await postData(`User/${newUserID}`, userData);
         console.log("User created:", response);
-        clearInput(); // Clear the inputs after the user has been created
+        pushToLocalArray(userData); // Push user data to local Contacts array
+        // Clear the inputs after the user has been created
     } catch (error) {
         console.error("Error in onSignUp:", error);
     }
+}
+
+function pushToLocalArray(userData) {
+    Contacts.push(userData);
+    console.log("Current Contacts Array:", Contacts);
 }
 
 function SignUpButtonOnClick(event) {
@@ -85,105 +81,74 @@ function checkPassword(Password, confirmPassword, userData) {
     }
 }
 
-/*function clearInput() {
-    document.getElementById('SignUp-Name').value = '';
-    document.getElementById('SignUp-Email').value = '';
-    document.getElementById('SignUp-Password').value = '';
-    document.getElementById('SignUp-ConfirmPassword').value = '';
-}
-    */
-
-// Event listener for the sign-up button
-document.getElementById('SignUp-Button').addEventListener('click', SignUpButtonOnClick);
-
-// Call this function on page load
-function onload() {
-   // Load initial data if needed
-    loadData().then(responsetoJson => {
-        console.log(responsetoJson);
-    });
+// LOGIN //
+function onload(){
+    loadData();
 }
 
-     // Login ´
-    
-     
-     function onload(){
-      
-        console.log(responsetoJson);
-     }
-
-     async function loadData(path="User_ID"){ // funktion um daten von firebase zu laden 
-        let response = await fetch(Base_URL + path +".json");
-        let responsetoJson =  await response.json();
-        console.log(responsetoJson);
-     }
-        
-      
-    
-
-    
-
-     // Funktion zum Laden der Benutzerdaten aus Firebase
-     async function loadData(path = "User.json") {
-        try {
-            let response = await fetch(Base_URL + path);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+// Function to load data from Firebase
+async function loadData() {
+    try {
+        console.log("Fetching data from:", Base_URL + "User.json"); // Log URL
+        let response = await fetch(Base_URL + "User.json", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
             }
-            let responsetoJson = await response.json();
-            return responsetoJson;
-        } catch (error) {
-            console.error("Error fetching user data:", error);
-            throw error;
+        });
+        console.log("Response status:", response.status); // Log response status
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+        let data = await response.json();
+        console.log("Data fetched successfully:", data); // Log fetched data
+        return data;
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        throw error;
     }
-    
-    async function loginButtonOnClick(event) {
-        event.preventDefault(); // Prevent form from submitting
-    
-        const email = document.getElementById('Login-mail-input').value.trim();
-        const password = document.getElementById('Login-password-input').value.trim();
-    
-        if (email && password) {
-            try {
-                const users = await loadData("User.json");
-                if (users) {
-                    let userFound = false;
-                    for (let userId in users) {
-                        let user = users[userId];
-                        if (user.Email === email && user.Password === password) {
-                            userFound = true;
-                            console.log("Login successful");
-    
-                            // Weiterleitung zur summaryUser.html nach erfolgreicher Anmeldung
-                            window.location.href = "summaryUser.html";
-    
-                            // Optional: Speichern der aktuellen Benutzerdaten in localStorage oder sessionStorage
-                            // localStorage.setItem('currentUser', JSON.stringify(user));
-                            break;
-                        }
-                    }
-                    if (!userFound) {
-                        alert("Email oder Passwort ist falsch");
-                    }
-                } else {
-                    alert("Fehler beim Laden der Benutzerdaten");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("Fehler beim Laden der Benutzerdaten");
+}
+
+// Function to compare user input with loaded user data
+async function compareUserDataForLogin() {
+    const emailInput = document.getElementById('Login-mail-input').value.trim();
+    const passwordInput = document.getElementById('Login-password-input').value.trim();
+
+    if (!emailInput || !passwordInput) {
+        alert("Email and password are required!");
+        return;
+    }
+
+    try {
+        const users = await loadData();
+        let userFound = false;
+
+        for (let userId in users) {
+            const user = users[userId];
+            const UserEmail = user.Email;
+            const UserPassword = user.Password;
+
+            if (UserEmail === emailInput && UserPassword === passwordInput) {
+                userFound = true;
+                console.log("Login successful");
+
+                // Redirect to summaryUser.html after successful login
+                window.location.href = "summaryUser.html";
+                break;
             }
-        } else {
-            alert("Email und Passwort sind erforderlich!");
         }
-    }
-    
-    // Diese Funktion wird beim Laden der Seite aufgerufen, um die Benutzerdaten zu laden
-    async function onload() {
-        try {
-            const users = await loadData("User.json");
-            console.log(users);
-        } catch (error) {
-            console.error("Error:", error);
+
+        if (!userFound) {
+            alert("Email or password is incorrect");
         }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Error loading user data");
     }
+}
+
+// Dummy function for guest login
+function guestLogin() {
+    alert("Guest login feature not implemented.");
+}
