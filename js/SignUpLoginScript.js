@@ -82,65 +82,44 @@ function checkPassword(Password, confirmPassword, userData) {
 }
 
 // LOGIN //
-async function getContacts() {
+let UserData = [];
+
+async function fetchUserData() {
     try {
         let response = await fetch(Base_URL + "User.json", {
             method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
+            headers: { "Content-Type": "application/json" }
         });
         let data = await response.json();
-        const contacts = [];
         for (const key in data) {
             if (data.hasOwnProperty(key)) {
-                contacts.push({ id: key, ...data[key] });
+                UserData.push({ id: key, ...data[key] });
             }
         }
-        console.log("Loaded Contacts:", contacts);
-        return contacts;
+        console.log("UserData loaded:", UserData);
     } catch (error) {
-        console.error("Fehler beim Laden der Kontakte:", error);
-        throw error;
-    }
-    
-}
-
-function compareUser(contacts) {
-    let inputMail = document.getElementById("Login-mail-input").value;
-    let inputPassword = document.getElementById("Login-password-input").value;
-    let found = false;
-
-    console.log("Input Email:", inputMail);
-    console.log("Input Password:", inputPassword);
-
-    contacts.forEach(contact => {
-        console.log("Checking contact:", contact);
-        if (contact.Email === inputMail && contact.Password === inputPassword) {
-            found = true;
-            console.log("Match found:", contact);
-            window.location.href = "summaryUser.html";
-        }
-    });
-
-    if (!found) {
-        window.alert("Password oder Email ist falsch!");
-        console.log("No match found.");
+        console.error("Error fetching user data:", error);
     }
 }
 
 function handleLogin() {
-    getContacts().then(contacts => {
-        compareUser(contacts);
-    }).catch(error => {
-        console.error("Error fetching contacts:", error);
-    });
+    const inputMail = document.getElementById("Login-mail-input").value;
+    const inputPassword = document.getElementById("Login-password-input").value;
+    let userFound = false;
+
+    for (const user of UserData) {
+        if (user.Email === inputMail && user.Password === inputPassword) {
+            userFound = true;
+            window.location.href = "summaryUser.html";
+            break;
+        }
+    }
+
+    if (!userFound) {
+        alert("Password oder Email ist falsch!");
+    }
 }
 
-// Usage example
-getContacts().then(contacts => {
-    // Process the contacts array as needed
-    console.log("Contacts array:", contacts);
-}).catch(error => {
-    console.error("Error fetching contacts:", error);
-});
+// Fetch user data when the script loads
+fetchUserData();
+
