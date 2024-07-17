@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="Css/style.css">
-    <script src="js/script.js"></script>
+    <script src="js/Script Add Task.js"></script>
 </head>
 <body>
     
@@ -62,22 +62,22 @@
                 <div>
                   <div class="addTask-input-fields-div">
                     Title*
-                    <input placeholder="Enter a title" class="addTask-title-input" type="text">
+                    <input id="Task-Title-id" placeholder="Enter a title" class="addTask-title-input" type="text">
                   </div>
 
                   <div class="addTask-input-fields-div">
                     Description
-                    <input placeholder="Enter a description" class="addTask-describtion-input" type="text">
+                    <input id="Task-Describtion-id" placeholder="Enter a description" class="addTask-describtion-input" type="text">
                   </div>
 
                   <div class="addTask-input-fields-div ">
                     Assigned To
                     <form class="" action="/action_page.php">
-                      <select class="addTask-contacts-multipychoice-input" name="contacts" id="contacts">
-                        <option value="Select Contact to assign">Select contact to assign</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
+                      <select class="addTask-contacts-multipychoice-input" name="contacts" id="Task-choose-contact-id">
+                        <option class="dropDownMenue" value="Select Contact to assign">Select contact to assign</option>
+                        <option class="dropDownMenue"  value="saab">Saab</option>
+                        <option class="dropDownMenue"  value="opel">Opel</option>
+                        <option class="dropDownMenue"  value="audi">Audi</option>
                       </select>
                     </form>
                   </div>
@@ -89,7 +89,7 @@
                 <div>
                   <div class="addTask-input-fields-div">
                     Due date*
-                    <input placeholder="dd/mm/yyyy" class="addTask-due-date-input" type="text">
+                    <input id="Task-Date-Id" placeholder="dd/mm/yyyy" class="addTask-due-date-input" type="text">
                   </div>
 
                   <div class="addTask-input-fields-div">
@@ -103,7 +103,7 @@
 
                   <div class="addTask-input-fields-div ">
                     Category
-                    <form class="" action="/action_page.php">
+                    <form id="Task-choose-Category-id" class="" action="/action_page.php">
                       <select class="addTask-contacts-multipychoice-input" name="contacts" id="contacts">
                         <option value="Select Task Category">Select task category</option>
                         <option value="saab">Saab</option>
@@ -115,7 +115,7 @@
 
                   <div class="addTask-input-fields-div">
                     Subtasks
-                    <input placeholder="Add new subtasks" class="addTask-contacts-multipychoice-input" type="text">
+                    <input id="Task-Subtask-Id" placeholder="Add new subtasks" class="addTask-contacts-multipychoice-input" type="text">
                 </div>
 
                   
