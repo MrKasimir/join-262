@@ -405,6 +405,12 @@ body {
     color: white;
   }
 
+  .addTask-creat-button:hover {
+    cursor: pointer;
+  }
+    
+  
+
   .addTask-last-div {
     display: flex;
     justify-content: space-between;
@@ -465,5 +471,5 @@ body {
 
   .dropDownMenue{
     border-radius: 10px;
-    
+  
   }
