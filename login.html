@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="Css/style.css">
-    <script src="js/SignUpLoginScript.js"></script>
+  
 </head>
-<body onload="onload()"> 
+<body> 
 
     <header class="header-login-sign-up">
         <img class="Join-Logo" src="./assets/img/Capa 2 blue transparent.png" alt="">
@@ -38,7 +38,7 @@
                 
     
                 <div class="button-section-from-login">
-                    <button onclick="compareUserDataForLogin()" class="Login-button">Log in</button> 
+                    <button onclick="handleLogin()" class="Login-button">Log in</button> 
     
                     <button onclick="guestLogin()" class="guest-login-button">Guest Log in</button>
                 </div>
@@ -53,6 +53,6 @@
             <a href="">Legal notice</a>
         </div>
     </div>
-
+    <script src="js/SignUpLoginScript.js"></script>
 </body>
 </html>

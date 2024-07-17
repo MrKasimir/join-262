@@ -103,6 +103,38 @@ async function getContacts() {
         console.error("Fehler beim Laden der Kontakte:", error);
         throw error;
     }
+    
+}
+
+function compareUser(contacts) {
+    let inputMail = document.getElementById("Login-mail-input").value;
+    let inputPassword = document.getElementById("Login-password-input").value;
+    let found = false;
+
+    console.log("Input Email:", inputMail);
+    console.log("Input Password:", inputPassword);
+
+    contacts.forEach(contact => {
+        console.log("Checking contact:", contact);
+        if (contact.Email === inputMail && contact.Password === inputPassword) {
+            found = true;
+            console.log("Match found:", contact);
+            window.location.href = "summaryUser.html";
+        }
+    });
+
+    if (!found) {
+        window.alert("Password oder Email ist falsch!");
+        console.log("No match found.");
+    }
+}
+
+function handleLogin() {
+    getContacts().then(contacts => {
+        compareUser(contacts);
+    }).catch(error => {
+        console.error("Error fetching contacts:", error);
+    });
 }
 
 // Usage example
