@@ -6,8 +6,8 @@
     <title>Summary User</title>
     <link rel="stylesheet" href="Css/summary.css" />
   </head>
-  <body>
-    <script src="js/summary.js"></script>
+  <body onload="init()">
+ 
     <header class="joinSideBar">
       <div class="LogoDiv">
         <img class="joinLogo" src="assets/img/joinlogo.png" alt="" />
@@ -143,10 +143,10 @@
       </div>
 
       <div class="greeting">
-        <p class="timeOfDay">Good morning, </p>
-        <p class="greetingName">Dominic Mörth</p>
+        <p id="timeOfDay" class="timeOfDay">Good Mornig </p>
+        <p id="UserName" class="greetingName">Dominic Mörth</p>
       </div>
-
+      <script src="js/summary.js"></script>
 
     </section>
   </body>

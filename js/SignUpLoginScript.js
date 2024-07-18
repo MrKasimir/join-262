@@ -81,8 +81,12 @@ function checkPassword(Password, confirmPassword, userData) {
     }
 }
 
+
+
 // LOGIN //
 let UserData = [];
+let loggedinUser = [];
+ 
 
 async function fetchUserData() {
     try {
@@ -124,6 +128,7 @@ async function handleLogin(event) {
         if (user.Email === inputMail && user.Password === inputPassword) {
             userFound = true;
             console.log("User found, redirecting...");
+            saveLoggedInUser(user);
             window.location.href = "summaryUser.html"; // Check the path here
             break;
         }
@@ -132,6 +137,10 @@ async function handleLogin(event) {
     if (!userFound) {
         alert("Password oder Email ist falsch!");
     }
+}
+function saveLoggedInUser(user) {
+    loggedinUser.push(user);
+    console.log("Logged in user:", loggedinUser);
 }
 
 // Fetch user data when the script loads
