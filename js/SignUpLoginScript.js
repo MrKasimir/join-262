@@ -83,8 +83,6 @@ function checkPassword(Password, confirmPassword, userData) {
 
 // LOGIN //
 let UserData = [];
-let loginUserData = [];
-
 
 async function fetchUserData() {
     try {
@@ -92,28 +90,13 @@ async function fetchUserData() {
             method: "GET",
             headers: { "Content-Type": "application/json" }
         });
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
         let data = await response.json();
-        console.log("Fetched data:", data); // Debugging log
-
-        UserData = []; // Clear UserData before refilling
-        loginUserData = []; // Clear loginUserData before refilling
-
-        // Extract email and password for each user and store in loginUserData
         for (const key in data) {
             if (data.hasOwnProperty(key)) {
-                const user = data[key];
-                console.log("Processing user:", user); // Debugging log
-                if (user.Email && user.Password) {
-                    UserData.push({ id: key, ...user });
-                    loginUserData.push({ Email: user.Email, Password: user.Password });
-                }
+                UserData.push({ id: key, ...data[key] });
             }
         }
         console.log("UserData loaded:", UserData);
-        console.log("loginUserData loaded:", loginUserData);
     } catch (error) {
         console.error("Error fetching user data:", error);
     }
@@ -127,11 +110,11 @@ function handleLogin() {
     console.log("Input Email:", inputMail);
     console.log("Input Password:", inputPassword);
 
-    for (const loginUser of loginUserData) {
-        console.log("Checking loginUser:", loginUser);
-        if (loginUser.Email === inputMail && loginUser.Password === inputPassword) {
+    for (const user of UserData) {
+        console.log("Checking user:", user);
+        if (User.Email === inputMail && user.Password === inputPassword) {
             userFound = true;
-            console.log("Match found:", loginUser);
+            console.log("Match found:", user);
             window.location.href = "summaryUser.html";
             break;
         }
@@ -144,4 +127,5 @@ function handleLogin() {
 }
 
 // Fetch user data when the script loads
-window.onload = fetchUserData;
+fetchUserData();
+
