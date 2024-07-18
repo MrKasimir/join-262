@@ -85,7 +85,7 @@ function checkPassword(Password, confirmPassword, userData) {
 
 // LOGIN //
 let UserData = [];
-let loggedinUser = [];
+window.loggedinUser = [];
  
 
 async function fetchUserData() {
@@ -139,9 +139,11 @@ async function handleLogin(event) {
     }
 }
 function saveLoggedInUser(user) {
-    loggedinUser.push(user);
-    console.log("Logged in user:", loggedinUser);
+    window.loggedinUser.push(user);
+    console.log("Logged in user:", window.loggedinUser);
+    localStorage.setItem('loggedinUser', JSON.stringify(window.loggedinUser));
 }
+console.log("signUpLogin.js loaded");
 
 // Fetch user data when the script loads
 fetchUserData();

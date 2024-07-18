@@ -29,20 +29,52 @@ function displayTime() {
         console.log("Guten Abend!");
         timeOfDayElement.innerHTML = 'Good Evening';
     }
+    
 }
-let loggedinUser =[];
+
 
 function init(){
-    displayTime(); 
+   displayTime();
+   displayName();
 }
 
 
-function displayName(){
-  let Username =   document.getElementById('UserName');
-  
+function displayName() {
+    window.loggedinUser = JSON.parse(localStorage.getItem('loggedinUser')) || [];
+    let usernameElement = document.getElementById('UserName');
+    if (window.loggedinUser.length > 0) {
+        usernameElement.innerHTML = window.loggedinUser[0].Name; 
+        console.log(window.loggedinUser[0].Name);
+    } else {
+        usernameElement.innerHTML = "No user logged in";
+    }
+}
+console.log("summary.js loaded");
+
+
+// SummaryGuest
+
+function initGuest(){
+    displayTimeGuest()
 }
 
-
-
-
-'UserName'
+function displayTimeGuest() {
+    let aktuelleZeit = new Date();
+    let stunden = aktuelleZeit.getHours();
+    
+    console.log(stunden, aktuelleZeit);
+    
+   
+    let timeOfDayElement = document.getElementById('timeOfDayGuest');
+    
+    if (stunden < 12) {
+        console.log("Guten Morgen!");
+        timeOfDayElement.innerHTML = 'Good Morning,';
+    } else if (stunden < 18) {
+        console.log("Guten Nachmittag!");
+        timeOfDayElement.innerHTML = 'Good Afternoon,';
+    } else {
+        console.log("Guten Abend!");
+        timeOfDayElement.innerHTML = 'Good Evening';
+    }
+}
