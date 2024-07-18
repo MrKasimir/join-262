@@ -91,9 +91,14 @@ async function fetchUserData() {
             headers: { "Content-Type": "application/json" }
         });
         let data = await response.json();
-        for (const key in data) {
-            if (data.hasOwnProperty(key)) {
-                UserData.push({ id: key, ...data[key] });
+        // Flatten the structure to extract user data properly
+        for (const userId in data) {
+            if (data.hasOwnProperty(userId)) {
+                for (const key in data[userId]) {
+                    if (data[userId].hasOwnProperty(key)) {
+                        UserData.push({ id: key, ...data[userId][key] });
+                    }
+                }
             }
         }
         console.log("UserData loaded:", UserData);
@@ -102,30 +107,36 @@ async function fetchUserData() {
     }
 }
 
-function handleLogin() {
+async function handleLogin(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Fetch the user data before checking login details
+    if (UserData.length === 0) {
+        await fetchUserData();
+    }
+
     const inputMail = document.getElementById("Login-mail-input").value;
     const inputPassword = document.getElementById("Login-password-input").value;
     let userFound = false;
 
-    console.log("Input Email:", inputMail);
-    console.log("Input Password:", inputPassword);
-
     for (const user of UserData) {
-        console.log("Checking user:", user);
-        if (User.Email === inputMail && user.Password === inputPassword) {
+        console.log(`Checking user: ${user.Email}`);
+        if (user.Email === inputMail && user.Password === inputPassword) {
             userFound = true;
-            console.log("Match found:", user);
-            window.location.href = "summaryUser.html";
+            console.log("User found, redirecting...");
+            window.location.href = "summaryUser.html"; // Check the path here
             break;
         }
     }
 
     if (!userFound) {
         alert("Password oder Email ist falsch!");
-        console.log("No match found.");
     }
 }
 
 // Fetch user data when the script loads
 fetchUserData();
+
+// Add event listener to the form
+document.getElementById("loginForm").addEventListener("submit", handleLogin);
 
