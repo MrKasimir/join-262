@@ -40,14 +40,15 @@ async function postData(path = "User/User(collection)", data = {}) {
     }
 }
 
-async function onSignUp(userData) {
+async function onSignUp(userData) { //In onSignUp wird userData verwendet, um den neuen Benutzer zu registrieren und die Daten sowohl lokal als auch auf dem Server zu speichern
+    
     try {
         let highestID = await fetchHighestUserID();
         let newUserID = `UserID_${highestID + 1}`;
         let response = await postData(`User/${newUserID}`, userData);
         console.log("User created:", response);
         pushToLocalArray(userData); // Push user data to local Contacts array
-      
+        window.location.href = "login.html"
     } catch (error) {
         console.error("Error in onSignUp:", error);
     }
@@ -58,9 +59,9 @@ function pushToLocalArray(userData) {
     console.log("Current Contacts Array:", Contacts);
 }
 
-function SignUpButtonOnClick(event) {
-    event.preventDefault(); // Prevent form from submitting
-
+function SignUpButtonOnClick(event) {//In der Funktion SignUpButtonOnClick wird userData erstellt und an die Funktion checkPassword übergeben
+    event.preventDefault(); 
+    //Hier wird userData als Objekt { Name, Email, Password } erstellt und an checkPassword übergeben.
     const Name = document.getElementById('SignUp-Name').value.trim();
     const Email = document.getElementById('SignUp-Email').value.trim();
     const Password = document.getElementById('SignUp-Password').value.trim();
@@ -73,7 +74,9 @@ function SignUpButtonOnClick(event) {
     }
 }
 
-function checkPassword(Password, confirmPassword, userData) {
+
+
+function checkPassword(Password, confirmPassword, userData) { //In checkPassword wird userData als Parameter entgegengenommen und bei erfolgreicher Passwortprüfung an onSignUp weitergegeben:
     if (Password === confirmPassword) {
         onSignUp(userData);
     } else {
@@ -84,9 +87,9 @@ function checkPassword(Password, confirmPassword, userData) {
 
 
 // LOGIN //
+
 let UserData = [];
 window.loggedinUser = [];
- 
 
 async function fetchUserData() {
     try {
@@ -100,7 +103,7 @@ async function fetchUserData() {
             if (data.hasOwnProperty(userId)) {
                 for (const key in data[userId]) {
                     if (data[userId].hasOwnProperty(key)) {
-                        UserData.push({ id: key, ...data[userId][key] });
+                        UserData.push({ userId: userId, id: key, ...data[userId][key] });
                     }
                 }
             }
@@ -138,11 +141,19 @@ async function handleLogin(event) {
         alert("Password oder Email ist falsch!");
     }
 }
+
 function saveLoggedInUser(user) {
-    window.loggedinUser.push(user);
+    const userToSave = {
+        UserID: user.userId, // Ensure UserID is saved
+        Email: user.Email,
+        Name: user.Name,
+        id: user.id
+    };
+    window.loggedinUser.push(userToSave);
     console.log("Logged in user:", window.loggedinUser);
     localStorage.setItem('loggedinUser', JSON.stringify(window.loggedinUser));
 }
+
 console.log("signUpLogin.js loaded");
 
 // Fetch user data when the script loads
@@ -150,4 +161,3 @@ fetchUserData();
 
 // Add event listener to the form
 document.getElementById("loginForm").addEventListener("submit", handleLogin);
-
