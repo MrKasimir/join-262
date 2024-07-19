@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="Css/style.css">
+  <link rel="stylesheet" href="summaryUser.html">
 </head>
-<body>
+<body> 
 
     <header class="header-login-sign-up">
-        <img class="Join-Logo" src="/imgs/Capa 2.png" alt="">
+        <img class="Join-Logo" src="./assets/img/Capa 2 blue transparent.png" alt="">
 
         <div class="redirect-sign-up">Not a Join user? <button class="Sign-up-button"><a href="signUp.html">Sign up</a></button></div>
     </header>
@@ -21,28 +21,28 @@
     
                 <div class="headline-Login-sign-up">
                     <h1 class="Log-in-Headline">Log in</h1>
-                    <div class="underline"></div>
+                   <div class="underlineDiv"><div class="underline"></div></div> 
                 </div>
-    
-                <div>
-                    <form action="">
-                        <input class="email-input" id="mail-input" type="text" placeholder="Email" required>
-                    </form>
+
+            <form id="loginForm">
+                    <div> 
+                        <input class="email-input" id="Login-mail-input" type="text" placeholder="Email" required>
+                    </div>
                 
     
-                    <form action="">
-                        <input class="password-input" type="text" placeholder="Password " required>
-                    </form>
+                    <div>
+                        <input id="Login-password-input" class="password-input" type="text" placeholder="Password " required>
+                    </div>
     
-                    <button class="regtangle-button"> </button> Remember me
-                </div>
+                    <input class="margin-left" type="checkbox"> Remember me
+                
     
                 <div class="button-section-from-login">
-                    <button class="Login-button">Log in</button> 
+                    <button onclick="handleLogin()" class="Login-button">Log in</button> 
     
-                    <button class="guest-login-button">Guest Log in</button>
+                    <button onclick="guestLogin()" class="guest-login-button">Guest Log in</button>
                 </div>
-    
+            </form>
             </div>
         </div> 
     </div>
@@ -52,8 +52,8 @@
             <a href="">privacy Policy</a>
             <a href="">Legal notice</a>
         </div>
-    
     </div>
-
+    <script src="js/SignUpLoginScript.js"></script>
+    <script src="js/summary.js"></script>
 </body>
 </html>

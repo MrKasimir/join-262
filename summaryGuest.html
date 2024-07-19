@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary Guest</title>
-    <link rel="stylesheet" href="summary.css">
+    <link rel="stylesheet" href="Css/summary.css">
   
 </head>
-<body>
+<body onload="initGuest()">
  
 
     <header class="joinSideBar">
@@ -120,7 +120,7 @@
   
             <div class="box3">
               <div class="dateDaeadline">
-                <h3>October 16, 2022</h3>
+                <h3 id="guestDate">October 16, 2022</h3>
                 <p>Upcoming Deadline</p>
               </div>
             </div>
@@ -148,13 +148,13 @@
         </div>
   
         <div class="greeting">
-          <p class="timeOfDay">Good morning, </p>
-          <p class="greetingName"></p>
+          <p id="timeOfDayGuest" class="timeOfDay">Good morning, </p>
+          <p class="greetingName">Guest</p>
         </div>
   
   
       </section>
     
-      <script src="summary.js"></script>
+      <script src="js/summary.js"></script>
 </body>
 </html>

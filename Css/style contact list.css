@@ -1,0 +1,547 @@
+/*--------------------------- Contact List - Start -----------------------------*/
+
+html, body {
+    margin: 0px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden; /* Verhindert den globalen Scrollbalken */
+  }
+  
+     /*Join SideBar */
+  .joinSideBar {
+    background-color: rgb(42, 54, 71);
+    height: 100vh;
+    width: 260px;
+    column-gap: 30px;
+    position: fixed;
+  }
+  
+  .joinLogo {
+    width: 110px;
+    height: 140px;
+  }
+  
+  .LogoDiv {
+    padding-top: 64px;
+    padding-left: 10px;
+    height: 200px;
+    margin-left: 50px;
+    margin-bottom: 100px;
+  }
+  
+  .Catagory {
+    height: 223px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 500px;
+  }
+  
+  .sideBarIcons {
+    height: 30px;
+    width: 30px;
+  }
+  
+  .iconsDiv {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    cursor: pointer;
+    width: 100%;
+    color: rgba(253, 253, 253, 0.678);
+  }
+  
+  .iconsDiv3 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    cursor: pointer;
+    width: 89%;
+    color: rgba(253, 253, 253, 0.678);
+  }
+  
+  .iconsDiv4 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    cursor: pointer;
+    width: 98%;
+    margin-right: 8px;
+    color: rgba(253, 253, 253, 0.678);
+  }
+  
+  .iconsDiv:hover,
+  .iconsDiv3:hover,
+  .iconsDiv4:hover {
+    cursor: pointer;
+    background-color: rgb(32, 42, 54);
+  }
+  
+  .legalNotice {
+    height: 100px;
+    margin-left: 60px;
+    color: rgba(253, 253, 253, 0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 0px;
+    font-size: 18px;
+    padding-top: 100px;
+    cursor: pointer;
+  }
+  .SideBarText {
+    margin: 0;
+  }
+  
+  /* upper content section */
+  .rightContent {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    margin-right: 40px;
+  }
+  
+  .contactListEditStructure  {
+    position: fixed;
+    margin-left: 850px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 140px;
+  }
+  
+  .headline {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    left: 400px;
+    top: 250px;
+    width: 650px;
+    justify-content: space-between;
+  }
+  .subHeadline {
+    font-size: 26px !important;
+  }
+  .mainHeadline {
+    font-size: 80px;
+  }
+  
+  .line {
+    height: 60px;
+    width: 2px;
+    background-color: rgb(20, 175, 241);
+  }
+  
+  .line2 {
+    height: 110px;
+    width: 2px;
+    background-color: rgba(128, 128, 128, 0.644);
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  /* Summary Board */
+  .summeryBoard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    height: 560px;
+    width: 562px;
+    background-color: white;
+    position: fixed;
+    left: 350px;
+    top: 450px;
+    border-radius: 10px;
+    padding: 5px;
+    color: rgb(32, 42, 54);
+    margin-left: 10px;
+    background-color: rgb(246, 247, 248);
+  }
+  
+  .firstLine {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+  .thirdLine {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 10px;
+    gap: 20px;
+  }
+  
+  .secondLine {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 0px;
+    margin-left: 10px;
+    background-color: white;
+    border: solid 1px rgba(229, 226, 226, 0.664);
+    box-shadow: 0px 0px 2px 0px #0000001a;
+    border-radius: 25px;
+  }
+  .secondLine:hover {
+    background-color: rgb(42, 54, 71);
+    color: rgb(255, 255, 255);
+  }
+  
+  .columnTask {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    column-gap: 2px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  .column {
+    height: 168px;
+    width: 168px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: white;
+    border: solid 1px rgba(229, 226, 226, 0.664);
+    text-align: center;
+    word-break: normal;
+    text-wrap: wrap;
+    box-shadow: 0px 0px 2px 0px #0000001a;
+  }
+  .column:hover {
+    background-color: rgb(42, 54, 71);
+    color: white;
+  }
+  .taskImg {
+    padding-right: 15px;
+    height: 75px;
+  }
+  
+  h2 {
+    font-size: 60px;
+    margin: 0px;
+  }
+  
+  .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px rgba(229, 226, 226, 0.664);
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0px 0px 2px 0px #0000001a;
+    flex: 1;
+    margin: 0 10px;
+    background-color: rgb(255, 255, 255);
+    height: 180px;
+    cursor: pointer;
+  }
+  
+  .box:hover {
+    background-color: rgb(42, 54, 71);
+    color: rgb(255, 255, 255);
+  }
+  .box2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    text-align: center;
+    flex: 1;
+    height: 180px;
+    cursor: pointer;
+    margin-right: 0px;
+    padding-left: 45px;
+  }
+  .box3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    text-align: center;
+    flex: 1;
+    height: 180px;
+    cursor: pointer;
+    margin-right: 0px;
+  }
+  /* Greeting text*/
+  .greeting {
+    height: 136px;
+    width: 500px;
+    position: fixed;
+    top: 670px;
+    left: 1000px;
+  }
+  
+  .timeOfDay {
+    font-size: 47px;
+    color: #2a3647;
+  }
+  .greetingName {
+    color: #29abe2;
+    font-weight: 700;
+    font-size: 64px;
+    height: 64px;
+    width: fit-content;
+  }
+  
+  p {
+    font-size: 20px;
+    margin: 0px;
+  }
+  
+  .description {
+    position: fixed;
+    left: 260px;
+    width: 91%;
+    height: 96px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 4px 0px #0000001a;
+    z-index: 2;
+  }
+  
+  .descriptionImg {
+    display: flex;
+    align-items: center;
+    margin-right: 53px;
+    gap: 20px;
+    position: fixed;
+    right: -2.5px;
+  }
+  .circleName {
+    color: rgb(20, 175, 241);
+    z-index: 999;
+    position: fixed;
+    right: 62px;
+  }
+  
+  .descriptionHeadline {
+    margin-left: 100px;
+  }
+  .qmImg {
+    height: 20px;
+    cursor: pointer;
+  }
+  .circleImg {
+    height: 56px;
+    width: 56px;
+    cursor: pointer;
+  }
+  
+  /*-------------------- middle Part List and Contacts - Start -------------------------*/
+  
+  .containerStructureListWidth {
+    height: 90vh; /* Höhe anpassen nach Bedarf */
+    overflow-y: auto; /* Erlaubt Scrollen nur vertikal */
+    width: 400px;
+  }
+  
+  .containerStructureListWidth::-webkit-scrollbar {
+    width: 12px; /* Breite des Scrollbalkens */
+  }
+  
+  .containerStructureListWidth::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Farbe der Laufschiene */
+  }
+  
+  .containerStructureListWidth::-webkit-scrollbar-thumb {
+    background: #888; /* Farbe des Scrollbalkens */
+  }
+  
+  .containerStructureListWidth::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Farbe des Scrollbalkens beim Hover */
+  }
+  
+  
+  .AddNewContactListButtonAdd {
+          width: auto;
+          height: 50px;
+          background-color: #2a3647;
+          color: white;
+          font-family: "Inter", sans-serif;
+          padding: 0px 32px 0px 32px;
+          border: none;
+          border-radius: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          border-radius: 8px;
+          font-size: 21px;
+          font-weight: 400;
+          overflow: hidden;
+          position: relative;
+          cursor: pointer;
+          }
+  
+          .AddNewContactListButtonAddIcon {
+              height: 32px;
+              margin-left: 12px;
+          }
+  
+          .AddNewContactListButtonAdd:hover {
+            box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+            transform: scale(0.99);
+          }
+  
+          .borderLineContactList {
+              background-color: rgb(129, 127, 127);
+              height: 1.1px;
+              width: 350px;
+              border-radius: 20px;
+              margin-bottom: 8px;
+          }
+  
+          .contactInfoListStructure {
+              display: flex;
+              align-items: center;
+          }
+  
+          .contactInfoListStructure:hover {
+            background-color: #2a3647;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white; 
+          }
+  
+          .contactListProfilImages {
+              height: 42px;
+              margin-left: 12px;
+          }
+  
+          .contactListInfoText {
+              margin-top: 0;
+              margin-bottom: 0;
+              margin-right: 12px;
+          }
+  
+          .contactListInfoTextEmail {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-right: 12px;
+            color: rgb(76, 76, 210);
+          }
+  
+          .StructureRight {
+            display: flex;
+            flex-wrap: wrap;
+            height: 560px;
+            width: 562px;
+            position:relative;
+            left: 350px;
+            top: 150px;
+            z-index: 1;
+          }
+  
+          .test {
+            display: flex; /* Aktiviert Flexbox */
+            align-items: center; /* Vertikal zentrieren */
+            justify-content: center; /* Zentriert die Inhalte horizontal */
+            gap: 20px; /* Fügt Abstand zwischen den Elementen hinzu */
+          }
+  
+          .borderLineContactListVertical {
+            width: 2px;
+            height: 40px;
+            background-color: #29abe2;
+            margin-top: 10px;
+          }
+  
+          .headlineContactListOverview {
+            font-size: 61px;
+            margin: 0;
+          }
+  
+          .subheadlineContactListOverview {
+            font-size: 27px;
+            margin-top: 10px;
+          }
+  
+          .contactProfilInfosContainer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+          }
+  
+          .contactProfilImagebig {
+            height: 120px;
+            margin-right: 20px;
+          }
+  
+          .profilHeadline {
+            font-size: 40px;
+            font-weight: 500;
+          }
+  
+          .contactListContainerIconsandtext {
+            display: flex;
+            gap: 20px;
+          }
+  
+          .ContactListeditAndDeleteIcons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+          }
+  
+          .ContactListeditAndDeleteIcons:hover {
+            transform: scale(0.9);
+          }
+  
+          .contactListIconsSmall {
+            height: 24px;
+          }
+  
+          .contactListEmailNumberContainer {
+            margin-top: 30px;
+          }
+  
+          .contactListEmailNumberGap {
+            margin-top: 30px;
+          }
+          
+/*--------------------------- Contact List - End -----------------------------*/
+
+/*--------------------------- Contact add - Start -----------------------------*/
+
+/*--------------------------- Contact add - End -----------------------------*/
+
+/*--------------------------- Contact edit - Start -----------------------------*/
+
+/*--------------------------- Contact edit - End -----------------------------*/

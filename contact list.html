@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join - Contact list</title>
-    <link rel="stylesheet" href="summery.css">
+<<<<<<< HEAD
+    <link rel="stylesheet" href="Css/summary.css">
 
     <style>
 body {
@@ -249,6 +250,7 @@ body {
   background-color: rgb(42, 54, 71);
   color: white;
 }
+
 .taskImg {
   padding-right: 15px;
   height: 75px;
@@ -459,6 +461,9 @@ p {
           margin-left: 0px;
         }
     </style>
+=======
+    <link rel="stylesheet" href="style contact list.css">
+>>>>>>> f1d77649c44c135fddfb29071497058b22498ca4
 
 </head>
 <body>
@@ -466,29 +471,30 @@ p {
         <div class="LogoDiv">
           <img class="joinLogo" src="../assets/img/joinlogo.png" alt="" />
         </div>
-        <div class="Catagory">
-          <div class="iconsDiv">
-            <img class="sideBarIcons" src="assets/img/summery.png" alt="" />
-            <a class="joinSidebarLinks" href="summaryUser.html">Summary</a>
+  
+        <div >
+          <div onclick="window.location.href='http://127.0.0.1:5500/join-262/summaryUser.html';" class="iconsDiv">
+            <img class="sideBarIcons" src="../assets/img/summery.png" alt="" />
+            <p>Summery</p>
           </div>
-          <div class="iconsDiv">
-            <img class="sideBarIcons" src="assets/img/addTask.png" alt="" />
-            <a class="joinSidebarLinks" href="AddTask.html">Add Task</a>
+          <div onclick="window.location.href='http://127.0.0.1:5500/join-262/AddTask.html';" class="iconsDiv">
+            <img class="sideBarIcons" src="../assets/img/addTask.png" alt="" />
+            <p>Add Task</p>
           </div>
-          <div class="iconsDiv3">
-            <img class="sideBarIcons" src="assets/img/Board.png" alt="" />
-            <a class="joinSidebarLinks" href="kanban-board.html">Board</a>
+          <div onclick="window.location.href='http://127.0.0.1:5500/join-262/kanban-board.html';" class="iconsDiv3">
+            <img class="sideBarIcons" src="../assets/img/Board.png" alt="" />
+            <p>Board</p>
           </div>
-          <div class="iconsDiv4">
-            <img class="sideBarIcons" src="assets/img/contacts.png" alt="" />
-            <a class="joinSidebarLinks" href="contact/contact list.html">Contacts</a>
+          <div onclick="window.location.href='http://127.0.0.1:5500/join-262/contact/contact%20list.html';" class="iconsDiv4">
+            <img class="sideBarIcons" src="../assets/img/contacts.png" alt="" />
+            <p>Contacts</p>
           </div>
         </div>
   
         <div class="legalNotice">
-          <p class="SideBarText">Privacy Policy</p>
+          <p onclick="window.location.href='http://127.0.0.1:5500/join-262/privacyPolicy.html';" class="SideBarText">Privacy Policy</p>
           <br />
-          <p class="SideBarText">Legal notice</p>
+          <p onclick="window.location.href='http://127.0.0.1:5500/join-262/legalNotice.html';" class="SideBarText">Legal notice</p>
         </div>
       </header>
   
@@ -506,7 +512,7 @@ p {
   
         <div class="StructureRight">
             <div class="containerStructureListWidth">
-            <button class="AddNewContactListButtonAdd">Add new contact <img class="AddNewContactListButtonAddIcon" src="../assets/img/person_add.png"></button>
+            <button onclick="window.location.href='http://127.0.0.1:5500/join-262/contact/contacts%20add.html';" class="AddNewContactListButtonAdd">Add new contact <img class="AddNewContactListButtonAddIcon" src="../assets/img/person_add.png"></button>
             <div>
                 <h1>A</h1>
                 <div class="borderLineContactList"></div>
@@ -849,13 +855,41 @@ p {
             
             </div> 
             
-            </div> 
 
-            <div class="Test">
-              <h1>Contact</h1>
-              <div></div>
-              <p>Better with aTeam</p>
+
+            </div> 
+           
+                <div class="contactListEditStructure"> <!-- Übergeordneter Container - Contacts and Edit - Start -->
+
+            <div class="test">
+              <h1 class="headlineContactListOverview">Contact</h1>
+              <div class="borderLineContactListVertical"></div>
+              <p class="subheadlineContactListOverview">Better with a Team</p>
             </div>
+
+    
+
+            <div> <!-- variabler Container - kommt in script - Profil and Edit - Start -->
+              <div class="contactProfilInfosContainer"> <!-- Image, headline, icons, subheadlines - Start -->
+                <img class="contactProfilImagebig" src="../assets/img/profil image.png" alt="profil image">
+                <div> <!--headline, icons, subheadlines - Start -->
+                  <h2 class="profilHeadline">Max Mustermann</h2>
+                  <div class="contactListContainerIconsandtext"> <!-- icons, subheadlines - Start -->
+                    <div onclick="window.location.href='http://127.0.0.1:5500/join-262/contact/contacts%20edit.html'" class="ContactListeditAndDeleteIcons"><img class="contactListIconsSmall" src="../assets/img/edit icon.png" alt=""><p>Edit</p></div>
+                    <div onclick="window.location.href='ziel.html';" class="ContactListeditAndDeleteIcons"><img class="contactListIconsSmall" src="../assets/img/delete trash.png" alt=""><p>Delete</p></div>
+                  </div> <!-- icons, subheadlines - Ende -->
+                </div> <!--headline, icons, subheadlines - Ende -->
+              </div> <!-- Image, headline, icons, subheadlines - Ende -->
+            </div> <!-- variabler Container - kommt in script - Profil and Edit - Ende -->
+
+            <div class="contactListEmailNumberContainer">
+              <p><b>Contact Information</b></p>
+                <div class="contactListEmailNumberGap"><p><b>Email</b></p><p>maxmustermann@gmail.com</p></div>
+                <div class="contactListEmailNumberGap"><p><b>Phone</b></p><p>00491726378236</p></div>
+            </div>
+
+
+              </div> <!-- Übergeordneter Container - Contacts and Edit - Ende -->
 
       </section>
 
