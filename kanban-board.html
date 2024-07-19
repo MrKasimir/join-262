@@ -54,6 +54,7 @@
                 <div class="top-right-menu">
                     <div class="circle-border">?</div>
                     <div class="circle-border">SM</div>
+                    <div onclick="loadUserData()" id="defaultUser" class="circle-border">JD</div>
                 </div>
             </div>
             <div class="input-container">
@@ -61,6 +62,10 @@
                 <div class="top-right-menu">
                     <input id="inputField" placeholder="Find Task"></input>
                     <div class="button" onclick="createTask()">Add task +</div>
+                    <div class="button" onclick="renderByCategory()">Render Kanban-Board</div>
+                    <div class="button" onclick="deleteKanbanBoard()">Delete Kanban-Board</div>
+                    <div class="button" onclick="saveTasksToFirebase()">Save To Firebase</div>
+                    <div class="button" onclick="loadTasksFromFirebase()">Load From Firebase</div>
                 </div>
             </div>
 
