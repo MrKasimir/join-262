@@ -405,11 +405,25 @@ p {
   right: -4.5px;
   cursor: pointer;
 }
+
+.circleContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  width: 56px;
+}
+
 .circleName {
   color: rgb(20, 175, 241);
   z-index: 999;
-  position: fixed;
-  right: 62px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  text-align: center;
 }
 
 .descriptionHeadline {
@@ -418,10 +432,11 @@ p {
   left: 360px;
   font-size: 18px;
 }
+
 .qmImg {
   height: 20px;
-  
 }
+
 .circleImg {
   height: 56px;
   width: 56px;
