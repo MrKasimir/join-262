@@ -48,31 +48,50 @@ let tasks = [{
     'assignedTo': 'EF',
     'subtasks': 2,
 }
-
 ];
+
+let count = tasks.length;
 
 let currentDraggedElement;
 let currentDraggedCategory;
 let addedId = tasks.length - 1;
 
+function onloadFunction() {
+    getAddedTasksFromLocalStorage();
+    addLocalStorageToBoard();
+    saveBoardAsTasksToLocalStorage();
+    tasks = loadBoardFromLocalStorage();
+    renderByCategory();
+}
 
+function saveBoardAsTasksToLocalStorage() {
+    localStorage.setItem('board', JSON.stringify(tasks));
+}
 
-// Ein Array für jede Kategorie erstellen
-// ein seperates array für alle  "todo - Karten", alle "in progress - Karten", alle "await feedback - Karten"
+function loadBoardFromLocalStorage() {
+    const boardTasks = localStorage.getItem('board');
+    if (!boardTasks) {
+        return [];
+    }
+    else return JSON.parse(boardTasks);
+}
+
 function renderByCategory() {
     deleteKanbanBoard();
     for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].category == 'todo') {
-            updateKanbanBoard(i, tasks[i].category);
-        }
-        if (tasks[i].category == 'inProgress') {
-            updateKanbanBoard(i, tasks[i].category);
-        }
-        if (tasks[i].category == 'awaitFeedback') {
-            updateKanbanBoard(i, tasks[i].category);
-        }
-        if (tasks[i].category == 'done') {
-            updateKanbanBoard(i, tasks[i].category);
+        if(tasks[i].title){
+            if (tasks[i].category == 'todo') {
+                updateKanbanBoard(i, tasks[i].category);
+            }
+            if (tasks[i].category == 'inProgress') {
+                updateKanbanBoard(i, tasks[i].category);
+            }
+            if (tasks[i].category == 'awaitFeedback') {
+                updateKanbanBoard(i, tasks[i].category);
+            }
+            if (tasks[i].category == 'done') {
+                updateKanbanBoard(i, tasks[i].category);
+            }
         }
     }
 }
@@ -87,7 +106,6 @@ function deleteKanbanBoard() {
 }
 
 function updateKanbanBoard(i, category) {
-
     document.getElementById(category).innerHTML +=
         `<div class="task-container" draggable="true" ondragstart="startDragging(${tasks[i].id})">
     <div class="task-titlecategory">${tasks[i].titleCategory}</div>
@@ -99,9 +117,7 @@ function updateKanbanBoard(i, category) {
 }
 
 function moveTo(id) {
-    /*     tasks[id].category = 'done';
-        deleteKanbanBoard();
-        renderByCategory(); */
+    // Tasks verschieben
 }
 
 function moveTo(event) {
@@ -134,13 +150,9 @@ function removeHighlight(event) {
     event.target.classList.remove('highlight');
 }
 
-
-// Task mit InputField hinzufügen:
-// Event-Listener Funktion für Enter-Taste
 document.addEventListener('DOMContentLoaded', (event) => {
     function createTask() {
         let task = document.getElementById('inputField').value;
-        // Überprüfen, ob das Input-Feld nicht leer ist
         if (task.trim() !== '') {
             addedId++;
             tasks.push({
@@ -152,13 +164,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 'priority': 'set priority',
                 'assignedTo': 'EF',
                 'subtasks': 0,
-            }
-            )
+            });
         }
         deleteKanbanBoard();
         renderByCategory();
     }
-    // Event-Listener für die Enter-Taste hinzufügen
     document.getElementById('inputField').addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             createTask();
@@ -166,10 +176,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
-// normale "onclick"-ausführbare Funktion
 function createTask() {
     let task = document.getElementById('inputField').value;
-    // Überprüfen, ob das Input-Feld nicht leer ist
     if (task.trim() !== '') {
         addedId++;
         tasks.push({
@@ -181,15 +189,12 @@ function createTask() {
             'priority': 'set priority',
             'assignedTo': 'EF',
             'subtasks': 0,
-        }
-        )
+        });
     }
     deleteKanbanBoard();
     renderByCategory();
 }
 
-// folgender Abschnitt muss komplett in CLEAN CODE REVIEW
-// nächster Schritt: Empty Categories rendern
 let numberTodos = 0;
 let numberInProgress = 0;
 let numberAwaitFeedback = 0;
@@ -233,77 +238,39 @@ function countCategoryInputs() {
     numberAwaitFeedback = 0;
     numberDone = 0;
 }
+
 function renderEmptyCategoy(category) {
     document.getElementById(category).innerHTML +=
         `<div class="task-container">
     <div class="task-title">currently empty</div>
-
     </div>`;
 }
 
-///////////////////////////////
-// START TEST AREA FOR FIREBASE
-
-const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
-const userID = "UserID_2";
-
-async function saveTasksToFirebase() {
-    try {
-        for (let i = 0; i < tasks.length; i++) {
-            const task = tasks[i];
-            const taskPath = `${BASE_URL}User/${userID}_Tasks_TaskId_${task.id}.json`;
-
-            console.log('Saving task to Firebase at path:', taskPath);
-
-            const response = await fetch(taskPath, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(task)
-            });
-
-            if (!response.ok) {
-                throw new Error(`Network response was not ok for ${taskPath}: ${response.statusText}`);
-            }
-
-            console.log(`Task saved successfully: ${task.id}`);
-        }
-    } catch (error) {
-        console.error('Error saving tasks to Firebase:', error);
+function getAddedTasksFromLocalStorage() {
+    const storedTasks = localStorage.getItem('tasks');
+    if (!storedTasks) {
+        return [];
     }
+    else return JSON.parse(storedTasks);
 }
 
-async function loadTasksFromFirebase() {
-    try {
-        const loadedTasks = [];
-
-        // hope we never have more than 50 tasks
-        for (let i = 0; i < 50; i++) {
-            const taskPath = `${BASE_URL}User/${userID}_Tasks_TaskId_${i}.json`;
-            console.log('Fetching data from Firebase at path:', taskPath);
-
-            const response = await fetch(taskPath);
-            if (!response.ok) {
-                if (response.status === 404) {
-                    console.log(`Task ${i} not found`);
-                    // Continue with next ID, if task can't be found
-                    continue;
-                }
-                throw new Error(`Network response was not ok: ${response.statusText}`);
+function addLocalStorageToBoard() {
+    const localStorageTasks = getAddedTasksFromLocalStorage();
+    for (let i = 0; i < localStorageTasks.length; i++) {
+        tasks.push(
+            {
+                'id': count,
+                'category': 'todo',
+                'title': localStorageTasks[i]['title'],
+                'titleCategory': 'NEW',
+                'description': 'NEW',
+                'priority': 'NEW',
+                'assignedTo': 'NEW',
+                'subtasks': 99,
             }
-
-            const data = await response.json();
-            if (data) {
-                loadedTasks.push(data);
-                console.log('Task loaded from Firebase:', data);
-            }
-        }
-        tasks = loadedTasks;
-    } catch (error) {
-        console.error('Error loading tasks from Firebase:', error);
+        );
+        count++;
     }
+    saveBoardAsTasksToLocalStorage();
 }
-
-///////////////////////////////
-// TEST AREA END
+////////////////////////    Acces Local Storage von Add Task Seit - END ///////////////////////////////////

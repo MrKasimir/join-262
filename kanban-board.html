@@ -12,7 +12,7 @@
 
 </head>
 
-<body onload="renderByCategory()">
+<body onload="onloadFunction()">
 
     <div class="mainframe">
         <div class="sidebar">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="iconsDiv">
                       <img class="sideBarIcons" src="assets/img/addTask.png" alt="" />
-                      <p>Add Task</p>
+                      <a href="./AddTask.html">Add Task</a> 
                     </div>
                     <div class="iconsDiv">
                       <img class="sideBarIcons" src="assets/img/Board.png" alt="" />
@@ -61,11 +61,11 @@
                 <div class="header-title bold-font">Board</div>
                 <div class="top-right-menu">
                     <input id="inputField" placeholder="Find Task"></input>
-                    <div class="button" onclick="createTask()">Add task +</div>
-                    <div class="button" onclick="renderByCategory()">Render Kanban-Board</div>
+                    <div class="button" onclick="createTask()"><a href="./AddTask.html">Add Task +</a></div>
+                    <!-- <div class="button" onclick="renderByCategory()">Render Kanban-Board</div>
                     <div class="button" onclick="deleteKanbanBoard()">Delete Kanban-Board</div>
                     <div class="button" onclick="saveTasksToFirebase()">Save To Firebase</div>
-                    <div class="button" onclick="loadTasksFromFirebase()">Load From Firebase</div>
+                    <div class="button" onclick="loadTasksFromFirebase()">Load From Firebase</div> -->
                 </div>
             </div>
 
