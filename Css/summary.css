@@ -364,7 +364,7 @@ p {
   margin-right: 53px;
   gap: 20px;
   position: fixed;
-  right: -2.5px;
+  right: -4.5px;
   cursor: pointer;
 }
 .circleName {
@@ -375,7 +375,9 @@ p {
 }
 
 .descriptionHeadline {
-  margin-left: 100px;
+  position: fixed;
+  top: 34px;
+  left: 360px;
   font-size: 18px;
 }
 .qmImg {
@@ -453,4 +455,114 @@ p {
   background-color: rgb(42, 54, 71);
   color: #ffffff;
 }
+/* Nur auf mobile anzeigen */
+.joinMobileLoggo{
+  height: 40px;
+  margin-left: 20px;
+  width: 32px;
+  display: none;
+}
+.mobileLine{
+  width: 110px;
+  height: 2px;
+  background-color: rgb(20, 175, 241);
+  position: fixed;
+  top: 280px;
+  display: none;
+}
+.mobileSidebar{
 
+}
+.mobileSidebaricons{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-items: center;
+  padding: 15px;
+}
+.mobileIconImg{
+  width: 40px;
+}
+.mobileSidebaricons:hover{
+  background-color: #1d2633;
+  border-radius: 10px;
+  
+}
+
+
+/** Mobile **/
+
+@media (max-width: 600px){
+   .joinSideBar{
+    display: none;
+   }
+   .headline {
+    position: fixed;
+    top: 128px;
+    left: 50px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 40px;
+    align-items: flex-start;
+   }
+   .mainHeadline{
+    margin: 0px;
+   }
+   .mobileLine{
+    display: flex;
+   }
+   .line{
+    display: none;
+   }
+
+   .summeryBoard{
+    position: fixed;
+    top: 350px;
+    left: 16px;
+    height: 384px;
+    width: 496px;
+   }
+
+   .description{
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+   }
+   .qmimg{
+    display: none;
+   }
+   .descriptionImg{
+    
+   }
+   .descriptionHeadline{
+    display: none;
+   }
+   .joinMobileLoggo{
+    display: flex;
+   }
+   .helpLink{
+    display: none;
+   }
+   .greeting{
+    display: none;
+   }
+   .mobileSidebar{
+    display: flex;
+    height: 100px;
+    width: 100%;
+    background-color: #2A3647;
+    position: fixed;
+    bottom: 0px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    
+   }
+
+}

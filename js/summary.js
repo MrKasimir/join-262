@@ -50,8 +50,7 @@ function displayName() {
             let firstName = nameParts[0].charAt(0).toUpperCase() + nameParts[0].slice(1).toLowerCase();
             let lastName = nameParts[1].charAt(0).toUpperCase() + nameParts[1].slice(1).toLowerCase();
             formattedName = firstName + ' ' + lastName;
-        } else if (nameParts.length === 1) {
-          
+        } else if (nameParts.length === 1) {    
             formattedName = nameParts[0].charAt(0).toUpperCase() + nameParts[0].slice(1).toLowerCase();
         }
 
