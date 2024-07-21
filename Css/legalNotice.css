@@ -270,6 +270,8 @@ ol li {
   justify-content: center;
   height: 40px;
   align-items: center;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.753);
 }
 .sideMenuetext1{
   width: 100%;
@@ -278,6 +280,8 @@ ol li {
   height: 40px;
   align-items: center;
   border-radius: 25px 0px 0px 0px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.753);
 }
 .sideMenuetext3{
   width: 100%;
@@ -286,6 +290,8 @@ ol li {
   height: 40px;
   align-items: center;
   border-radius: 0px 0px 25px 25px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.753);
 }
 .sideMenuetext:hover{
   background-color: rgb(42, 54, 71);
