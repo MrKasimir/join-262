@@ -519,6 +519,7 @@ p {
   margin-right: 10px;
   align-items: center;
   padding: 15px;
+  display: none;
 }
 .mobileIconImg{
   width: 40px;
@@ -578,6 +579,9 @@ p {
    }
    .mobileIconImg{
     width: 40px;
+    display: flex;
+  }
+  .mobileSidebaricons{
     display: flex;
   }
   
