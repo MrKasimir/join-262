@@ -395,7 +395,7 @@ p {
 .circleNameGuest {
   color: rgb(20, 175, 241);
   position: fixed;
-  right: 73px;
+  right: 71px;
   font-size: 20px;
 }
 
@@ -484,6 +484,7 @@ p {
 }
 .mobileIconImg{
   width: 40px;
+  display: none;
 }
 .mobileSidebaricons:hover{
   background-color: #1d2633;
@@ -537,9 +538,11 @@ p {
    .qmimg{
     display: none;
    }
-   .descriptionImg{
-    
-   }
+   .mobileIconImg{
+    width: 40px;
+    display: flex;
+  }
+  
    .descriptionHeadline{
     display: none;
    }
