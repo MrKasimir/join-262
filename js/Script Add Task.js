@@ -38,6 +38,18 @@ async function fetchUserData() {
     return data;
 }
 
+// Beispiel für das Speichern eines Benutzers im Local Storage
+function saveLoggedinUser(userId, email, name, id) {
+    const user = {
+        UserID: userId,  // Achten Sie darauf, dass die UserID hier "UserID" ist
+        Email: email,
+        Name: name,
+        id: id  // Die spezifische ID des Benutzers
+    };
+    localStorage.setItem('loggedinUser', JSON.stringify([user]));  // Speichern Sie das Array im Local Storage
+    window.loggedinUser = [user];  // Setzen Sie window.loggedinUser auf das Array
+}
+
 function CreatTaskbuttonOnclick() {
     addTaskToLocalStorage();
     window.location.href = './kanban-board.html';
