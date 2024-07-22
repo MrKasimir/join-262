@@ -1,6 +1,6 @@
 // kanban-script.js
 
-let tasks = [{
+let defaultTasks = [{
     'id': 0,
     'category': 'todo',
     'title': 'Contact Form and Imprint',
@@ -52,6 +52,7 @@ let tasks = [{
 }
 ];
 
+let tasks = [];  // nächster Schritt: die defaultTasks aus firebase laden lassne
 let count = tasks.length;
 
 let currentDraggedElement;
@@ -59,14 +60,18 @@ let currentDraggedCategory;
 let addedId = tasks.length - 1;
 
 function onloadFunction() {
-    saveBoardAsTasksToLocalStorage();
-    getAddedTasksFromLocalStorage();
-    addLocalStorageToBoard();
-    
-    tasks = loadBoardFromLocalStorage();
+        // erst prüfen, ob das board schon im local storage liegt
+        if (loadBoardFromLocalStorage().length == 0) {
+            tasks = defaultTasks;
+        } else {
+            // Wenn noch keins drin ist, dann mit defaultArray initialisieren
+            tasks = loadBoardFromLocalStorage();
+        }
+
     renderByCategory();
 }
 
+// im Local Storage die tasks ablegen mit dem key 'board'
 function saveBoardAsTasksToLocalStorage() {
     localStorage.setItem('board', JSON.stringify(tasks));
 }
@@ -122,10 +127,6 @@ function updateKanbanBoard(i, category) {
     </div>`;
 }
 
-function moveTo(id) {
-    // Tasks verschieben
-}
-
 function moveTo(event) {
     event.preventDefault();
     const id = event.target.id;
@@ -156,53 +157,8 @@ function removeHighlight(event) {
     const id = event.target.id;
     console.log(`remove highlight: Drag-ID: ${id}`);
     if (id) { tasks[currentDraggedElement].category = id; }
-    event.target.classList.remove('highlight');
+    /* event.target.classList.remove('highlight'); */
 }
-
-/* document.addEventListener('DOMContentLoaded', (event) => {
-    function createTask() {
-        let task = document.getElementById('inputField').value;
-        if (task.trim() !== '') {
-            addedId++;
-            tasks.push({
-                'id': addedId,
-                'category': 'todo',
-                'title': task,
-                'titleCategory': 'enter title category',
-                'description': 'enter description',
-                'priority': 'set priority',
-                'assignedTo': 'EF',
-                'subtasks': 0,
-            });
-        }
-        deleteKanbanBoard();
-        renderByCategory();
-    }
-    document.getElementById('inputField').addEventListener('keypress', function (event) {
-        if (event.key === 'Enter') {
-            createTask();
-        }
-    });
-}); */
-
-/* function createTask() {
-    let task = document.getElementById('inputField').value;
-    if (task.trim() !== '') {
-        addedId++;
-        tasks.push({
-            'id': addedId,
-            'category': 'todo',
-            'title': task,
-            'titleCategory': 'enter title category',
-            'description': 'enter description',
-            'priority': 'set priority',
-            'assignedTo': 'EF',
-            'subtasks': 0,
-        });
-    }
-    deleteKanbanBoard();
-    renderByCategory();
-} */
 
 let numberTodos = 0;
 let numberInProgress = 0;
@@ -263,22 +219,36 @@ function getAddedTasksFromLocalStorage() {
     else return JSON.parse(storedTasks);
 }
 
-function addLocalStorageToBoard() {
-    const localStorageTasks = getAddedTasksFromLocalStorage();
-    for (let i = 0; i < localStorageTasks.length; i++) {
-        tasks.push(
-            {
-                'id': count,
-                'category': 'todo',
-                'title': localStorageTasks[i]['title'],
-                'titleCategory': 'NEW',
-                'description': 'NEW',
-                'priority': 'NEW',
-                'assignedTo': 'NEW',
-                'subtasks': 99,
-            }
-        );
-        count++;
+// Das kanban-script.js soll auf der addTask.html direkt aus den Feldern auslesen
+function CreatTaskbuttonOnclick() {
+    addTaskFromInputPage();
+    window.location.href = './kanban-board.html';
+}
+
+function addTaskFromInputPage() {
+    let newListOfTasks = loadBoardFromLocalStorage();
+
+    if (document.getElementById('Task-Title-id').value != '' && document.getElementById('Task-Describtion-id').value != '') {
+        newListOfTasks.push({
+            'id': newListOfTasks.length,
+            'category': 'todo',
+            'title': document.getElementById('Task-Title-id').value,
+            'titleCategory': 'NEW',
+            'description': document.getElementById('Task-Describtion-id').value,
+            'priority': 'NEW',
+            'assignedTo': document.getElementById('Task-choose-contact-id').value,
+            'subtasks': document.getElementById('Task-Subtask-Id').value,
+        });
+        clearAllInputFields();
     }
-    saveBoardAsTasksToLocalStorage();
+    localStorage.setItem('board', JSON.stringify(newListOfTasks));
+}
+
+function clearAllInputFields() {
+    document.getElementById('Task-Title-id').value = '';
+    document.getElementById('Task-Describtion-id').value = '';
+    document.getElementById('Task-choose-contact-id').value = '';
+    document.getElementById('Task-Date-Id').value = '';
+    document.getElementById('Task-choose-Category-id').value = '';
+    document.getElementById('Task-Subtask-Id').value = '';
 }
