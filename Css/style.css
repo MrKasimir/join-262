@@ -1,475 +1,677 @@
 a {
-    text-decoration: none;
-  }
+  text-decoration: none;
+}
 
 body {
-    background-color: #F6F7F8;
-    background-repeat: no-repeat;
-    margin: 0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-style: normal;
-  }
+  background-color: #F6F7F8;
+  background-repeat: no-repeat;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+}
 
 .card-login {
-    background: #FFFFFF;
-    display: flex;
-    justify-content: center;
-    border-radius: 30px;
-    width: 652px;
-    height: 493px;
-    margin-top: 65px;
-    padding: 48px, 115px, 48px, 115px;
-    gap: 32;
-    box-shadow: 0px 0px 14px 3px #0000000A;
-  }
-
-  .justify-content-center{
-    display: flex;
-    justify-content: center;
-  }
-
-.headline-Login--up {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-    font-weight: bold;
+  background: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  border-radius: 30px;
+  width: 652px;
+  height: 493px;
+  margin-top: 65px;
+  padding: 48px, 115px, 48px, 115px;
+  gap: 32;
+  box-shadow: 0px 0px 14px 3px #0000000A;
 }
 
-.underline {
-    background-color: #29ABE2;
-    width: 150px;
-    height: 3px;
-    margin-bottom: 30px;
-}
-.underlineDiv{
-  width: 430px;
+.justify-content-center{
   display: flex;
   justify-content: center;
 }
 
+.headline-Login--up {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.underline {
+  background-color: #29ABE2;
+  width: 150px;
+  height: 3px;
+  margin-bottom: 30px;
+}
+.underlineDiv{
+width: 430px;
+display: flex;
+justify-content: center;
+}
+
 
 .email-input {
-    width: 422px;
-    height: 48px;
-    border-radius: 10px;
-    border-color: rgb(197, 199, 201);
-    margin-bottom: 32px;
-    border: 1px solid #D1D1D1
+  width: 422px;
+  height: 48px;
+  border-radius: 10px;
+  border-color: rgb(197, 199, 201);
+  margin-bottom: 32px;
+  border: 1px solid #D1D1D1
 }
 
 .password-input {
-    width: 422px;
-    height: 48px;
-    border-radius: 10px;
-    border-color: rgb(197, 199, 201);
-    margin-bottom: 32px;
-    border: 1px solid #D1D1D1
+  width: 422px;
+  height: 48px;
+  border-radius: 10px;
+  border-color: rgb(197, 199, 201);
+  margin-bottom: 32px;
+  border: 1px solid #D1D1D1
 }
 
 .Login-button {
-    background-color: #2A3647;
-    width: 110px;
-    margin-right: 15px;
-    height: 48px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    border: 1px;
+  background-color: #2A3647;
+  width: 110px;
+  margin-right: 15px;
+  height: 48px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  border: 1px;
 }
 
 .guest-login-button {
-    width: 177px;
-    margin-left: 15px;
-    height: 48px;
-    border-radius: 8px;
-    background-color: white;
-    color: #2A3647;
-    font-weight: bold;
+  width: 177px;
+  margin-left: 15px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: white;
+  color: #2A3647;
+  font-weight: bold;
 }
 
 .button-section-from-login {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 .Sign-up-button {
-    padding: 15px 16px;
-    gap: 10px;
-    width: 91px;
-    height: 49px;
-    background: #2A3647;
-    border-radius: 8px;
-    font-weight: bold;
-    gap: 10px;
-    margin-left: 35px;
+  padding: 15px 16px;
+  gap: 10px;
+  width: 91px;
+  height: 49px;
+  background: #2A3647;
+  border-radius: 8px;
+  font-weight: bold;
+  gap: 10px;
+  margin-left: 35px;
 }
 
 .Sign-up-button a {
-    color: white;
+  color: white;
 }
 
 
 .redirect-sign-up{
-    margin-top: 67px;
-    margin-right: 68px;
+  margin-top: 67px;
+  margin-right: 68px;
 }
 
 
 .card-content-sign-up {
-    padding: 12px 44px;
+  padding: 12px 44px;
 }
 
 .card-sign-up {
-    background: #FFFFFF;
-    display: flex;
-    justify-content: center;
-    border-radius: 30px;
-    box-shadow: 0px 0px 14px 3px #0000000A;
-    height: 630px;
-    width: 598px;
+  background: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  border-radius: 30px;
+  box-shadow: 0px 0px 14px 3px #0000000A;
+  height: 630px;
+  width: 598px;
 }
 
 .display-block {
-    display: block;
+  display: block;
 }
 
 .input-fields-sign-up {
-    width: 422px;
-    height: 48px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1;
-    margin-bottom: 20px;
+  width: 422px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #D1D1D1;
+  margin-bottom: 20px;
 }
 
 .privacy-link {
-    color: #29ABE2;
-    margin-left: 3px;
+  color: #29ABE2;
+  margin-left: 3px;
 }
 
 .regtangle-button {
-    margin-left: 30px;
-    margin-right: 10px;
-    background-color: white;
-    width: 16px;
-    height: 16px;
-    border: 2px solid #2A3647;
-    border-radius: 3px;
+  margin-left: 30px;
+  margin-right: 10px;
+  background-color: white;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #2A3647;
+  border-radius: 3px;
 }
 
 .header-login-sign-up{
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .Join-Logo {
-    width: 100px;
-    height: 120px;
-    margin-top: 80px;
-    margin-left: 77px;
+  width: 100px;
+  height: 120px;
+  margin-top: 80px;
+  margin-left: 77px;
 }
 
 .using-terms {
-    width: 246px;
-    height: 35px;
-    margin-top: 197px;
+  width: 246px;
+  height: 35px;
+  margin-top: 197px;
 }
 
 .using-terms a {
-    color: #A8A8A8;
-    margin-right: 16px;
+  color: #A8A8A8;
+  margin-right: 16px;
 }
 
 .last-commit-for-signup-button {
-    background: #2A3647;
-    width: 126px;
-    height: 55px;
-    border-radius: 8px;
-    color: white;
-    margin-top: 40px;
+  background: #2A3647;
+  width: 126px;
+  height: 55px;
+  border-radius: 8px;
+  color: white;
+  margin-top: 40px;
 }
 
 .accept-privacy {
-    color: #A8A8A8;
+  color: #A8A8A8;
 }
 
 .joinSideBar {
-    background-color: #2A3647;
-    height: 100vh;
-    width: 260px;
-    column-gap: 30px;
-  }
-  .joinSidebarLinks{
-    text-decoration: none;
-    color: white;
-  }
-  
-  .joinLogo {
-    width: 100px;
-    height: 120px;
-  }
+  background-color: #2A3647;
+  height: 100vh;
+  width: 260px;
+  column-gap: 30px;
+}
+.joinSidebarLinks{
+  text-decoration: none;
+  color: white;
+}
 
-  .LogoDiv {
-    padding-top: 64px;
-    padding-left: 10px;
-    height: 200px;
-    margin-left: 50px;
-    margin-bottom: 100px;
-  }
-  .Catagory {
-    height: 223px;
+.joinLogo {
+  width: 100px;
+  height: 120px;
+}
+
+.LogoDiv {
+  padding-top: 64px;
+  padding-left: 10px;
+  height: 200px;
+  margin-left: 50px;
+  margin-bottom: 100px;
+}
+.Catagory {
+  height: 223px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 500px;
+}
+.sideBarIcons {
+  height: 30px;
+  width: 30px;
+
+}
+.iconsDiv {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  cursor: pointer;
+  width: 100%;
+  color: rgba(253, 253, 253, 0.678);
+}
+
+.iconsDiv3 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  cursor: pointer;
+  width: 110%;
+  color: rgba(253, 253, 253, 0.678);
+}
+.iconsDiv4 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  cursor: pointer;
+  width: 102%;
+  margin-right: 8px;
+  color: rgba(253, 253, 253, 0.678);
+}
+.iconsDiv:hover, .iconsDiv3:hover, .iconsDiv4:hover {
+  cursor: pointer;
+  background-color: rgb(32, 42, 54);
+}
+
+.legalNotice{
+  height: 100px;
+  margin-left: 60px;
+  color: rgba(253, 253, 253, 0.5);;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  row-gap: 0px;
+  font-size: 18px;
+  padding-top: 100px;
+}
+.SideBarText{
+  margin: 0;
+  margin: 0;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.display-flex {
+  display: flex;
+}
+
+.Log-in-Headline {
+  margin: 15px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 61px;
+  line-height: 73.2px;
+  text-align: center;
+}
+
+.sign-up-headline {
+  margin: 15px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 61px;
+  line-height: 73.2px;
+  text-align: center;
+}
+
+.addTask-title-input {
+  width: 440px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #D1D1D1
+
+}
+
+.addTask-describtion-input {
+  width: 440px;
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid #D1D1D1
+}
+
+.addTask-seperation-div {
+  width: 0px;
+  height: 424px;
+  border: 1px solid #D1D1D1;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.addTask-input-fields-div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  gap: 8px;
+}
+
+.addTask-input-fields-div-last-mobile {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  gap: 8px;
+}
+
+.addTask-headline {
+  font-size: 61px;
+  margin-left: 110px;
+  margin-top: 200px;
+}
+
+.div-for-all-inputs {
+  margin-left: 110px;
+}
+
+.addTask-due-date-input {
+  width: 440px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #D1D1D1
+}
+
+.addTask-contacts-multipychoice-input {
+  width: 440px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #D1D1D1
+}
+
+.suptask-input-addTask {
+  width: 440px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #D1D1D1
+}
+
+.addTask-button {
+  width: 136px;
+  height: 48px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px 0px #0000001A;
+  border: 1px solid #D1D1D1;
+  background: #FFFFFF;
+  margin-right: 16px;
+}
+
+.yellow {
+  background: #FFA800;
+  color: white;
+}
+
+.addTask-button-imgs {
+  width: 20px;
+}
+
+.addTask-buttons-flex {
+  display: flex;
+  align-items: center;
+}
+
+.addTask-clear-button {
+  width: 110px;
+  height: 56px;
+  border-radius: 10px;
+  border: 1px solid #2A3647;
+  background: #FFFFFF;
+  margin-right: 10px;
+}
+
+.addTask-creat-button {
+  width: 110px;
+  height: 56px;
+  border-radius: 10px;
+  border: 1px solid #2A3647;
+  background: #2A3647;
+  color: white;
+}
+
+.addTask-creat-button:hover {
+  cursor: pointer;
+}
+  
+
+
+.addTask-last-div {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 110px;
+  margin-top: 200px;
+}
+
+.description {
+  position: fixed;
+  left: 260px;
+  width: 91%;
+  height: 96px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+}
+
+.descriptionHeadline {
+  margin-left: 100px;
+  font-size: 18px;
+}
+
+.descriptionImg {
+  display: flex;
+  align-items: center;
+  margin-right: 53px;
+  gap: 20px;
+  position: fixed;
+  right: -2.5px;
+  cursor: pointer;
+}
+
+.qmImg {
+  height: 20px;
+}
+
+.circleImg {
+  height: 56px;
+  width: 56px;
+}
+
+.circleName {
+  color: rgb(20, 175, 241);
+  z-index: 999;
+  position: fixed;
+  right: 62px;
+}
+
+.margin-left {
+  margin-left: 40px;
+}
+
+.margin-left-signUp {
+  margin-left: 80px;
+}
+
+.dropDownMenue{
+  border-radius: 10px;
+
+}
+
+.div-redirect-dign-up-mobile {
+  display: none;
+}
+
+p {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  
+  .joinSideBar{
+    display: none;
+   }
+
+   .Join-Logo {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    width: 64px;
+    height: 78px;
+   }
+
+   .button-section-from-login {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    gap: 30px;
     justify-content: center;
     align-items: center;
-    color: white;
+    gap: 16px; 
+   }
+
+   .Login-button {
+    width: 180px;
+    height: 51px;
+    margin: 0;
+   }
+
+   .guest-login-button {
+    width: 180px;
+    height: 51px;
+    margin: 0;
+   }
+
+   .redirect-sign-up {
+    display: none;
+   }
+
+   .card-login {
+    height: 540px;
+    width: 395px;
+    box-shadow: 0px 0px 14px 3px #0000000A;
+   }
+
+   .card-sign-up {
+    height: 620px;
+    width: 395px;
+    box-shadow: 0px 0px 14px 3px #0000000A;
+   }
+
+   .Log-in-Headline {
+    margin-top: 35px;
+   }
+   
+   .email-input {
+    margin: 0;
+    margin-bottom: 36px;
+    width: 370px;
+   }
+
+   .password-input {
+    margin: 0;
+    margin-bottom: 36px;
+    width: 370px;
+   }
+
+   .input-fields-sign-up {
+    margin: 0;
+    margin-bottom: 27px;
+    width: 370px;
+   }
+
+   .margin-left {
+    margin-left: 36px;
+   }
+
+   .div-input-fields-sign-up {
+    display: flex;
+    justify-content: center;
+   }
+
+   .login-input-divs {
+    display: flex;
+    justify-content: center;
+   }
+
+   .div-redirect-dign-up-mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
     font-size: 20px;
-    margin-bottom: 500px;
-  }
-  .sideBarIcons {
-    height: 30px;
-    width: 30px;
-  
-  }
-  .iconsDiv {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    cursor: pointer;
+   }
+
+   .using-terms {
+    margin-top: 50px;
+   }
+
+   .description {
+    left: 0;
     width: 100%;
-    color: rgba(253, 253, 253, 0.678);
-  }
-  
-  .iconsDiv3 {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-right: 30px;
-    display: flex;
+   }
+
+   .div-for-all-inputs {
+    margin-left: 10px;
+   }
+
+   .display-flex {
+    display: block;
+   }
+
+   .category-input-addTask {
+    display: none;
+   }
+   
+   .addTask-seperation-div {
+    display: none;
+   }
+
+   .suptask-input-addTask {
+    display: none;
+   }
+
+   .addTask-headline {
+    margin-left: 10px;
+    margin-top: 120px;
+   }
+
+   .description {
+    top: 0;
+    height: 80px;
+   }
+
+   .addTask-due-date-input {
+    width: 385px;
+    height: 40px;
+   }
+
+   .addTask-describtion-input {
+    width: 385px;
+    height: 88px;
+   }
+
+   .addTask-contacts-multipychoice-input {
+    width: 390px;
+   }
+
+   .addTask-title-input {
+    width: 385px;
+   }
+
+   .addTask-last-div {
+    margin-left: 10px;
+    margin-top: 0px;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
-    cursor: pointer;
-    width: 110%;
-    color: rgba(253, 253, 253, 0.678);
-  }
-  .iconsDiv4 {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    cursor: pointer;
-    width: 102%;
-    margin-right: 8px;
-    color: rgba(253, 253, 253, 0.678);
-  }
-  .iconsDiv:hover, .iconsDiv3:hover, .iconsDiv4:hover {
-    cursor: pointer;
-    background-color: rgb(32, 42, 54);
-  }
-  
-  .legalNotice{
-    height: 100px;
-    margin-left: 60px;
-    color: rgba(253, 253, 253, 0.5);;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: column;
-    row-gap: 0px;
-    font-size: 18px;
-    padding-top: 100px;
-  }
-  .SideBarText{
-    margin: 0;
-    margin: 0;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.74);
-  }
+   }
 
-  .display-flex {
-    display: flex;
-  }
+   .addTask-clear-button {
+    display: none;
+   }
 
-  .Log-in-Headline {
-    margin: 15px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 61px;
-    line-height: 73.2px;
-    text-align: center;
-  }
+   .addTask-creat-button {
+    width: 180px;
+    height: 55;
+}
 
-  .addTask-title-input {
-    width: 740px;
-    height: 44px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1
-  
-  }
-
-  .addTask-describtion-input {
-    width: 740px;
-    height: 120px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1
-  }
-
-  .addTask-seperation-div {
-    width: 0px;
-    height: 424px;
-    border: 1px solid #D1D1D1;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  .addTask-input-fields-div {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
-    gap: 8px;
-  }
-
-  .addTask-headline {
-    font-size: 61px;
-    margin-left: 110px;
-    margin-top: 200px;
-  }
-
-  .div-for-all-inputs {
-    margin-left: 110px;
-  }
-
-  .addTask-due-date-input {
-    width: 740px;
-    height: 44px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1
-  }
-
-  .addTask-contacts-multipychoice-input {
-    width: 740px;
-    height: 44px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1
-  }
-  
-  .addTask-button {
-    width: 245px;
-    height: 48px;
-    gap: 8px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 4px 0px #0000001A;
-    border: 1px solid #D1D1D1;
-    background: #FFFFFF;
-
-  }
-
-  .yellow {
-    background: #FFA800;
-    color: white;
-  }
-
-  .addTask-button-imgs {
-    width: 20px;
-  }
-
-  .addTask-buttons-flex {
-    display: flex;
-    align-items: center;
-  }
-
-  .addTask-clear-button {
-    width: 110px;
-    height: 56px;
-    border-radius: 10px;
-    border: 1px solid #2A3647;
-    background: #FFFFFF;
-  }
-
-  .addTask-creat-button {
-    width: 110px;
-    height: 56px;
-    border-radius: 10px;
-    border: 1px solid #2A3647;
-    background: #2A3647;
-    color: white;
-  }
-
-  .addTask-creat-button:hover {
-    cursor: pointer;
-  }
-    
-  
-
-  .addTask-last-div {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 110px;
-    margin-top: 200px;
-  }
-
-  .description {
-    position: fixed;
-    left: 260px;
-    width: 91%;
-    height: 96px;
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0px 0px 4px 0px #0000001a;
-  }
-
-  .descriptionHeadline {
-    margin-left: 100px;
-    font-size: 18px;
-  }
-
-  .descriptionImg {
-    display: flex;
-    align-items: center;
-    margin-right: 53px;
-    gap: 20px;
-    position: fixed;
-    right: -2.5px;
-    cursor: pointer;
-  }
-
-  .qmImg {
-    height: 20px;
-  }
-
-  .circleImg {
-    height: 56px;
-    width: 56px;
-  }
-
-  .circleName {
-    color: rgb(20, 175, 241);
-    z-index: 999;
-    position: fixed;
-    right: 62px;
-  }
-
-  .margin-left {
-    margin-left: 40px;
-  }
-
-  .margin-left-signUp {
-    margin-left: 80px;
-  }
-
-  .dropDownMenue{
-    border-radius: 10px;
-  
-  }
+   .addTask-input-fields-div-last-mobile {
+    margin-bottom: 0;
+   }
+}

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Task</title>
     <link rel="stylesheet" href="Css/style.css">
-    <script src="js/addTaskScript.js"></script>
-    <script src="js/kanban-script.js"></script>
+    <script src="js/Script Add Task.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
 </head>
 <body>
     
@@ -93,7 +93,7 @@
                     <input id="Task-Date-Id" placeholder="dd/mm/yyyy" class="addTask-due-date-input" type="text">
                   </div>
 
-                  <div class="addTask-input-fields-div">
+                  <div class="addTask-input-fields-div-last-mobile">
                     Prio
                     <div class="addTask-buttons-flex">
                       <button class="addTask-button">Urgent <img class="addTask-button-imgs" src="/assets/img/Prio up.png" alt=""></button>
@@ -103,21 +103,20 @@
                   </div>
 
                   <div class="addTask-input-fields-div ">
-                    Category
-                    <form id="Task-choose-Category-id" class="" action="/action_page.php">
+                    <p class="category-input-addTask">Category</p>
+                    <form id="Task-choose-Category-id" class="category-input-addTask" action="/action_page.php">
                       <select class="addTask-contacts-multipychoice-input" name="contacts" id="contacts">
                         <option value="Select Task Category">Select task category</option>
-                        <option value="userStory">todo</option>
-                        <option value="inProgress">in progress</option>
-                        <option value="awaitFeedback">await feedback</option>
-                        <option value="done">done</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
                       </select>
                     </form>
                   </div>
 
                   <div class="addTask-input-fields-div">
-                    Subtasks
-                    <input id="Task-Subtask-Id" placeholder="Add new subtasks" class="addTask-contacts-multipychoice-input" type="text">
+                    <p class="suptask-input-addTask">Subtasks</p>
+                    <input id="Task-Subtask-Id" placeholder="Add new subtasks" class="suptask-input-addTask" type="text">
                 </div>
 
                   
