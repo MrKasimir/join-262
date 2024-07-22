@@ -84,6 +84,27 @@ function getInitials() {
 let userInitials = getInitials();
 console.log("User Initials: ", userInitials);
 
+let defaultTasks = [{
+    'id': 0,
+    'category': 'todo',
+    'title': 'Contact Form and Imprint',
+    'titleCategory': 'User Story',
+    'description': 'Create contact form & imprint page',
+    'priority': 'medium',
+    'assignedTo': 'AB',
+    'subtasks': 1,
+}] 
+ function loadBoardFromLocalStorage() {
+    const boardTasks = localStorage.getItem('board');
+    if (!boardTasks) {
+        return [];
+    }
+
+    else {
+        return JSON.parse(boardTasks);
+    }
+}
+
 
 // SummaryGuest
 

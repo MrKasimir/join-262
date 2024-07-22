@@ -309,21 +309,21 @@ ol li {
 /* scrollbar*/
 
 ::-webkit-scrollbar {
-  width: 5px; /* Further reduces the width of the vertical scrollbar */
-  height: 10px; /* Further reduces the height of the horizontal scrollbar */
+  width: 1px;
+  height: 10px; 
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: rgb(255, 255, 255); /* Light grey for the track background */
+  background: rgb(255, 255, 255); 
   box-shadow: inset 0 0 5px rgb(255, 255, 255);
-  border-radius: 5px; /* Less rounding to fit the compact size */
+  border-radius: 5px; 
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #fffefe; /* Light grey for the handle */
-  border-radius: 5px; /* Less rounding to fit the compact size */
+  background: #fffefe; 
+  border-radius: 5px; 
 }
 
 /* Handle on hover */
