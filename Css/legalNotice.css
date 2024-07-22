@@ -139,7 +139,9 @@ p {
   }
   
   .descriptionHeadline {
-    margin-left: 100px;
+    position: fixed;
+    top: 34px;
+    left: 360px;
     font-size: 18px;
   }
   .qmImg {
@@ -306,3 +308,114 @@ ol li {
   color: #ffffff;
 }
 
+
+/*Mobile ansicht */
+
+
+.joinMobileLoggo{
+  height: 40px;
+  margin-left: 20px;
+  width: 32px;
+  display: none;
+}
+.mobileLine{
+  width: 110px;
+  height: 2px;
+  background-color: rgb(20, 175, 241);
+  position: fixed;
+  top: 280px;
+  display: none;
+}
+.mobileSidebar{
+  display: none;
+  height: 100px;
+  width: 100%;
+  background-color: #2A3647;
+  position: fixed;
+  bottom: 0px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.mobileSidebaricons{
+  display: none; 
+  flex-direction: column;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-items: center;
+  padding: 15px;
+}
+
+.mobileSidebaricons:hover{
+  background-color: #1d2633;
+  border-radius: 10px;
+}
+.mobileArrowButton{
+  display: none;
+}
+@media (max-width: 601px){
+  .mobileSidebaricons{
+    display: none;
+  }
+  .mobileSidebar{
+    display: none;
+  }
+}
+
+@media (max-width: 600px){
+
+  .joinSideBar{
+    display: none;
+   }
+
+   .description{
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+   }
+
+   .descriptionHeadline{
+    display: none;
+   }
+
+   .helpLink{
+    display: none;
+   }
+
+   .joinMobileLoggo{
+    display: flex;
+   }
+
+   
+
+  .mobileIconImg{
+    width: 40px;
+    display: flex;
+  }
+ 
+  .textContent{
+    position: fixed;
+    top: 70px;
+    left: 10px;
+    width: 500px;
+    margin-right: 10px;
+   }
+   
+   .mobileArrowButton{
+    display: flex;
+    width: 26px;
+    position: fixed;
+    left: 530px;
+    top: 140px;
+    cursor: pointer;
+   }
+
+   .legalNoticeHeadline{
+    font-size: 45px;
+   }
+}

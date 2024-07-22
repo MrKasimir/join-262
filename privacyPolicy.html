@@ -15,6 +15,28 @@
         miniMenue.classList.add('displayNone');
     }
 }
+
+function openMobileMenu() {
+    const sidebarIcons = document.getElementsByClassName('mobileSidebaricons');
+    const sidebar = document.querySelector('.mobileSidebar');
+    const isMenuOpen = sidebar.style.display === 'flex';
+
+    if (isMenuOpen) { // if else abfrage ob das menü geöffnet ist oder nicht
+                        // wenn ja display none wenn nein display flex
+        for (let i = 0; i < sidebarIcons.length; i++) {
+            sidebarIcons[i].style.display = 'none';
+        }
+        sidebar.style.display = 'none';
+    } else {
+        
+        for (let i = 0; i < sidebarIcons.length; i++) {
+            sidebarIcons[i].style.display = 'flex';
+        }
+        sidebar.style.display = 'flex';
+    }
+}
+
+
     </script>
 </head>
 <body>
@@ -52,10 +74,13 @@
      
   <div class="description">
     <div>
+      <img class="joinMobileLoggo" src="assets/img/JoinmobileLoggo.png" alt="">
+    </div>
+    <div>
       <p class="descriptionHeadline">Kanban Project Management Tool</p>
     </div>
     <div class="descriptionImg">
-      <a href="help.html">
+      <a class="helpLink" href="help.html">
       <img class="qmImg" src="assets/img/questionmark.png" alt="" />
       </a>
       <img onclick="openMenue()" class="circleImg" src="assets/img/circle.png" alt="" />
@@ -73,7 +98,7 @@
       <section class="rightSideContent">
 
         <div class="textContent">
-          <span class="legalNoticeHeadline"><h1>Privacy Policy</h1></span>
+          <span class="legalNoticeHeadline"><h1>Privacy Policy</h1> <img onclick="openMobileMenu()" class="mobileArrowButton" src="assets/img/leftArrowMobile.png" alt=""></span>
           
           <div class="textSections">
           <h2 class="Privacyh2">Privacy User</h2>
@@ -96,6 +121,14 @@
           
          </div>
       </section> 
+      <div class="mobileSidebar">
+
+        <div class="mobileSidebaricons" ><img class="mobileIconImg" src="assets/img/summery.png" alt="">Summary</div>
+        <div class="mobileSidebaricons" ><img class="mobileIconImg" src="assets/img/Board.png" alt="">Board</div>
+        <div class="mobileSidebaricons" ><img class="mobileIconImg" src="assets/img/addTask.png" alt="">Add Tasks</div>
+        <div class="mobileSidebaricons" ><img class="mobileIconImg" src="assets/img/contacts.png" alt="">Contacts</div>
+        
+      </div>
     
 </body>
 </html>
