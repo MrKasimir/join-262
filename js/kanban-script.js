@@ -252,3 +252,94 @@ function clearAllInputFields() {
     document.getElementById('Task-choose-Category-id').value = '';
     document.getElementById('Task-Subtask-Id').value = '';
 }
+
+// Funktion zum Finden eines Tasks anhand des inputFields
+function findTask() {
+    const searchText = getSearchText();
+    clearHighlightsAndFormatting();
+
+    if (searchText === '') return;
+
+    searchTasksAndHighlight(searchText);
+}
+
+// Funktion zum Returnen des inputStrings
+function getSearchText() {
+    return document.getElementById('inputField').value.toLowerCase().trim();
+}
+
+// Funktion zum Entfernen möglicher vorheriger tasks searches
+function clearHighlightsAndFormatting() {
+    document.querySelectorAll('.task-container').forEach(task => {
+        resetTaskStyles(task);
+        clearTaskHighlights(task);
+    });
+}
+
+// Funktion zum Zurücksetzen der styles
+function resetTaskStyles(task) {
+    task.style.border = '';
+    task.style.boxShadow = '';
+}
+
+// Funktion zum Entfernen von Titel -und Description Markierungen
+function clearTaskHighlights(task) {
+    const titleElement = task.querySelector('.task-title');
+    const descriptionElement = task.querySelector('.task-description');
+
+    if (titleElement) clearHighlight(titleElement);
+    if (descriptionElement) clearHighlight(descriptionElement);
+}
+
+// Funktion zum Entfernen der Markierung von einem ganzen Element
+function clearHighlight(element) {
+    element.innerHTML = element.innerHTML.replace(/<mark>/g, '').replace(/<\/mark>/g, '');
+}
+
+// Funktion zum Durchsuchen des Tasks zur und Hervorhebung bei Übereinstimmungen
+function searchTasksAndHighlight(searchText) {
+    document.querySelectorAll('.task-container').forEach(task => {
+        if (taskMatchesSearch(task, searchText)) {
+            highlightTask(task, searchText);
+        }
+    });
+}
+
+// Funktion zur Prüfung, ob ein Task den Suchtext enthält
+function taskMatchesSearch(task, searchText) {
+    const titleElement = task.querySelector('.task-title');
+    const descriptionElement = task.querySelector('.task-description');
+
+    if (!titleElement || !descriptionElement) return false;
+
+    const title = titleElement.innerText.toLowerCase();
+    const description = descriptionElement.innerText.toLowerCase();
+
+    return title.includes(searchText) || description.includes(searchText);
+}
+
+// Funktion zur Hervorhebung eines Tasks
+function highlightTask(task, searchText) {
+    task.style.border = '2px solid grey';
+    task.style.boxShadow = '0 0 5px grey';
+
+    const titleElement = task.querySelector('.task-title');
+    const descriptionElement = task.querySelector('.task-description');
+
+    if (titleElement) highlightText(titleElement, searchText);
+    if (descriptionElement) highlightText(descriptionElement, searchText);
+}
+
+// Funktion zur Hervorhebung des searchStrings innerhalb eines Elements
+function highlightText(element, searchText) {
+    let html = element.innerHTML;
+    const regex = new RegExp(`(${searchText})`, 'gi');
+    html = html.replace(regex, '<mark>$1</mark>');
+    element.innerHTML = html;
+}
+
+// Event-Listener (wird ausgeführt wird, sobald der DOM-Inhalt vollständig geladen ist)
+document.addEventListener('DOMContentLoaded', () => {
+    onloadFunction();
+    document.getElementById('inputField').addEventListener('input', findTask);
+});

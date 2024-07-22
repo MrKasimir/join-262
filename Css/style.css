@@ -387,6 +387,7 @@ justify-content: center;
   border: 1px solid #D1D1D1
 }
 
+
 .addTask-button {
   width: 136px;
   height: 48px;
@@ -625,6 +626,10 @@ p {
    }
 
    .suptask-input-addTask {
+    display: none;
+   }
+
+   .suptask-input-addTask-p {
     display: none;
    }
 

@@ -80,9 +80,10 @@ function getInitials() {
     }
 }
 
-
 let userInitials = getInitials();
 console.log("User Initials: ", userInitials);
+
+
 
 let defaultTasks = [{
     'id': 0,
@@ -104,6 +105,11 @@ let defaultTasks = [{
         return JSON.parse(boardTasks);
     }
 }
+
+
+
+
+
 
 
 // SummaryGuest
