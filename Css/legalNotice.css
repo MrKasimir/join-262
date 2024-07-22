@@ -158,6 +158,7 @@ p {
     height: 100vh;
     width: 100%;
     background-color: rgb(246, 247, 248);
+    scroll-behavior: smooth;
     
   }
   
@@ -171,12 +172,10 @@ p {
     margin: 0px;
   }
   .textContent{
-    position: fixed;
-    top: 206px;
-    left: 328px;
-    height: 100vh;
-    width: 1014px;
-    margin-left: 30px;
+    margin-top: 206px;
+    margin-left: 358px;
+    height: auto;
+    width: 70%;
   }
 
   .textSections{
@@ -307,6 +306,30 @@ ol li {
   background-color: rgb(42, 54, 71);
   color: #ffffff;
 }
+/* scrollbar*/
+
+::-webkit-scrollbar {
+  width: 5px; /* Further reduces the width of the vertical scrollbar */
+  height: 10px; /* Further reduces the height of the horizontal scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255); /* Light grey for the track background */
+  box-shadow: inset 0 0 5px rgb(255, 255, 255);
+  border-radius: 5px; /* Less rounding to fit the compact size */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fffefe; /* Light grey for the handle */
+  border-radius: 5px; /* Less rounding to fit the compact size */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(20, 175, 241);
+}
 
 
 /*Mobile ansicht */
@@ -397,13 +420,14 @@ ol li {
     width: 40px;
     display: flex;
   }
+  .rightSideContent{
+    height:  fit-content;
+  }
  
   .textContent{
-    position: fixed;
-    top: 70px;
-    left: 10px;
+    margin-left: 50px;
     width: 500px;
-    margin-right: 10px;
+    scroll-behavior: smooth;
    }
    
    .mobileArrowButton{
