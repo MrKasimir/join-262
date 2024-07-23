@@ -372,6 +372,7 @@ h2 {
 .timeOfDay {
   font-size: 47px;
   color: #2a3647;
+ 
 }
 .greetingName {
   color: #29abe2;
@@ -533,9 +534,7 @@ p {
   top: 280px;
   display: none;
 }
-.mobileSidebar{
 
-}
 .mobileSidebaricons{
   display: flex;
   flex-direction: column;
@@ -555,6 +554,45 @@ p {
   border-radius: 10px;
   
 }
+.mobileGreeting{
+  display: none; 
+  position: fixed;
+  height: 1230px;
+  top: 97px;
+  left: 0px;
+  width: 100%;
+  background-color: rgb(246, 247, 248); 
+  
+}
+
+
+.displayNone{
+  display: none;
+}
+.displayBlock{
+  display: block;
+}
+
+.mobileGreettext{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 1000px;
+  margin-left: 10px;
+}
+
+.mobileGreeting,
+.mobileGreettext {
+    transition: opacity 1.5s ease-out; /* Dauer und Timing für den Übergang */
+    opacity: 1; /* Anfangs-Opacity auf voll sichtbar */
+}
+
+.mobileGreeting.hidden,
+.mobileGreettext.hidden {
+    opacity: 0; /* Sichtbarkeit auf unsichtbar setzen */
+}
+
 
 
 /** Mobile **/
@@ -573,6 +611,11 @@ p {
     height: 40px;
     align-items: flex-start;
    }
+   .mobileGreeting {
+    display: block; 
+    
+   }
+ 
    .mainHeadline{
     margin: 0px;
    }
@@ -619,9 +662,7 @@ p {
    .helpLink{
     display: none;
    }
-   .greeting{
-    display: none;
-   }
+   
    .mobileSidebar{
     display: flex;
     height: 100px;
