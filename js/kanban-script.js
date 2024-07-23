@@ -105,6 +105,7 @@ function renderByCategory() {
             }
         }
     }
+    pushIfUserLogOut();
 }
 
 function deleteKanbanBoard() {
@@ -384,6 +385,3 @@ function pushIfUserLogOut() {
         console.error('Error pushing data:', error);
     });
 }
-
-//diese funktion sorgt dafür, dass immer wenn ein user die seite schließt die pushifuserlogout funktion ausgeführt wird 
-window.addEventListener('beforeunload', pushIfUserLogOut);

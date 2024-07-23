@@ -1,4 +1,3 @@
-const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
 
 // Fetch the existing tasks array from local storage, or initialize it as an empty array if it doesn't exist
 
@@ -19,7 +18,7 @@ function PostUserTasks() {
 }
 
 // Fetch user data example
-async function fetchUserData() {
+/* async function fetchUserData() {
     let response = await fetch(BASE_URL + "User/UserID_1" + ".json", {
         method: "GET",
         headers: {
@@ -29,7 +28,7 @@ async function fetchUserData() {
     let data = await response.json();
     console.log("User Data:", data);
     return data;
-}
+} */
 
 // Beispiel für das Speichern eines Benutzers im Local Storage
 function saveLoggedinUser(userId, email, name, id) {
