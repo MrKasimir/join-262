@@ -1,6 +1,6 @@
 const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let defaultTasks = [{
+let defaultTasks = [/* {
     'id': 0,
     'category': 'todo',
     'title': 'Contact Form and Imprint',
@@ -49,7 +49,7 @@ let defaultTasks = [{
     'priority': 'low',
     'assignedTo': 'EF',
     'subtasks': 2,
-}
+} */
 ];
 
 let tasks = [];  // nächster Schritt: die defaultTasks aus firebase laden lassne
