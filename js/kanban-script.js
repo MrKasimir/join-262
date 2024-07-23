@@ -1,28 +1,33 @@
 const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let defaultTasks = [];
-
-let tasks = [];  // nächster Schritt: die defaultTasks aus firebase laden lassne
+let defaultTasks = []; // die defaultTasks werden jedesmal aus firebase geladen
+let tasks = [];
 let count = tasks.length;
 
 let currentDraggedElement;
 let currentDraggedCategory;
 let addedId = tasks.length - 1;
 
+
 async function onloadFunction() {
-    // Erst prüfen, ob das board schon im local storage liegt
-    if (loadBoardFromLocalStorage().length == 0) {
-        defaultTasks = await fetchUserData();  // Await the async function
-        tasks = defaultTasks || [];  // Fallback to empty array if fetchUserData fails
+    let boardData = loadBoardFromLocalStorage();
+
+    // Wenn nichts im local storage ist, dann Tasks aus der API laden
+    if (boardData === null || boardData === undefined || (Array.isArray(boardData) && boardData.length === 0)) {
+        defaultTasks = await fetchUserData();
+        // Fallback zum leeren Array [] wenn fetchUserData fails
+        tasks = defaultTasks || [];
     } else {
-        // Wenn noch keins drin ist, dann mit defaultArray initialisieren
-        tasks = loadBoardFromLocalStorage();
+        // Andernfalls mit den geladenen Daten initialisieren
+        tasks = boardData;
     }
-    // die renderByCategory Funktion soll nicht in addTask.html aufgerufen werden
+
+    // Die renderByCategory Funktion soll nicht in addTask.html aufgerufen werden (wirft sonst error)
     if (window.location.href.includes('kanban-board.html')) {
         renderByCategory();
     }
 }
+
 
 // im Local Storage die tasks ablegen mit dem key 'board'
 function saveBoardAsTasksToLocalStorage() {
@@ -292,7 +297,7 @@ function highlightText(element, searchText) {
 // Der Listener darf nur im kanban-board.html aktiv sein
 if (window.location.href.includes('kanban-board.html')) {
     document.addEventListener('DOMContentLoaded', async () => {
-        await onloadFunction();  // Await the async function
+        // await onloadFunction();  // Await the async function
         document.getElementById('inputField').addEventListener('input', findTask);
     });
 }
@@ -303,37 +308,36 @@ function pushIfUserLogOut() {
         console.error('User not found in local storage');
         return;
     }
-    
+
     const userId = loggedInUser[0].UserID;
     const board = JSON.parse(localStorage.getItem('board'));
 
     if (!board) {
-        console.error('No board data to push');
+        console.log('No board data to push');
         return;
     }
 
-    
-    const apiUrl = `${BASE_URL}/User/${userId}/board.json`; 
+    const apiUrl = `${BASE_URL}/User/${userId}/board.json`;
 
     fetch(apiUrl, {
-        method: 'PUT', 
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(board)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Data successfully pushed:', data);
-    })
-    .catch(error => {
-        console.error('Error pushing data:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Data successfully pushed:', data);
+        })
+        .catch(error => {
+            console.error('Error pushing data:', error);
+        });
 }
 
 async function fetchUserData() {
@@ -365,8 +369,6 @@ async function fetchUserData() {
     console.log("Updated defaultTasks:", defaultTasks);
 
     return data;
-
-    
 }
 
 
