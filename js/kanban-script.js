@@ -60,15 +60,17 @@ let currentDraggedCategory;
 let addedId = tasks.length - 1;
 
 function onloadFunction() {
-        // erst prüfen, ob das board schon im local storage liegt
-        if (loadBoardFromLocalStorage().length == 0) {
-            tasks = defaultTasks;
-        } else {
-            // Wenn noch keins drin ist, dann mit defaultArray initialisieren
-            tasks = loadBoardFromLocalStorage();
-        }
-
-    renderByCategory();
+    // erst prüfen, ob das board schon im local storage liegt
+    if (loadBoardFromLocalStorage().length == 0) {
+        tasks = defaultTasks;
+    } else {
+        // Wenn noch keins drin ist, dann mit defaultArray initialisieren
+        tasks = loadBoardFromLocalStorage();
+    }
+    // die renderByCategory Funktion soll nicht in addTask.html aufgerufen werden
+    if (window.location.href.includes('kanban-board.html')) {
+        renderByCategory();
+    }
 }
 
 // im Local Storage die tasks ablegen mit dem key 'board'
@@ -81,7 +83,7 @@ function loadBoardFromLocalStorage() {
     if (!boardTasks) {
         return [];
     }
-    
+
     else {
         return JSON.parse(boardTasks);
     }
@@ -339,7 +341,10 @@ function highlightText(element, searchText) {
 }
 
 // Event-Listener (wird ausgeführt wird, sobald der DOM-Inhalt vollständig geladen ist)
-document.addEventListener('DOMContentLoaded', () => {
-    onloadFunction();
-    document.getElementById('inputField').addEventListener('input', findTask);
-});
+// Der Listener darf nur im kanban-board.html aktiv sein
+if (window.location.href.includes('kanban-board.html')) {
+    document.addEventListener('DOMContentLoaded', () => {
+        onloadFunction();
+        document.getElementById('inputField').addEventListener('input', findTask);
+    });
+}
