@@ -1,56 +1,6 @@
 const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let defaultTasks = [/* {
-    'id': 0,
-    'category': 'todo',
-    'title': 'Contact Form and Imprint',
-    'titleCategory': 'User Story',
-    'description': 'Create contact form & imprint page',
-    'priority': 'medium',
-    'assignedTo': 'AB',
-    'subtasks': 1,
-},
-{
-    'id': 1,
-    'category': 'inProgress',
-    'title': 'Kochwelt Page & Recipe Recommender',
-    'titleCategory': 'User Story',
-    'description': 'Build start page with recipe recommendation',
-    'priority': 'medium',
-    'assignedTo': 'CD',
-    'subtasks': 2,
-},
-{
-    'id': 2,
-    'category': 'awaitFeedback',
-    'title': 'Monthly Kochwelt Recipe',
-    'titleCategory': 'User Story',
-    'description': 'Implement monthly recipe portion and calculator',
-    'priority': 'low',
-    'assignedTo': 'EF',
-    'subtasks': 2,
-},
-{
-    'id': 3,
-    'category': 'awaitFeedback',
-    'title': 'Yearly Kochwelt Recipe',
-    'titleCategory': 'User Story',
-    'description': 'Implement yearly recipe portion and calculator',
-    'priority': 'low',
-    'assignedTo': 'EF',
-    'subtasks': 2,
-},
-{
-    'id': 4,
-    'category': 'done',
-    'title': 'Projektmeeting',
-    'titleCategory': 'User Story',
-    'description': 'Decide on next steps.',
-    'priority': 'low',
-    'assignedTo': 'EF',
-    'subtasks': 2,
-} */
-];
+let defaultTasks = [];
 
 let tasks = [];  // nächster Schritt: die defaultTasks aus firebase laden lassne
 let count = tasks.length;
@@ -59,10 +9,11 @@ let currentDraggedElement;
 let currentDraggedCategory;
 let addedId = tasks.length - 1;
 
-function onloadFunction() {
-    // erst prüfen, ob das board schon im local storage liegt
+async function onloadFunction() {
+    // Erst prüfen, ob das board schon im local storage liegt
     if (loadBoardFromLocalStorage().length == 0) {
-        tasks = defaultTasks;
+        defaultTasks = await fetchUserData();  // Await the async function
+        tasks = defaultTasks || [];  // Fallback to empty array if fetchUserData fails
     } else {
         // Wenn noch keins drin ist, dann mit defaultArray initialisieren
         tasks = loadBoardFromLocalStorage();
@@ -340,12 +291,11 @@ function highlightText(element, searchText) {
 // Event-Listener (wird ausgeführt wird, sobald der DOM-Inhalt vollständig geladen ist)
 // Der Listener darf nur im kanban-board.html aktiv sein
 if (window.location.href.includes('kanban-board.html')) {
-    document.addEventListener('DOMContentLoaded', () => {
-        onloadFunction();
+    document.addEventListener('DOMContentLoaded', async () => {
+        await onloadFunction();  // Await the async function
         document.getElementById('inputField').addEventListener('input', findTask);
     });
 }
-
 //push funktion die dafür sorgt, dass immer zum richtigen user mit dem richtigem path gepusht wird
 function pushIfUserLogOut() {
     const loggedInUser = JSON.parse(localStorage.getItem('loggedinUser'));
@@ -385,3 +335,38 @@ function pushIfUserLogOut() {
         console.error('Error pushing data:', error);
     });
 }
+
+async function fetchUserData() {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedinUser'));
+    if (!loggedInUser || !loggedInUser[0] || !loggedInUser[0].UserID) {
+        console.error('User not found in local storage');
+        return;
+    }
+
+    const userId = loggedInUser[0].UserID;
+
+    const response = await fetch(`${BASE_URL}User/${userId}/board.json`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+
+    if (!response.ok) {
+        console.error('Network response was not ok', response.statusText);
+        return;
+    }
+
+    const data = await response.json();
+    console.log("User Data:", data);
+
+    // Overwrite the defaultTasks array with the fetched data
+    defaultTasks = data;
+    console.log("Updated defaultTasks:", defaultTasks);
+
+    return data;
+
+    
+}
+
+

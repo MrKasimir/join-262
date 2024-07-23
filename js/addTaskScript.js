@@ -17,32 +17,6 @@ function PostUserTasks() {
     localStorage.setItem('tasks', JSON.stringify(tasks)); // Update the existing 'tasks' array in local storage
 }
 
-async function fetchUserData() {
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedinUser'));
-    if (!loggedInUser || !loggedInUser[0] || !loggedInUser[0].UserID) {
-        console.error('User not found in local storage');
-        return;
-    }
-
-    const userId = loggedInUser[0].UserID;
-
-    const response = await fetch(`${BASE_URL}User/${userId}/board.json`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        }
-    });
-
-    if (!response.ok) {
-        console.error('Network response was not ok', response.statusText);
-        return;
-    }
-
-    const data = await response.json();
-    console.log("User Data:", data);
-    return data;
-}
-
 // Beispiel für das Speichern eines Benutzers im Local Storage
 function saveLoggedinUser(userId, email, name, id) {
     const user = {
