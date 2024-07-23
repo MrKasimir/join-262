@@ -1,32 +1,24 @@
-// Script Add Task.js
-
 const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let addedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
+// Fetch the existing tasks array from local storage, or initialize it as an empty array if it doesn't exist
 
 function PostUserTasks() {
-    postData("User/UserID_1", {
-        title: document.getElementById('Task-Title-id').value,
-        description: document.getElementById('Task-Describtion-id').value,
-        contact: document.getElementById('Task-choose-contact-id').value,
-        date: document.getElementById('Task-Date-Id').value,
-        category: document.getElementById('Task-choose-Category-id').value,
-        subtask: document.getElementById('Task-Subtask-Id').value
-    });
+    const newTask = {
+        'id': tasks.length, // Assign a new ID based on the current length of the tasks array
+        'category': 'todo',
+        'title': document.getElementById('Task-Title-id').value,
+        'titleCategory': document.getElementById('Task-choose-Category-id').value,
+        'description': document.getElementById('Task-Describtion-id').value,
+        'priority': 'medium', // Assuming 'medium' is a constant value for priority
+        'assignedTo': document.getElementById('Task-choose-contact-id').value,
+        'subtasks': document.getElementById('Task-Subtask-Id').value ? 1 : 0 // Assuming 1 if there is a subtask, otherwise 0
+    };
+
+    tasks.push(newTask); // Add the new task to the existing array
+    localStorage.setItem('tasks', JSON.stringify(tasks)); // Update the existing 'tasks' array in local storage
 }
 
-async function postData(path = "", data = {}) {
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}
-
+// Fetch user data example
 async function fetchUserData() {
     let response = await fetch(BASE_URL + "User/UserID_1" + ".json", {
         method: "GET",
@@ -56,3 +48,24 @@ function saveLoggedinUser(userId, email, name, id) {
     addTaskToLocalStorage();
     window.location.href = './kanban-board.html';
 } */
+
+function init() {
+    PostUserTasks();
+}
+
+// Function to clear tasks from local storage
+function clearTasks() {
+    localStorage.removeItem('tasks');
+}
+
+// Clear local storage tasks array when the user logs out
+function logout() {
+    clearTasks();
+    // Add your logout logic here, like redirecting to a login page
+    window.location.href = './login.html';
+}
+
+// Clear local storage tasks array when the webpage is closed
+window.addEventListener('beforeunload', (event) => {
+    clearTasks();
+});

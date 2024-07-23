@@ -1,4 +1,4 @@
-// kanban-script.js
+const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let defaultTasks = [{
     'id': 0,
@@ -82,9 +82,7 @@ function loadBoardFromLocalStorage() {
     const boardTasks = localStorage.getItem('board');
     if (!boardTasks) {
         return [];
-    }
-
-    else {
+    } else {
         return JSON.parse(boardTasks);
     }
 }
@@ -134,7 +132,6 @@ function moveTo(event) {
     const id = event.target.id;
     if (id) {
         tasks[currentDraggedElement].category = id;
-
     }
     event.target.classList.remove('highlight');
     deleteKanbanBoard();
@@ -217,8 +214,7 @@ function getAddedTasksFromLocalStorage() {
     const storedTasks = localStorage.getItem('tasks');
     if (!storedTasks) {
         return [];
-    }
-    else return JSON.parse(storedTasks);
+    } else return JSON.parse(storedTasks);
 }
 
 // Das kanban-script.js soll auf der addTask.html direkt aus den Feldern auslesen
@@ -348,3 +344,46 @@ if (window.location.href.includes('kanban-board.html')) {
         document.getElementById('inputField').addEventListener('input', findTask);
     });
 }
+
+//push funktion die dafür sorgt, dass immer zum richtigen user mit dem richtigem path gepusht wird
+function pushIfUserLogOut() {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedinUser'));
+    if (!loggedInUser || !loggedInUser[0] || !loggedInUser[0].UserID) {
+        console.error('User not found in local storage');
+        return;
+    }
+    
+    const userId = loggedInUser[0].UserID;
+    const board = JSON.parse(localStorage.getItem('board'));
+
+    if (!board) {
+        console.error('No board data to push');
+        return;
+    }
+
+    
+    const apiUrl = `${BASE_URL}/User/${userId}/board.json`; 
+
+    fetch(apiUrl, {
+        method: 'PUT', 
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(board)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Data successfully pushed:', data);
+    })
+    .catch(error => {
+        console.error('Error pushing data:', error);
+    });
+}
+
+//diese funktion sorgt dafür, dass immer wenn ein user die seite schließt die pushifuserlogout funktion ausgeführt wird 
+window.addEventListener('beforeunload', pushIfUserLogOut);
