@@ -545,6 +545,10 @@ p {
   padding: 15px;
   display: none;
   margin-top: 10px;
+  
+}
+.mobileLink{
+  text-decoration: none;
 }
 .mobileIconImg{
   width: 40px;

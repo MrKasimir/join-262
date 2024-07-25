@@ -370,6 +370,9 @@ ol li {
   align-items: center;
   padding: 15px;
 }
+.mobileLink{
+  text-decoration: none;
+}
 
 .mobileSidebaricons:hover{
   background-color: #1d2633;
