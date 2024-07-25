@@ -5,7 +5,7 @@ function init() {
   displayTime();
   displayName();
   greetUser();
-  
+  displayTasks();
 }
 
 function openMenue() {
@@ -167,6 +167,8 @@ function hidemobileGreeting() {
 }
 
 // summary APi  //
+window.loggedinUser = JSON.parse(localStorage.getItem("loggedinUser")) || [];
+console.log('logged in ', window.loggedinUser);
 
 function displayTasks() {
   let TodoTasks = document.getElementById('todoTasks');
@@ -175,31 +177,37 @@ function displayTasks() {
   let TasksInBoard = document.getElementById('taskInBoard');
   let TasksInProgress = document.getElementById('tasksInProgress');
   let AwaitingFeedback = document.getElementById('awaitingFeedback'); 
+
+  const tasks = loadBoardFromLocalStorage();
+  
+
+  let todoCount = tasks.filter(task => task.status === 'To Do').length;
+  let doneCount = tasks.filter(task => task.status === 'Done').length;
+  let urgentCount = tasks.filter(task => task.priority === 'Urgent').length;
+  let inProgressCount = tasks.filter(task => task.status === 'In Progress').length;
+  let awaitingFeedbackCount = tasks.filter(task => task.status === 'Awaiting Feedback').length;
+  let totalTasksCount = tasks.length;
+
+  TodoTasks.innerText = todoCount;
+  DoneTasks.innerText = doneCount;
+  UrgentTasks.innerText = urgentCount;
+  TasksInBoard.innerText = totalTasksCount;
+  TasksInProgress.innerText = inProgressCount;
+  AwaitingFeedback.innerText = awaitingFeedbackCount;
 }
 
 
-let defaultTasks = [
-  {
-    id: 0,
-    category: "todo",
-    title: "Contact Form and Imprint",
-    titleCategory: "User Story",
-    description: "Create contact form & imprint page",
-    priority: "medium",
-    assignedTo: "AB",
-    subtasks: 1,
-  },
-];
+
 function loadBoardFromLocalStorage() {
   const boardTasks = localStorage.getItem("board");
   console.log(boardTasks);
   if (!boardTasks) {
     return [];
   } else {
+    console.log(boardTasks)
     return JSON.parse(boardTasks);
   }
   
-
 }
 
 // SummaryGuest
