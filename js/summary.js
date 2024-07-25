@@ -166,7 +166,16 @@ function hidemobileGreeting() {
     }, 3000); 
 }
 
-// summary APi shit //
+// summary APi  //
+
+function displayTasks() {
+  let TodoTasks = document.getElementById('todoTasks');
+  let DoneTasks = document.getElementById('doneTasks');
+  let UrgentTasks = document.getElementById('urgentTasks');
+  let TasksInBoard = document.getElementById('taskInBoard');
+  let TasksInProgress = document.getElementById('tasksInProgress');
+  let AwaitingFeedback = document.getElementById('awaitingFeedback'); 
+}
 
 
 let defaultTasks = [
@@ -183,17 +192,21 @@ let defaultTasks = [
 ];
 function loadBoardFromLocalStorage() {
   const boardTasks = localStorage.getItem("board");
+  console.log(boardTasks);
   if (!boardTasks) {
     return [];
   } else {
     return JSON.parse(boardTasks);
   }
+  
+
 }
 
 // SummaryGuest
 
 function initGuest() {
   displayTimeGuest();
+  hidemobileGreeting();
 }
 
 function displayTimeGuest() {

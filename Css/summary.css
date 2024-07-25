@@ -544,6 +544,7 @@ p {
   align-items: center;
   padding: 15px;
   display: none;
+  margin-top: 10px;
 }
 .mobileIconImg{
   width: 40px;
