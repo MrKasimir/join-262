@@ -6,6 +6,7 @@ function init() {
   displayName();
   greetUser();
   displayTasks();
+  loadBoardFromLocalStorage();
 }
 
 function openMenue() {
@@ -170,6 +171,7 @@ function hidemobileGreeting() {
 window.loggedinUser = JSON.parse(localStorage.getItem("loggedinUser")) || [];
 console.log('logged in ', window.loggedinUser);
 
+
 function displayTasks() {
   let TodoTasks = document.getElementById('todoTasks');
   let DoneTasks = document.getElementById('doneTasks');
@@ -180,12 +182,11 @@ function displayTasks() {
 
   const tasks = loadBoardFromLocalStorage();
   
-
-  let todoCount = tasks.filter(task => task.status === 'To Do').length;
-  let doneCount = tasks.filter(task => task.status === 'Done').length;
+  let todoCount = tasks.filter(task => task.category === 'todo').length;
+  let doneCount = tasks.filter(task => task.category === 'done').length;
   let urgentCount = tasks.filter(task => task.priority === 'Urgent').length;
-  let inProgressCount = tasks.filter(task => task.status === 'In Progress').length;
-  let awaitingFeedbackCount = tasks.filter(task => task.status === 'Awaiting Feedback').length;
+  let inProgressCount = tasks.filter(task => task.category === 'inProgress').length;
+  let awaitingFeedbackCount = tasks.filter(task => task.category === 'awaitFeedback').length;
   let totalTasksCount = tasks.length;
 
   TodoTasks.innerText = todoCount;
@@ -200,14 +201,7 @@ function displayTasks() {
 
 function loadBoardFromLocalStorage() {
   const boardTasks = localStorage.getItem("board");
-  console.log(boardTasks);
-  if (!boardTasks) {
-    return [];
-  } else {
-    console.log(boardTasks)
-    return JSON.parse(boardTasks);
-  }
-  
+  return boardTasks ? JSON.parse(boardTasks) : [];
 }
 
 // SummaryGuest
@@ -215,6 +209,7 @@ function loadBoardFromLocalStorage() {
 function initGuest() {
   displayTimeGuest();
   hidemobileGreeting();
+  guestMobileGreeting();
 }
 
 function displayTimeGuest() {
@@ -225,7 +220,7 @@ function displayTimeGuest() {
   currentDateHeadline.innerHTML = formattedDate;
 
   let timeOfDayElement = document.getElementById("timeOfDayGuest");
-
+ 
   if (stunden < 12) {
     console.log("Guten Morgen!");
     timeOfDayElement.innerHTML = "Good Morning,";
@@ -236,4 +231,20 @@ function displayTimeGuest() {
     console.log("Guten Abend!");
     timeOfDayElement.innerHTML = "Good Evening";
   }
+}
+
+
+function guestMobileGreeting(){
+  let timeOfDayGeustMobile = document.getElementById("timeOfDayGuestMobile");
+  if (stunden < 12) {
+    console.log("Guten Morgen!");
+    timeOfDayGeustMobile.innerHTML = "Good Morning,";
+  } else if (stunden < 18) {
+    console.log("Guten Nachmittag!");
+    timeOfDayGeustMobile.innerHTML = "Good Afternoon,";
+  } else {
+    console.log("Guten Abend!");
+    timeOfDayGeustMobile.innerHTML = "Good Evening";
+  }
+
 }

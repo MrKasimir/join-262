@@ -120,6 +120,8 @@ let numberTodos = 0;
 let numberInProgress = 0;
 let numberAwaitFeedback = 0;
 let numberDone = 0;
+let numberTasksinBoard = 0;
+let numberUrgentTasks =0;
 
 function countCategoryInputs() {
     for (let i = 0; i < tasks.length; i++) {
@@ -136,11 +138,19 @@ function countCategoryInputs() {
         if (currentCategory == 'done') {
             numberDone++;
         }
+        if (currentCategory == 'numberTasksinBoard') {
+            numberDone++;
+        }
+        if (currentCategory == 'numberUrgentTasks') {
+            numberDone++;
+        }
     }
+    saveBoardAsTasksToLocalStorage();
     console.log(numberTodos);
     console.log(numberInProgress);
     console.log(numberAwaitFeedback);
     console.log(numberDone);
+   
 
     if (numberTodos == 0) {
         renderEmptyCategoy('todo');
@@ -154,10 +164,7 @@ function countCategoryInputs() {
     if (numberDone == 0) {
         renderEmptyCategoy('done');
     }
-    numberTodos = 0;
-    numberInProgress = 0;
-    numberAwaitFeedback = 0;
-    numberDone = 0;
+    
 }
 
 function renderEmptyCategoy(category) {
@@ -174,11 +181,6 @@ function getAddedTasksFromLocalStorage() {
     } else return JSON.parse(storedTasks);
 }
 
-// Das kanban-script.js soll auf der addTask.html direkt aus den Feldern auslesen
-function CreatTaskbuttonOnclick() {
-    addTaskFromInputPage();
-    window.location.href = './kanban-board.html';
-}
 
 function addTaskFromInputPage() {
     let newListOfTasks = loadBoardFromLocalStorage();
@@ -198,6 +200,18 @@ function addTaskFromInputPage() {
     }
     localStorage.setItem('board', JSON.stringify(newListOfTasks));
 }
+
+
+
+
+
+// Das kanban-script.js soll auf der addTask.html direkt aus den Feldern auslesen
+function CreatTaskbuttonOnclick() {
+    addTaskFromInputPage();
+    window.location.href = './kanban-board.html';
+}
+
+
 
 function clearAllInputFields() {
     document.getElementById('Task-Title-id').value = '';
@@ -370,5 +384,4 @@ async function fetchUserData() {
 
     return data;
 }
-
 
