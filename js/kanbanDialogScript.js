@@ -168,11 +168,24 @@ initializeSubtasks();
 //////////// Hier fortsetzen ///////////////
 
 function saveDialogCardToBoard() {
-    // gather all Information from Dialog Window
+    // getDetailsFromDialogCard()
     document.getElementById('title-container')
     // getBoardFromLocalStorage
     // addToThatBoard
     // saveToNewBoard to Local Storage
     // close Dialog Window
     // renderByCategory();
+}
+
+function getDetailsFromDialogCard(inputCategory){
+    let dialogTask = [{
+        'id': tasks.length,
+        'category': inputCategory,
+        'title': 'default',
+        'titleCategory': 'default',
+        'description': 'default',
+        'priority': 'default',
+        'assignedTo': 'default',
+        'subtasks': 'default',
+    }];
 }
