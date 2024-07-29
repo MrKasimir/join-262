@@ -1,0 +1,175 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header .story-category {
+    background-color: #007bff;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.card-header .story-category select {
+    display: none;
+}
+
+.card-header .close-btn {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.card-title,
+.card-subtitle,
+.card-details div {
+    margin: 20px 0 10px;
+    cursor: pointer;
+    display: inline-block;
+    display: flex;
+}
+
+.card-title input,
+.card-subtitle input,
+.card-details input {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 5px;
+    width: calc(100% - 20px);
+    display: block;
+}
+
+.subtasks input.editable-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-subtitle {
+    color: #6c757d;
+    font-size: 16px;
+}
+
+.card-details input {
+    font-size: 14px;
+    width: auto;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.assigned {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: left;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.assigned div {
+    display: flex;
+    gap: 5px;
+}
+
+.assigned .avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 59%;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6px;
+    color: white;
+}
+
+.subtasks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.subtasks li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.subtasks input {
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #6c757d;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: right;
+    gap: 5px;
+}
+
+.card-footer .edit-btn,
+.card-footer .delete-btn {
+    cursor: pointer;
+    color: grey;
+    text-decoration: none;
+}
+
+.plus-symbol {
+    cursor: pointer;
+}
+
+.plus-symbol:hover {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.overlay {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 8px;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.313);
+    justify-content: center;
+    align-items: center;
+}
+.d-none{
+    display: none;
+}
