@@ -4,8 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <link rel="stylesheet" href="Css/kanban-style.css">
+    <link rel="stylesheet" href="Css/kanbanDialogStyle.css">
+
     <script src="js/kanban-script.js"></script>
+    <script src="js/kanbanDialogScript.js" defer></script>
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>kanban-board</title>
@@ -54,9 +60,69 @@
                 <div class="top-right-menu">
                     <div class="circle-border">?</div>
                     <div class="circle-border">SM</div>
-                    <div onclick="loadUserData()" id="defaultUser" class="circle-border">JD</div>
+                    <!-- <div onclick="loadUserData()" id="defaultUser" class="circle-border">JD</div> -->
                 </div>
             </div>
+
+            <!-- START: Kanban Dialog Card to edit Tasks within Kanban Board -->
+            <div id="overlay" class="overlay d-none">OVERLAY
+                <div class="card">
+                    <div class="card-header">
+                        <span class="story-category" id="story-category-container">
+                            <span id="story-category-text">User Story</span>
+                            <select id="story-category-select" style="display: none;">
+                                <option value="User Story" data-color="#007bff">User Story</option>
+                                <option value="Technical Task" data-color="#20c997">Technical Task</option>
+                            </select>
+                        </span>
+                        <span class="close-btn" onclick="removeOverlay()">&times;</span>
+                    </div>
+                    <div class="card-title" id="title-container">
+                        <span id="title-text">Title</span>
+                        <input type="text" id="title-input" style="display: none;" />
+                    </div>
+                    <div class="card-subtitle" id="subtitle-container">
+                        <span id="subtitle-text">Description</span>
+                        <input type="text" id="subtitle-input" style="display: none;" />
+                    </div>
+                    <div class="card-details">
+                        <div><strong>Due date:</strong>
+                            <span id="due-date-text">01/01/2025</span>
+                            <input type="text" id="due-date-input" style="display: none;" />
+                        </div>
+                        <div id="priority-container"><strong>Priority:</strong>
+                            <span id="priority-text">Medium</span>
+                            <select id="priority-select" style="display: none;">
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="assigned">
+                        <div>
+                            <div class="avatar" style="background-color: #20c997;">XX</div>
+                            John Smith
+                        </div>
+                        <div>
+                            <div class="avatar" style="background-color: #6f42c1;">XX</div>
+                            Jane Smith
+                        </div>
+                    </div>
+                    <ul class="subtasks" id="subtasks-list">
+                        <li id="subtask-1">
+                            <input type="checkbox" id="subtask-checkbox-1" checked>
+                            <span id="subtask-text-1">Subtask 1</span>
+                        </li>
+                    </ul>
+                    <div class="card-footer">
+                        <span class="delete-btn">Delete</span>
+                        <span class="edit-btn" onclick="saveDialogCardToBoard()">Save</span>
+                    </div>
+                </div>
+            </div>
+            <!-- ENDE: Kanban Dialog Card -->
+
             <div class="input-container">
                 <div class="header-title bold-font">Board</div>
                 <div class="top-right-menu">
@@ -72,19 +138,19 @@
             <div class="dragdrop-container">
                 <div class="board-category">
                     <h3>Todo</h3>
-                    <div>+</div>
+                    <div class="plus-symbol" onclick="openDialog()"><a>+</a></div>
                 </div>
                 <div class="board-category">
                     <h3>In Progress</h3>
-                    <div>+</div>
+                    <div class="plus-symbol" onclick="openDialog()"><a>+</a></div>
                 </div>
                 <div class="board-category">
                     <h3>Await Feedback</h3>
-                    <div>+</div>
+                    <div class="plus-symbol" onclick="openDialog()"><a>+</a></div>
                 </div>
                 <div class="board-category">
                     <h3>Done</h3>
-                    <div>+</div>
+                    <div class="plus-symbol" onclick="openDialog()"><a>+</a></div>
                 </div>
             </div>
             <div class="dragdrop-container">
