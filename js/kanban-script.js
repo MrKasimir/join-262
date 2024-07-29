@@ -1,8 +1,45 @@
 const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let defaultTasks = []; // die defaultTasks werden jedesmal aus firebase geladen
+// defaultTasks sind hier dummy Werte zum testen
+// die tatsächlichen defaultTasks werden jedesmal aus firebase geladen 
+let defaultTasks = [{
+    'id': 0,
+    'category': 'todo',
+    'title': 'Contact Form and Imprint',
+    'titleCategory': 'User Story',
+    'description': 'Create contact form & imprint page',
+    'priority': 'medium',
+    'assignedTo': 'AB',
+    'subtasks': 1,
+},
+{
+    'id': 1,
+    'category': 'inProgress',
+    'title': 'Kochwelt Page & Recipe Recommender',
+    'titleCategory': 'User Story',
+    'description': 'Build start page with recipe recommendation',
+    'priority': 'medium',
+    'assignedTo': 'CD',
+    'subtasks': 2,
+},
+{
+    'id': 2,
+    'category': 'awaitFeedback',
+    'title': 'Monthly Kochwelt Recipe',
+    'titleCategory': 'User Story',
+    'description': 'Implement monthly recipe portion and calculator',
+    'priority': 'low',
+    'assignedTo': 'EF',
+    'subtasks': 2,
+}];
+
+let backUpTasks = defaultTasks;
+
+
 let tasks = [];
 let count = tasks.length;
+
+let currentDialogTask = [];
 
 let currentDraggedElement;
 let currentDraggedCategory;
@@ -120,10 +157,15 @@ let numberTodos = 0;
 let numberInProgress = 0;
 let numberAwaitFeedback = 0;
 let numberDone = 0;
+
 let numberTasksinBoard = 0;
-let numberUrgentTasks =0;
+let numberUrgentTasks = 0;
 
 function countCategoryInputs() {
+    numberTodos = 0;
+    numberInProgress = 0;
+    numberAwaitFeedback = 0;
+    numberDone = 0;
     for (let i = 0; i < tasks.length; i++) {
         let currentCategory = tasks[i].category;
         if (currentCategory == 'todo') {
@@ -144,13 +186,13 @@ function countCategoryInputs() {
         if (currentCategory == 'numberUrgentTasks') {
             numberDone++;
         }
+
     }
     saveBoardAsTasksToLocalStorage();
-    console.log(numberTodos);
+/*     console.log(numberTodos);
     console.log(numberInProgress);
     console.log(numberAwaitFeedback);
-    console.log(numberDone);
-   
+    console.log(numberDone); */
 
     if (numberTodos == 0) {
         renderEmptyCategoy('todo');
@@ -164,7 +206,7 @@ function countCategoryInputs() {
     if (numberDone == 0) {
         renderEmptyCategoy('done');
     }
-    
+
 }
 
 function renderEmptyCategoy(category) {
@@ -202,15 +244,11 @@ function addTaskFromInputPage() {
 }
 
 
-
-
-
 // Das kanban-script.js soll auf der addTask.html direkt aus den Feldern auslesen
 function CreatTaskbuttonOnclick() {
     addTaskFromInputPage();
     window.location.href = './kanban-board.html';
 }
-
 
 
 function clearAllInputFields() {
@@ -384,4 +422,55 @@ async function fetchUserData() {
 
     return data;
 }
+
+
+/////////////////////////////// Dialog Card Funktions //////////////////////////////
+
+function getDialogDetails(inputCategory) {
+    console.log('dialog started in :' + inputCategory);
+    console.log('Title:' + document.getElementById('title-text').innerHTML);
+    currentDialogTask = {
+        'id': tasks.length,
+        'category': inputCategory,
+        'title': document.getElementById('title-text').innerHTML,
+        'titleCategory': document.getElementById('story-category-select').value,
+        'description': 'default',
+        'priority': 'default',
+        'assignedTo': 'default',
+        'subtasks': 'default',
+    };
+}
+
+function saveDialogToBoard() {
+    getDialogDetails(currentDialogTask['category']);
+    // add dialog task to task json
+    tasks.push(currentDialogTask);
+    // empty current dialog task details
+    currentDialogTask = [];
+    // close Dialog Window
+    removeOverlay();
+
+    // getBoardFromLocalStorage
+    // addToThatBoard
+    // saveToNewBoard to Local Storage
+    renderByCategory();
+    console.log('changes pinned to board');
+}
+
+// openDialog('awaitFeedback') soll den Task in die Await Feedback in die Kategorie "Await Feedback" ablegen 
+function openDialog(inputCategory) {
+    addOverlay();
+    getDialogDetails(inputCategory);
+}
+
+function addOverlay() {
+    //... nimmt display: none Eigenschaft raus
+    document.getElementById('overlay').classList.remove('d-none');
+}
+
+function removeOverlay() {
+    //... fügt display: none Eigenschaft hinzu
+    document.getElementById('overlay').classList.add('d-none');
+}
+
 
