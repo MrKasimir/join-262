@@ -117,7 +117,7 @@
                     </ul>
                     <div class="card-footer">
                         <span class="delete-btn">Delete</span>
-                        <span class="edit-btn" onclick="saveDialogCardToBoard()">Save</span>
+                        <span class="edit-btn" onclick="saveDialogToBoard()">Save</span>
                     </div>
                 </div>
             </div>
@@ -138,19 +138,19 @@
             <div class="dragdrop-container">
                 <div class="board-category">
                     <h3>Todo</h3>
-                    <div class="plus-symbol" onclick="openDialog()"><a>+</a></div>
+                    <div class="plus-symbol" onclick="openDialog('todo')"><a>+</a></div>
                 </div>
                 <div class="board-category">
                     <h3>In Progress</h3>
-                    <div class="plus-symbol" onclick="openDialog()"><a>+</a></div>
+                    <div class="plus-symbol" onclick="openDialog('inProgress')"><a>+</a></div>
                 </div>
                 <div class="board-category">
                     <h3>Await Feedback</h3>
-                    <div class="plus-symbol" onclick="openDialog()"><a>+</a></div>
+                    <div class="plus-symbol" onclick="openDialog('awaitFeedback')"><a>+</a></div>
                 </div>
                 <div class="board-category">
                     <h3>Done</h3>
-                    <div class="plus-symbol" onclick="openDialog()"><a>+</a></div>
+                    <div class="plus-symbol" onclick="openDialog('done')"><a>+</a></div>
                 </div>
             </div>
             <div class="dragdrop-container">
