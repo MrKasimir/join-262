@@ -111,14 +111,26 @@ function deleteKanbanBoard() {
 }
 
 function updateKanbanBoard(i, category) {
+    let kanbanDetails = [tasks[i].id,
+    tasks[i].category, // todo, awaitFeddback, etc
+    tasks[i].titleCategory, // user story, technical task etc
+    tasks[i].title,
+    tasks[i].description,
+    tasks[i].subtasks,
+    tasks[i].assignedTo];
+    //bug solution:this array needs to be stringified in order to pass through the "inline eventhandler in HTML"
+    // Konvertiere das kanbanDetails Array in einen JSON-String und ersetze die Anführungszeichen
+    let kanbanDetailsAsJson = JSON.stringify(kanbanDetails)/* .replace(/"/g, '&quot;') */;
+
+    // Verwende den JSON-String im onclick-Handler mit korrekten Anführungszeichen
     document.getElementById(category).innerHTML +=
-        `<div class="task-container" draggable="true" ondragstart="startDragging(${tasks[i].id})">
-    <div class="task-titlecategory">${tasks[i].titleCategory}</div>
-    <div class="task-title">${tasks[i].title}</div>
-    <div class="task-description">${tasks[i].description}</div>
-    <div class="task-subtask">${tasks[i].subtasks} / 2 subtasks</div>
-    <div class="task-assignee">${tasks[i].assignedTo}</div>
-    </div>`;
+        `<div onclick='openDialogOnCardClick(${kanbanDetailsAsJson})' class="task-container" draggable="true" ondragstart="startDragging(${tasks[i].id})">
+            <div class="task-titlecategory">${tasks[i].titleCategory}</div>
+            <div class="task-title">${tasks[i].title}</div>
+            <div class="task-description">${tasks[i].description}</div>
+            <div class="task-subtask">${tasks[i].subtasks} / 2 subtasks</div>
+            <div class="task-assignee">${tasks[i].assignedTo}</div>
+        </div>`;
 }
 
 function moveTo(event) {
@@ -189,10 +201,10 @@ function countCategoryInputs() {
 
     }
     saveBoardAsTasksToLocalStorage();
-/*     console.log(numberTodos);
-    console.log(numberInProgress);
-    console.log(numberAwaitFeedback);
-    console.log(numberDone); */
+    /*     console.log(numberTodos);
+        console.log(numberInProgress);
+        console.log(numberAwaitFeedback);
+        console.log(numberDone); */
 
     if (numberTodos == 0) {
         renderEmptyCategoy('todo');
@@ -462,6 +474,39 @@ function openDialog(inputCategory) {
     addOverlay();
     getDialogDetails(inputCategory);
 }
+
+// openDialogOnCardClick
+function openDialogOnCardClick(kanbanDetailsAsJson) {
+    currentDialogTask = {
+        'id': kanbanDetailsAsJson[0],
+        'category': kanbanDetailsAsJson[1],
+        'title': kanbanDetailsAsJson[3],
+        'titleCategory': kanbanDetailsAsJson[2],
+        'description': kanbanDetailsAsJson[4],
+        'priority': 'default',
+        'assignedTo': 'default',
+        'subtasks': 'default',
+    };
+
+    // angeklickte Karte aus tasks löschen (wird bei save wieder hinzugefügt)
+    for (let i = 0; i < tasks.length; i++){
+        // ID's abgleichen
+        if (tasks[i]['id'] == kanbanDetailsAsJson[0]){
+            tasks.splice(i, 1);  // Entferne den Task aus dem Array
+            break;
+        }
+    }
+    
+    addOverlay();
+    console.log(kanbanDetailsAsJson);
+    
+    document.getElementById('title-text').innerHTML = kanbanDetailsAsJson[3]; // title
+    document.getElementById('subtitle-text').innerHTML = kanbanDetailsAsJson[4]; // description
+    document.getElementById('story-category-select').value = kanbanDetailsAsJson[2]; // titleCategory: user story vs technical task
+}
+
+//
+
 
 function addOverlay() {
     //... nimmt display: none Eigenschaft raus
