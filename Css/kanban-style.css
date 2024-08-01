@@ -4,6 +4,14 @@ html {
     padding: 0;
 }
 
+.half-in-half {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+    height: 100%;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -39,13 +47,13 @@ body {
     align-items: center;
 }
 
-.bold-font{
+.bold-font {
     font-weight: bold;
     font-size: x-large;
 }
 
 .Catagory {
-/*     height: 223px;
+    /*     height: 223px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -54,14 +62,15 @@ body {
     align-items: center;
     color: white;
     font-size: 20px; */
-  }
-  .sideBarIcons {
+}
+
+.sideBarIcons {
     height: 30px;
     width: 30px;
-  
-  }
 
-  .iconsDiv {
+}
+
+.iconsDiv {
     padding-top: 10px;
     padding-bottom: 10px;
     display: flex;
@@ -71,14 +80,14 @@ body {
     cursor: pointer;
     width: 100%;
     color: rgba(253, 253, 253, 0.678);
-  }
+}
 
-  .iconsDiv:hover{
+.iconsDiv:hover {
     cursor: pointer;
     background-color: rgb(32, 42, 54);
-  }
+}
 
-.header-title{
+.header-title {
     margin-left: 50px;
     width: 400px;
 }
@@ -91,7 +100,7 @@ body {
     align-items: center;
 }
 
-.circle-border{
+.circle-border {
     border-radius: 50px;
     border: 1px solid darkslategray;
     min-width: 20px;
@@ -107,6 +116,8 @@ body {
     /* border-radius: 2px; */
     margin: 0px;
     height: 100%;
+    width: -webkit-fill-available;
+
 }
 
 .sidebar {
@@ -142,15 +153,17 @@ body {
 .side-notice {
     color: white;
 }
-.joinSidebarLinks{
+
+.joinSidebarLinks {
     text-decoration: none;
     color: white;
 }
 
 .board {
     background-color: transparent;
+    width: -webkit-fill-available;
     /* padding: 30px; */
-    /*     border: 1px dashed transparent; */
+    /* border: 1px solid black; */
     /*     border-radius: 2px; */
     /*     margin: 1px; */
 }
@@ -180,7 +193,7 @@ body {
     width: 172px;
     border-radius: 8px;
     color: grey;
-   /*  border: 1px solid #b9d3ff; */
+    /*  border: 1px solid #b9d3ff; */
     /*     background-color: #4589ff; */
     display: flex;
     justify-content: space-between;
@@ -207,7 +220,9 @@ body {
 }
 
 .task-container {
-    border: 1px solid transparent/* #b9d3ff */;
+    border: 1px solid transparent
+        /* #b9d3ff */
+    ;
     background-color: white;
     border-radius: 12px;
     margin: 5px;
@@ -288,9 +303,11 @@ body {
 .standard-container:hover {
     border-color: #b9d3ff48;
 }
+
 .task-container:hover {
     border-color: #b9d3ff48;
 }
+
 .dragover {
     background-color: #4589ff;
 }

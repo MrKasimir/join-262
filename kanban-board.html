@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <link rel="stylesheet" href="Css/kanban-style.css">
     <link rel="stylesheet" href="Css/kanbanDialogStyle.css">
+    <link rel="stylesheet" href="Css/summary.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
 
     <script src="js/kanban-script.js"></script>
     <script src="js/kanbanDialogScript.js" defer></script>
@@ -20,150 +22,160 @@
 
 <body onload="onloadFunction()">
 
-    <div class="mainframe">
-        <div class="sidebar">
-
+    <div class="half-in-half">
+        <header class="joinSideBar" style="position: relative !important;">
             <div class="LogoDiv">
-                <img class="joinLogo" src="assets/img/capa logo white blue transparent.png" alt="" />
+                <img class="joinLogo" src="assets/img/joinlogo.png" alt="" />
             </div>
 
-            <div class="side-menu">
-                <div class="Catagory">
-                    <div class="iconsDiv">
-                      <img class="sideBarIcons" src="assets/img/summery.png" alt="" />
-                      <p>Summary</p>
-                    </div>
-                    <div class="iconsDiv">
-                      <img class="sideBarIcons" src="assets/img/addTask.png" alt="" />
-                      <a href="./AddTask.html">Add Task</a> 
-                    </div>
-                    <div class="iconsDiv">
-                      <img class="sideBarIcons" src="assets/img/Board.png" alt="" />
-                      <p>Board</p>
-                    </div>
-                    <div class="iconsDiv">
-                      <img class="sideBarIcons" src="assets/img/contacts.png" alt="" />
-                      <p>Contacts</p>
-                    </div>
-                  </div>
+            <div class="Catagory">
+                <div class="iconsDiv">
+                    <img class="sideBarIcons" src="assets/img/summery.png" alt="" />
+                    <a class="joinSidebarLinks" href="summaryUser.html">Summary</a>
+                </div>
+                <div class="iconsDiv">
+                    <img class="sideBarIcons" src="assets/img/addTask.png" alt="" />
+                    <a class="joinSidebarLinks" href="AddTask.html">Add Task</a>
+                </div>
+                <div class="iconsDiv3">
+                    <img class="sideBarIcons" src="assets/img/Board.png" alt="" />
+                    <a class="joinSidebarLinks" href="kanban-board.html">Board</a>
+                </div>
+                <div class="iconsDiv4">
+                    <img class="sideBarIcons" src="assets/img/contacts.png" alt="" />
+                    <a class="joinSidebarLinks" href="contact/contact list.html">Contacts</a>
+                </div>
             </div>
 
-            <div class="side-notice">
-                <p class="SideBarText">Privacy Policy</p>
-                <p class="SideBarText">Legal notice</p>
+
+
+            <div class="legalNotice" style="position: absolute; bottom: 50px;">
+                <a class="SideBarText" href="legalNotice.html">Legal Notice</a>
+                <br />
+                <a class="SideBarText" href="privacyPolicy.html">Privacy Policy</a>
             </div>
+        </header>
+
+        <div class="mainframe">
+
+            <div class="board">
+                <div class="header">
+                    <div class="header-title">Kanban Project Management Tool</div>
+                    <div class="top-right-menu">
+                        <div class="circle-border">?</div>
+                        <div class="circle-border">SM</div>
+                        <!-- <div onclick="loadUserData()" id="defaultUser" class="circle-border">JD</div> -->
+                    </div>
+                </div>
+
+                <!-- START: Kanban Dialog Card to edit Tasks within Kanban Board -->
+                <div id="overlay" class="overlay d-none">OVERLAY
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="story-category" id="story-category-container">
+                                <span id="story-category-text">User Story</span>
+                                <select id="story-category-select" style="display: none;">
+                                    <option value="User Story" data-color="#007bff">User Story</option>
+                                    <option value="Technical Task" data-color="#20c997">Technical Task</option>
+                                </select>
+                            </span>
+                            <span class="close-btn" onclick="pressXInDialog()">&times;</span>
+                        </div>
+                        <div class="card-title" id="title-container">
+                            <span id="title-text">Title</span>
+                            <input type="text" id="title-input" style="display: none;" />
+                        </div>
+                        <div class="card-subtitle" id="subtitle-container">
+                            <span id="subtitle-text">Description</span>
+                            <input type="text" id="subtitle-input" style="display: none;" />
+                        </div>
+                        <div class="card-details">
+                            <div><strong>Due date:</strong>
+                                <span id="due-date-text">01/01/2025</span>
+                                <input type="text" id="due-date-input" style="display: none;" />
+                            </div>
+                            <div id="priority-container"><strong>Priority:</strong>
+                                <span id="priority-text">Medium</span>
+                                <select id="priority-select" style="display: none;">
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="assigned">
+                            <div>
+                                <div class="avatar" style="background-color: #20c997;">XX</div>
+                                John Smith
+                            </div>
+                            <div>
+                                <div class="avatar" style="background-color: #6f42c1;">XX</div>
+                                Jane Smith
+                            </div>
+                        </div>
+                        <ul class="subtasks" id="subtasks-list">
+                            <li id="subtask-1">
+                                <input type="checkbox" id="subtask-checkbox-1" checked>
+                                <span id="subtask-text-1">Subtask 1</span>
+                            </li>
+                        </ul>
+                        <div class="card-footer">
+                            <span class="delete-btn" onclick="pressDeleteInDialog()">Delete</span>
+                            <span class="edit-btn" onclick="saveDialogToBoard()">Save</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- ENDE: Kanban Dialog Card -->
+
+                <div class="input-container">
+                    <div class="header-title bold-font">Board</div>
+                    <div class="top-right-menu">
+                        <input id="inputField" placeholder="Find Task"></input>
+                        <div class="button" onclick="createTask()"><a href="./AddTask.html">Add Task +</a></div>
+                        <!-- <div class="button" onclick="renderByCategory()">Render Kanban-Board</div>
+                        <div class="button" onclick="deleteKanbanBoard()">Delete Kanban-Board</div>
+                        <div class="button" onclick="saveTasksToFirebase()">Save To Firebase</div>
+                        <div class="button" onclick="loadTasksFromFirebase()">Load From Firebase</div> -->
+                    </div>
+                </div>
+
+                <div class="dragdrop-container">
+                    <div class="board-category">
+                        <h3>Todo</h3>
+                        <div class="plus-symbol" onclick="openDialog('todo')"><a>+</a></div>
+                    </div>
+                    <div class="board-category">
+                        <h3>In Progress</h3>
+                        <div class="plus-symbol" onclick="openDialog('inProgress')"><a>+</a></div>
+                    </div>
+                    <div class="board-category">
+                        <h3>Await Feedback</h3>
+                        <div class="plus-symbol" onclick="openDialog('awaitFeedback')"><a>+</a></div>
+                    </div>
+                    <div class="board-category">
+                        <h3>Done</h3>
+                        <div class="plus-symbol" onclick="openDialog('done')"><a>+</a></div>
+                    </div>
+                </div>
+                <div class="dragdrop-container">
+                    <div id="todo" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                        ondragleave="removeHighlight(event)" class="standard-container"></div>
+                    <div id="inProgress" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                        ondragleave="removeHighlight(event)" class="standard-container"></div>
+                    <div id="awaitFeedback" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                        ondragleave="removeHighlight(event)" class="standard-container"></div>
+                    <div id="done" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                        ondragleave="removeHighlight(event)" class="standard-container"></div>
+                </div>
+            </div>
+
+
         </div>
+    </div>
 
-        <div class="board">
-            <div class="header">
-                <div class="header-title">Kanban Project Management Tool</div>
-                <div class="top-right-menu">
-                    <div class="circle-border">?</div>
-                    <div class="circle-border">SM</div>
-                    <!-- <div onclick="loadUserData()" id="defaultUser" class="circle-border">JD</div> -->
-                </div>
-            </div>
 
-            <!-- START: Kanban Dialog Card to edit Tasks within Kanban Board -->
-            <div id="overlay" class="overlay d-none">OVERLAY
-                <div class="card">
-                    <div class="card-header">
-                        <span class="story-category" id="story-category-container">
-                            <span id="story-category-text">User Story</span>
-                            <select id="story-category-select" style="display: none;">
-                                <option value="User Story" data-color="#007bff">User Story</option>
-                                <option value="Technical Task" data-color="#20c997">Technical Task</option>
-                            </select>
-                        </span>
-                        <span class="close-btn" onclick="removeOverlay()">&times;</span>
-                    </div>
-                    <div class="card-title" id="title-container">
-                        <span id="title-text">Title</span>
-                        <input type="text" id="title-input" style="display: none;" />
-                    </div>
-                    <div class="card-subtitle" id="subtitle-container">
-                        <span id="subtitle-text">Description</span>
-                        <input type="text" id="subtitle-input" style="display: none;" />
-                    </div>
-                    <div class="card-details">
-                        <div><strong>Due date:</strong>
-                            <span id="due-date-text">01/01/2025</span>
-                            <input type="text" id="due-date-input" style="display: none;" />
-                        </div>
-                        <div id="priority-container"><strong>Priority:</strong>
-                            <span id="priority-text">Medium</span>
-                            <select id="priority-select" style="display: none;">
-                                <option value="Low">Low</option>
-                                <option value="Medium">Medium</option>
-                                <option value="High">High</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="assigned">
-                        <div>
-                            <div class="avatar" style="background-color: #20c997;">XX</div>
-                            John Smith
-                        </div>
-                        <div>
-                            <div class="avatar" style="background-color: #6f42c1;">XX</div>
-                            Jane Smith
-                        </div>
-                    </div>
-                    <ul class="subtasks" id="subtasks-list">
-                        <li id="subtask-1">
-                            <input type="checkbox" id="subtask-checkbox-1" checked>
-                            <span id="subtask-text-1">Subtask 1</span>
-                        </li>
-                    </ul>
-                    <div class="card-footer">
-                        <span class="delete-btn">Delete</span>
-                        <span class="edit-btn" onclick="saveDialogToBoard()">Save</span>
-                    </div>
-                </div>
-            </div>
-            <!-- ENDE: Kanban Dialog Card -->
 
-            <div class="input-container">
-                <div class="header-title bold-font">Board</div>
-                <div class="top-right-menu">
-                    <input id="inputField" placeholder="Find Task"></input>
-                    <div class="button" onclick="createTask()"><a href="./AddTask.html">Add Task +</a></div>
-                    <!-- <div class="button" onclick="renderByCategory()">Render Kanban-Board</div>
-                    <div class="button" onclick="deleteKanbanBoard()">Delete Kanban-Board</div>
-                    <div class="button" onclick="saveTasksToFirebase()">Save To Firebase</div>
-                    <div class="button" onclick="loadTasksFromFirebase()">Load From Firebase</div> -->
-                </div>
-            </div>
 
-            <div class="dragdrop-container">
-                <div class="board-category">
-                    <h3>Todo</h3>
-                    <div class="plus-symbol" onclick="openDialog('todo')"><a>+</a></div>
-                </div>
-                <div class="board-category">
-                    <h3>In Progress</h3>
-                    <div class="plus-symbol" onclick="openDialog('inProgress')"><a>+</a></div>
-                </div>
-                <div class="board-category">
-                    <h3>Await Feedback</h3>
-                    <div class="plus-symbol" onclick="openDialog('awaitFeedback')"><a>+</a></div>
-                </div>
-                <div class="board-category">
-                    <h3>Done</h3>
-                    <div class="plus-symbol" onclick="openDialog('done')"><a>+</a></div>
-                </div>
-            </div>
-            <div class="dragdrop-container">
-                <div id="todo" ondrop="moveTo(event)" ondragover="allowDrop(event)" ondragleave="removeHighlight(event)"
-                    class="standard-container"></div>
-                <div id="inProgress" ondrop="moveTo(event)" ondragover="allowDrop(event)"
-                    ondragleave="removeHighlight(event)" class="standard-container"></div>
-                <div id="awaitFeedback" ondrop="moveTo(event)" ondragover="allowDrop(event)"
-                    ondragleave="removeHighlight(event)" class="standard-container"></div>
-                <div id="done" ondrop="moveTo(event)" ondragover="allowDrop(event)" ondragleave="removeHighlight(event)"
-                    class="standard-container"></div>
-            </div>
-        </div>
 
 </body>
 
