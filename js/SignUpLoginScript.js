@@ -161,3 +161,8 @@ fetchUserData();
 
 // Add event listener to the form
 document.getElementById("loginForm").addEventListener("submit", handleLogin);
+
+
+function guestLogin() {
+    window.location.href = "summaryGuest.html";
+}

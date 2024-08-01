@@ -210,6 +210,8 @@ function initGuest() {
   displayTimeGuest();
   hidemobileGreeting();
   guestMobileGreeting();
+  loadBoardFromLocalStorage();
+  displayTasksGuest();
 }
 
 function displayTimeGuest() {
@@ -248,3 +250,38 @@ function guestMobileGreeting(){
   }
 
 }
+ 
+ 
+  
+function displayTasksGuest() {
+  let TodoTasks = document.getElementById('todoTasksGuest');
+  let DoneTasks = document.getElementById('doneTasksGuest');
+  let UrgentTasks = document.getElementById('urgentTasksGuest');
+  let TasksInBoard = document.getElementById('taskInBoardGuest');
+  let TasksInProgress = document.getElementById('tasksInProgressGuest');
+  let AwaitingFeedback = document.getElementById('awaitingFeedbackGuest'); 
+
+  const tasks = loadBoardFromLocalStorage();
+  
+  let todoCount = tasks.filter(task => task.category === 'todo').length;
+  let doneCount = tasks.filter(task => task.category === 'done').length;
+  let urgentCount = tasks.filter(task => task.priority === 'Urgent').length;
+  let inProgressCount = tasks.filter(task => task.category === 'inProgress').length;
+  let awaitingFeedbackCount = tasks.filter(task => task.category === 'awaitFeedback').length;
+  let totalTasksCount = tasks.length;
+
+  TodoTasks.innerText = todoCount;
+  DoneTasks.innerText = doneCount;
+  UrgentTasks.innerText = urgentCount;
+  TasksInBoard.innerText = totalTasksCount;
+  TasksInProgress.innerText = inProgressCount;
+  AwaitingFeedback.innerText = awaitingFeedbackCount;
+}
+
+
+
+function loadBoardFromLocalStorage() {
+  const boardTasks = localStorage.getItem("board");
+  return boardTasks ? JSON.parse(boardTasks) : [];
+}
+
