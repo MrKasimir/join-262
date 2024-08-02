@@ -1,21 +1,63 @@
+// Array zur Speicherung der Priorität
+let selectedPriorities = [];
 
-// Fetch the existing tasks array from local storage, or initialize it as an empty array if it doesn't exist
+// Funktion zum Setzen der Priorität
+function setPriority(priority) {
+    // Leeren des Arrays, um nur die aktuell ausgewählte Priorität zu speichern
+    selectedPriorities = [priority];
 
+    // Entfernen der 'selected' Klasse von allen Buttons
+    const priorityButtons = document.querySelectorAll('.addTask-button');
+    priorityButtons.forEach(button => {
+        button.classList.remove('selected');
+    });
+
+    // Hinzufügen der 'selected' Klasse zum gedrückten Button
+    const activeButton = document.querySelector(`.addTask-button[data-priority="${priority}"]`);
+    if (activeButton) {
+        activeButton.classList.add('selected');
+    }
+
+    console.log('Aktuelle Priorität:', selectedPriorities);
+}
+
+// Hinzufügen der Event-Listener zu den Buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.addTask-button');
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const priority = this.getAttribute('data-priority'); // Erhält die Priorität von data-priority
+            setPriority(priority);
+        });
+    });
+});
+
+// Funktion zum Erstellen neuer Aufgaben
+// Funktion zum Erstellen neuer Aufgaben
 function PostUserTasks() {
+    // Überprüfen, ob eine Priorität ausgewählt wurde und den Default-Wert 'medium' setzen
+    const priority = selectedPriorities.length > 0 ? selectedPriorities[0] : 'medium';
+
+    // Auslesen der Werte aus den Eingabefeldern
+    const assignedTo = document.getElementById('Task-choose-contact-id').value;
+    const titleCategory = document.getElementById('Task-choose-Category-id').value; // Kategorie auslesen
+    const category = document.getElementById('Task-choose-Category-id').value; // Kategorie auslesen
+
     const newTask = {
-        'id': tasks.length, // Assign a new ID based on the current length of the tasks array
-        'category': 'todo',
+        'id': tasks.length, // Zuweisung einer neuen ID basierend auf der aktuellen Länge des tasks-Arrays
+        'category': category,
         'title': document.getElementById('Task-Title-id').value,
-        'titleCategory': document.getElementById('Task-choose-Category-id').value,
+        'titleCategory': titleCategory, // Kategorie-Wert setzen
         'description': document.getElementById('Task-Describtion-id').value,
-        'priority': 'medium', // Assuming 'medium' is a constant value for priority
-        'assignedTo': document.getElementById('Task-choose-contact-id').value,
+        'priority': priority, // Setzen der Priorität aus dem selectedPriorities-Array
+        'assignedTo': assignedTo, // Setzen des Werts aus dem Assigned To-Feld
         'subtasks': document.getElementById('Task-Subtask-Id').value ? 1 : 0 // Assuming 1 if there is a subtask, otherwise 0
     };
 
-    tasks.push(newTask); // Add the new task to the existing array
-    localStorage.setItem('tasks', JSON.stringify(tasks)); // Update the existing 'tasks' array in local storage
+    tasks.push(newTask); // Fügen Sie die neue Aufgabe dem vorhandenen Array hinzu
+    localStorage.setItem('tasks', JSON.stringify(tasks)); // Aktualisieren Sie das vorhandene 'tasks'-Array im lokalen Speicher
 }
+
 
 // Beispiel für das Speichern eines Benutzers im Local Storage
 function saveLoggedinUser(userId, email, name, id) {
@@ -29,29 +71,19 @@ function saveLoggedinUser(userId, email, name, id) {
     window.loggedinUser = [user];  // Setzen Sie window.loggedinUser auf das Array
 }
 
-// Add Tasks to Board & to local storage => now in kanban-script.js
-/* function CreatTaskbuttonOnclick() {
-    addTaskToLocalStorage();
-    window.location.href = './kanban-board.html';
-} */
-
-function init() {
-    PostUserTasks();
-}
-
-// Function to clear tasks from local storage
+// Funktion zum Löschen von Aufgaben aus dem lokalen Speicher
 function clearTasks() {
     localStorage.removeItem('tasks');
 }
 
-// Clear local storage tasks array when the user logs out
+// Löschen Sie das Aufgaben-Array im lokalen Speicher, wenn der Benutzer sich abmeldet
 function logout() {
     clearTasks();
-    // Add your logout logic here, like redirecting to a login page
+    // Fügen Sie hier Ihre Abmelde-Logik hinzu, z. B. Weiterleitung zu einer Anmeldeseite
     window.location.href = './login.html';
 }
 
-// Clear local storage tasks array when the webpage is closed
+// Löschen Sie das Aufgaben-Array im lokalen Speicher, wenn die Webseite geschlossen wird
 window.addEventListener('beforeunload', (event) => {
     clearTasks();
 });

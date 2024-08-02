@@ -64,7 +64,7 @@
                 <div>
                   <div class="addTask-input-fields-div">
                     Title*
-                    <input id="Task-Title-id" placeholder="Enter a title" class="addTask-title-input" type="text">
+                    <input id="Task-Title-id" placeholder="Enter a title " class="addTask-title-input" type="text">
                   </div>
 
                   <div class="addTask-input-fields-div">
@@ -72,17 +72,18 @@
                     <input id="Task-Describtion-id" placeholder="Enter a description" class="addTask-describtion-input" type="text">
                   </div>
 
-                  <div class="addTask-input-fields-div ">
+                  <div class="addTask-input-fields-div">
                     Assigned To
                     <form class="" action="/action_page.php">
-                      <select class="addTask-contacts-multipychoice-input" name="contacts" id="Task-choose-contact-id">
-                        <option class="dropDownMenue" value="Select Contact to assign">Select contact to assign</option>
-                        <option class="dropDownMenue"  value="saab">Saab</option>
-                        <option class="dropDownMenue"  value="opel">Opel</option>
-                        <option class="dropDownMenue"  value="audi">Audi</option>
+                      <select class="addTask-contacts-multipychoice-input" name="assignedTo" id="Task-choose-contact-id">
+                        <option class="dropDownMenue" value="Wilhelm">Wilhelm</option>
+                        <option class="dropDownMenue" value="Enes">Enes</option>
+                        <option class="dropDownMenue" value="Dom">Dom</option>
+                        <option class="dropDownMenue" value="Leon">Leon</option>
                       </select>
                     </form>
-                  </div>
+                </div>
+                
                 </div>
 
                 <div class="addTask-seperation-div">
@@ -91,27 +92,28 @@
                 <div>
                   <div class="addTask-input-fields-div">
                     Due date*
-                    <input id="Task-Date-Id" placeholder="dd/mm/yyyy" class="addTask-due-date-input" type="text">
-                  </div>
+                    <input id="Task-Date-Id" placeholder="dd/mm/yyyy" class="addTask-due-date-input" type="date">
+                </div>
+                
 
                   <div class="addTask-input-fields-div-last-mobile">
                     Prio
                     <div class="addTask-buttons-flex">
-                      <button class="addTask-button">Urgent <img class="addTask-button-imgs" src="/assets/img/Prio up.png" alt=""></button>
-                      <button class="addTask-button yellow">Medium  <img class="addTask-button-imgs" src="/assets/img/istgleichzeichen.png" alt=""></button>
-                      <button class="addTask-button">Low <img class="addTask-button-imgs" src="/assets/img/Prio-down.png" alt=""></button>
+                      <button class="addTask-button-urg" data-priority="Urgent">Urgent <img class="addTask-button-imgs" src="/assets/img/Prio up.png" alt=""></button>
+                      <button class="addTask-button-med yellow" data-priority="Medium">Medium <img class="addTask-button-imgs" src="/assets/img/istgleichzeichen.png" alt=""></button>
+                      <button class="addTask-button-low" data-priority="Low">Low <img class="addTask-button-imgs" src="/assets/img/Prio-down.png" alt=""></button>
+
                     </div>
                   </div>
 
-                  <div class="addTask-input-fields-div ">
+                  <div class="addTask-input-fields-div">
                     <p class="category-input-addTask">Category</p>
-                    <form id="Task-choose-Category-id" class="category-input-addTask" action="/action_page.php">
-                      <select class="addTask-contacts-multipychoice-input" name="contacts" id="contacts">
+                    <select class="addTask-contacts-multipychoice-input" name="category" id="Task-choose-Category-id">
                         <option value="User Story">User Story</option>
                         <option value="Technical Task">Technical Task</option>
-                      </select>
-                    </form>
-                  </div>
+                    </select>
+                </div>
+                
 
                   <div class="addTask-input-fields-div">
                     <p class="suptask-input-addTask-p">Subtasks</p>
@@ -135,7 +137,18 @@
             </div>
         </div>
     </div>
-        
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          const buttons = document.querySelectorAll('.addTask-buttons-flex button');
+      
+          buttons.forEach(button => {
+              button.addEventListener('click', function () {
+                  buttons.forEach(btn => btn.classList.remove('active'));
+                  this.classList.add('active');
+              });
+          });
+      });
+      </script>
     
 </body>
 </html>
