@@ -5,45 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="Css/style.css">
-  <link rel="stylesheet" href="summaryUser.html">
-  <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
+    <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
 </head>
 <body> 
 
     <header class="header-login-sign-up">
         <img class="Join-Logo" src="./assets/img/JoinmobileLoggo.png" alt="">
-
         <div class="redirect-sign-up">Not a Join user? <button class="Sign-up-button"><a href="signUp.html">Sign up</a></button></div>
     </header>
     
     <div class="justify-content-center">
         <div class="card-login">
             <div class="card-content-login">
-
                 <div class="headline-Login-sign-up">
                     <h1 class="Log-in-Headline">Log in</h1>
                    <div class="underlineDiv"><div class="underline"></div></div> 
                 </div>
 
-            <form id="loginForm">
+                <form id="loginForm">
                     <div class="login-input-divs"> 
-                        <input class="email-input" id="Login-mail-input" type="text" placeholder="Email" required>
+                        <div class="input-container">
+                            <input class="email-input" id="Login-mail-input" type="text" placeholder="Email" required>
+                            <img src="assets/img/mail.png" alt="" class="input-icon-mail">
+                        </div>
                     </div>
 
-
                     <div class="login-input-divs">
-                        <input id="Login-password-input" class="password-input" type="text" placeholder="Password " required>
+                        <div class="input-container">
+                            <input id="Login-password-input" class="password-input" type="text" placeholder="Password " required>
+                            <img src="assets/img/lock.png" alt="" class="input-icon">
+                        </div>
                     </div>
 
                     <input class="margin-left" type="checkbox"> Remember me
 
-
-                <div class="button-section-from-login">
-                    <button onclick="handleLogin()" class="Login-button">Log in</button> 
-
-                    <button onclick="guestLogin()" class="guest-login-button">Guest Log in</button>
-                </div>
-            </form>
+                    <div class="button-section-from-login">
+                        <button onclick="handleLogin()" class="Login-button">Log in</button> 
+                        <button onclick="guestLogin()" class="guest-login-button">Guest Log in</button>
+                    </div>
+                </form>
             </div>
         </div> 
     </div>
