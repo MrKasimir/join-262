@@ -22,7 +22,7 @@
                    <div class="underlineDiv"><div class="underline"></div></div> 
                 </div>
 
-                <form id="loginForm">
+                <form id="loginForm" onsubmit="return handleLogin(event);">
                     <div class="login-input-divs"> 
                         <div class="input-container">
                             <input class="email-input" id="Login-mail-input" type="text" placeholder="Email" required>
@@ -40,8 +40,8 @@
                     <input class="margin-left" type="checkbox"> Remember me
 
                     <div class="button-section-from-login">
-                        <button onclick="handleLogin()" class="Login-button">Log in</button> 
-                        <button onclick="guestLogin()" class="guest-login-button">Guest Log in</button>
+                        <button type="submit"  class="Login-button">Log in</button> 
+                        <button type="button" onclick="guestLogin()" class="guest-login-button">Guest Log in</button>
                     </div>
                 </form>
             </div>
@@ -58,7 +58,7 @@
             <a href="">Legal notice</a>
         </div>
     </div>
-    <script src="js/SignUpLoginScript.js"></script>
+    <script src="js/SignUpLoginScript.js"> </script>
     <script src="js/summary.js"></script>
 </body>
 </html>

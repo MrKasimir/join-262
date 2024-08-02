@@ -140,7 +140,11 @@ async function handleLogin(event) {
     if (!userFound) {
         alert("Password oder Email ist falsch!");
     }
+    return false; 
 }
+
+
+
 
 function saveLoggedInUser(user) {
     const userToSave = {
@@ -160,7 +164,7 @@ console.log("signUpLogin.js loaded");
 fetchUserData();
 
 // Add event listener to the form
-document.getElementById("loginForm").addEventListener("submit", handleLogin);
+
 
 
 function guestLogin() {
