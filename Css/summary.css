@@ -688,3 +688,29 @@ p {
 
    
 }
+
+@media (max-width: 520px){
+
+  .summeryBoard{
+    position: fixed;
+    top: 400px;
+    left: 16px;
+    height: 484px;
+    width: 396px;
+
+   }
+   .taskImg{
+    width: 50px;
+    height: 50px;
+   }
+   .mainHeadline{
+    font-size: 50px;
+    margin: 0px;
+   }
+   .mobileLine{
+    position: fixed;
+    top: 250px;
+   }
+   
+
+}
