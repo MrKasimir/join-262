@@ -1,12 +1,12 @@
 *{
-  font-family: 'inter' ;
+  font-family: 'inter';
 }
 
 body {
   margin: 0px;
   display: flex;
   flex-direction: column;
-  font-family: 'inter' ;
+  
 }
    /*Join SideBar */
 .joinSideBar {

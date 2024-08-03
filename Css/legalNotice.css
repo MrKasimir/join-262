@@ -1,11 +1,13 @@
 /**CSS für Legal Notice, Privacy Policy und Help**/
-
+*{
+  font-family: 'inter';
+}
 body{
     margin: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
-    font: 'inter';
+   
 }
 p {
   margin: 0px;
