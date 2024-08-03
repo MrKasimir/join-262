@@ -134,6 +134,11 @@ justify-content: center;
   border: 1px;
 }
 
+.Login-button:hover {
+  background-color: #29ABE2;
+  cursor: pointer;
+}
+
 .guest-login-button {
   width: 177px;
   margin-left: 15px;
@@ -142,6 +147,13 @@ justify-content: center;
   background-color: white;
   color: #2A3647;
   font-weight: bold;
+}
+
+.guest-login-button:hover {
+  cursor: pointer;
+  color: #29ABE2;
+  border-color: #29ABE2;
+  box-shadow: none;
 }
 
 .button-section-from-login {
@@ -160,6 +172,15 @@ justify-content: center;
   font-weight: bold;
   gap: 10px;
   margin-left: 35px;
+}
+
+.Sign-up-button:hover { 
+  cursor: pointer;
+  background-color: #29ABE2;
+}
+
+.Sign-up-button a:hover {
+  background-color: #29ABE2;
 }
 
 .Sign-up-button a {
@@ -254,6 +275,11 @@ justify-content: center;
   margin-top: 40px;
 }
 
+.last-commit-for-signup-button:hover {
+  background-color: #29ABE2;
+  cursor: pointer;
+}
+
 .accept-privacy {
   color: #A8A8A8;
 }
@@ -272,6 +298,10 @@ justify-content: center;
 .joinLogo {
   width: 100px;
   height: 120px;
+}
+
+.mobileSidebar {
+  display: none;
 }
 
 .LogoDiv {
@@ -441,7 +471,7 @@ justify-content: center;
   width: 440px;
   height: 44px;
   border-radius: 10px;
-  border: 1px solid #D1D1D1
+  background-color: white;
 }
 
 .suptask-input-addTask {
@@ -500,6 +530,12 @@ justify-content: center;
   margin-right: 10px;
 }
 
+.addTask-clear-button:hover {
+cursor: pointer;
+border-color: #29ABE2;
+color: #29ABE2;
+}
+
 .addTask-creat-button {
   width: 110px;
   height: 56px;
@@ -511,6 +547,8 @@ justify-content: center;
 
 .addTask-creat-button:hover {
   cursor: pointer;
+  background-color: #29ABE2;
+  border: none;
 }
   
 
@@ -620,6 +658,41 @@ p {
 
 .addTask-button-low.active {
     background-color: rgb(38, 198, 38);
+}
+
+.joinMobileLoggo{
+  height: 40px;
+  margin-left: 20px;
+  width: 32px;
+  display: none;
+}
+.mobileLine{
+  width: 110px;
+  height: 2px;
+  background-color: rgb(20, 175, 241);
+  position: fixed;
+  top: 280px;
+  display: none;
+}
+
+.mobileSidebaricons{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-items: center;
+  padding: 15px;
+  display: none;
+}
+.mobileIconImg{
+  width: 40px;
+  display: none;
+}
+.mobileSidebaricons:hover{
+  background-color: #1d2633;
+  border-radius: 10px;
+
 }
 
 @media (max-width: 700px) {
@@ -735,6 +808,10 @@ p {
    .category-input-addTask {
     display: none;
    }
+
+   .mobileSidebar {
+    display: flex;
+   }
    
    .addTask-seperation-div {
     display: none;
@@ -794,4 +871,39 @@ p {
    .addTask-input-fields-div-last-mobile {
     margin-bottom: 0;
    }
+
+   .joinMobileLoggo{
+    height: 40px;
+    margin-left: 20px;
+    width: 32px;
+    display: flex;
+  }
+  .mobileLine{
+    width: 110px;
+    height: 2px;
+    background-color: rgb(20, 175, 241);
+    position: fixed;
+    top: 280px;
+    display: flex;
+  }
+  
+  .mobileSidebaricons{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-items: center;
+    padding: 15px;
+    display: flex;
+  }
+  .mobileIconImg{
+    width: 40px;
+    display: flex;
+  }
+  .mobileSidebaricons:hover{
+    background-color: #1d2633;
+    border-radius: 10px;
+    display: flex;
+  }
 }
