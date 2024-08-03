@@ -163,7 +163,6 @@ console.log("signUpLogin.js loaded");
 // Fetch user data when the script loads
 fetchUserData();
 
-// Add event listener to the form
 
 
 

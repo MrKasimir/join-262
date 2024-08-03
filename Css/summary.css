@@ -1,9 +1,12 @@
+*{
+  font-family: 'inter' ;
+}
+
 body {
   margin: 0px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   flex-direction: column;
-  font: 'inter';
+  font-family: 'inter' ;
 }
    /*Join SideBar */
 .joinSideBar {
@@ -553,6 +556,7 @@ p {
 .mobileIconImg{
   width: 40px;
   display: none;
+ 
 }
 .mobileSidebaricons:hover{
   background-color: #1d2633;
@@ -633,7 +637,7 @@ p {
 
    .summeryBoard{
     position: fixed;
-    top: 350px;
+    top: 400px;
     left: 16px;
     height: 384px;
     width: 496px;
@@ -679,6 +683,7 @@ p {
     align-items: center;
     margin-top: 10px;
     cursor: pointer;
+    
    }
 
    
