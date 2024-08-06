@@ -57,6 +57,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    addDragAndDropEventListeners();
+});
+
 /**
  * Loads the kanban board when the page is loaded.
  */
@@ -120,6 +124,7 @@ function renderByCategory() {
         }
     }
     pushIfUserLogOut();
+    addDragAndDropEventListeners(); // Add drag and drop listeners after rendering
 }
 
 /**
@@ -159,44 +164,20 @@ function updateKanbanBoard(i, category) {
         </div>`;
 }
 
-
-/* function moveTo(event) {
-    event.preventDefault();
-    const id = event.target.id;
-    if (id) {
-        tasks[currentDraggedElement].category = id;
-    }
-    event.target.classList.remove('highlight');
-    deleteKanbanBoard();
-    renderByCategory();
-    saveBoardAsTasksToLocalStorage();
-} */
-
-// neue moveTo()
-/**
- * Moves a task to a new category.
- * 
- * @param {Event} event - The drop event.
- */
-function moveTo(event) {
-    event.preventDefault();
-    const id = event.target.id;
-    if (id && currentDraggedElement !== undefined) {
-        tasks.find(task => task.id === currentDraggedElement).category = id;
-        deleteKanbanBoard();
-        renderByCategory();
-        saveBoardAsTasksToLocalStorage();
-    }
-    event.target.classList.remove('highlight');
+///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// Add drag and drop event listeners to the appropriate elements
+function addDragAndDropEventListeners() {
+    const categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+    categories.forEach(category => {
+        const element = document.getElementById(category);
+        element.addEventListener('dragover', allowDrop);
+        element.addEventListener('drop', moveTo);
+        element.addEventListener('dragleave', removeHighlight);
+    });
 }
+////////////////////////////////////////////////////////////////
 
-
-/* function startDragging(id) {
-    currentDraggedElement = id;
-    console.log(currentDraggedElement);
-} */
-
-// nue startDragging()
 /**
  * Starts dragging a task.
  * 
@@ -207,16 +188,6 @@ function startDragging(id) {
     console.log('Dragging started with ID:', currentDraggedElement);
 }
 
-
-/* function allowDrop(event) {
-    event.preventDefault();
-    const id = event.target.id;
-    console.log(`Currently dragging over: ${id}`);
-    if (id) { tasks[currentDraggedElement].category = id; }
-    event.target.classList.add('highlight');
-} */
-
-// neue allowDrop()
 /**
  * Allows a task to be dropped.
  * 
@@ -224,16 +195,34 @@ function startDragging(id) {
  */
 function allowDrop(event) {
     event.preventDefault();
-    const id = event.target.id;
-    console.log(`Currently dragging over: ${id}`);
-    event.target.classList.add('highlight');
+}
+
+/**
+ * Moves a task to a new category.
+ * 
+ * @param {Event} event - The drop event.
+ */
+function moveTo(event) {
+    event.preventDefault();
+    const targetCategory = event.target.id;
+
+    if (targetCategory && currentDraggedElement !== undefined) {
+        const task = tasks.find(task => task.id === currentDraggedElement);
+        if (task) {
+            task.category = targetCategory;
+        }
+
+        deleteKanbanBoard();
+        renderByCategory();
+        saveBoardAsTasksToLocalStorage();
+    }
+    event.target.classList.remove('highlight');
 }
 
 function removeHighlight(event) {
-    const id = event.target.id;
-    console.log(`remove highlight: Drag-ID: ${id}`);
-    if (id) { tasks[currentDraggedElement].category = id; }
+    event.target.classList.remove('highlight');
 }
+/////////////////////////////////////////////////////////////////////////
 
 /**
  * Counts the tasks in each category.
@@ -691,23 +680,22 @@ function removeOverlay() {
 }
 
 function pressSaveInDialog() {
-    // saveDialogToBoard();
+
+    saveDialogToBoard();
+//    saveBoardAsTasksToLocalStorage();
     removeOverlay();
-    renderByCategory();
+//    renderByCategory();
 }
 
-// BUG!
-// Beim x-Klicken geht der Task verloren
 function pressXInDialog() {
-    saveDialogToBoard(); // fixen
+    saveDialogToBoard();
     removeOverlay();
     renderByCategory();
 }
-
-
 
 function pressDeleteInDialog() {
     removeOverlay();
     renderByCategory();
 }
+
 
