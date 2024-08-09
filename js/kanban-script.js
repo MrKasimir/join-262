@@ -34,21 +34,38 @@ let defaultTasks = [{
 }];
 
 let backUpTasks = defaultTasks;
-
-
 let tasks = [];
 let count = tasks.length;
-
 let currentDialogTask = [];
-
 let currentDraggedElement;
 let currentDraggedCategory;
 let addedId = tasks.length - 1;
 
+let numberTodos = 0;
+let numberInProgress = 0;
+let numberAwaitFeedback = 0;
+let numberDone = 0;
 
+let numberTasksinBoard = 0;
+let numberUrgentTasks = 0;
+
+// Initialisierungsfunktion beim Laden der Seite
+document.addEventListener('DOMContentLoaded', async () => {
+    if (window.location.href.includes('kanban-board.html')) {
+        await onloadFunction();
+        document.getElementById('inputField').addEventListener('input', findTask);
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    addDragAndDropEventListeners();
+});
+
+/**
+ * Loads the kanban board when the page is loaded.
+ */
 async function onloadFunction() {
     let boardData = loadBoardFromLocalStorage();
-
     // Wenn nichts im local storage ist, dann Tasks aus der API laden
     if (boardData === null || boardData === undefined || (Array.isArray(boardData) && boardData.length === 0)) {
         defaultTasks = await fetchUserData();
@@ -58,19 +75,24 @@ async function onloadFunction() {
         // Andernfalls mit den geladenen Daten initialisieren
         tasks = boardData;
     }
-
     // Die renderByCategory Funktion soll nicht in addTask.html aufgerufen werden (wirft sonst error)
     if (window.location.href.includes('kanban-board.html')) {
         renderByCategory();
     }
 }
 
-
-// im Local Storage die tasks ablegen mit dem key 'board'
+/**
+ * Saves the current board state to local storage.
+ */
 function saveBoardAsTasksToLocalStorage() {
     localStorage.setItem('board', JSON.stringify(tasks));
 }
 
+/**
+ * Loads the board state from local storage.
+ * 
+ * @returns {Array} The array of tasks loaded from local storage.
+ */
 function loadBoardFromLocalStorage() {
     const boardTasks = localStorage.getItem('board');
     if (!boardTasks) {
@@ -80,6 +102,9 @@ function loadBoardFromLocalStorage() {
     }
 }
 
+/**
+ * Renders the tasks by their categories on the kanban board.
+ */
 function renderByCategory() {
     deleteKanbanBoard();
     for (let i = 0; i < tasks.length; i++) {
@@ -99,8 +124,12 @@ function renderByCategory() {
         }
     }
     pushIfUserLogOut();
+    addDragAndDropEventListeners(); // Add drag and drop listeners after rendering
 }
 
+/**
+ * Clears the kanban board.
+ */
 function deleteKanbanBoard() {
     document.getElementById('todo').innerHTML = '';
     document.getElementById('inProgress').innerHTML = '';
@@ -110,6 +139,12 @@ function deleteKanbanBoard() {
     countCategoryInputs();
 }
 
+/**
+ * Updates the kanban board with a task.
+ * 
+ * @param {number} i - The index of the task.
+ * @param {string} category - The category of the task.
+ */
 function updateKanbanBoard(i, category) {
     let kanbanDetails = [tasks[i].id,
     tasks[i].category, // todo, awaitFeddback, etc
@@ -118,11 +153,7 @@ function updateKanbanBoard(i, category) {
     tasks[i].description,
     tasks[i].subtasks,
     tasks[i].assignedTo];
-    //bug solution:this array needs to be stringified in order to pass through the "inline eventhandler in HTML"
-    // Konvertiere das kanbanDetails Array in einen JSON-String und ersetze die Anführungszeichen
     let kanbanDetailsAsJson = JSON.stringify(kanbanDetails)/* .replace(/"/g, '&quot;') */;
-
-    // Verwende den JSON-String im onclick-Handler mit korrekten Anführungszeichen
     document.getElementById(category).innerHTML +=
         `<div onclick='openDialogOnCardClick(${kanbanDetailsAsJson})' class="task-container" draggable="true" ondragstart="startDragging(${tasks[i].id})">
             <div class="task-titlecategory">${tasks[i].titleCategory}</div>
@@ -133,46 +164,69 @@ function updateKanbanBoard(i, category) {
         </div>`;
 }
 
-function moveTo(event) {
-    event.preventDefault();
-    const id = event.target.id;
-    if (id) {
-        tasks[currentDraggedElement].category = id;
-    }
-    event.target.classList.remove('highlight');
-    deleteKanbanBoard();
-    renderByCategory();
-    saveBoardAsTasksToLocalStorage();
+///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// Add drag and drop event listeners to the appropriate elements
+function addDragAndDropEventListeners() {
+    const categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+    categories.forEach(category => {
+        const element = document.getElementById(category);
+        element.addEventListener('dragover', allowDrop);
+        element.addEventListener('drop', moveTo);
+        element.addEventListener('dragleave', removeHighlight);
+    });
 }
+////////////////////////////////////////////////////////////////
 
+/**
+ * Starts dragging a task.
+ * 
+ * @param {number} id - The ID of the task being dragged.
+ */
 function startDragging(id) {
     currentDraggedElement = id;
-    console.log(currentDraggedElement);
+    console.log('Dragging started with ID:', currentDraggedElement);
 }
 
+/**
+ * Allows a task to be dropped.
+ * 
+ * @param {Event} event - The drag event.
+ */
 function allowDrop(event) {
     event.preventDefault();
-    const id = event.target.id;
-    console.log(`Currently dragging over: ${id}`);
-    if (id) { tasks[currentDraggedElement].category = id; }
-    event.target.classList.add('highlight');
+}
+
+/**
+ * Moves a task to a new category.
+ * 
+ * @param {Event} event - The drop event.
+ */
+function moveTo(event) {
+    event.preventDefault();
+    const targetCategory = event.target.id;
+
+    if (targetCategory && currentDraggedElement !== undefined) {
+        const task = tasks.find(task => task.id === currentDraggedElement);
+        if (task) {
+            task.category = targetCategory;
+        }
+
+        deleteKanbanBoard();
+        renderByCategory();
+        saveBoardAsTasksToLocalStorage();
+    }
+    event.target.classList.remove('highlight');
 }
 
 function removeHighlight(event) {
-    const id = event.target.id;
-    console.log(`remove highlight: Drag-ID: ${id}`);
-    if (id) { tasks[currentDraggedElement].category = id; }
-    /* event.target.classList.remove('highlight'); */
+    event.target.classList.remove('highlight');
 }
+/////////////////////////////////////////////////////////////////////////
 
-let numberTodos = 0;
-let numberInProgress = 0;
-let numberAwaitFeedback = 0;
-let numberDone = 0;
-
-let numberTasksinBoard = 0;
-let numberUrgentTasks = 0;
-
+/**
+ * Counts the tasks in each category.
+ */
 function countCategoryInputs() {
     numberTodos = 0;
     numberInProgress = 0;
@@ -201,12 +255,14 @@ function countCategoryInputs() {
 
     }
     saveBoardAsTasksToLocalStorage();
-    /*     console.log(numberTodos);
-        console.log(numberInProgress);
-        console.log(numberAwaitFeedback);
-        console.log(numberDone); */
+    renderEmptyCategories();
+}
 
-    if (numberTodos == 0) {
+/**
+ * Renders a message for empty categories.
+ */
+function renderEmptyCategories(){
+if (numberTodos == 0) {
         renderEmptyCategoy('todo');
     }
     if (numberInProgress == 0) {
@@ -218,9 +274,13 @@ function countCategoryInputs() {
     if (numberDone == 0) {
         renderEmptyCategoy('done');
     }
-
 }
 
+/**
+ * Renders an empty category message.
+ * 
+ * @param {string} category - The category to render the message for.
+ */
 function renderEmptyCategoy(category) {
     document.getElementById(category).innerHTML +=
         `<div class="task-container">
@@ -235,10 +295,11 @@ function getAddedTasksFromLocalStorage() {
     } else return JSON.parse(storedTasks);
 }
 
-
+/**
+ * Adds a task from the input fields on the add task page.
+ */
 function addTaskFromInputPage() {
     let newListOfTasks = loadBoardFromLocalStorage();
-
     if (document.getElementById('Task-Title-id').value != '' && document.getElementById('Task-Describtion-id').value != '') {
         newListOfTasks.push({
             'id': newListOfTasks.length,
@@ -255,14 +316,17 @@ function addTaskFromInputPage() {
     localStorage.setItem('board', JSON.stringify(newListOfTasks));
 }
 
-
-// Das kanban-script.js soll auf der addTask.html direkt aus den Feldern auslesen
+/**
+ * Redirects to the kanban board (from the addTask.html inputFields) after creating a task.
+ */
 function CreatTaskbuttonOnclick() {
     addTaskFromInputPage();
     window.location.href = './kanban-board.html';
 }
 
-
+/**
+ * Clears all input fields on the add task page.
+ */
 function clearAllInputFields() {
     document.getElementById('Task-Title-id').value = '';
     document.getElementById('Task-Describtion-id').value = '';
@@ -272,22 +336,28 @@ function clearAllInputFields() {
     document.getElementById('Task-Subtask-Id').value = '';
 }
 
-// Funktion zum Finden eines Tasks anhand des inputFields
+/**
+ * Finds and highlights tasks based on the search input.
+ */
 function findTask() {
     const searchText = getSearchText();
     clearHighlightsAndFormatting();
-
     if (searchText === '') return;
-
     searchTasksAndHighlight(searchText);
 }
 
-// Funktion zum Returnen des inputStrings
+/**
+ * Gets the search text from the input field.
+ * 
+ * @returns {string} The search text.
+ */
 function getSearchText() {
     return document.getElementById('inputField').value.toLowerCase().trim();
 }
 
-// Funktion zum Entfernen möglicher vorheriger tasks searches
+/**
+ * Clears any previous task search highlights and formatting.
+ */
 function clearHighlightsAndFormatting() {
     document.querySelectorAll('.task-container').forEach(task => {
         resetTaskStyles(task);
@@ -295,27 +365,42 @@ function clearHighlightsAndFormatting() {
     });
 }
 
-// Funktion zum Zurücksetzen der styles
+/**
+ * Resets the styles of a task.
+ * 
+ * @param {Element} task - The task element.
+ */
 function resetTaskStyles(task) {
     task.style.border = '';
     task.style.boxShadow = '';
 }
 
-// Funktion zum Entfernen von Titel -und Description Markierungen
+/**
+ * Clears highlights from a task's title and description.
+ * 
+ * @param {Element} task - The task element.
+ */
 function clearTaskHighlights(task) {
     const titleElement = task.querySelector('.task-title');
     const descriptionElement = task.querySelector('.task-description');
-
     if (titleElement) clearHighlight(titleElement);
     if (descriptionElement) clearHighlight(descriptionElement);
 }
 
-// Funktion zum Entfernen der Markierung von einem ganzen Element
+/**
+ * Clears highlight from an element.
+ * 
+ * @param {Element} element - The element to clear highlights from.
+ */
 function clearHighlight(element) {
     element.innerHTML = element.innerHTML.replace(/<mark>/g, '').replace(/<\/mark>/g, '');
 }
 
-// Funktion zum Durchsuchen des Tasks zur und Hervorhebung bei Übereinstimmungen
+/**
+ * Searches tasks and highlights those that match the search text.
+ * 
+ * @param {string} searchText - The search text.
+ */
 function searchTasksAndHighlight(searchText) {
     document.querySelectorAll('.task-container').forEach(task => {
         if (taskMatchesSearch(task, searchText)) {
@@ -324,7 +409,12 @@ function searchTasksAndHighlight(searchText) {
     });
 }
 
-// Funktion zur Prüfung, ob ein Task den Suchtext enthält
+/**
+ * Highlights matching text within an element.
+ * 
+ * @param {Element} task - The element containing text to highlight.
+ * @param {string} searchText - The text to highlight.
+ */
 function taskMatchesSearch(task, searchText) {
     const titleElement = task.querySelector('.task-title');
     const descriptionElement = task.querySelector('.task-description');
@@ -337,7 +427,12 @@ function taskMatchesSearch(task, searchText) {
     return title.includes(searchText) || description.includes(searchText);
 }
 
-// Funktion zur Hervorhebung eines Tasks
+/**
+ * Highlights a task.
+ * 
+ * @param {Element} task - The task element.
+ * @param {string} searchText - The search text.
+ */
 function highlightTask(task, searchText) {
     task.style.border = '2px solid grey';
     task.style.boxShadow = '0 0 5px grey';
@@ -439,6 +534,7 @@ async function fetchUserData() {
 /////////////////////////////// Dialog Card Funktions //////////////////////////////
 
 function getDialogDetails(inputCategory) {
+
     console.log('dialog started in :' + inputCategory);
     console.log('Title:' + document.getElementById('title-text').innerHTML);
     currentDialogTask = {
@@ -453,7 +549,19 @@ function getDialogDetails(inputCategory) {
     };
 }
 
-function saveDialogToBoard() {
+
+
+// TODO: Fehlende Werte ergänzen (nicht nur Titel)
+function refreshDialogDetails() {
+    document.getElementById('title-text').innerHTML = 'type in new title';
+    document.getElementById('subtitle-text').innerHTML = ''; // Clearing description for new task
+    document.getElementById('story-category-select').value = 'User Story'; // Default value
+}
+
+
+
+
+/* function saveDialogToBoard() {
     getDialogDetails(currentDialogTask['category']);
     // add dialog task to task json
     tasks.push(currentDialogTask);
@@ -467,16 +575,40 @@ function saveDialogToBoard() {
     // saveToNewBoard to Local Storage
     renderByCategory();
     console.log('changes pinned to board');
+} */
+// saveDialogToBoard
+function saveDialogToBoard() {
+    if (currentDialogTask.length === 0) return;
+
+    // Hole aktuelle Werte aus dem Dialog und speichere sie
+    const updatedTask = {
+        ...currentDialogTask,
+        title: document.getElementById('title-text').innerHTML,
+        description: document.getElementById('subtitle-text').innerHTML,
+        titleCategory: document.getElementById('story-category-select').value
+    };
+
+    tasks.push(updatedTask);
+    currentDialogTask = []; // Leere den aktuellen Dialog
+
+    removeOverlay();
+    renderByCategory(); // Stelle sicher, dass das Board aktualisiert wird
+    saveBoardAsTasksToLocalStorage(); // Speichere die Änderungen lokal
 }
+
+
 
 // openDialog('awaitFeedback') soll den Task in die Await Feedback in die Kategorie "Await Feedback" ablegen 
 function openDialog(inputCategory) {
     addOverlay();
     getDialogDetails(inputCategory);
+    refreshDialogDetails();
 }
 
+
+
 // openDialogOnCardClick
-function openDialogOnCardClick(kanbanDetailsAsJson) {
+/* function openDialogOnCardClick(kanbanDetailsAsJson) {
     currentDialogTask = {
         'id': kanbanDetailsAsJson[0],
         'category': kanbanDetailsAsJson[1],
@@ -489,24 +621,53 @@ function openDialogOnCardClick(kanbanDetailsAsJson) {
     };
 
     // angeklickte Karte aus tasks löschen (wird bei save wieder hinzugefügt)
-    for (let i = 0; i < tasks.length; i++){
+    for (let i = 0; i < tasks.length; i++) {
         // ID's abgleichen
-        if (tasks[i]['id'] == kanbanDetailsAsJson[0]){
+        if (tasks[i]['id'] == kanbanDetailsAsJson[0]) {
             tasks.splice(i, 1);  // Entferne den Task aus dem Array
             break;
         }
     }
-    
+
     addOverlay();
     console.log(kanbanDetailsAsJson);
-    
+
+    document.getElementById('title-text').innerHTML = kanbanDetailsAsJson[3]; // title
+    document.getElementById('subtitle-text').innerHTML = kanbanDetailsAsJson[4]; // description
+    document.getElementById('story-category-select').value = kanbanDetailsAsJson[2]; // titleCategory: user story vs technical task
+} */
+
+// neue openDialogOnCardClick
+/**
+ * Opens the task dialog when a task is clicked.
+ * 
+ * @param {number} id - The ID of the task.
+ * @param {string} category - The category of the task.
+ * @param {string} titleCategory - The title category of the task.
+ * @param {string} title - The title of the task.
+ * @param {string} description - The description of the task.
+ * @param {string} subtasks - The subtasks of the task.
+ * @param {string} assignedTo - The assignee of the task.
+ */
+function openDialogOnCardClick(kanbanDetailsAsJson) {
+    currentDialogTask = {
+        'id': kanbanDetailsAsJson[0],
+        'category': kanbanDetailsAsJson[1],
+        'title': kanbanDetailsAsJson[3],
+        'titleCategory': kanbanDetailsAsJson[2],
+        'description': kanbanDetailsAsJson[4],
+        'priority': 'default',
+        'assignedTo': 'default',
+        'subtasks': 'default',
+    };
+
+    // Entferne die Karte aus der aktuellen Liste
+    tasks = tasks.filter(task => task.id !== kanbanDetailsAsJson[0]);
+    addOverlay();
     document.getElementById('title-text').innerHTML = kanbanDetailsAsJson[3]; // title
     document.getElementById('subtitle-text').innerHTML = kanbanDetailsAsJson[4]; // description
     document.getElementById('story-category-select').value = kanbanDetailsAsJson[2]; // titleCategory: user story vs technical task
 }
-
-//
-
 
 function addOverlay() {
     //... nimmt display: none Eigenschaft raus
@@ -516,6 +677,25 @@ function addOverlay() {
 function removeOverlay() {
     //... fügt display: none Eigenschaft hinzu
     document.getElementById('overlay').classList.add('d-none');
+}
+
+function pressSaveInDialog() {
+
+    saveDialogToBoard();
+//    saveBoardAsTasksToLocalStorage();
+    removeOverlay();
+//    renderByCategory();
+}
+
+function pressXInDialog() {
+    saveDialogToBoard();
+    removeOverlay();
+    renderByCategory();
+}
+
+function pressDeleteInDialog() {
+    removeOverlay();
+    renderByCategory();
 }
 
 
