@@ -121,7 +121,7 @@
                         </ul>
                         <div class="card-footer">
                             <span class="delete-btn" onclick="pressDeleteInDialog()">Delete</span>
-                            <span class="edit-btn" onclick="saveDialogToBoard()">Save</span>
+                            <span class="edit-btn" onclick="pressSaveInDialog()">Save</span>
                         </div>
                     </div>
                 </div>
@@ -140,33 +140,72 @@
                 </div>
 
                 <div class="dragdrop-container">
+
                     <div class="board-category">
-                        <h3>Todo</h3>
-                        <div class="plus-symbol" onclick="openDialog('todo')"><a>+</a></div>
+                        <div class="wrap-container">
+                            <div class="in-parallel">
+                                <h3>Todo</h3>
+                                <div class="plus-symbol" onclick="openDialog('todo')"><a>+</a></div>
+                            </div>
+                            <div class="dragdrop-container" >
+                                <div id="todo" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                                    ondragleave="removeHighlight(event)" class="standard-container">
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="board-category">
-                        <h3>In Progress</h3>
-                        <div class="plus-symbol" onclick="openDialog('inProgress')"><a>+</a></div>
+                        <div class="wrap-container">
+                            <div class="in-parallel">
+                                <h3>In Progress</h3>
+                                <div class="plus-symbol" onclick="openDialog('inProgress')"><a>+</a></div>
+                            </div>
+                            <div class="dragdrop-container">
+                                <div id="inProgress" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                                    ondragleave="removeHighlight(event)" class="standard-container"></div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="board-category">
-                        <h3>Await Feedback</h3>
-                        <div class="plus-symbol" onclick="openDialog('awaitFeedback')"><a>+</a></div>
+                        <div class="wrap-container">
+                            <div class="in-parallel">
+                                <h3>Await Feedback</h3>
+                                <div class="plus-symbol" onclick="openDialog('awaitFeedback')"><a>+</a></div>
+                            </div>
+                            <div class="dragdrop-container">
+                                <div id="awaitFeedback" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                                    ondragleave="removeHighlight(event)" class="standard-container"></div>
+                            </div>
+                        </div>
                     </div>
+
+
                     <div class="board-category">
-                        <h3>Done</h3>
-                        <div class="plus-symbol" onclick="openDialog('done')"><a>+</a></div>
+                        <div class="wrap-container">
+                            <div class="in-parallel">
+                                <h3>Done</h3>
+                                <div class="plus-symbol" onclick="openDialog('done')"><a>+</a></div>
+                            </div>
+                            <div class="dragdrop-container">
+                                <div id="done" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                                    ondragleave="removeHighlight(event)" class="standard-container"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="dragdrop-container">
-                    <div id="todo" ondrop="moveTo(event)" ondragover="allowDrop(event)"
-                        ondragleave="removeHighlight(event)" class="standard-container"></div>
-                    <div id="inProgress" ondrop="moveTo(event)" ondragover="allowDrop(event)"
-                        ondragleave="removeHighlight(event)" class="standard-container"></div>
-                    <div id="awaitFeedback" ondrop="moveTo(event)" ondragover="allowDrop(event)"
-                        ondragleave="removeHighlight(event)" class="standard-container"></div>
-                    <div id="done" ondrop="moveTo(event)" ondragover="allowDrop(event)"
-                        ondragleave="removeHighlight(event)" class="standard-container"></div>
-                </div>
+
+                <!-- <div class="dragdrop-container"> -->
+                <!-- <div id="todo" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                        ondragleave="removeHighlight(event)" class="standard-container"></div> -->
+                <!-- <div id="inProgress" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                        ondragleave="removeHighlight(event)" class="standard-container"></div> -->
+                <!-- <div id="awaitFeedback" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                        ondragleave="removeHighlight(event)" class="standard-container"></div> -->
+                <!-- <div id="done" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                        ondragleave="removeHighlight(event)" class="standard-container"></div> -->
+                <!-- </div> -->
             </div>
 
 
