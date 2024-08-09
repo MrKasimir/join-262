@@ -1,5 +1,14 @@
 // Lädt vorhandene Profildaten aus dem Local Storage oder initialisiert ein leeres Array
 let profilValues = loadProfileValues() || []; 
+function loadBoardFromLocalStorage() {
+    window.loggedinUser = JSON.parse(localStorage.getItem("loggedinUser")) || [];
+    const boardTasks = localStorage.getItem('board');
+    if (!boardTasks) {
+        return [];
+    } else {
+        return JSON.parse(boardTasks);
+    }
+}
 
 // generiert eine ID 
 function generateId() {
@@ -28,6 +37,117 @@ function takeValueFromInput() {
     // Ruft Function auf, welches das Inputfeld leert
     clearInputFields();
 }
+
+
+
+
+// contacts api test
+async function postContactData(contactData = {}) {
+    const userId = window.loggedinUser.id;  // ID des eingeloggten Benutzers abrufen
+
+    if (!userId) {
+        console.error("Kein Benutzer ist eingeloggt!");
+        return;
+    }
+
+    try {
+        // Hole die höchste ContactID für den Benutzer
+        let highestContactID = await fetchHighestContactID(userId);
+        let newContactID = highestContactID + 1;  // Erzeuge eine neue, eindeutige ContactID
+
+        const path = `User/${userId}/contacts/ContactID_${newContactID}`;
+        let response = await fetch(Base_URL + path + ".json", {
+            method: "PUT", // Verwende PUT, um an einem spezifischen Ort zu speichern
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(contactData)
+        });
+        let responsetoJson = await response.json();
+        return responsetoJson;
+    } catch (error) {
+        console.error("Error:", error);
+    }
+
+    // Beispiel für die Nutzung der Funktion:
+const newContact = {
+    Name: "John Doe",
+    Email: "john.doe@example.com",
+    Phone: "+123456789"
+};
+
+postContactData(newContact)
+    .then(response => console.log("Kontakt hinzugefügt:", response))
+    .catch(error => console.error("Fehler beim Hinzufügen des Kontakts:", error));
+}
+/* 
+// ein bischen eine andere version musst mal schauen welche besser geht 
+
+async function postContactData(contactData = {}) {
+    const userId = window.loggedinUser.id;  // ID des eingeloggten Benutzers abrufen
+
+    if (!userId) {
+        console.error("Kein Benutzer ist eingeloggt!");
+        return;
+    }
+
+    try {
+        const path = `User/${userId}/contacts`;
+        let response = await fetch(Base_URL + path + ".json", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(contactData)
+        });
+        let responsetoJson = await response.json();
+        return responsetoJson;
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Beispiel für die Nutzung der Funktion:
+const newContact = {
+    Name: "John Doe",
+    Email: "john.doe@example.com",
+    Phone: "+123456789"
+};
+
+postContactData(newContact)
+    .then(response => console.log("Kontakt hinzugefügt:", response))
+    .catch(error => console.error("Fehler beim Hinzufügen des Kontakts:", error));
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Beispiel für die Nutzung der Funktion:
+const newContact = {
+    Name: "John Doe",
+    Email: "john.doe@example.com",
+    Phone: "+123456789"
+};
+
+postContactData(newContact)
+    .then(response => console.log("Kontakt hinzugefügt:", response))
+    .catch(error => console.error("Fehler beim Hinzufügen des Kontakts:", error));
+
 
 // Speichert Werte im Local Storage
 function saveProfileValues() {
