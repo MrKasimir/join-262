@@ -285,10 +285,18 @@ body {
 .task-titlecategory {
     margin: 2px;
     padding: 4px;
-    border: 1px solid orange;
     border-radius: 6px;
     color: white;
-    background-color: orange;
+}
+
+.user-story {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.technical-task {
+    background-color: #20c997;
+    border: 1px solid #20c997;
 }
 
 .task-description {
