@@ -5,32 +5,12 @@ const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.ap
 let defaultTasks = [{
     'id': 0,
     'category': 'todo',
-    'title': 'Contact Form and Imprint',
+    'title': 'Create Title of your task here',
     'titleCategory': 'User Story',
-    'description': 'Create contact form & imprint page',
+    'description': 'Enter a description for your task',
     'priority': 'medium',
     'assignedTo': 'AB',
     'subtasks': 1,
-},
-{
-    'id': 1,
-    'category': 'inProgress',
-    'title': 'Kochwelt Page & Recipe Recommender',
-    'titleCategory': 'User Story',
-    'description': 'Build start page with recipe recommendation',
-    'priority': 'medium',
-    'assignedTo': 'CD',
-    'subtasks': 2,
-},
-{
-    'id': 2,
-    'category': 'awaitFeedback',
-    'title': 'Monthly Kochwelt Recipe',
-    'titleCategory': 'User Story',
-    'description': 'Implement monthly recipe portion and calculator',
-    'priority': 'low',
-    'assignedTo': 'EF',
-    'subtasks': 2,
 }];
 
 let backUpTasks = defaultTasks;
@@ -154,9 +134,18 @@ function updateKanbanBoard(i, category) {
     tasks[i].subtasks,
     tasks[i].assignedTo];
     let kanbanDetailsAsJson = JSON.stringify(kanbanDetails)/* .replace(/"/g, '&quot;') */;
+
+    // background depends on category 'user story' vs 'technical task'
+    let bgColorClass = '';
+    if (tasks[i].titleCategory === 'User Story') {
+        bgColorClass = 'user-story';
+    } else if (tasks[i].titleCategory === 'Technical Task') {
+        bgColorClass = 'technical-task';
+    }
+
     document.getElementById(category).innerHTML +=
         `<div onclick='openDialogOnCardClick(${kanbanDetailsAsJson})' class="task-container" draggable="true" ondragstart="startDragging(${tasks[i].id})">
-            <div class="task-titlecategory">${tasks[i].titleCategory}</div>
+            <div class="task-titlecategory ${bgColorClass}">${tasks[i].titleCategory}</div>
             <div class="task-title">${tasks[i].title}</div>
             <div class="task-description">${tasks[i].description}</div>
             <div class="task-subtask">${tasks[i].subtasks} / 2 subtasks</div>
@@ -222,6 +211,13 @@ function moveTo(event) {
 function removeHighlight(event) {
     event.target.classList.remove('highlight');
 }
+
+////*css*/`
+
+
+////*css*/`
+
+
 /////////////////////////////////////////////////////////////////////////
 
 /**
@@ -261,8 +257,8 @@ function countCategoryInputs() {
 /**
  * Renders a message for empty categories.
  */
-function renderEmptyCategories(){
-if (numberTodos == 0) {
+function renderEmptyCategories() {
+    if (numberTodos == 0) {
         renderEmptyCategoy('todo');
     }
     if (numberInProgress == 0) {
@@ -283,8 +279,8 @@ if (numberTodos == 0) {
  */
 function renderEmptyCategoy(category) {
     document.getElementById(category).innerHTML +=
-        `<div class="task-container">
-    <div class="task-title">currently empty</div>
+        `<div class="empty-task-container">
+    <div class="task-title">No tasks To do</div>
     </div>`;
 }
 
@@ -682,9 +678,9 @@ function removeOverlay() {
 function pressSaveInDialog() {
 
     saveDialogToBoard();
-//    saveBoardAsTasksToLocalStorage();
+    //    saveBoardAsTasksToLocalStorage();
     removeOverlay();
-//    renderByCategory();
+    //    renderByCategory();
 }
 
 function pressXInDialog() {
