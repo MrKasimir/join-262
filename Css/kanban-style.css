@@ -161,7 +161,7 @@ body {
 
 .in-parallel {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     width: 100%;
     justify-content: space-between;
 }
@@ -282,6 +282,44 @@ body {
     font-weight: bold;
 }
 
+.task-priority{
+    margin-right: 8px;
+    padding: 4px;
+    border-radius: 4px;
+    background-size: contain; /* Verhindert, dass das Bild über die Grenzen hinausgeht */
+    background-repeat: no-repeat; /* Verhindert die Wiederholung des Hintergrundbildes */
+    background-position: center; /* Positioniert das Bild in der Mitte */
+    width: 30px;
+}
+
+.task-priority-urgent {
+    background-image: url('../assets/img/prio-urgent.png');
+    color: white;
+}
+
+.task-priority-medium {
+    background-image: url('../assets/img/prio-medium.png');
+    color: white;
+ 
+}
+
+.task-priority-low {
+    background-image: url('../assets/img/prio-low.png');
+    color: white;
+}
+
+.priority-icon {
+    color: white;
+    margin-right: 8px; /* Platz zwischen Bild und Text */
+    vertical-align: top; /* Bild zentrieren */
+    /* border: 1px solid lightgreen; */
+    background-image: url('../assets/img/prio-low.png');
+    background-size: contain; /* Verhindert, dass das Bild über die Grenzen hinausgeht */
+    background-repeat: no-repeat; /* Verhindert die Wiederholung des Hintergrundbildes */
+    background-position: center; /* Positioniert das Bild in der Mitte */
+    width: 30px;
+}
+
 .task-titlecategory {
     margin: 2px;
     padding: 4px;
@@ -334,7 +372,7 @@ body {
 }
 
 .standard-container {
-    border: 1px solid grey;
+/*     border: 1px solid grey; */
     border-radius: 10px;
     min-width: 220px;
     /* justify-content: center; */
@@ -348,7 +386,12 @@ body {
 }
 
 .standard-container:hover {
-    border-color: #b9d3ff48;
+    /* border-color: #b9d3ff48 ;*/
+    width: 100%;
+}
+.dragover {
+    background-color: #b9d3ff48 ;
+
 }
 
 .task-container:hover {
