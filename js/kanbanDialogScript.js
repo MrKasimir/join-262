@@ -88,7 +88,7 @@ function makeEditableSubtask(containerId, textId, checkboxId) {
         input.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 // Trigger blur event to save the subtask
-                this.blur(); 
+                this.blur();
             }
         });
     });
@@ -164,28 +164,3 @@ initializeSubtasks();
 
 
 
-////////////////////////////////////////////
-//////////// Hier fortsetzen ///////////////
-
-function saveDialogCardToBoard() {
-    // getDetailsFromDialogCard()
-    document.getElementById('title-container')
-    // getBoardFromLocalStorage
-    // addToThatBoard
-    // saveToNewBoard to Local Storage
-    // close Dialog Window
-    // renderByCategory();
-}
-
-function getDetailsFromDialogCard(inputCategory){
-    let dialogTask = [{
-        'id': tasks.length,
-        'category': inputCategory,
-        'title': 'default',
-        'titleCategory': 'default',
-        'description': 'default',
-        'priority': 'default',
-        'assignedTo': 'default',
-        'subtasks': 'default',
-    }];
-}
