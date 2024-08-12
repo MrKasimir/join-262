@@ -148,6 +148,19 @@ body {
     cursor: pointer;
     color: grey;
     text-decoration: none;
+    padding: 4px;
+}
+
+.edit-btn:hover{
+    background-color: lightslategray;
+    border-radius: 8px;
+    transition: ease-in-out 100ms;
+}
+
+.delete-btn:hover{
+    background-color: lightslategray;
+    border-radius: 8px;
+    transition: ease-in-out 100ms;
 }
 
 .plus-symbol {
@@ -163,8 +176,8 @@ body {
     height: -webkit-fill-available;
     width: -webkit-fill-available;
     display: flex;
-    border: 1px solid black;
-    border-radius: 8px;
+/*     border: 1px solid black; */
+    border-top-left-radius: 8px;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.313);
     justify-content: center;

@@ -127,16 +127,6 @@ postContactData(newContact)
 
 
 
-
-
-
-
-
-
-
-
-
-
 // Beispiel für die Nutzung der Funktion:
 const newContact = {
     Name: "John Doe",

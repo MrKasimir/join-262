@@ -5,32 +5,12 @@ const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.ap
 let defaultTasks = [{
     'id': 0,
     'category': 'todo',
-    'title': 'Contact Form and Imprint',
+    'title': 'Create Title of your task here',
     'titleCategory': 'User Story',
-    'description': 'Create contact form & imprint page',
+    'description': 'Enter a description for your task',
     'priority': 'medium',
-    'assignedTo': 'AB',
-    'subtasks': 1,
-},
-{
-    'id': 1,
-    'category': 'inProgress',
-    'title': 'Kochwelt Page & Recipe Recommender',
-    'titleCategory': 'User Story',
-    'description': 'Build start page with recipe recommendation',
-    'priority': 'medium',
-    'assignedTo': 'CD',
-    'subtasks': 2,
-},
-{
-    'id': 2,
-    'category': 'awaitFeedback',
-    'title': 'Monthly Kochwelt Recipe',
-    'titleCategory': 'User Story',
-    'description': 'Implement monthly recipe portion and calculator',
-    'priority': 'low',
-    'assignedTo': 'EF',
-    'subtasks': 2,
+    'assignedTo': 'JS',
+    'subtasks': 'create subtasks',
 }];
 
 let backUpTasks = defaultTasks;
@@ -152,15 +132,38 @@ function updateKanbanBoard(i, category) {
     tasks[i].title,
     tasks[i].description,
     tasks[i].subtasks,
-    tasks[i].assignedTo];
+    tasks[i].assignedTo,
+    tasks[i].priority];
     let kanbanDetailsAsJson = JSON.stringify(kanbanDetails)/* .replace(/"/g, '&quot;') */;
+
+    // background depends on category 'user story' vs 'technical task'
+    let bgColorClass = '';
+    if (tasks[i].titleCategory === 'User Story') {
+        bgColorClass = 'user-story';
+    } else if (tasks[i].titleCategory === 'Technical Task') {
+        bgColorClass = 'technical-task';
+    }
+
+    // Bestimmen der Prioritätsklasse
+    let priorityClass = '';
+    if (tasks[i].priority === 'Urgent') {
+        priorityClass = 'task-priority-urgent';
+    } else if (tasks[i].priority === 'Medium') {
+        priorityClass = 'task-priority-medium';
+    } else if (tasks[i].priority === 'Low') {
+        priorityClass = 'task-priority-low';
+    }
+
     document.getElementById(category).innerHTML +=
         `<div onclick='openDialogOnCardClick(${kanbanDetailsAsJson})' class="task-container" draggable="true" ondragstart="startDragging(${tasks[i].id})">
-            <div class="task-titlecategory">${tasks[i].titleCategory}</div>
+            <div class="task-titlecategory ${bgColorClass}">${tasks[i].titleCategory}</div>
             <div class="task-title">${tasks[i].title}</div>
             <div class="task-description">${tasks[i].description}</div>
-            <div class="task-subtask">${tasks[i].subtasks} / 2 subtasks</div>
-            <div class="task-assignee">${tasks[i].assignedTo}</div>
+            <div class="task-subtask">${tasks[i].subtasks}</div>
+            <div class="in-parallel">
+                <div class="task-assignee">${tasks[i].assignedTo}</div>
+                <div class="task-priority ${priorityClass}">_</div>
+            </div>
         </div>`;
 }
 
@@ -195,6 +198,7 @@ function startDragging(id) {
  */
 function allowDrop(event) {
     event.preventDefault();
+    event.target.classList.add('drag-over');
 }
 
 /**
@@ -217,11 +221,20 @@ function moveTo(event) {
         saveBoardAsTasksToLocalStorage();
     }
     event.target.classList.remove('highlight');
+    event.target.classList.remove('drag-over');
 }
 
 function removeHighlight(event) {
     event.target.classList.remove('highlight');
+    event.target.classList.remove('drag-over');
 }
+
+////*css*/`
+
+
+////*css*/`
+
+
 /////////////////////////////////////////////////////////////////////////
 
 /**
@@ -261,8 +274,8 @@ function countCategoryInputs() {
 /**
  * Renders a message for empty categories.
  */
-function renderEmptyCategories(){
-if (numberTodos == 0) {
+function renderEmptyCategories() {
+    if (numberTodos == 0) {
         renderEmptyCategoy('todo');
     }
     if (numberInProgress == 0) {
@@ -283,8 +296,8 @@ if (numberTodos == 0) {
  */
 function renderEmptyCategoy(category) {
     document.getElementById(category).innerHTML +=
-        `<div class="task-container">
-    <div class="task-title">currently empty</div>
+        `<div class="empty-task-container">
+    <div class="task-title">No tasks To do</div>
     </div>`;
 }
 
@@ -542,10 +555,10 @@ function getDialogDetails(inputCategory) {
         'category': inputCategory,
         'title': document.getElementById('title-text').innerHTML,
         'titleCategory': document.getElementById('story-category-select').value,
-        'description': 'default',
-        'priority': 'default',
-        'assignedTo': 'default',
-        'subtasks': 'default',
+        'description': document.getElementById('subtitle-text').innerHTML,
+        'priority': document.getElementById('priority-select').value,
+        'assignedTo': 'JS',
+        'subtasks': 'subtask',
     };
 }
 
@@ -553,9 +566,10 @@ function getDialogDetails(inputCategory) {
 
 // TODO: Fehlende Werte ergänzen (nicht nur Titel)
 function refreshDialogDetails() {
-    document.getElementById('title-text').innerHTML = 'type in new title';
-    document.getElementById('subtitle-text').innerHTML = ''; // Clearing description for new task
+    document.getElementById('title-text').innerHTML = 'add in new title';
+    document.getElementById('subtitle-text').innerHTML = 'add new description'; // Clearing description for new task
     document.getElementById('story-category-select').value = 'User Story'; // Default value
+    document.getElementById('priority-select').value = 'low'; // Default value
 }
 
 
@@ -585,7 +599,8 @@ function saveDialogToBoard() {
         ...currentDialogTask,
         title: document.getElementById('title-text').innerHTML,
         description: document.getElementById('subtitle-text').innerHTML,
-        titleCategory: document.getElementById('story-category-select').value
+        titleCategory: document.getElementById('story-category-select').value,
+        priority: document.getElementById('priority-select').value
     };
 
     tasks.push(updatedTask);
@@ -648,6 +663,7 @@ function openDialog(inputCategory) {
  * @param {string} description - The description of the task.
  * @param {string} subtasks - The subtasks of the task.
  * @param {string} assignedTo - The assignee of the task.
+ * @param {string} priority - The assignee of the task.
  */
 function openDialogOnCardClick(kanbanDetailsAsJson) {
     currentDialogTask = {
@@ -656,9 +672,9 @@ function openDialogOnCardClick(kanbanDetailsAsJson) {
         'title': kanbanDetailsAsJson[3],
         'titleCategory': kanbanDetailsAsJson[2],
         'description': kanbanDetailsAsJson[4],
-        'priority': 'default',
-        'assignedTo': 'default',
-        'subtasks': 'default',
+        'priority': kanbanDetailsAsJson[7],
+        'assignedTo': kanbanDetailsAsJson[6],
+        'subtasks': kanbanDetailsAsJson[5],
     };
 
     // Entferne die Karte aus der aktuellen Liste
@@ -667,6 +683,7 @@ function openDialogOnCardClick(kanbanDetailsAsJson) {
     document.getElementById('title-text').innerHTML = kanbanDetailsAsJson[3]; // title
     document.getElementById('subtitle-text').innerHTML = kanbanDetailsAsJson[4]; // description
     document.getElementById('story-category-select').value = kanbanDetailsAsJson[2]; // titleCategory: user story vs technical task
+    document.getElementById('priority-select').value = kanbanDetailsAsJson[7];
 }
 
 function addOverlay() {
@@ -682,9 +699,9 @@ function removeOverlay() {
 function pressSaveInDialog() {
 
     saveDialogToBoard();
-//    saveBoardAsTasksToLocalStorage();
+    //    saveBoardAsTasksToLocalStorage();
     removeOverlay();
-//    renderByCategory();
+    //    renderByCategory();
 }
 
 function pressXInDialog() {
