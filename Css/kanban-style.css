@@ -32,6 +32,10 @@ body {
     font-style: normal;
 }
 
+.adjust-margin{
+    margin-top: -60px;
+}
+
 .header {
     background-color: transparent;
     height: 60px;
@@ -108,6 +112,11 @@ body {
     justify-content: center;
     align-items: center;
     padding: 4px;
+    cursor: pointer;
+}
+.circle-border:hover{
+    border: 2px solid darkslategray;
+    transition: ease-in-out 100ms;
 }
 
 .mainframe {
