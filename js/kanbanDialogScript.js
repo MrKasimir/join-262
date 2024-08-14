@@ -1,3 +1,47 @@
+function prioLowClick(){
+    unclickAll();
+    if(document.getElementById('low-button').classList.contains('low-select')){
+        document.getElementById('low-button').classList.remove('low-select');
+        document.getElementById('low-button').classList.add('low-select-clicked');
+    } else {
+        document.getElementById('low-button').classList.add('low-select');
+        document.getElementById('low-button').classList.remove('low-select-clicked');
+    }
+}
+
+function prioMediumClick(){
+    unclickAll();
+    if(document.getElementById('medium-button').classList.contains('medium-select')){
+        document.getElementById('medium-button').classList.remove('medium-select');
+        document.getElementById('medium-button').classList.add('medium-select-clicked');
+    } else {
+        document.getElementById('medium-button').classList.add('medium-select');
+        document.getElementById('medium-button').classList.remove('medium-select-clicked');
+    }
+}
+
+function prioUrgentClick(){
+    unclickAll();
+    if(document.getElementById('urgent-button').classList.contains('urgent-select')){
+        document.getElementById('urgent-button').classList.remove('urgent-select');
+        document.getElementById('urgent-button').classList.add('urgent-select-clicked');
+    } else {
+        document.getElementById('urgent-button').classList.add('urgent-select');
+        document.getElementById('urgent-button').classList.remove('urgent-select-clicked');
+    }
+}
+
+function unclickAll(){
+    document.getElementById('low-button').classList.remove('low-select-clicked');
+    document.getElementById('low-button').classList.add('low-select');
+    document.getElementById('medium-button').classList.remove('medium-select-clicked');
+    document.getElementById('medium-button').classList.add('medium-select');
+    document.getElementById('urgent-button').classList.remove('urgent-select-clicked');
+    document.getElementById('urgent-button').classList.add('urgent-select');
+}
+
+
+
 function makeEditable(containerId, textId, inputId) {
     const container = document.getElementById(containerId);
     const text = document.getElementById(textId);
