@@ -5,13 +5,66 @@ const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.ap
 let defaultTasks = [{
     'id': 0,
     'category': 'todo',
-    'title': 'Create Title of your task here',
+    'title': 'Create Title of your task here...',
     'titleCategory': 'User Story',
     'description': 'Enter a description for your task',
-    'priority': 'medium',
-    'assignedTo': 'JS',
+    'priority': 'Medium',
+    'assignedTo': '+C',
     'subtasks': 'create subtasks',
 }];
+
+
+/////////////////// START: contactBook feature //////////////////
+let contactBook = [
+    { firstName: 'Sophia', lastName: 'Müller', initials: ''},
+    { firstName: 'Anton', lastName: 'Mayer', initials: ''},
+    { firstName: 'Anja', lastName: 'Schulz', initials: ''},
+    { firstName: 'Benedikt', lastName: 'Ziegler', initials: ''},
+    { firstName: 'David', lastName: 'Eisenberg', initials: ''}
+];
+
+function writeNameInitialsInContactBook(){
+    for(let i = 0; i < contactBook.length; i++){
+        let initial = contactBook[i].firstName.charAt(0) + contactBook[i].lastName.charAt(0);
+        contactBook[i].initials = initial;
+    }
+}
+
+function unRenderContactsInDialog(){
+    document.getElementById('contactSelectionId').innerHTML = '';
+}
+
+function renderContactsInDialog(){
+    unRenderContactsInDialog();
+    writeNameInitialsInContactBook();
+    for(let i = 0; i < contactBook.length; i++){
+        document.getElementById('contactSelectionId').innerHTML += `
+    <div class="contact-row">
+    <div class="contact-row">
+        <div class="contact-initials">${contactBook[i].initials}</div>
+        <div class="contact-name">${contactBook[i].firstName} ${contactBook[i].lastName}</div>
+    </div>    
+        <div class="contact-checkbox">x</div>
+    </div>
+    `;
+    }
+}
+
+function populateAssigneeSelect() {
+    const selectElement = document.getElementById('assignee-select');
+
+    contactBook.forEach(contact => {
+        // Erstelle ein neues option-Element
+        const option = document.createElement('option');
+        // Setze den Wert auf den vollständigen Namen
+        option.value = `${contact.firstName} ${contact.lastName}`;
+        // Setze den angezeigten Text auf den vollständigen Namen
+        option.textContent = `${contact.firstName} ${contact.lastName}`;
+        // Füge die neue Option dem select-Element hinzu
+        selectElement.appendChild(option);
+    });
+}
+/////////////////// END: contactBook feature //////////////////
 
 let backUpTasks = defaultTasks;
 let tasks = [];
@@ -666,6 +719,7 @@ function openDialog(inputCategory) {
  * @param {string} priority - The assignee of the task.
  */
 function openDialogOnCardClick(kanbanDetailsAsJson) {
+    renderContactsInDialog();
     currentDialogTask = {
         'id': kanbanDetailsAsJson[0],
         'category': kanbanDetailsAsJson[1],
@@ -713,6 +767,13 @@ function pressXInDialog() {
 function pressDeleteInDialog() {
     removeOverlay();
     renderByCategory();
+}
+
+function switchOnOffMinimenue1() {
+    if (document.getElementById('miniMenue1').classList.contains('d-none')) {
+        document.getElementById('miniMenue1').classList.remove('d-none');
+    }
+    else document.getElementById('miniMenue1').classList.add('d-none');
 }
 
 

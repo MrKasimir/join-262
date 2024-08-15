@@ -43,7 +43,7 @@
                 </div>
                 <div class="iconsDiv4">
                     <img class="sideBarIcons" src="assets/img/contacts.png" alt="" />
-                    <a class="joinSidebarLinks" href="contact/contact list.html">Contacts</a>
+                    <a class="joinSidebarLinks" href="contact/contacts add.html">Contacts</a>
                 </div>
             </div>
 
@@ -61,18 +61,38 @@
                 <div class="header">
                     <div class="header-title">Kanban Project Management Tool</div>
                     <div class="top-right-menu">
-                        <div class="circle-border">?</div>
-                        <div class="circle-border">SM</div>
+                        <div><a class="helpLink" href="help.html">
+                                <img class="qmImg" src="assets/img/questionmark.png" alt="">
+                            </a>
+                        </div>
+
+
+                        <div class="circleContainer" onclick="switchOnOffMinimenue1()">
+                            <img style="cursor: pointer; width: 35px; height: 35px;" class="circleImg"
+                                src="assets/img/circle.png" alt="">
+                            <p id="topBannerName" onclick="openMenue()" class="circleName" style="cursor: pointer;">...
+                            </p>
+                        </div>
+
+
+
                         <!-- <div onclick="loadUserData()" id="defaultUser" class="circle-border">JD</div> -->
                     </div>
+                    <div id="miniMenue1" class="logOut adjust-margin d-none">
+                        <a href="legalNotice.html" class="sideMenuetext1">Legal Notice</a>
+                        <a href="privacyPolicy.html" class="sideMenuetext">Privacy Policy</a>
+                        <a href="login.html" class="sideMenuetext3">Log out</a>
+                    </div>
                 </div>
+
+
 
                 <!-- START: Kanban Dialog Card to edit Tasks within Kanban Board -->
                 <div id="overlay" class="overlay d-none">
                     <div class="card">
                         <div class="card-header">
                             <span class="story-category" id="story-category-container">
-                                <span id="story-category-text">User Story</span>
+                                <span id="story-category-text">Select Tasks Category</span>
                                 <select id="story-category-select" style="display: none;">
                                     <option value="User Story" data-color="#007bff">User Story</option>
                                     <option value="Technical Task" data-color="#20c997">Technical Task</option>
@@ -93,7 +113,24 @@
                                 <span id="due-date-text">01/01/2025</span>
                                 <input type="text" id="due-date-input" style="display: none;" />
                             </div>
-                            <div id="priority-container" class="in-parallel" style="justify-content: left !important;"><strong>Priority: &nbsp;</strong>
+
+                            <!-- START: new Priority section -->
+                            <div id="" class="priority-dialog">
+                                <!-- <div>Priority:</div> -->
+                                <div><strong>Priority</strong></div>
+                                <div class="in-parallel">
+                                    <div id="low-button" class="low-select" onclick="prioLowClick()">
+                                        <!-- <img src="./assets/img/void-low.png"> -->
+                                    </div>
+                                    <div id="medium-button" class="medium-select" onclick="prioMediumClick()"></div>
+                                    <div id="urgent-button" class="urgent-select" onclick="prioUrgentClick()"></div>
+                                </div>
+                            </div>
+                            <!-- END: new Priority section -->
+
+                            <!-- OLD But right programmed priority selection field-->
+                            <div id="priority-container" class="in-parallel" style="justify-content: left !important;">
+                                <strong>Priority: &nbsp;</strong>
                                 <span id="priority-text">Low</span>
                                 <select id="priority-select" style="display: none;">
                                     <option value="Low" selected>Low</option>
@@ -102,7 +139,24 @@
                                 </select>
                                 <div class="priority-icon">_</div>
                             </div>
+                            <!-- END: OLD But right programmed priority selection field-->
                         </div>
+
+<!--                         <div><strong>Select contacts to assign</strong></div>
+                        <div class="contact-selection-field">
+                            <div id="contactSelectionId" class="contact-selection-box">
+                                <div class="contact-row"></div>
+                            </div>
+                        </div>
+
+                        <div class="assigned" onclick="populateAssigneeSelect()">
+                            <span>new Assignee section</span>
+                            <select id="assignee-select">
+                                <option value="" selected disabled>Choose contact</option>
+                            </select>
+                        </div> -->
+
+
                         <div class="assigned">
                             <span>Assigned To:</span>
                             <div>
@@ -114,6 +168,24 @@
                                 Jane Smith
                             </div>
                         </div>
+
+                        <!-- START: Test Section for ContactBook -->
+                        <div><strong>Select contacts to assign</strong></div>
+                        <div class="contact-selection-field">
+                            <!-- <div><strong>Select contacts to assign</strong></div> -->
+                            <div id="contactSelectionId" class="contact-selection-box">
+                                <div class="contact-row"></div>
+                            </div>
+                        </div>
+
+                        <div class="assigned" onclick="populateAssigneeSelect()">
+                            <span>new Assignee section</span>
+                            <select id="assignee-select">
+                                <option value="" selected disabled>Choose contact</option>
+                            </select>
+                        </div>
+                        <!-- END: Test Section for ContactBook -->
+
                         <ul class="subtasks" id="subtasks-list">
                             <span>Subtasks</span>
                             <li id="subtask-1">
@@ -127,8 +199,10 @@
 
                         </ul>
                         <div class="card-footer">
-                            <span class="delete-btn" onclick="pressDeleteInDialog()"><img src="./assets/img/delete-button.png" height="20px"></span>
-                            <span class="edit-btn" onclick="pressSaveInDialog()"><img src="./assets/img/edit-button.png" height="20px"></span>
+                            <span class="delete-btn" onclick="pressDeleteInDialog()"><img
+                                    src="./assets/img/delete-button.png" height="20px"></span>
+                            <span class="edit-btn" onclick="pressSaveInDialog()"><img src="./assets/img/edit-button.png"
+                                    height="20px"></span>
                         </div>
                     </div>
                 </div>
@@ -152,9 +226,9 @@
                         <div class="wrap-container">
                             <div class="in-parallel">
                                 <h3>Todo</h3>
-                                <div class="plus-symbol" onclick="openDialog('todo')"><a>+</a></div>
+                                <div class="plus-symbol" onclick="openDialog('todo')"><a class="plus-text">+</a></div>
                             </div>
-                            <div class="dragdrop-container" >
+                            <div class="dragdrop-container">
                                 <div id="todo" ondrop="moveTo(event)" ondragover="allowDrop(event)"
                                     ondragleave="removeHighlight(event)" class="standard-container">
                                 </div>

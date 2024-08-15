@@ -49,7 +49,7 @@ body {
 .card-title,
 .card-subtitle,
 .card-details div {
-    margin: 20px 0 10px;
+    margin: 8px 0 0px;
     cursor: pointer;
     display: inline-block;
     display: flex;
@@ -148,41 +148,220 @@ body {
     cursor: pointer;
     color: grey;
     text-decoration: none;
+    padding-right: 7px;
+    padding-top: 5px;
+    padding-left: 7px;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: rgba(119, 136, 153, 0.468);
+    border-radius: 8px;
+    transition: ease-in-out 100ms;
+}
+
+.contact-selection-field {
+    border: 1px solid grey;
+    border-radius: 8px;
+    width: 98%;
+    min-height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    font-size: smaller;
     padding: 4px;
 }
 
-.edit-btn:hover{
-    background-color: lightslategray;
+
+
+.contact-selection-field:hover {
+    border: 1px solid #4589ff;
+}
+
+.contact-selection-box {
+    margin: 2px;
+    min-height: 20px;
+    max-height: 80px;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.contact-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1px;
+}
+
+.contact-initials {
+    display: flex;
+    border: 1px solid #4589ff;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+}
+
+.contact-name {
+    display: flex;
+    margin-left: 4px;
+    padding: 6px;
+}
+
+.contact-checkbox {
+    display: flex;
+    width: 8px;
+    height: 8px;
+    border: 1 px solid grey;
+    border-radius: 2px;
+}
+
+.priority-dialog {
+/*     border: 1px solid grey; */
     border-radius: 8px;
+    width: 98%;
+    min-height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: baseline;
+
+}
+/* START : Dialog Selection Attributes Low - Medium - Urgent */
+/* --------------------------------------------------------- */
+.low-select,
+.low-select-clicked {
+    background-image: url("../assets/img/void-low.png");
+    border-radius: 2px;
+    width: 100%;
+    height: 45px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     transition: ease-in-out 100ms;
 }
 
-.delete-btn:hover{
-    background-color: lightslategray;
-    border-radius: 8px;
+.low-select {
+    background-image: url("../assets/img/void-low.png");
+}
+
+.low-select:hover,
+.low-selcet-clicked {
+    background-image: url("../assets/img/clicked-low.png");
+}
+
+.low-select-clicked {
+    background-image: url("../assets/img/clicked-low.png");
+}
+
+.low-select-clicked:hover {
+    border-radius: 10px;
+    background-color: rgba(215, 218, 221, 0.853);
+    background-blend-mode: lighten;
+}
+
+.medium-select,
+.medium-select-clicked {
+    background-image: url("../assets/img/void-medium.png");
+    border-radius: 2px;
+    width: 100%;
+    height: 45px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     transition: ease-in-out 100ms;
 }
+
+.medium-select {
+    background-image: url("../assets/img/void-medium.png");
+}
+
+.medium-select:hover,
+.medium-selcet-clicked {
+    background-image: url("../assets/img/clicked-medium.png");
+}
+
+.medium-select-clicked {
+    background-image: url("../assets/img/clicked-medium.png");
+}
+
+.medium-select-clicked:hover {
+    border-radius: 10px;
+    background-color: rgba(215, 218, 221, 0.853);
+    background-blend-mode: lighten;
+}
+
+.urgent-select,
+.urgent-select-clicked {
+    background-image: url("../assets/img/void-urgent.png");
+    border-radius: 2px;
+    width: 100%;
+    height: 45px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: ease-in-out 100ms;
+}
+
+.urgent-select {
+    background-image: url("../assets/img/void-urgent.png");
+}
+
+.urgent-select:hover,
+.urgent-selcet-clicked {
+    background-image: url("../assets/img/clicked-urgent.png");
+}
+
+.urgent-select-clicked {
+    background-image: url("../assets/img/clicked-urgent.png");
+}
+
+.urgent-select-clicked:hover {
+    border-radius: 10px;
+    background-color: rgba(215, 218, 221, 0.853);
+    background-blend-mode: lighten;
+}
+/* --------------------------------------------------------- */
+/* START : Dialog Selection Attributes Low - Medium - Urgent */
 
 .plus-symbol {
     cursor: pointer;
+    border: 1px solid grey;
+    border-radius: 4px;
+    cursor: pointer;
+    padding-right: 2px;
+    padding-left: 3px;
+    padding-bottom: 1px;
 }
 
+.plus-text {}
+
 .plus-symbol:hover {
-    font-weight: bold;
-    font-size: larger;
+    /*     font-weight: bold;
+    font-size: larger; */
+    transition: ease-in-out 100ms;
+    color: black;
+    border: 1px solid lightblue;
+    padding-right: 2px;
+    padding-left: 3px;
+    padding-bottom: 1px;
 }
 
 .overlay {
     height: -webkit-fill-available;
     width: -webkit-fill-available;
     display: flex;
-/*     border: 1px solid black; */
+    /*     border: 1px solid black; */
     border-top-left-radius: 8px;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.313);
     justify-content: center;
     align-items: center;
 }
-.d-none{
-    display: none;
+
+.d-none {
+    display: none !important;
 }
