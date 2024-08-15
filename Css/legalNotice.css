@@ -373,6 +373,9 @@ ol li {
   align-items: center;
   padding: 15px;
 }
+.displayNone{
+  transform: translateX(100%);
+}
 
 
 .mobileLink{

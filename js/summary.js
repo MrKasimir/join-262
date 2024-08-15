@@ -9,7 +9,7 @@ function init() {
   loadBoardFromLocalStorage();
 }
 
-function openMenue() {
+function openMenue() { // function for the mini menu
   let miniMenue = document.querySelector(".logOut");
   if (miniMenue.classList.contains("displayNone")) {
     miniMenue.classList.remove("displayNone");
@@ -20,32 +20,32 @@ function openMenue() {
 
 function displayTime() {
   let options = { year: "numeric", month: "long", day: "numeric" };
-  let formattedDate = currentTime.toLocaleDateString("en-US", options);
+  let formattedDate = currentTime.toLocaleDateString("en-US", options); // saves teh formatted Date in a variable
 
   let currentDateHeadline = document.getElementById("userDate");
   currentDateHeadline.innerHTML = formattedDate;
 
   let timeOfDayElement = document.getElementById("timeOfDay");
 
-  if (stunden < 12) {
-    console.log("Guten Morgen!");
+  if (stunden < 12) { // checks what text should be displayed depentend on the current time
+   
     timeOfDayElement.innerHTML = "Good Morning,";
   } else if (stunden < 18) {
-    console.log("Guten Nachmittag!");
+   
     timeOfDayElement.innerHTML = "Good Afternoon,";
   } else {
-    console.log("Guten Abend!");
+   
     timeOfDayElement.innerHTML = "Good Evening";
   }
 }
 
 function displayName() {
-  window.loggedinUser = JSON.parse(localStorage.getItem("loggedinUser")) || [];
+  window.loggedinUser = JSON.parse(localStorage.getItem("loggedinUser")) || []; // gets the name from the current loggen in user
   let usernameElement = document.getElementById("UserName");
   if (window.loggedinUser.length > 0) {
     let userName = window.loggedinUser[0].Name;
     let nameParts = userName.split(" ");
-
+  // the user name gets split up and teh first letter of each word gets convertet to uppercase to display the name properly
     let formattedName = "";
     if (nameParts.length >= 2) {
       let firstName =
@@ -64,7 +64,7 @@ function displayName() {
     usernameElement.innerHTML = formattedName;
     console.log(formattedName);
   } else {
-    usernameElement.innerHTML = "No user logged in";
+    usernameElement.innerHTML = "";
   }
   getInitials();
 }
@@ -172,7 +172,7 @@ window.loggedinUser = JSON.parse(localStorage.getItem("loggedinUser")) || [];
 console.log('logged in ', window.loggedinUser);
 
 
-function displayTasks() {
+function displayTasks() { // dispalys the current tasks in the summary page
   let TodoTasks = document.getElementById('todoTasks');
   let DoneTasks = document.getElementById('doneTasks');
   let UrgentTasks = document.getElementById('urgentTasks');
@@ -181,14 +181,15 @@ function displayTasks() {
   let AwaitingFeedback = document.getElementById('awaitingFeedback'); 
 
   const tasks = loadBoardFromLocalStorage();
-  
+  //The function uses the filter() method on the tasks array to count tasks based on different criteria
   let todoCount = tasks.filter(task => task.category === 'todo').length;
   let doneCount = tasks.filter(task => task.category === 'done').length;
   let urgentCount = tasks.filter(task => task.priority === 'Urgent').length;
   let inProgressCount = tasks.filter(task => task.category === 'inProgress').length;
   let awaitingFeedbackCount = tasks.filter(task => task.category === 'awaitFeedback').length;
   let totalTasksCount = tasks.length;
-
+  
+// makes the task summary visible on the webpage
   TodoTasks.innerText = todoCount;
   DoneTasks.innerText = doneCount;
   UrgentTasks.innerText = urgentCount;
