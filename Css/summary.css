@@ -714,3 +714,77 @@ p {
    
 
 }
+
+@media (max-width: 400px){
+  .mainHeadline{
+    font-size: 30px;
+  }
+  .subHeadline{
+    font-size: 10px;
+  }
+  .headline{
+    position: fixed;
+    left: 10px;
+  }
+  .rightContent{
+    margin-left: 0px;
+
+  }
+  .summeryBoard{
+   position: fixed;
+   left: -10px;
+   gap: 0px;
+  }
+  .mobileSidebar{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 70px;
+  }
+  .mobileIconImg{
+    height: 28px;
+    width: 28px;
+  }
+  .mobileSidebaricons{
+   padding: 2px;
+  }
+  .line2{
+    height: 90px;
+  }
+
+ .helpListNumber{
+   margin: 0px;
+ }
+
+ .mobileLink{
+  font-size: 12px;
+ }
+ .firstLine{
+  width: 300px;
+  height: 100px
+ }
+ .secondLine{
+  width: 300px;
+  height: 100px
+ }
+ .thirdLine{
+  width: 300px;
+  height: 100px
+ }
+ .box{
+  height: 150px;
+  padding-left: 5px;
+ }
+ 
+ .box2{
+  padding: 5px;
+ }
+
+ .textSize{
+  font-size: 15px;
+ }
+ .numberSize{
+  font-size: 35px;
+ }
+ 
+}
