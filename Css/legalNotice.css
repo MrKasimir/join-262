@@ -4,7 +4,7 @@
 }
 body{
     margin: 0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(246, 247, 248);
     display: flex;
     flex-direction: column;
    
@@ -157,7 +157,7 @@ p {
   }
 
   .rightSideContent{
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background-color: rgb(246, 247, 248);
     scroll-behavior: smooth;
@@ -176,8 +176,8 @@ p {
   .textContent{
     margin-top: 206px;
     margin-left: 358px;
-    height: auto;
-    width: 70%;
+    height: fit-content;
+    width: fit-content;
   }
 
   .textSections{
@@ -333,6 +333,10 @@ ol li {
   background: rgb(20, 175, 241);
 }
 
+.margin{
+  margin-bottom: 376px;
+}
+
 
 /*Mobile ansicht */
 
@@ -391,7 +395,7 @@ ol li {
 }
 @media (max-width: 601px){
   .mobileSidebaricons{
-    display: none;
+    display: none ; 
   }
   .mobileSidebar{
     display: none;
@@ -424,8 +428,9 @@ ol li {
    .joinMobileLoggo{
     display: flex;
    }
-
-   
+   .mobileSidebar{
+    position: relative;
+  }
 
   .mobileIconImg{
     width: 40px;
@@ -443,14 +448,86 @@ ol li {
    
    .mobileArrowButton{
     display: flex;
-    width: 26px;
+    width: 27px;
     position: fixed;
-    left: 520px;
-    top: 140px;
+    left: 480px;
+    top: 100px;
     cursor: pointer;
+    
    }
 
    .legalNoticeHeadline{
     font-size: 45px;
    }
 }
+
+@media (max-width: 300px){ 
+  .textSize{
+    font-size: 12px;
+    text-align: start;
+    line-break: auto;
+   
+  }
+
+  .rightSideContent{
+    margin: 0;
+    position: fixed;
+    left: 0px;
+   
+  }
+  .textContent{
+    margin-left: 10px;
+    margin-top: 45px;
+    width: 290px;
+  }
+
+  .helpHeadline{
+    font-size: 45px;
+  }
+  .legalNoticeHeadline{
+    font-size: 25px;
+  }
+
+  .textSections{
+    margin-right: 20px;
+    line-break: auto;
+    
+  }
+  .helpList{
+    margin-right: 10px;
+  }
+ 
+  .mobileArrowButton{
+    display: flex;
+    width: 17px;
+    position: fixed;
+    left: 260px;
+    top: 80px;
+    cursor: pointer;
+    
+   }
+
+   .mobileSidebar{
+    position: fixed;
+    bottom: 0px;
+    width: 300px;
+    height: 70px;
+  }
+  .mobileIconImg{
+    height: 28px;
+    width: 28px;
+  }
+  .mobileSidebaricons{
+   padding: 2px;
+  }
+
+ .helpListNumber{
+   margin: 0px;
+ }
+
+ .mobileLink{
+  font-size: 12px;
+ }
+
+
+ }
