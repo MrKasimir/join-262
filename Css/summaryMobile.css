@@ -1,0 +1,254 @@
+/* Nur auf mobile anzeigen */
+.joinMobileLoggo {
+  height: 40px;
+  margin-left: 20px;
+  width: 32px;
+  display: none;
+}
+.mobileLine {
+  width: 110px;
+  height: 2px;
+  background-color: rgb(20, 175, 241);
+  position: fixed;
+  top: 280px;
+  display: none;
+}
+
+.mobileSidebaricons {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-items: center;
+  padding: 15px;
+  display: none;
+  margin-top: 10px;
+}
+.mobileLink {
+  text-decoration: none;
+}
+.mobileIconImg {
+  width: 40px;
+  display: none;
+}
+.mobileSidebaricons:hover {
+  background-color: #1d2633;
+  border-radius: 10px;
+}
+.mobileGreeting {
+  display: none;
+  position: fixed;
+  height: 1230px;
+  top: 97px;
+  left: 0px;
+  width: 100%;
+  background-color: rgb(246, 247, 248);
+}
+
+.displayNone {
+  display: none;
+}
+.displayBlock {
+  display: block;
+}
+
+.mobileGreettext {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 1000px;
+  margin-left: 10px;
+}
+
+.mobileGreeting,
+.mobileGreettext {
+  transition: opacity 1.5s ease-out;
+  opacity: 1;
+}
+
+.mobileGreeting.hidden,
+.mobileGreettext.hidden {
+  opacity: 0;
+}
+
+/** Mobile **/
+
+@media (max-width: 600px) {
+  .joinSideBar {
+    display: none;
+  }
+  .headline {
+    position: fixed;
+    top: 128px;
+    left: 50px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 40px;
+    align-items: flex-start;
+  }
+  .mobileGreeting {
+    display: block;
+  }
+
+  .mainHeadline {
+    margin: 0px;
+  }
+  .mobileLine {
+    display: flex;
+  }
+  .line {
+    display: none;
+  }
+
+  .summeryBoard {
+    position: fixed;
+    top: 400px;
+    left: 16px;
+    height: 384px;
+    width: 496px;
+  }
+
+  .description {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+  .qmimg {
+    display: none;
+  }
+  .mobileIconImg {
+    width: 40px;
+    display: flex;
+  }
+  .mobileSidebaricons {
+    display: flex;
+  }
+
+  .descriptionHeadline {
+    display: none;
+  }
+  .joinMobileLoggo {
+    display: flex;
+  }
+  .helpLink {
+    display: none;
+  }
+
+  .mobileSidebar {
+    display: flex;
+    height: 100px;
+    width: 100%;
+    background-color: #2a3647;
+    position: fixed;
+    bottom: 0px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 520px) {
+  .summeryBoard {
+    position: fixed;
+    top: 400px;
+    left: 16px;
+    height: 484px;
+    width: 396px;
+  }
+  .taskImg {
+    width: 50px;
+    height: 50px;
+  }
+  .mainHeadline {
+    font-size: 50px;
+    margin: 0px;
+  }
+  .mobileLine {
+    position: fixed;
+    top: 250px;
+  }
+}
+
+@media (max-width: 400px) {
+    .mobileGreeting{
+        display: flex;
+        justify-content: center;
+    }
+
+  .mainHeadline {
+    font-size: 30px;
+  }
+  .subHeadline {
+    font-size: 10px;
+  }
+  .headline {
+    position: fixed;
+    left: 10px;
+  }
+  .rightContent {
+    margin-left: 0px;
+  }
+  .summeryBoard {
+    position: fixed;
+    left: -10px;
+    gap: 0px;
+  }
+  .mobileSidebar {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 70px;
+  }
+  .mobileIconImg {
+    height: 28px;
+    width: 28px;
+  }
+  .mobileSidebaricons {
+    padding: 2px;
+  }
+  .line2 {
+    height: 90px;
+  }
+
+  .helpListNumber {
+    margin: 0px;
+  }
+
+  .mobileLink {
+    font-size: 12px;
+  }
+  .firstLine {
+    width: 300px;
+    height: 100px;
+  }
+  .secondLine {
+    width: 300px;
+    height: 100px;
+  }
+  .thirdLine {
+    width: 300px;
+    height: 100px;
+  }
+  .box {
+    height: 150px;
+    padding-left: 5px;
+  }
+
+  .box2 {
+    padding: 5px;
+  }
+
+  .textSize {
+    font-size: 15px;
+  }
+  .numberSize {
+    font-size: 35px;
+  }
+}

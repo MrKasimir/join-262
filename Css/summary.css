@@ -1,14 +1,13 @@
-*{
-  font-family: 'inter';
+* {
+  font-family: "inter";
 }
 
 body {
   margin: 0px;
   display: flex;
   flex-direction: column;
-  
 }
-   /*Join SideBar */
+/*Join SideBar */
 .joinSideBar {
   background-color: rgb(42, 54, 71);
   height: 100vh;
@@ -43,11 +42,11 @@ body {
   height: 30px;
   width: 30px;
 }
-.joinSidebarLinks{
+.joinSidebarLinks {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.589);
 }
-.joinSidebarLinks:hover{
+.joinSidebarLinks:hover {
   color: white;
 }
 .iconsDiv {
@@ -178,8 +177,6 @@ body {
   gap: 20px;
 }
 
-
-
 .thirdLine {
   width: 100%;
   height: 150px;
@@ -202,7 +199,6 @@ body {
   }
 }
 
-
 .secondLine {
   width: 100%;
   height: 180px;
@@ -216,7 +212,7 @@ body {
   border: solid 1px rgba(229, 226, 226, 0.664);
   box-shadow: 0px 0px 2px 0px #0000001a;
   border-radius: 25px;
-  transition: all 250ms  ease-in-out;
+  transition: all 250ms ease-in-out;
   opacity: 0;
   animation: fadeInLeft 1s forwards;
 }
@@ -253,7 +249,7 @@ body {
   word-break: normal;
   text-wrap: wrap;
   box-shadow: 0px 0px 2px 0px #0000001a;
-  transition: all 250ms  ease-in-out;
+  transition: all 250ms ease-in-out;
 }
 .column:hover {
   background-color: rgb(42, 54, 71);
@@ -302,13 +298,13 @@ h2 {
 .box:hover {
   background-color: rgb(42, 54, 71);
   color: rgb(255, 255, 255);
-  transition: all 250ms  ease-in-out;
+  transition: all 250ms ease-in-out;
   box-shadow: 0 0 0 8px rgb(42, 54, 71);
   border: rgb(42, 54, 71);
 }
 
 .box svg .circle {
-  fill: #2A3647;
+  fill: #2a3647;
 }
 
 .box svg .pen {
@@ -323,9 +319,8 @@ h2 {
   fill: rgb(42, 54, 71);
 }
 
-
 .new-svg .circle {
-  fill: #2A3647;
+  fill: #2a3647;
 }
 
 .new-svg .checkmark {
@@ -364,6 +359,7 @@ h2 {
   margin-right: 0px;
 }
 /* Greeting text*/
+
 .greeting {
   height: 136px;
   width: 500px;
@@ -375,7 +371,6 @@ h2 {
 .timeOfDay {
   font-size: 47px;
   color: #2a3647;
- 
 }
 .greetingName {
   color: #29abe2;
@@ -450,7 +445,6 @@ p {
   width: 56px;
 }
 
-
 /* summaryGuestCSS */
 
 .circleNameGuest {
@@ -478,10 +472,10 @@ p {
   gap: 20px;
 }
 
-.displayNone{
+.displayNone {
   display: none;
 }
-.sideMenuetext{
+.sideMenuetext {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -490,7 +484,7 @@ p {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.753);
 }
-.sideMenuetext1{
+.sideMenuetext1 {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -500,7 +494,7 @@ p {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.753);
 }
-.sideMenuetext3{
+.sideMenuetext3 {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -510,281 +504,15 @@ p {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.753);
 }
-.sideMenuetext:hover{
+.sideMenuetext:hover {
   background-color: rgb(42, 54, 71);
   color: #ffffff;
 }
-.sideMenuetext1:hover{
+.sideMenuetext1:hover {
   background-color: rgb(42, 54, 71);
   color: #ffffff;
 }
-.sideMenuetext3:hover{
+.sideMenuetext3:hover {
   background-color: rgb(42, 54, 71);
   color: #ffffff;
-}
-/* Nur auf mobile anzeigen */
-.joinMobileLoggo{
-  height: 40px;
-  margin-left: 20px;
-  width: 32px;
-  display: none;
-}
-.mobileLine{
-  width: 110px;
-  height: 2px;
-  background-color: rgb(20, 175, 241);
-  position: fixed;
-  top: 280px;
-  display: none;
-}
-
-.mobileSidebaricons{
-  display: flex;
-  flex-direction: column;
-  color: white;
-  margin-left: 10px;
-  margin-right: 10px;
-  align-items: center;
-  padding: 15px;
-  display: none;
-  margin-top: 10px;
-  
-}
-.mobileLink{
-  text-decoration: none;
-}
-.mobileIconImg{
-  width: 40px;
-  display: none;
- 
-}
-.mobileSidebaricons:hover{
-  background-color: #1d2633;
-  border-radius: 10px;
-  
-}
-.mobileGreeting{
-  display: none; 
-  position: fixed;
-  height: 1230px;
-  top: 97px;
-  left: 0px;
-  width: 100%;
-  background-color: rgb(246, 247, 248); 
-  
-}
-
-
-.displayNone{
-  display: none;
-}
-.displayBlock{
-  display: block;
-}
-
-.mobileGreettext{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  height: 1000px;
-  margin-left: 10px;
-}
-
-.mobileGreeting,
-.mobileGreettext {
-    transition: opacity 1.5s ease-out; /* Dauer und Timing für den Übergang */
-    opacity: 1; /* Anfangs-Opacity auf voll sichtbar */
-}
-
-.mobileGreeting.hidden,
-.mobileGreettext.hidden {
-    opacity: 0; /* Sichtbarkeit auf unsichtbar setzen */
-}
-
-
-
-/** Mobile **/
-
-@media (max-width: 600px){
-   .joinSideBar{
-    display: none;
-   }
-   .headline {
-    position: fixed;
-    top: 128px;
-    left: 50px;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    height: 40px;
-    align-items: flex-start;
-   }
-   .mobileGreeting {
-    display: block; 
-    
-   }
- 
-   .mainHeadline{
-    margin: 0px;
-   }
-   .mobileLine{
-    display: flex;
-   }
-   .line{
-    display: none;
-   }
-
-   .summeryBoard{
-    position: fixed;
-    top: 400px;
-    left: 16px;
-    height: 384px;
-    width: 496px;
-   }
-
-   .description{
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
-   }
-   .qmimg{
-    display: none;
-   }
-   .mobileIconImg{
-    width: 40px;
-    display: flex;
-  }
-  .mobileSidebaricons{
-    display: flex;
-  }
-  
-   .descriptionHeadline{
-    display: none;
-   }
-   .joinMobileLoggo{
-    display: flex;
-   }
-   .helpLink{
-    display: none;
-   }
-   
-   .mobileSidebar{
-    display: flex;
-    height: 100px;
-    width: 100%;
-    background-color: #2A3647;
-    position: fixed;
-    bottom: 0px;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-    cursor: pointer;
-    
-   }
-
-   
-}
-
-@media (max-width: 520px){
-
-  .summeryBoard{
-    position: fixed;
-    top: 400px;
-    left: 16px;
-    height: 484px;
-    width: 396px;
-
-   }
-   .taskImg{
-    width: 50px;
-    height: 50px;
-   }
-   .mainHeadline{
-    font-size: 50px;
-    margin: 0px;
-   }
-   .mobileLine{
-    position: fixed;
-    top: 250px;
-   }
-   
-
-}
-
-@media (max-width: 400px){
-  .mainHeadline{
-    font-size: 30px;
-  }
-  .subHeadline{
-    font-size: 10px;
-  }
-  .headline{
-    position: fixed;
-    left: 10px;
-  }
-  .rightContent{
-    margin-left: 0px;
-
-  }
-  .summeryBoard{
-   position: fixed;
-   left: -10px;
-   gap: 0px;
-  }
-  .mobileSidebar{
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    height: 70px;
-  }
-  .mobileIconImg{
-    height: 28px;
-    width: 28px;
-  }
-  .mobileSidebaricons{
-   padding: 2px;
-  }
-  .line2{
-    height: 90px;
-  }
-
- .helpListNumber{
-   margin: 0px;
- }
-
- .mobileLink{
-  font-size: 12px;
- }
- .firstLine{
-  width: 300px;
-  height: 100px
- }
- .secondLine{
-  width: 300px;
-  height: 100px
- }
- .thirdLine{
-  width: 300px;
-  height: 100px
- }
- .box{
-  height: 150px;
-  padding-left: 5px;
- }
- 
- .box2{
-  padding: 5px;
- }
-
- .textSize{
-  font-size: 15px;
- }
- .numberSize{
-  font-size: 35px;
- }
- 
 }

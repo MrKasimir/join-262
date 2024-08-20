@@ -1,0 +1,241 @@
+
+/*Mobile ansicht */
+
+
+.joinMobileLoggo{
+    height: 40px;
+    margin-left: 20px;
+    width: 32px;
+    display: none;
+  }
+  .mobileLine{
+    width: 110px;
+    height: 2px;
+    background-color: rgb(20, 175, 241);
+    position: fixed;
+    top: 280px;
+    display: none;
+  }
+  .mobileSidebar{
+    display: none;
+    height: 100px;
+    width: 100%;
+    background-color: #2A3647;
+    position: relative;
+    
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    cursor: pointer;
+   
+  }
+  .mobileSidebaricons{
+    display: none; 
+    flex-direction: column;
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-items: center;
+    padding: 15px;
+  }
+  .displayNone{
+    transform: translateX(100%);
+  }
+  
+  
+  .mobileLink{
+    text-decoration: none;
+  }
+  
+  .mobileSidebaricons:hover{
+    background-color: #1d2633;
+    border-radius: 10px;
+  }
+  .mobileArrowButton{
+    display: none;
+  }
+  @media (max-width: 601px){
+    .mobileSidebaricons{
+      display: none ; 
+    }
+    .mobileSidebar{
+      display: none;
+    }
+  }
+  @media (max-width: 900px){
+
+    .legalNoticeHeadline{
+        font-size: 40px;
+      }
+  }
+  
+  @media (max-width: 600px){
+
+    .textSize{
+        font-size: 16px;
+        text-align: start;
+        line-break: auto;
+       
+      }
+      .helpHeadline{
+        font-size: 50px;
+      }
+  
+    .joinSideBar{
+      display: none;
+     }
+  
+     .description{
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+     }
+  
+     .descriptionHeadline{
+      display: none;
+     }
+  
+     .helpLink{
+      display: none;
+     }
+  
+     .joinMobileLoggo{
+      display: flex;
+     }
+     .mobileSidebar{
+      position: fixed;
+      bottom: 0px;
+    }
+  
+    .mobileIconImg{
+      width: 40px;
+      display: flex;
+    }
+    .rightSideContent{
+      height:  fit-content;
+    }
+   
+    .textContent{
+      margin-left: 50px;
+      width: 500px;
+      scroll-behavior: smooth;
+     }
+     
+     .mobileArrowButton{
+      display: flex;
+      width: 27px;
+      position: fixed;
+      left: 480px;
+      top: 100px;
+      cursor: pointer;
+      
+     }
+  
+     .legalNoticeHeadline{
+      font-size: 40px;
+     }
+  }
+  @media (max-width: 550px){
+
+    .textContent{
+       margin-left: 10px;
+        width: 500px;
+      }
+
+    .textSize{
+        font-size: 15px;
+        text-align: start;
+           
+      }
+
+  }
+
+  
+  @media (max-width: 400px){ 
+    .textSize{
+      font-size: 12px;
+      text-align: start;
+      line-break: auto;
+     
+    }
+  
+    .rightSideContent{
+      margin: 0;
+      position: fixed;
+      left: 0px;
+     display: flex;
+     justify-content: center;
+    }
+    .textContent{
+      margin-left: 10px;
+      margin-top: 45px;
+      width: 290px;
+    }
+  
+    .helpHeadline{
+      font-size: 45px;
+    }
+    .legalNoticeHeadline{
+      font-size: 25px;
+    }
+  
+    .textSections{
+      margin-right: 20px;
+      line-break: auto;
+      
+    }
+    .helpList{
+      margin-right: 10px;
+    }
+   
+    .mobileArrowButton{
+      display: flex;
+      width: 17px;
+      position: fixed;
+      left: 320px;
+      top: 80px;
+      cursor: pointer;
+      
+     }
+  
+     .mobileSidebar{
+      position: fixed;
+      bottom: 0px;
+      width: 100%;
+      height: 70px;
+    }
+    .mobileIconImg{
+      height: 28px;
+      width: 28px;
+    }
+    .mobileSidebaricons{
+     padding: 2px;
+    }
+  
+   .helpListNumber{
+     margin: 0px;
+   }
+  
+   .mobileLink{
+    font-size: 12px;
+   }
+  
+  
+   }
+
+   @media (max-width: 340px){
+
+    .mobileArrowButton{
+        display: flex;
+        width: 17px;
+        position: fixed;
+        left: 280px;
+        top: 80px;
+        cursor: pointer;
+        
+       }
+
+   }

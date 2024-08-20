@@ -7,43 +7,9 @@
     <link rel="stylesheet" href="Css/legalNotice.css">
     <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
     <link rel="stylesheet" href="Css/fonts.css">
-    <script>
-      function openMenue() {
-    let miniMenue = document.querySelector('.logOut');
-    if (miniMenue.classList.contains('displayNone')) {
-        miniMenue.classList.remove('displayNone');
-    } else {
-        miniMenue.classList.add('displayNone');
-    }
-}
-
-function openMobileMenu() {
-    const sidebarIcons = document.getElementsByClassName('mobileSidebaricons');
-    const sidebar = document.querySelector('.mobileSidebar');
-
-    // Toggle the display of the sidebar
-    const isMenuOpen = sidebar.style.display === 'flex';
-    const displayStyle = isMenuOpen ? 'none' : 'flex';
-
-    sidebar.style.display = displayStyle;
-    Array.from(sidebarIcons).forEach(icon => icon.style.display = displayStyle);
-}
-
-// Ensure the mobile menu is closed if the screen width is greater than 600px
-window.addEventListener('resize', () => {
-    const sidebarIcons = document.getElementsByClassName('mobileSidebaricons');
-    const sidebar = document.querySelector('.mobileSidebar');
-
-    if (window.innerWidth > 600) {
-        sidebar.style.display = 'none';
-        sidebarIcons.style.display = 'none';
-    }
-});
-
-
-
-
-    </script>
+    <link rel="stylesheet" href="Css/legalNoticeMobile.css">
+    <script src="js/legalNotice.js"></script>
+   
 </head>
 <body>
   <header class="joinSideBar">
