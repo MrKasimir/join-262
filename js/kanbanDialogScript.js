@@ -1,37 +1,43 @@
-function prioLowClick(){
-    unclickAll();
-    if(document.getElementById('low-button').classList.contains('low-select')){
+function prioLowClick() {
+    unclickAllPrioButtons();
+    if (document.getElementById('low-button').classList.contains('low-select')) {
         document.getElementById('low-button').classList.remove('low-select');
         document.getElementById('low-button').classList.add('low-select-clicked');
     } else {
         document.getElementById('low-button').classList.add('low-select');
         document.getElementById('low-button').classList.remove('low-select-clicked');
     }
+    currentDialogTask['priority'] = 'Low';
+    console.log('low selected');
 }
 
-function prioMediumClick(){
-    unclickAll();
-    if(document.getElementById('medium-button').classList.contains('medium-select')){
+function prioMediumClick() {
+    unclickAllPrioButtons();
+    if (document.getElementById('medium-button').classList.contains('medium-select')) {
         document.getElementById('medium-button').classList.remove('medium-select');
         document.getElementById('medium-button').classList.add('medium-select-clicked');
     } else {
         document.getElementById('medium-button').classList.add('medium-select');
         document.getElementById('medium-button').classList.remove('medium-select-clicked');
     }
+    currentDialogTask['priority'] = 'Medium';
+    console.log('medium selected');
 }
 
-function prioUrgentClick(){
-    unclickAll();
-    if(document.getElementById('urgent-button').classList.contains('urgent-select')){
+function prioUrgentClick() {
+    unclickAllPrioButtons();
+    if (document.getElementById('urgent-button').classList.contains('urgent-select')) {
         document.getElementById('urgent-button').classList.remove('urgent-select');
         document.getElementById('urgent-button').classList.add('urgent-select-clicked');
     } else {
         document.getElementById('urgent-button').classList.add('urgent-select');
         document.getElementById('urgent-button').classList.remove('urgent-select-clicked');
     }
+    currentDialogTask['priority'] = 'Urgent';
+    console.log('urgent selected');
 }
 
-function unclickAll(){
+function unclickAllPrioButtons() {
     document.getElementById('low-button').classList.remove('low-select-clicked');
     document.getElementById('low-button').classList.add('low-select');
     document.getElementById('medium-button').classList.remove('medium-select-clicked');
@@ -40,6 +46,21 @@ function unclickAll(){
     document.getElementById('urgent-button').classList.add('urgent-select');
 }
 
+function addSubtaskInputField() {
+    document.getElementById('subtasksId').innerHTML += `
+            <li id="subtask-2">
+                <input type="checkbox" id="subtask-checkbox-2" unhecked>
+                <input id="subtask-text-2" class="subtask-input" placeholder="enter new subtask here"></input>
+             </li>
+    `;
+
+    {/* <div id="subtasksId" class="subtasks-container">
+        <li id="subtask-1">
+            <input type="checkbox" id="subtask-checkbox-1" checked>
+                <span id="subtask-text-1">Subtask 1</span>
+        </li>
+    </div> */}
+}
 
 
 function makeEditable(containerId, textId, inputId) {
