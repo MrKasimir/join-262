@@ -11,43 +11,65 @@ let defaultTasks = [{
     'priority': 'Medium',
     'assignedTo': '+C',
     'subtasks': 'create subtasks',
+    'dueDate': '01/01/2025'
 }];
 
 
 /////////////////// START: contactBook feature //////////////////
 let contactBook = [
-    { firstName: 'Sophia', lastName: 'Müller', initials: ''},
-    { firstName: 'Anton', lastName: 'Mayer', initials: ''},
-    { firstName: 'Anja', lastName: 'Schulz', initials: ''},
-    { firstName: 'Benedikt', lastName: 'Ziegler', initials: ''},
-    { firstName: 'David', lastName: 'Eisenberg', initials: ''}
+    { firstName: 'Sophia', lastName: 'Müller', initials: '', colorCode: '' },
+    { firstName: 'Anton', lastName: 'Mayer', initials: '', colorCode: '' },
+    { firstName: 'Anja', lastName: 'Schulz', initials: '', colorCode: '' },
+    { firstName: 'Benedikt', lastName: 'Ziegler', initials: '', colorCode: '' },
+    { firstName: 'David', lastName: 'Eisenberg', initials: '', colorCode: '' },
+    { firstName: 'Clara', lastName: 'Müller', initials: '', colorCode: '' },
+    { firstName: 'Erik', lastName: 'Wagner', initials: '', colorCode: '' },
 ];
 
-function writeNameInitialsInContactBook(){
-    for(let i = 0; i < contactBook.length; i++){
+function writeNameInitialsInContactBook() {
+    for (let i = 0; i < contactBook.length; i++) {
         let initial = contactBook[i].firstName.charAt(0) + contactBook[i].lastName.charAt(0);
         contactBook[i].initials = initial;
     }
 }
 
-function unRenderContactsInDialog(){
-    document.getElementById('contactSelectionId').innerHTML = '';
+function writeColorCodeInContactBook() {
+    let colorCodes = ['ff7a00', '1fd7c1', '462f8a', 'fc71ff', '6e52ff', '00bee8', '6e52ff', 'ffbb2b', '9327ff', 'ff4646'];
+    let colorCount = 0;
+    for (let i = 0; i < contactBook.length; i++) {
+        contactBook[i].colorCode = colorCodes[colorCount];
+        colorCount++
+        if (colorCount == colorCodes.length) colorCount = 0;
+    }
 }
 
-function renderContactsInDialog(){
+function unRenderContactsInDialog() {
+    document.getElementById('contactSelectionId').innerHTML = '';
+    document.getElementById('contactSelectionBoxId').classList.add('d-none');
+}
+
+function renderContactsInDialog() {
     unRenderContactsInDialog();
+    //document.getElementById('contactSelectionBoxId').classList.remove('d-none');
     writeNameInitialsInContactBook();
-    for(let i = 0; i < contactBook.length; i++){
+    writeColorCodeInContactBook();
+    //document.getElementById('contactSelectionBoxId').classList.remove('d-none');
+    for (let i = 0; i < contactBook.length; i++) {
         document.getElementById('contactSelectionId').innerHTML += `
     <div class="contact-row">
     <div class="contact-row">
-        <div class="contact-initials">${contactBook[i].initials}</div>
-        <div class="contact-name">${contactBook[i].firstName} ${contactBook[i].lastName}</div>
+        <div class="contact-initials" id="assignedInitial${i}" style="background-color: #${contactBook[i].colorCode} !important">${contactBook[i].initials}</div>
+        <div class="contact-name" id="assignedContactName${i}">${contactBook[i].firstName} ${contactBook[i].lastName}</div>
     </div>    
-        <div class="contact-checkbox">x</div>
+        <input type="checkbox" onclick="updateAssignedContacts()" id="contactCheckbox${i}" unchecked></input>
     </div>
     `;
     }
+}
+
+function makeContactsVisible() {
+    document.getElementById('contactSelectionBoxId').classList.remove('d-none');
+    document.getElementById('contactSelectionBoxId').classList.remove('d-none');
 }
 
 function populateAssigneeSelect() {
@@ -180,13 +202,14 @@ function deleteKanbanBoard() {
  */
 function updateKanbanBoard(i, category) {
     let kanbanDetails = [tasks[i].id,
-    tasks[i].category, // todo, awaitFeddback, etc
-    tasks[i].titleCategory, // user story, technical task etc
-    tasks[i].title,
-    tasks[i].description,
-    tasks[i].subtasks,
-    tasks[i].assignedTo,
-    tasks[i].priority];
+    tasks[i].category,       // [0] todo, awaitFeddback, etc
+    tasks[i].titleCategory,  // [1] user story, technical task etc
+    tasks[i].title,          // [2]
+    tasks[i].description,    // [3]
+    tasks[i].subtasks,       // [4]
+    tasks[i].assignedTo,     // [5]
+    tasks[i].assignedInitals,// [6]
+    tasks[i].priority];      // [7]
     let kanbanDetailsAsJson = JSON.stringify(kanbanDetails)/* .replace(/"/g, '&quot;') */;
 
     // background depends on category 'user story' vs 'technical task'
@@ -207,6 +230,8 @@ function updateKanbanBoard(i, category) {
         priorityClass = 'task-priority-low';
     }
 
+
+
     document.getElementById(category).innerHTML +=
         `<div onclick='openDialogOnCardClick(${kanbanDetailsAsJson})' class="task-container" draggable="true" ondragstart="startDragging(${tasks[i].id})">
             <div class="task-titlecategory ${bgColorClass}">${tasks[i].titleCategory}</div>
@@ -214,11 +239,22 @@ function updateKanbanBoard(i, category) {
             <div class="task-description">${tasks[i].description}</div>
             <div class="task-subtask">${tasks[i].subtasks}</div>
             <div class="in-parallel">
-                <div class="task-assignee">${tasks[i].assignedTo}</div>
+                <div class="card-members" id="kanbanMembersId"></div>
                 <div class="task-priority ${priorityClass}">_</div>
             </div>
         </div>`;
+
+    // broken:
+    // update members on kanban-bord
+    for (let i = 0; i < tasks[i].assignedInitals.length; i++) {
+        document.getElementById('kanbanMembersId').innerHTML += `
+        <div class="task-assignee">${tasks[i].assignedInitals[i]}</div>
+        `;
+    }
+    //<div class="task-assignee">${tasks[i].assignedTo}</div>
 }
+
+
 
 ///////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
@@ -609,9 +645,11 @@ function getDialogDetails(inputCategory) {
         'title': document.getElementById('title-text').innerHTML,
         'titleCategory': document.getElementById('story-category-select').value,
         'description': document.getElementById('subtitle-text').innerHTML,
-        'priority': document.getElementById('priority-select').value,
-        'assignedTo': 'JS',
-        'subtasks': 'subtask',
+        /* 'assignedTo': [], */
+        // Wieder einbinden sobald Dialog Karte fertig 
+        /*         'priority': document.getElementById('priority-select').value,
+                'assignedTo': 'JS',
+                'subtasks': 'subtask', */
     };
 }
 
@@ -622,7 +660,8 @@ function refreshDialogDetails() {
     document.getElementById('title-text').innerHTML = 'add in new title';
     document.getElementById('subtitle-text').innerHTML = 'add new description'; // Clearing description for new task
     document.getElementById('story-category-select').value = 'User Story'; // Default value
-    document.getElementById('priority-select').value = 'low'; // Default value
+    // Wieder einbinden sobald Dialog Karte fertig:
+    //document.getElementById('priority-select').value = 'low'; // Default value
 }
 
 
@@ -653,7 +692,10 @@ function saveDialogToBoard() {
         title: document.getElementById('title-text').innerHTML,
         description: document.getElementById('subtitle-text').innerHTML,
         titleCategory: document.getElementById('story-category-select').value,
-        priority: document.getElementById('priority-select').value
+
+        // Wieder einbinden sobald Dialog Karte fertig designed
+        //titleCategory: document.getElementById('story-category-select').value,
+        //priority: document.getElementById('priority-select').value
     };
 
     tasks.push(updatedTask);
@@ -664,16 +706,13 @@ function saveDialogToBoard() {
     saveBoardAsTasksToLocalStorage(); // Speichere die Änderungen lokal
 }
 
-
-
 // openDialog('awaitFeedback') soll den Task in die Await Feedback in die Kategorie "Await Feedback" ablegen 
 function openDialog(inputCategory) {
     addOverlay();
+    renderContactsInDialog();
     getDialogDetails(inputCategory);
     refreshDialogDetails();
 }
-
-
 
 // openDialogOnCardClick
 /* function openDialogOnCardClick(kanbanDetailsAsJson) {
@@ -726,9 +765,11 @@ function openDialogOnCardClick(kanbanDetailsAsJson) {
         'title': kanbanDetailsAsJson[3],
         'titleCategory': kanbanDetailsAsJson[2],
         'description': kanbanDetailsAsJson[4],
-        'priority': kanbanDetailsAsJson[7],
+        'priority': kanbanDetailsAsJson[8],
         'assignedTo': kanbanDetailsAsJson[6],
+        'assignedInitals': '',
         'subtasks': kanbanDetailsAsJson[5],
+        'dueDate': kanbanDetailsAsJson[7],
     };
 
     // Entferne die Karte aus der aktuellen Liste
@@ -736,8 +777,18 @@ function openDialogOnCardClick(kanbanDetailsAsJson) {
     addOverlay();
     document.getElementById('title-text').innerHTML = kanbanDetailsAsJson[3]; // title
     document.getElementById('subtitle-text').innerHTML = kanbanDetailsAsJson[4]; // description
+    //document.getElementById('due-date-text').innerHTML = kanbanDetailsAsJson[7]; // due date
+
+    let priority = kanbanDetailsAsJson[8];
+    switch (true) {
+        case (priority == 'Low'): prioLowClick(); break;
+        case (priority == 'Medium'): prioMediumClick(); break;
+        case (priority == 'Urgent'): prioUrgentClick(); break;
+    }
     document.getElementById('story-category-select').value = kanbanDetailsAsJson[2]; // titleCategory: user story vs technical task
-    document.getElementById('priority-select').value = kanbanDetailsAsJson[7];
+
+    // Noch einbinden sobald Dialog Karte fertig designed: Subtasks
+
 }
 
 function addOverlay() {
@@ -751,13 +802,70 @@ function removeOverlay() {
 }
 
 function pressSaveInDialog() {
-
+    unclickAllPrioButtons();
+    updateAssignedContacts();
+    unRenderContactsInDialog();
     saveDialogToBoard();
     //    saveBoardAsTasksToLocalStorage();
     removeOverlay();
     //    renderByCategory();
 }
 
+function updateAssignedContacts() {
+    let selectedContacts = []; // these contacts shall be included to kanban card
+    let selectedInitials = [];
+    let colorCodesRgb = [];
+    let backgroundColor;
+    // clean out all assigned members on dialogCard and kanbanCard before rendering;
+    document.getElementById('cardMembersId').innerHTML = '';
+    document.getElementById('kanbanMembersId').innerHTML = '';
+
+    for (let i = 0; i < contactBook.length; i++) {
+        if (document.getElementById('contactCheckbox' + i).checked) {
+            //console.log(document.getElementById('assignedContactName' + i).innerText);
+            let selectedContact = document.getElementById('assignedContactName' + i).innerText;
+            let selectedInitial = document.getElementById('assignedInitial' + i).innerText;
+            selectedContacts.push(selectedContact);
+            selectedInitials.push(selectedInitial);
+
+            // Angenommen, es gibt ein Element mit der ID 'assignedInitial'
+            let element = document.getElementById('assignedInitial' + i);
+            // Hole den berechneten Stil des Elements
+            let computedStyle = window.getComputedStyle(element);
+            // Hole den Farbcode der Hintergrundfarbe
+            backgroundColor = computedStyle.backgroundColor;
+           // console.log(backgroundColor);
+            colorCodesRgb.push(backgroundColor);
+        }
+    }
+    currentDialogTask['assignedTo'] = selectedContacts;
+    currentDialogTask['assignedInitials'] = selectedInitials;
+
+    for (let i = 0; i < selectedInitials.length; i++) {
+        // update on dialog-card
+        document.getElementById('cardMembersId').innerHTML += `
+        <div class="task-assignee" style="background-color: ${colorCodesRgb[i]} !important;">${selectedInitials[i]}</div>
+        `;
+
+        // updated on kaban-bord
+        document.getElementById('kanbanMembersId').innerHTML += `
+        <div class="task-assignee" style="background-color: ${colorCodesRgb[i]} !important;">${selectedInitials[i]}</div>
+        `;
+    }
+
+    console.log(selectedContacts);
+    console.log(selectedInitials);
+    console.log(colorCodesRgb);
+}
+
+/* function retrieveInitials(namesArray){
+    let initials = [];
+    for(let i = 0; i < namesArray.length; i++){
+        
+    }
+    return initials;
+}
+ */
 function pressXInDialog() {
     saveDialogToBoard();
     removeOverlay();
@@ -765,6 +873,8 @@ function pressXInDialog() {
 }
 
 function pressDeleteInDialog() {
+    unRenderContactsInDialog();
+    unclickAllPrioButtons();
     removeOverlay();
     renderByCategory();
 }
