@@ -361,19 +361,31 @@ body {
     font-size: small;
 }
 
+.card-members{
+    display: flex;
+    justify-content: left;
+/*     border: 1px solid black; */
+    width: 98%;
+    padding-left: 4px;
+    flex-wrap: wrap;
+}
+
 .task-assignee {
+    background-color: pink;
     margin: 2px;
+    margin-left: -6px;
     padding: 2px;
     min-height: 20px;
     min-width: 20px;
-    border: 1px solid white;
+    border: 2px solid whitesmoke;
     border-radius: 50%;
-    background-color: pink;
     text-align: center;
     font-size: small;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+    font-weight: 100 !important;
 }
 
 .task-container:hover {

@@ -108,20 +108,20 @@
                             <span id="subtitle-text">Description</span>
                             <input type="text" id="subtitle-input" style="display: none;" />
                         </div>
-                        <div class="card-details">
-                            <div><strong>Due date: &nbsp;</strong>
-                                <span id="due-date-text">01/01/2025</span>
-                                <input type="text" id="due-date-input" style="display: none;" />
+                        <div class="">
+                            <div class="in-parallel" style="justify-content: left !important;"><h5>Due date: &nbsp;</h5>
+                                <div class="due-date ">
+                                    <span id="due-date-text">01/01/2025</span>
+                                    <input type="text" id="due-date-input" style="display: none;" />
+                                </div>
                             </div>
 
                             <!-- START: new Priority section -->
                             <div id="" class="priority-dialog">
                                 <!-- <div>Priority:</div> -->
-                                <div><strong>Priority</strong></div>
+                                <h5>Priority</h5>
                                 <div class="in-parallel">
-                                    <div id="low-button" class="low-select" onclick="prioLowClick()">
-                                        <!-- <img src="./assets/img/void-low.png"> -->
-                                    </div>
+                                    <div id="low-button" class="low-select" onclick="prioLowClick()"></div>
                                     <div id="medium-button" class="medium-select" onclick="prioMediumClick()"></div>
                                     <div id="urgent-button" class="urgent-select" onclick="prioUrgentClick()"></div>
                                 </div>
@@ -129,7 +129,7 @@
                             <!-- END: new Priority section -->
 
                             <!-- OLD But right programmed priority selection field-->
-                            <div id="priority-container" class="in-parallel" style="justify-content: left !important;">
+                            <!-- <div id="priority-container" class="in-parallel" style="justify-content: left !important;">
                                 <strong>Priority: &nbsp;</strong>
                                 <span id="priority-text">Low</span>
                                 <select id="priority-select" style="display: none;">
@@ -138,11 +138,11 @@
                                     <option value="Urgent">Urgent</option>
                                 </select>
                                 <div class="priority-icon">_</div>
-                            </div>
+                            </div> -->
                             <!-- END: OLD But right programmed priority selection field-->
                         </div>
 
-<!--                         <div><strong>Select contacts to assign</strong></div>
+                        <!--                         <div><strong>Select contacts to assign</strong></div>
                         <div class="contact-selection-field">
                             <div id="contactSelectionId" class="contact-selection-box">
                                 <div class="contact-row"></div>
@@ -157,7 +157,7 @@
                         </div> -->
 
 
-                        <div class="assigned">
+                        <!--        <div class="assigned">
                             <span>Assigned To:</span>
                             <div>
                                 <div class="avatar" style="background-color: #20c997;">JS</div>
@@ -167,38 +167,54 @@
                                 <div class="avatar" style="background-color: #6f42c1;">JS</div>
                                 Jane Smith
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- START: Test Section for ContactBook -->
-                        <div><strong>Select contacts to assign</strong></div>
-                        <div class="contact-selection-field">
+                        <div class="in-parallel" style="justify-content: left !important;">
+                            <h5 style="margin-right: 8px;">Select contacts to assign</h5>
+                            <div class="plus-symbol" onclick="makeContactsVisible()"><a class="plus-text">+</a></div>
+                        </div>
+                        <div id='contactSelectionBoxId' class="contact-selection-field d-none">
                             <!-- <div><strong>Select contacts to assign</strong></div> -->
                             <div id="contactSelectionId" class="contact-selection-box">
                                 <div class="contact-row"></div>
                             </div>
                         </div>
 
-                        <div class="assigned" onclick="populateAssigneeSelect()">
+                   <!--      <div class="assigned" onclick="populateAssigneeSelect()">
                             <span>new Assignee section</span>
                             <select id="assignee-select">
                                 <option value="" selected disabled>Choose contact</option>
                             </select>
-                        </div>
+                        </div> -->
                         <!-- END: Test Section for ContactBook -->
 
                         <ul class="subtasks" id="subtasks-list">
-                            <span>Subtasks</span>
-                            <li id="subtask-1">
-                                <input type="checkbox" id="subtask-checkbox-1" checked>
-                                <span id="subtask-text-1">Subtask 1</span>
-                            </li>
-                            <li id="subtask-2">
-                                <input type="checkbox" id="subtask-checkbox-2" unchecked>
-                                <span id="subtask-text-1">...</span>
-                            </li>
+                            <div class="in-parallel" style="justify-content: left !important;">
+                                <div style="margin-right: 8px;">
+                                    <h5>Subtasks </h5>
+                                </div>
+                                <div class="plus-symbol" onclick="addSubtaskInputField()"><a class="plus-text">+</a>
+                                </div>
+                            </div>
+                            <div class="progress-section in-parallel">
+                                <div class="progress-bar">
+                                    <div class="relative-progress"></div>
+                                </div>
+                                <div class="progress-fraction">0/1 Subtasks</div>
+                            </div>
+                            <div id="subtasksId" class="subtasks-container">
+                                <li id="subtask-1">
+                                    <input type="checkbox" id="subtask-checkbox-1" checked>
+                                    <span id="subtask-text-1">Subtask 1</span>
+                                </li>
+                            </div>
 
                         </ul>
                         <div class="card-footer">
+                            <div id="cardMembersId" class="card-members">
+                                <!-- render contact initials here: cardMembersId -->
+                            </div>
                             <span class="delete-btn" onclick="pressDeleteInDialog()"><img
                                     src="./assets/img/delete-button.png" height="20px"></span>
                             <span class="edit-btn" onclick="pressSaveInDialog()"><img src="./assets/img/edit-button.png"
