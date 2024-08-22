@@ -96,6 +96,7 @@ function checkPassword(Password, confirmPassword, userData) {
 let UserData = [];
 window.loggedinUser = [];
 
+
 async function fetchUserData() {
   try {
     let response = await fetch(Base_URL + "User.json", {
