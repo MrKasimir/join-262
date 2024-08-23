@@ -248,12 +248,6 @@ justify-content: center;
   justify-content: space-between;
 }
 
-.Join-Logo {
-  width: 100px;
-  height: 120px;
-  margin-top: 80px;
-  margin-left: 77px;
-}
 
 .using-terms {
   width: 246px;
@@ -474,6 +468,13 @@ justify-content: center;
   background-color: white;
 }
 
+.addTask-multipychoice-input {
+  width: 440px;
+  height: 44px;
+  border-radius: 10px;
+  background-color: white;
+}
+
 .suptask-input-addTask {
   width: 440px;
   height: 44px;
@@ -543,6 +544,7 @@ color: #29ABE2;
   border: 1px solid #2A3647;
   background: #2A3647;
   color: white;
+  padding-top: 10px;
 }
 
 .addTask-creat-button:hover {
@@ -660,39 +662,82 @@ p {
     background-color: rgb(38, 198, 38);
 }
 
-.joinMobileLoggo{
-  height: 40px;
-  margin-left: 20px;
-  width: 32px;
-  display: none;
-}
-.mobileLine{
-  width: 110px;
-  height: 2px;
-  background-color: rgb(20, 175, 241);
-  position: fixed;
-  top: 280px;
-  display: none;
-}
-
-.mobileSidebaricons{
+.mobileSidebar{
   display: flex;
-  flex-direction: column;
-  color: white;
-  margin-left: 10px;
-  margin-right: 10px;
+  height: 100px;
+  width: 100%;
+  background-color: #2A3647;
+  position: fixed;
+  bottom: 0px;
+  justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  display: none;
+  margin-top: 10px;
+  cursor: pointer;
+ }
+.mobileSidebaricons{
+display: flex;
+flex-direction: column;
+color: white;
+margin-left: 10px;
+margin-right: 10px;
+align-items: center;
+padding: 15px;
+display: none;
+margin-top: 10px;
+
+}
+.mobileLink{
+text-decoration: none;
 }
 .mobileIconImg{
-  width: 40px;
-  display: none;
+width: 40px;
+display: none;
 }
 .mobileSidebaricons:hover{
-  background-color: #1d2633;
-  border-radius: 10px;
+background-color: #1d2633;
+border-radius: 10px;
 
+}
+
+
+
+
+
+
+.joinLogoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Logo-Anfangsstatus */
+.joinLogo {
+  position: absolute;
+  background-color: #F6F7F8;
+  width: 100px; /* Anfangsgröße */
+  height: 120px;
+  opacity: 1; 
+  animation: logoAnimation 1.5s ease forwards; /* Die Animation dauert 2 Sekunden */
+  z-index: 2;
+}
+
+/* Animation */
+@keyframes logoAnimation {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(10);
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+    transform: translate(0, 0) scale(1);
+    width: 100px;
+    height: 100px;
+    margin-left: 77px;
+    margin-top: 80px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -905,5 +950,13 @@ p {
     background-color: #1d2633;
     border-radius: 10px;
     display: flex;
+  }
+
+  .addTask-multipychoice-input {
+    display: none;
+  }
+
+  .addTask-creat-button {
+    margin-right: 20px;
   }
 }
