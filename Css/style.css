@@ -704,14 +704,14 @@ border-radius: 10px;
 
 
 
-.joinLogoContainer {
+.joinLogoContaineranimation {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 /* Logo-Anfangsstatus */
-.joinLogo {
+.joinLogoanimated {
   position: absolute;
   background-color: #F6F7F8;
   width: 100px; /* Anfangsgröße */
