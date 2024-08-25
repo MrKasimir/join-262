@@ -656,6 +656,10 @@ p {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.logo-display-none {
+  display: none;
+}
+
 .addTask-button-urg.active {
     background-color: rgb(255, 28, 28);
 }
@@ -879,6 +883,7 @@ border-radius: 10px;
    .addTask-headline {
     margin-left: 10px;
     margin-top: 120px;
+    font-size: 44px;
    }
 
    .description {
@@ -887,21 +892,21 @@ border-radius: 10px;
    }
 
    .addTask-due-date-input {
-    width: 385px;
+    width: 365px;
     height: 40px;
    }
 
    .addTask-describtion-input {
-    width: 385px;
+    width: 365px;
     height: 88px;
    }
 
    .addTask-contacts-multipychoice-input {
-    width: 390px;
+    width: 365px;
    }
 
    .addTask-title-input {
-    width: 385px;
+    width: 365px;
    }
 
    .addTask-last-div {
@@ -917,10 +922,15 @@ border-radius: 10px;
    .addTask-creat-button {
     width: 180px;
     height: 55;
+    margin-bottom: 150px;
 }
 
    .addTask-input-fields-div-last-mobile {
     margin-bottom: 0;
+   }
+
+   .TextForCreatButton {
+    margin-bottom: 150px;
    }
 
    .joinMobileLoggo{
@@ -937,6 +947,10 @@ border-radius: 10px;
     top: 280px;
     display: flex;
   }
+
+  .mobileSidebar {
+    height: 70px;
+  }
   
   .mobileSidebaricons{
     display: flex;
@@ -945,11 +959,12 @@ border-radius: 10px;
     margin-left: 10px;
     margin-right: 10px;
     align-items: center;
-    padding: 15px;
+    padding: 7px;
     display: flex;
+
   }
   .mobileIconImg{
-    width: 40px;
+    width: 30px;
     display: flex;
   }
   .mobileSidebaricons:hover{
@@ -962,7 +977,32 @@ border-radius: 10px;
     display: none;
   }
 
-  .addTask-creat-button {
+  .d-button {
     margin-right: 20px;
+  }
+
+  .descriptionHeadline {
+    display: none;
+  }
+
+  .qmImg {
+    display: none;
+  }
+
+  .logo-display-none {
+    display: flex;
+    width: 30px;
+    margin-left: 20px;
+  }
+
+  .circleName {
+    color: rgb(20, 175, 241);
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    text-align: center;
   }
 }
