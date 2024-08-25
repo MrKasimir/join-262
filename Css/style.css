@@ -10,6 +10,12 @@ body {
   font-style: normal;
 }
 
+.Join-Logo-signUp{
+  margin-top: 60px;
+  margin-left: 80px;
+  margin-bottom: 100px;
+}
+
 .input-container {
   position: relative;
 }
