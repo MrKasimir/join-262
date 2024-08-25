@@ -1,4 +1,4 @@
-const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL = "https://join262-default-rtdb.europe-west1.firebasedatabase.app/";
 
 // defaultTasks sind hier dummy Werte zum testen
 // die tatsächlichen defaultTasks werden jedesmal aus firebase geladen 

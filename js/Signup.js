@@ -1,5 +1,5 @@
 const Base_URL =
-  "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
+  "https://join262-default-rtdb.europe-west1.firebasedatabase.app/";
 // SIGNUP
 let Contacts = [];
 
