@@ -814,6 +814,7 @@ function resetVoidDialogVisuals() {
     renderContactsInDialog();
     pressEditInDialog();
     unclickAllPrioButtons();
+    unRenderDialogOkButton()
 
     document.getElementById('title-text').innerText = 'Create a NEW Title';
     document.getElementById('subtitle-text').innerText = 'Create a NEW description...';
@@ -842,6 +843,7 @@ function getToday() {
  * This function resets all dialog inputFields for a CLICKED kanbanCard
  */
 function resetClickedDialogVisuals() {
+    unRenderDialogOkButton()
     addOverlay();
     renderContactsInDialog();
     
@@ -1099,6 +1101,18 @@ function pressEditInDialog() {
     readTitleInput();
     readDescriptionInput();
     readDateInput();
+}
+
+function renderDialogOkButton(){
+    document.getElementById('okButtonId').classList.remove('d-none');
+}
+
+function unRenderDialogOkButton(){
+    document.getElementById('okButtonId').classList.add('d-none');
+}
+
+function pressOkInDialog(){
+    saveDialogCardToTasks();
 }
 
 function updateAssignedContacts() {
