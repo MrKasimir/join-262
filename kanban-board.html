@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="Css/kanbanDialogStyle.css">
     <link rel="stylesheet" href="Css/summary.css">
     <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
-
+    <link rel="stylesheet" href="Css/fonts.css">
     <script src="js/kanban-script.js"></script>
     <script src="js/kanbanDialogScript.js" defer></script>
+    <!-- <script src="js/kanbanContactBookScript.js" defer></script> -->
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,24 +93,25 @@
                     <div class="card">
                         <div class="card-header">
                             <span class="story-category" id="story-category-container">
-                                <span id="story-category-text">Select Tasks Category</span>
+                                <span id="story-category-text" onclick="readStoryCategory()">Select Tasks Category</span>
                                 <select id="story-category-select" style="display: none;">
-                                    <option value="User Story" data-color="#007bff">User Story</option>
-                                    <option value="Technical Task" data-color="#20c997">Technical Task</option>
+                                    <option value="User Story" onselect="readStoryCategory()" data-color="#007bff">User Story</option>
+                                    <option value="Technical Task" onselect="readStoryCategory()" data-color="#20c997">Technical Task</option>
                                 </select>
                             </span>
                             <span class="close-btn" onclick="pressXInDialog()">&times;</span>
                         </div>
                         <div class="card-title" id="title-container">
-                            <span id="title-text">Title</span>
+                            <span id="title-text"></span>
                             <input type="text" id="title-input" style="display: none;" />
                         </div>
                         <div class="card-subtitle" id="subtitle-container">
-                            <span id="subtitle-text">Description</span>
+                            <span id="subtitle-text"></span>
                             <input type="text" id="subtitle-input" style="display: none;" />
                         </div>
                         <div class="">
-                            <div class="in-parallel" style="justify-content: left !important;"><h5>Due date: &nbsp;</h5>
+                            <div class="in-parallel" style="justify-content: left !important;">
+                                <h5>Due date: &nbsp;</h5>
                                 <div class="due-date ">
                                     <span id="due-date-text">01/01/2025</span>
                                     <input type="text" id="due-date-input" style="display: none;" />
@@ -119,7 +121,7 @@
                             <!-- START: new Priority section -->
                             <div id="" class="priority-dialog">
                                 <!-- <div>Priority:</div> -->
-                                <h5>Priority</h5>
+                                <h5 style="margin-bottom: 4px;">Priority</h5>
                                 <div class="in-parallel">
                                     <div id="low-button" class="low-select" onclick="prioLowClick()"></div>
                                     <div id="medium-button" class="medium-select" onclick="prioMediumClick()"></div>
@@ -171,8 +173,8 @@
 
                         <!-- START: Test Section for ContactBook -->
                         <div class="in-parallel" style="justify-content: left !important;">
-                            <h5 style="margin-right: 8px;">Select contacts to assign</h5>
-                            <div class="plus-symbol" onclick="makeContactsVisible()"><a class="plus-text">+</a></div>
+                            <h5 style="margin-right: 8px; margin-bottom: 4px;">Assigned To:</h5>
+                            <!-- <div class="plus-symbol" onclick="makeContactsVisible()"><a class="plus-text">+</a></div> -->
                         </div>
                         <div id='contactSelectionBoxId' class="contact-selection-field d-none">
                             <!-- <div><strong>Select contacts to assign</strong></div> -->
@@ -181,7 +183,7 @@
                             </div>
                         </div>
 
-                   <!--      <div class="assigned" onclick="populateAssigneeSelect()">
+                        <!--      <div class="assigned" onclick="populateAssigneeSelect()">
                             <span>new Assignee section</span>
                             <select id="assignee-select">
                                 <option value="" selected disabled>Choose contact</option>
@@ -190,24 +192,20 @@
                         <!-- END: Test Section for ContactBook -->
 
                         <ul class="subtasks" id="subtasks-list">
-                            <div class="in-parallel" style="justify-content: left !important;">
+                            <div class="in-parallel" style="justify-content: space-between !important;">
                                 <div style="margin-right: 8px;">
-                                    <h5>Subtasks </h5>
+                                    <h5 style="margin-bottom: -5px;">Subtasks </h5>
                                 </div>
-                                <div class="plus-symbol" onclick="addSubtaskInputField()"><a class="plus-text">+</a>
+                                <div class="plus-btn" onclick="addSubtaskInputField()"><a>+</a>
                                 </div>
                             </div>
                             <div class="progress-section in-parallel">
-                                <div class="progress-bar">
-                                    <div class="relative-progress"></div>
+                                <!-- <div class="progress-bar">
+                                    <div id="relativeProgressId" class="relative-progress"></div>
                                 </div>
-                                <div class="progress-fraction">0/1 Subtasks</div>
+                                <div id="progressSectionId" class="progress-fraction"></div> -->
                             </div>
-                            <div id="subtasksId" class="subtasks-container">
-                                <li id="subtask-1">
-                                    <input type="checkbox" id="subtask-checkbox-1" checked>
-                                    <span id="subtask-text-1">Subtask 1</span>
-                                </li>
+                            <div id="subtasksId" class="subtasks-container d-none">
                             </div>
 
                         </ul>
@@ -217,7 +215,7 @@
                             </div>
                             <span class="delete-btn" onclick="pressDeleteInDialog()"><img
                                     src="./assets/img/delete-button.png" height="20px"></span>
-                            <span class="edit-btn" onclick="pressSaveInDialog()"><img src="./assets/img/edit-button.png"
+                            <span class="edit-btn" onclick="pressEditInDialog()"><img src="./assets/img/edit-button.png"
                                     height="20px"></span>
                         </div>
                     </div>
