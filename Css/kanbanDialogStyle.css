@@ -308,6 +308,23 @@ h5{
     transition: ease-in-out 100ms;
 }
 
+.ok-btn{
+    background-image: url(../assets/img/primary-check-button.png);
+    width: 161px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid transparent;
+    border-radius: 8px;
+}
+
+.ok-btn:hover{
+    border: 1px solid rgba(31, 215, 193, 0.33);
+    background-color: rgba(31, 215, 193, 0.33);
+    border-radius: 8px;
+    transition: ease-in-out 100ms;
+}
+
 .low-select {
     background-image: url("../assets/img/void-low.png");
 }
