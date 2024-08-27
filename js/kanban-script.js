@@ -1,4 +1,31 @@
-const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
+// NEW:
+const BASE_URL = "https://join262-default-rtdb.europe-west1.firebasedatabase.app/";
+
+// OLD:
+//const BASE_URL = "https://join-262-default-rtdb.europe-west1.firebasedatabase.app/";
+
+/**
+ * TODO: Split kanban-script into:
+ * 
+ * kanbanScript.js......................=> core script with all core functions and render functions
+ * kanbanDialogScript.js................=> script to enable dialogCard feature from cardClick, plusSymbolClick and addTaskClick
+ * kanbanDragDropScript.js..............=> script to enable Drag&Drop feature
+ * kanbanSearchFunctionalityScript.js...=> script to enable search & highlight kanbanCard feature
+ * kanbanLocalPlusApiStorage.js.........=> script to operate backend integration between board, local storage and firebase API
+ */
+
+
+/**
+ * This function resets KanbanBoard and local Storage
+ *  REMOVE THIS FUNCTION FROM FINAL VERSION
+ */
+function reset() {
+    tasks = [];
+    deleteKanbanBoard();
+    localStorage.clear();
+    tasks = backUpTasks;
+    renderByCategory();
+}
 
 // defaultTasks sind hier dummy Werte zum testen
 // die tatsächlichen defaultTasks werden jedesmal aus firebase geladen 
@@ -9,10 +36,28 @@ let defaultTasks = [{
     'titleCategory': 'User Story',
     'description': 'Enter a description for your task',
     'priority': 'Medium',
-    'assignedTo': '+C',
-    'subtasks': 'create subtasks',
-    'dueDate': '01/01/2025'
-}];
+    'assignedTo': ['Sophia Müller', 'Anton Maier'],
+    'assignedInitials': ['SM', 'AM'],
+    'assignedColorCodes': ['rgb(255, 122, 0)', 'rgb(31, 215, 193)'],
+    'subtasks': ['start 1st Dialog', 'create 1st subtask'],
+    'subtasksSelected': ['checked', 'unchecked'],
+    'dueDate': '28/08/2024'
+},
+{
+    'id': 1,
+    'category': 'inProgress',
+    'title': '2nd Title of your task here...',
+    'titleCategory': 'Technical Task',
+    'description': '2nd Description',
+    'priority': 'Urgent',
+    'assignedTo': ['Anton Maier'],
+    'assignedInitials': ['AM'],
+    'assignedColorCodes': ['rgb(31, 215, 193)'],
+    'subtasks': ['start 2nd Dialog', 'create 2nd subtask'],
+    'subtasksSelected': ['checked', 'checked'],
+    'dueDate': '28/08/2024'
+}
+];
 
 
 /////////////////// START: contactBook feature //////////////////
@@ -34,7 +79,7 @@ function writeNameInitialsInContactBook() {
 }
 
 function writeColorCodeInContactBook() {
-    let colorCodes = ['ff7a00', '1fd7c1', '462f8a', 'fc71ff', '6e52ff', '00bee8', '6e52ff', 'ffbb2b', '9327ff', 'ff4646'];
+    let colorCodes = ['rgb(255, 122, 0)', 'rgb(31, 215, 193)', 'rgb(70, 47, 138)', 'rgb(252, 113, 255)', 'rgb(110, 82, 255)', 'rgb(0, 190, 232)', 'rgb(110, 82, 255)', 'rgb(255, 187, 43)', 'rgb(147, 39, 255)', 'rgb(255, 70, 70)'];
     let colorCount = 0;
     for (let i = 0; i < contactBook.length; i++) {
         contactBook[i].colorCode = colorCodes[colorCount];
@@ -58,7 +103,7 @@ function renderContactsInDialog() {
         document.getElementById('contactSelectionId').innerHTML += `
     <div class="contact-row">
     <div class="contact-row">
-        <div class="contact-initials" id="assignedInitial${i}" style="background-color: #${contactBook[i].colorCode} !important">${contactBook[i].initials}</div>
+        <div class="contact-initials" id="assignedInitial${i}" style="background-color: ${contactBook[i].colorCode} !important">${contactBook[i].initials}</div>
         <div class="contact-name" id="assignedContactName${i}">${contactBook[i].firstName} ${contactBook[i].lastName}</div>
     </div>    
         <input type="checkbox" onclick="updateAssignedContacts()" id="contactCheckbox${i}" unchecked></input>
@@ -76,13 +121,9 @@ function populateAssigneeSelect() {
     const selectElement = document.getElementById('assignee-select');
 
     contactBook.forEach(contact => {
-        // Erstelle ein neues option-Element
         const option = document.createElement('option');
-        // Setze den Wert auf den vollständigen Namen
         option.value = `${contact.firstName} ${contact.lastName}`;
-        // Setze den angezeigten Text auf den vollständigen Namen
         option.textContent = `${contact.firstName} ${contact.lastName}`;
-        // Füge die neue Option dem select-Element hinzu
         selectElement.appendChild(option);
     });
 }
@@ -94,7 +135,7 @@ let count = tasks.length;
 let currentDialogTask = [];
 let currentDraggedElement;
 let currentDraggedCategory;
-let addedId = tasks.length - 1;
+//let addedId = tasks.length;
 
 let numberTodos = 0;
 let numberInProgress = 0;
@@ -163,7 +204,7 @@ function loadBoardFromLocalStorage() {
 function renderByCategory() {
     deleteKanbanBoard();
     for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].title) {
+        if (tasks[i].category) {
             if (tasks[i].category == 'todo') {
                 updateKanbanBoard(i, tasks[i].category);
             }
@@ -200,19 +241,31 @@ function deleteKanbanBoard() {
  * @param {number} i - The index of the task.
  * @param {string} category - The category of the task.
  */
-function updateKanbanBoard(i, category) {
-    let kanbanDetails = [tasks[i].id,
-    tasks[i].category,       // [0] todo, awaitFeddback, etc
-    tasks[i].titleCategory,  // [1] user story, technical task etc
-    tasks[i].title,          // [2]
-    tasks[i].description,    // [3]
-    tasks[i].subtasks,       // [4]
-    tasks[i].assignedTo,     // [5]
-    tasks[i].assignedInitals,// [6]
-    tasks[i].priority];      // [7]
-    let kanbanDetailsAsJson = JSON.stringify(kanbanDetails)/* .replace(/"/g, '&quot;') */;
 
-    // background depends on category 'user story' vs 'technical task'
+/* TEST improved updateKanbanBoard Funktion: */
+function updateKanbanBoard(i, category) {
+    let kanbanDetails = [
+        tasks[i].id,
+        tasks[i].category,       // [0] todo, awaitFeddback, etc
+        tasks[i].title,
+        tasks[i].titleCategory,
+        // [1] user story, technical task etc
+        tasks[i].description,    // [3]
+        tasks[i].priority,
+        tasks[i].assignedTo,     // [5]
+        tasks[i].assignedInitials,// [6]
+        //TEST:
+        tasks[i].assignedColorCodes,
+        tasks[i].subtasks,       // [4]
+        tasks[i].subtasksSelected,
+        tasks[i].dueDate
+
+
+    ];
+    console.log('kanbanDetailsAsJson :' + kanbanDetails);
+    let kanbanDetailsAsJson = JSON.stringify(kanbanDetails);
+
+    // Background color based on titleCategory
     let bgColorClass = '';
     if (tasks[i].titleCategory === 'User Story') {
         bgColorClass = 'user-story';
@@ -220,7 +273,7 @@ function updateKanbanBoard(i, category) {
         bgColorClass = 'technical-task';
     }
 
-    // Bestimmen der Prioritätsklasse
+    // Priority class
     let priorityClass = '';
     if (tasks[i].priority === 'Urgent') {
         priorityClass = 'task-priority-urgent';
@@ -230,28 +283,62 @@ function updateKanbanBoard(i, category) {
         priorityClass = 'task-priority-low';
     }
 
-
-
     document.getElementById(category).innerHTML +=
-        `<div onclick='openDialogOnCardClick(${kanbanDetailsAsJson})' class="task-container" draggable="true" ondragstart="startDragging(${tasks[i].id})">
-            <div class="task-titlecategory ${bgColorClass}">${tasks[i].titleCategory}</div>
-            <div class="task-title">${tasks[i].title}</div>
-            <div class="task-description">${tasks[i].description}</div>
-            <div class="task-subtask">${tasks[i].subtasks}</div>
-            <div class="in-parallel">
-                <div class="card-members" id="kanbanMembersId"></div>
-                <div class="task-priority ${priorityClass}">_</div>
-            </div>
-        </div>`;
+        /* `<div onclick='openDialogOnCardClick(${kanbanDetailsAsJson})' class="task-container" draggable="true" ondragstart="startDragging(${tasks[i].id})">
+                <div class="task-titlecategory ${bgColorClass}">${tasks[i].titleCategory}</div>
+                <div class="task-title">${tasks[i].title}</div>
+                <div class="task-description">${tasks[i].description}</div>
+                <div class="task-subtask">
+                    <div class="progress-section in-parallel">
+                        <div class="progress-bar">
+                            <div id="relativeProgressBoardId${i}" class="relative-progress"></div>
+                        </div>
+                        <div id="progressSectionBoardId${i}" class="progress-fraction">subs?</div>
+                    </div>
+                </div>
+                <div class="in-parallel">
+                    <div class="card-members" id="kanbanMembersId${i}"></div>
+                    <div class="task-priority ${priorityClass}">_</div>
+                </div>
+            </div>`; */
 
-    // broken:
-    // update members on kanban-bord
-    for (let i = 0; i < tasks[i].assignedInitals.length; i++) {
-        document.getElementById('kanbanMembersId').innerHTML += `
-        <div class="task-assignee">${tasks[i].assignedInitals[i]}</div>
-        `;
+        `<div onclick='openDialogFromCardClick(${i})' class="task-container" draggable="true" ondragstart="startDragging(${tasks[i].id})">
+                <div class="task-titlecategory ${bgColorClass}">${tasks[i].titleCategory}</div>
+                <div class="task-title">${tasks[i].title}</div>
+                <div class="task-description">${tasks[i].description}</div>
+                <div class="task-subtask">
+                    <div class="progress-section in-parallel">
+                        <div class="progress-bar">
+                            <div id="relativeProgressBoardId${i}" class="relative-progress"></div>
+                        </div>
+                        <div id="progressSectionBoardId${i}" class="progress-fraction">subs?</div>
+                    </div>
+                </div>
+                <div class="in-parallel">
+                    <div class="card-members" id="kanbanMembersId${i}"></div>
+                    <div class="task-priority ${priorityClass}">_</div>
+                </div>
+            </div>`;
+
+
+    // Update members on kanban-board
+    if (tasks[i].assignedInitials && tasks[i].assignedInitials.length > 0) {
+        for (let j = 0; j < tasks[i].assignedInitials.length; j++) {
+            document.getElementById('kanbanMembersId' + i).innerHTML += `
+                <div class="task-assignee" style="background-color: ${tasks[i].assignedColorCodes[j]} !important;">${tasks[i].assignedInitials[j]}</div>
+                `;
+        }
     }
-    //<div class="task-assignee">${tasks[i].assignedTo}</div>
+
+    // render amount of done subtasks in respective to total subtasks, example: 1 / 3 subtasks
+    let numberAllSubtasks = tasks[i].subtasks.length;
+    let doneSubtasks = tasks[i].subtasksSelected.filter(value => value === 'checked').length;
+    let progressbarPercentage = (doneSubtasks / numberAllSubtasks) * 100;
+
+    if (tasks[i].subtasks.length > 1) {
+        document.getElementById('progressSectionBoardId' + i).innerText = doneSubtasks + '/' + numberAllSubtasks + ' subtasks';
+    } else document.getElementById('progressSectionBoardId' + i).innerText = doneSubtasks + '/' + numberAllSubtasks + ' subtask';
+    document.getElementById('relativeProgressBoardId' + i).style.width = progressbarPercentage + '%';
 }
 
 
@@ -635,33 +722,36 @@ async function fetchUserData() {
 
 /////////////////////////////// Dialog Card Funktions //////////////////////////////
 
-function getDialogDetails(inputCategory) {
+/* function getDialogDetails(inputCategory) {
 
     console.log('dialog started in :' + inputCategory);
     console.log('Title:' + document.getElementById('title-text').innerHTML);
+
     currentDialogTask = {
         'id': tasks.length,
         'category': inputCategory,
         'title': document.getElementById('title-text').innerHTML,
         'titleCategory': document.getElementById('story-category-select').value,
         'description': document.getElementById('subtitle-text').innerHTML,
-        /* 'assignedTo': [], */
-        // Wieder einbinden sobald Dialog Karte fertig 
-        /*         'priority': document.getElementById('priority-select').value,
-                'assignedTo': 'JS',
-                'subtasks': 'subtask', */
+        'assignedContacts': [],
+        'assignedInitials': [],
+        'assignedColorCodes': [],
+        'subtasks': [],
+        'subtasksSelected': [],
+        'dueDate': '01/01/1900'
     };
-}
+} */
 
 
 
 // TODO: Fehlende Werte ergänzen (nicht nur Titel)
 function refreshDialogDetails() {
+    unRenderContactsInDialog();
+    unclickAllPrioButtons();
     document.getElementById('title-text').innerHTML = 'add in new title';
     document.getElementById('subtitle-text').innerHTML = 'add new description'; // Clearing description for new task
     document.getElementById('story-category-select').value = 'User Story'; // Default value
-    // Wieder einbinden sobald Dialog Karte fertig:
-    //document.getElementById('priority-select').value = 'low'; // Default value
+    document.getElementById('subtasksId').innerHTML = '';
 }
 
 
@@ -707,42 +797,187 @@ function saveDialogToBoard() {
 }
 
 // openDialog('awaitFeedback') soll den Task in die Await Feedback in die Kategorie "Await Feedback" ablegen 
-function openDialog(inputCategory) {
+/* function openDialog(inputCategory) {
     addOverlay();
     renderContactsInDialog();
     getDialogDetails(inputCategory);
     refreshDialogDetails();
+} */
+
+
+//////////////////// START - SECTION: Open Dialog Card - //////////////////
+/**
+ * This function resets all dialog inputFields for a VOID dialogCard
+ */
+function resetVoidDialogVisuals() {
+    addOverlay();
+    renderContactsInDialog();
+    pressEditInDialog();
+    unclickAllPrioButtons();
+
+    document.getElementById('title-text').innerText = 'Create a NEW Title';
+    document.getElementById('subtitle-text').innerText = 'Create a NEW description...';
+    document.getElementById('due-date-text').innerText = getToday();
+    document.getElementById('story-category-text').innerText = 'User Story';
+    document.getElementById('subtasksId').innerHTML = '';
+    document.getElementById('cardMembersId').innerHTML = '';
 }
 
-// openDialogOnCardClick
-/* function openDialogOnCardClick(kanbanDetailsAsJson) {
-    currentDialogTask = {
-        'id': kanbanDetailsAsJson[0],
-        'category': kanbanDetailsAsJson[1],
-        'title': kanbanDetailsAsJson[3],
-        'titleCategory': kanbanDetailsAsJson[2],
-        'description': kanbanDetailsAsJson[4],
-        'priority': 'default',
-        'assignedTo': 'default',
-        'subtasks': 'default',
-    };
+/**
+ * This function returns today's date in the format yyyy/mm/dd.
+ * @returns {string} The formatted date string in the format "yyyy/mm/dd".
+ */
+function getToday() {
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = String(today.getMonth() + 1).padStart(2, '0');
+    let day = String(today.getDate()).padStart(2, '0');
+    return formattedDate = `${year}/${month}/${day}`;
+}
 
-    // angeklickte Karte aus tasks löschen (wird bei save wieder hinzugefügt)
-    for (let i = 0; i < tasks.length; i++) {
-        // ID's abgleichen
-        if (tasks[i]['id'] == kanbanDetailsAsJson[0]) {
-            tasks.splice(i, 1);  // Entferne den Task aus dem Array
-            break;
+///////////////////////////////////////////////////////////////////////
+//////////////////////  BAUSTELLE - Start   ///////////////////////////
+///////////////////////////////////////////////////////////////////////
+/**
+ * This function resets all dialog inputFields for a CLICKED kanbanCard
+ */
+function resetClickedDialogVisuals() {
+    addOverlay();
+    renderContactsInDialog();
+    
+    makeContactsVisible();
+    makeSubtasksVisible();
+    addSubtaskInputField();
+    //pressEditInDialog();
+    //unclickAllPrioButtons();
+    document.getElementById('cardMembersId').innerHTML = '';
+    document.getElementById('title-text').innerText = currentDialogTask[0].title;
+    document.getElementById('subtitle-text').innerText = currentDialogTask[0].description;
+    document.getElementById('due-date-text').innerText = currentDialogTask[0].dueDate;
+    document.getElementById('story-category-text').innerText = currentDialogTask[0].titleCategory;
+    if (document.getElementById('story-category-text').innerText == 'Technical Task') document.getElementById('story-category-container').style.backgroundColor = "#20c997";
+    else document.getElementById('story-category-container').style.backgroundColor = "#007bff";
+    /*     document.getElementById('subtasksId').innerHTML = '';
+        document.getElementById('cardMembersId').innerHTML = ''; */
+
+    switch (currentDialogTask[0].priority) {
+        case ('Low'): prioLowClick(); break;
+        case ('Medium'): prioMediumClick(); break;
+        case ('Urgent'): prioUrgentClick(); break;
+    }
+    // Update members on dialog from card click
+    if (currentDialogTask[0].assignedInitials && currentDialogTask[0].assignedInitials.length > 0) {
+        for (let j = 0; j < currentDialogTask[0].assignedInitials.length; j++) {
+            document.getElementById('cardMembersId').innerHTML += `
+                    <div class="task-assignee" style="background-color: ${currentDialogTask[0].assignedColorCodes[j]} !important;">${currentDialogTask[0].assignedInitials[j]}</div>
+                    `;
+            for (let i = 0; i < contactBook.length; i++) {
+                if (contactBook[i].initials == currentDialogTask[0].assignedInitials[j]) {
+                    document.getElementById('contactCheckbox' + i).checked = true;
+                }
+            }
         }
     }
 
-    addOverlay();
-    console.log(kanbanDetailsAsJson);
+    // update assigned Contacts to dialogCard
 
-    document.getElementById('title-text').innerHTML = kanbanDetailsAsJson[3]; // title
-    document.getElementById('subtitle-text').innerHTML = kanbanDetailsAsJson[4]; // description
-    document.getElementById('story-category-select').value = kanbanDetailsAsJson[2]; // titleCategory: user story vs technical task
-} */
+}
+
+function openDialogFromCardClick(i) {
+    currentDialogTask = new Array;
+    currentDialogTask = [{
+        'id': tasks[i].id,
+        'category': tasks[i].category,
+        'title': tasks[i].title,
+        'titleCategory': tasks[i].titleCategory,
+        'description': tasks[i].description,
+        'priority': tasks[i].priority,
+        'assignedTo': tasks[i].assignedTo,
+        'assignedInitials': tasks[i].assignedInitials,
+        'assignedColorCodes': tasks[i].assignedColorCodes,
+        'subtasks': tasks[i].subtasks,
+        'subtasksSelected': tasks[i].subtasksSelected,
+        'dueDate': tasks[i].dueDate,
+    }];
+
+    resetClickedDialogVisuals();
+    //console.log('Selected Kanbancard: ' + tasks[i].title);
+}
+
+///////////////////////////////////////////////////////////////////////
+//////////////////////  BAUSTELLE - Ende    ///////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+/**
+ * Onclick Plus-Symbol in KanbanBoard, this function generates a new dialogCard
+ * @param {string} inputCategory 
+ */
+function openDialog(inputCategory) {
+    currentDialogTask = new Array;
+    currentDialogTask = [{
+        'id': tasks.length,
+        'category': inputCategory,
+        'title': 'Create a NEW Title',
+        'titleCategory': 'User Story',
+        'description': 'Create a NEW description...',
+        'priority': 'Low',
+        'assignedTo': [],
+        'assignedInitials': [],
+        'assignedColorCodes': [],
+        'subtasks': ['no subtasks added yet'],
+        'subtasksSelected': ['unchecked'],
+        'dueDate': '',
+    }];
+    resetVoidDialogVisuals();
+
+    for (let i = 0; i < currentDialogTask[0].subtasks.length; i++) {
+        document.getElementById('subtasksId').innerHTML += `
+        <li id="subtask${i}">
+            <input onclick="readCheckMark(${i})" type="checkbox" id="selectedSubtaskId${i}" ${currentDialogTask[0].subtasksSelected[i]}></input>
+            <input onclick="remindEventListener(${i})" type="inputField" id="subtaskId${i}" placeholder="..." class="subtask-input"></input>      
+        </li>`;
+        readCheckMark(i);
+        remindEventListener(i);
+    }
+}
+
+function remindEventListener(i) {
+    document.getElementById('subtaskId' + i).addEventListener('blur', function (event) {
+        let boxStatus = document.getElementById('selectedSubtaskId' + i).checked;
+        let inputString = document.getElementById('subtaskId' + i).value;
+        console.log('box: ' + boxStatus + ' ---- value: ' + inputString);
+        currentDialogTask[0].subtasks[i] = inputString;
+    });
+}
+
+function readCheckMark(i) {
+    let boxStatus = document.getElementById('selectedSubtaskId' + i).checked;
+    if (boxStatus == false) currentDialogTask[0].subtasksSelected[i] = 'unchecked';
+    else if (boxStatus == true) currentDialogTask[0].subtasksSelected[i] = 'checked';
+    console.log(boxStatus);
+}
+
+function readStoryCategory() {
+    let storyCategory = document.getElementById('story-category-select').value;
+    currentDialogTask[0].titleCategory = storyCategory;
+}
+
+function readTitleInput() {
+    let title = document.getElementById('title-text').innerText;
+    currentDialogTask[0].title = title;
+}
+
+function readDescriptionInput() {
+    let description = document.getElementById('subtitle-text').innerText;
+    currentDialogTask[0].description = description;
+}
+
+function readDateInput() {
+    let dueDate = document.getElementById('due-date-input').value;
+    if(dueDate != '') currentDialogTask[0].dueDate = dueDate;
+    else currentDialogTask[0].dueDate = document.getElementById('due-date-text').innerText;
+}
+//////////////////// END - SECTION: Open Dialog Card - //////////////////
 
 // neue openDialogOnCardClick
 /**
@@ -757,20 +992,42 @@ function openDialog(inputCategory) {
  * @param {string} assignedTo - The assignee of the task.
  * @param {string} priority - The assignee of the task.
  */
+
+/* 0    'id': 0,
+   1 'category': 'todo',
+   2 'title': 'Create Title of your task here...',
+   3 'titleCategory': 'User Story',
+   4 'description': 'Enter a description for your task',
+   
+   5'priority': 'Medium',
+   6 'assignedTo': ['Johnny Default'],
+   7 'assignedInitials': ['JD'],
+   8 'assignedColorCodes': [],
+   9 'subtasks': ['create subtasks', 'test subtasks'],
+   10 'subtasksSelected': [true,false],
+    
+   'dueDate': '01/01/2025' */
+
+
+
 function openDialogOnCardClick(kanbanDetailsAsJson) {
     renderContactsInDialog();
     currentDialogTask = {
         'id': kanbanDetailsAsJson[0],
         'category': kanbanDetailsAsJson[1],
-        'title': kanbanDetailsAsJson[3],
-        'titleCategory': kanbanDetailsAsJson[2],
+        'title': kanbanDetailsAsJson[2],
+        'titleCategory': kanbanDetailsAsJson[3],
         'description': kanbanDetailsAsJson[4],
-        'priority': kanbanDetailsAsJson[8],
+        'priority': kanbanDetailsAsJson[5],
         'assignedTo': kanbanDetailsAsJson[6],
-        'assignedInitals': '',
-        'subtasks': kanbanDetailsAsJson[5],
-        'dueDate': kanbanDetailsAsJson[7],
+        'assignedInitials': kanbanDetailsAsJson[7],
+        'assignedColorCodes': kanbanDetailsAsJson[8],
+        'subtasks': kanbanDetailsAsJson[9],
+        'subtasksSelected': kanbanDetailsAsJson[10],
+        'dueDate': kanbanDetailsAsJson[11],
     };
+    console.log('currentDialogTask: ' + currentDialogTask);
+    // updateAssignedContacts();
 
     // Entferne die Karte aus der aktuellen Liste
     tasks = tasks.filter(task => task.id !== kanbanDetailsAsJson[0]);
@@ -779,7 +1036,7 @@ function openDialogOnCardClick(kanbanDetailsAsJson) {
     document.getElementById('subtitle-text').innerHTML = kanbanDetailsAsJson[4]; // description
     //document.getElementById('due-date-text').innerHTML = kanbanDetailsAsJson[7]; // due date
 
-    let priority = kanbanDetailsAsJson[8];
+    let priority = currentDialogTask.priority;
     switch (true) {
         case (priority == 'Low'): prioLowClick(); break;
         case (priority == 'Medium'): prioMediumClick(); break;
@@ -787,8 +1044,28 @@ function openDialogOnCardClick(kanbanDetailsAsJson) {
     }
     document.getElementById('story-category-select').value = kanbanDetailsAsJson[2]; // titleCategory: user story vs technical task
 
-    // Noch einbinden sobald Dialog Karte fertig designed: Subtasks
+    // example: render done subtasks / of all subtasks
+    let numberAllSubtasks = currentDialogTask['subtasks'].length;
+    let doneSubtasks = currentDialogTask['subtasksSelected'].filter(value => value === 'checked').length;
+    let progressbarPercentage = (doneSubtasks / numberAllSubtasks) * 100;
 
+    console.log(doneSubtasks + ' done subs');
+
+    if (currentDialogTask.subtasks.length > 1) {
+        document.getElementById('progressSectionId').innerText = doneSubtasks + '/' + numberAllSubtasks + ' subtasks';
+    } else document.getElementById('progressSectionId').innerText = doneSubtasks + '/' + numberAllSubtasks + ' subtask';
+    document.getElementById('relativeProgressId').style.width = progressbarPercentage + '%';
+
+
+    // render subtasks in inputfields
+    for (let i = 0; i < currentDialogTask.subtasks.length; i++) {
+        document.getElementById('subtasksId').innerHTML += `
+            <li id="subtask"${i}>
+            <input type="checkbox" id="" ${currentDialogTask.subtasksSelected[i]}>
+            <input type="inputField" id="" placeholder="${currentDialogTask.subtasks[i]}" class="subtask-input">
+            </li>       
+        `;
+    }
 }
 
 function addOverlay() {
@@ -802,55 +1079,101 @@ function removeOverlay() {
 }
 
 function pressSaveInDialog() {
-    unclickAllPrioButtons();
-    updateAssignedContacts();
-    unRenderContactsInDialog();
-    saveDialogToBoard();
-    //    saveBoardAsTasksToLocalStorage();
-    removeOverlay();
-    //    renderByCategory();
+    /*     unclickAllPrioButtons();
+        updateAssignedContacts();
+        unRenderContactsInDialog();
+        saveDialogToBoard();
+        //    saveBoardAsTasksToLocalStorage();
+        removeOverlay();
+        //    renderByCategory(); */
+}
+
+function makeSubtasksVisible() {
+    document.getElementById('subtasksId').classList.remove('d-none');
+}
+
+function pressEditInDialog() {
+    makeContactsVisible();
+    makeSubtasksVisible();
+    readStoryCategory();
+    readTitleInput();
+    readDescriptionInput();
+    readDateInput();
 }
 
 function updateAssignedContacts() {
+
+    /*     for (let i = 0; i < currentDialogTask.assignedTo.length; i++) {
+            for (let j = 0; j < contactBook.length; j++)
+                if (document.getElementById('assignedContactName' + j) == currentDialogTask.assignedTo[i]) {
+                    console.log(currentDialogTask.assignedTo[i] + ' übereinstimmung');
+                }
+        } */
+
     let selectedContacts = []; // these contacts shall be included to kanban card
     let selectedInitials = [];
     let colorCodesRgb = [];
     let backgroundColor;
+
+    /*     if(currentDialogTask != null){
+            selectedContacts = currentDialogTask[0].assignedTo;
+            selectedInitials = currentDialogTask[0].assignedTo;
+            colorCodesRgb = currentDialogTask[0].colorCodes;
+            console.log('TEST Contacts');
+        } */
+
+
+    /*     for (let i = 0; i < currentDialogTask.assignedTo.length; i++) {
+            selectedContacts.push(currentDialogTask.assignedTo[i]); // these contacts shall be included to kanban card
+            selectedInitials.push(currentDialogTask.assignedInitials[i]);
+            colorCodesRgb.push(currentDialogTask.assignedColorCodes[i]);
+        } */
+
     // clean out all assigned members on dialogCard and kanbanCard before rendering;
     document.getElementById('cardMembersId').innerHTML = '';
-    document.getElementById('kanbanMembersId').innerHTML = '';
+    // document.getElementById('kanbanMembersId').innerHTML = '';
 
     for (let i = 0; i < contactBook.length; i++) {
         if (document.getElementById('contactCheckbox' + i).checked) {
             //console.log(document.getElementById('assignedContactName' + i).innerText);
             let selectedContact = document.getElementById('assignedContactName' + i).innerText;
             let selectedInitial = document.getElementById('assignedInitial' + i).innerText;
+            console.log(selectedContact);
             selectedContacts.push(selectedContact);
             selectedInitials.push(selectedInitial);
 
+            /* currentDialogTask.assignedTo.push(selectedContact);
+            currentDialogTask.assignedInitials.push(selectedInitial); */
+
             // Angenommen, es gibt ein Element mit der ID 'assignedInitial'
             let element = document.getElementById('assignedInitial' + i);
-            // Hole den berechneten Stil des Elements
             let computedStyle = window.getComputedStyle(element);
-            // Hole den Farbcode der Hintergrundfarbe
             backgroundColor = computedStyle.backgroundColor;
-           // console.log(backgroundColor);
+            // console.log(backgroundColor);
             colorCodesRgb.push(backgroundColor);
+            /* currentDialogTask.assignedColorCodes.push(backgroundColor); */
         }
     }
-    currentDialogTask['assignedTo'] = selectedContacts;
-    currentDialogTask['assignedInitials'] = selectedInitials;
+
+    currentDialogTask[0]['assignedTo'] = selectedContacts;
+    currentDialogTask[0]['assignedInitials'] = selectedInitials;
+    currentDialogTask[0]['assignedColorCodes'] = colorCodesRgb;
 
     for (let i = 0; i < selectedInitials.length; i++) {
+        /*  // update on dialog-card
+         document.getElementById('cardMembersId').innerHTML += `
+         <div class="task-assignee" style="background-color: ${colorCodesRgb[i]} !important;">${selectedInitials[i]}</div>
+         `; */
+
         // update on dialog-card
         document.getElementById('cardMembersId').innerHTML += `
-        <div class="task-assignee" style="background-color: ${colorCodesRgb[i]} !important;">${selectedInitials[i]}</div>
-        `;
-
-        // updated on kaban-bord
-        document.getElementById('kanbanMembersId').innerHTML += `
-        <div class="task-assignee" style="background-color: ${colorCodesRgb[i]} !important;">${selectedInitials[i]}</div>
-        `;
+         <div class="task-assignee" style="background-color: ${currentDialogTask[0].assignedColorCodes[i]} !important;">
+         ${currentDialogTask[0].assignedInitials[i]}</div>
+         `;
+        /*         // updated on kaban-bord
+                document.getElementById('kanbanMembersId' + currentDialogTask.id).innerHTML += `
+                <div class="task-assignee" style="background-color: ${colorCodesRgb[i]} !important;">${selectedInitials[i]}</div>
+                `; */
     }
 
     console.log(selectedContacts);
@@ -867,9 +1190,20 @@ function updateAssignedContacts() {
 }
  */
 function pressXInDialog() {
-    saveDialogToBoard();
+    //saveDialogToBoard();
     removeOverlay();
     renderByCategory();
+}
+
+function saveDialogCardToTasks(){
+    pressEditInDialog();
+    // case: id of Dialog not in tasks yet => push Card from openDialog to tasks
+    if(tasks.length == currentDialogTask[0].id) tasks.push(currentDialogTask[0]);
+    // case: id of Dialog already in tasks => save currentDialog Card at the right position in tasks
+    else tasks[currentDialogTask[0].id] = currentDialogTask[0];
+    removeOverlay();
+    renderByCategory();
+    //currentDialogTask = [];
 }
 
 function pressDeleteInDialog() {

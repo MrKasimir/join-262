@@ -7,7 +7,7 @@ function prioLowClick() {
         document.getElementById('low-button').classList.add('low-select');
         document.getElementById('low-button').classList.remove('low-select-clicked');
     }
-    currentDialogTask['priority'] = 'Low';
+    currentDialogTask[0]['priority'] = 'Low';
     console.log('low selected');
 }
 
@@ -20,7 +20,7 @@ function prioMediumClick() {
         document.getElementById('medium-button').classList.add('medium-select');
         document.getElementById('medium-button').classList.remove('medium-select-clicked');
     }
-    currentDialogTask['priority'] = 'Medium';
+    currentDialogTask[0]['priority'] = 'Medium';
     console.log('medium selected');
 }
 
@@ -33,7 +33,7 @@ function prioUrgentClick() {
         document.getElementById('urgent-button').classList.add('urgent-select');
         document.getElementById('urgent-button').classList.remove('urgent-select-clicked');
     }
-    currentDialogTask['priority'] = 'Urgent';
+    currentDialogTask[0]['priority'] = 'Urgent';
     console.log('urgent selected');
 }
 
@@ -47,19 +47,46 @@ function unclickAllPrioButtons() {
 }
 
 function addSubtaskInputField() {
-    document.getElementById('subtasksId').innerHTML += `
-            <li id="subtask-2">
-                <input type="checkbox" id="subtask-checkbox-2" unhecked>
-                <input id="subtask-text-2" class="subtask-input" placeholder="enter new subtask here"></input>
-             </li>
-    `;
+    makeSubtasksVisible();
+    let numberOfSubtaskInputs = document.getElementById('subtasksId').querySelectorAll('li').length;
+    console.log(numberOfSubtaskInputs);
 
-    {/* <div id="subtasksId" class="subtasks-container">
-        <li id="subtask-1">
-            <input type="checkbox" id="subtask-checkbox-1" checked>
-                <span id="subtask-text-1">Subtask 1</span>
-        </li>
-    </div> */}
+    document.getElementById('subtasksId').innerHTML = '';
+
+    for(let i = 0; i < currentDialogTask[0].subtasks.length; i++){
+        if(currentDialogTask[0].subtasks[i] != ''){
+            document.getElementById('subtasksId').innerHTML += `
+            <li id="subtask${i}">
+                <input onclick="readCheckMark(${i})" type="checkbox" id="selectedSubtaskId${i}" ${currentDialogTask[0].subtasksSelected[i]}></input>
+                <input onclick="remindEventListener(${i})"type="inputField" id="subtaskId${i}" class="subtask-input" placeholder="${currentDialogTask[0].subtasks[i]}"></input>
+            </li>
+            `;
+        }
+        readCheckMark(i);
+        remindEventListener(i);
+    }
+
+    document.getElementById('subtasksId').innerHTML += `
+    <li id="subtask${currentDialogTask[0].subtasks.length}">
+         <input onclick="readCheckMark(${currentDialogTask[0].subtasks.length})" type="checkbox" id="selectedSubtaskId${currentDialogTask[0].subtasks.length}" unchecked></input>
+         <input onclick="remindEventListener(${currentDialogTask[0].subtasks.length})" type="inputField" id="subtaskId${currentDialogTask[0].subtasks.length}" class="subtask-input" placeholder="..."></input>
+     </li>
+`;
+readCheckMark(currentDialogTask[0].subtasks.length);
+remindEventListener(currentDialogTask[0].subtasks.length);
+}
+
+function hitEventListener(){
+    document.getElementById('subtaskId').addEventListener('blur', function (event) {
+
+        let boxStatus = document.getElementById('selectedSubtaskId' + currentDialogTask[0].subtasks.length).checked;
+        let inputString = document.getElementById('subtaskId' + currentDialogTask[0].subtasks.length).value;
+        console.log('box: ' + boxStatus + ' ---- value: ' + inputString);
+        currentDialogTask[0].subtasks.push(inputString);
+    });
+}
+
+function calculateProgressInDialog() {
 }
 
 
@@ -195,18 +222,18 @@ function makeEditableWithValidation(containerId, textId, inputId, validator = nu
         input.focus();
     });
 
-    input.addEventListener('blur', function () {
-        if (validator && !validator(input.value)) {
-            alert('Ungültiges Datum. Bitte geben Sie ein Datum im Format dd/mm/yyyy ein.');
-            // Setzt das Eingabefeld auf den ursprünglichen Wert zurück
-            input.value = text.textContent;
-            input.focus();
-            return;
-        }
-        text.textContent = input.value;
-        text.style.display = 'block';
-        input.style.display = 'none';
-    });
+    /*     input.addEventListener('blur', function () {
+            if (validator && !validator(input.value)) {
+                alert('Ungültiges Datum. Bitte geben Sie ein Datum im Format dd/mm/yyyy ein.');
+                // Setzt das Eingabefeld auf den ursprünglichen Wert zurück
+                input.value = text.textContent;
+                input.focus();
+                return;
+            }
+            text.textContent = input.value;
+            text.style.display = 'block';
+            input.style.display = 'none';
+        }); */
 
     input.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
@@ -225,7 +252,4 @@ makeEditableDropdown('priority-container', 'priority-text', 'priority-select');
 
 // Initialize subtasks
 initializeSubtasks();
-
-
-
 
