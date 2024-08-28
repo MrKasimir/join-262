@@ -251,4 +251,8 @@
   .numberSize {
     font-size: 35px;
   }
+  .rightContent{
+    display: grid;
+    align-content: center;
+  }
 }
