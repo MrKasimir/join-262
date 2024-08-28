@@ -15,7 +15,7 @@
         <div class="contactWebsiteStructur">
             <div class="headerContainerContactLeft">
                 <div>
-                    <img class="headerImgContact" src="../assets/img/capa logo white blue transparent.png">
+                    <img class="headerImgContact" src="./assets/img/capa logo white blue transparent.png">
                     <h1 class="headlineConactText">Add Contact</h1>
                     <p class="subtitleHeadlineContact">Tasks are better with a team</p>
                     <div class="underlineContactHeadline"></div>
@@ -24,34 +24,36 @@
     
             <div class="ContainerContactRight">
                 <div class="profileImageContainer" style="position: relative;">
-                    <img id="profilImg" class="ProfilImgContact" src="../assets/img/placeholder contact img.png" alt="Profile Image">
+                    <img id="profilImg" class="ProfilImgContact" src="./assets/img/placeholder contact img.png" alt="Profile Image">
                     <input type="file" id="imageInput" style="display: none;" accept="image/*" onchange="previewImage();">
                     <div class="changeImageIcon" onclick="document.getElementById('imageInput').click();" style="position: absolute; bottom: 10px; right: 10px; cursor: pointer;">
-                        <img class="ContactAddIconPen" src="../assets/img/edit icon.png" alt="Change">
+                        <img class="ContactAddIconPen" src="./assets/img/edit icon.png" alt="Change">
                     </div>
                 </div>
-                <form class="formStructure" onsubmit="handleFormSubmit(event)">
-                    <div id="linkToContactList" class="containerPageCloseImage"><img id="inputFieldContactFormImage" class="pageCloseImage" src="../assets/img/Close.png" alt=""></div>
+                <form class="formStructure" onsubmit="handleFormSubmit(event); return false;">
+                    <div id="linkToContactList" class="containerPageCloseImage"><img id="inputFieldContactFormImage" class="pageCloseImage" src="./assets/img/Close.png" alt=""></div>
                     <input type="text" minlength="3" maxlength="30" pattern="[A-Za-z ]+" id="inputFieldContactFormName" class="inputFieldContactForm name" placeholder="Name" required>
                     <input type="email" minlength="3" maxlength="30" id="inputFieldContactFormEmail" class="inputFieldContactForm email" placeholder="Email" required>
                     <input type="number" min="100" max="999999999999999999999999999999" id="inputFieldContactFormNumber" class="inputFieldContactForm number" placeholder="Number" required>
                     <div class="buttonContainer">
                         <div id="linkToContactList"><button onclick="clearInputFieldsAddPage()" class="buttonsContactFormLeft">
-                            Cancel <img src="../assets/img/close.png">
+                            Cancel <img src="./assets/img/close.png">
                         </button></div>
                         <button type="submit"  class="buttonsContactFormRight">
-                            Create contact <img src="../assets/img/check.png">
+                            Create contact <img src="./assets/img/check.png">
                         </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
-    <script src='./js/script backend contact.js'></script>
     <script src='./js/script contact add.js'></script>
+    <script src='./js/script backend contact.js'></script>
+
 </body>
 </html>
+
+
 
 
 
