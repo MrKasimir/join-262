@@ -1015,7 +1015,11 @@ function switchOnOffMinimenue1() {
     if (document.getElementById('miniMenue1').classList.contains('d-none')) {
         document.getElementById('miniMenue1').classList.remove('d-none');
     }
-    else document.getElementById('miniMenue1').classList.add('d-none');
+    else if(!document.getElementById('miniMenue1').classList.contains('d-none')){
+        document.getElementById('miniMenue1').classList.add('d-none');
+    }
 }
 
-
+function openMenue() {
+    switchOnOffMinimenue1()
+}
