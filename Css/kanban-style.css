@@ -443,3 +443,16 @@ body {
 .dragover {
     background-color: #4589ff;
 }
+
+@media (max-width:1280px){
+    .sidebar-background{
+        z-index: 0;
+        height: 100%;
+        background-color: #2A3647;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -250px;
+    }
+}
