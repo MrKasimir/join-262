@@ -209,19 +209,6 @@ function makeEditableWithValidation(containerId, textId, inputId, validator = nu
         input.focus();
     });
 
-    /*     input.addEventListener('blur', function () {
-            if (validator && !validator(input.value)) {
-                alert('Ungültiges Datum. Bitte geben Sie ein Datum im Format dd/mm/yyyy ein.');
-                // Setzt das Eingabefeld auf den ursprünglichen Wert zurück
-                input.value = text.textContent;
-                input.focus();
-                return;
-            }
-            text.textContent = input.value;
-            text.style.display = 'block';
-            input.style.display = 'none';
-        }); */
-
     input.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             // Trigger blur event to save the input
