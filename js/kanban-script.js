@@ -321,13 +321,16 @@ function updateKanbanBoard(i, category) {
 
 // Add drag and drop event listeners to the appropriate elements
 function addDragAndDropEventListeners() {
-    const categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
-    categories.forEach(category => {
-        const element = document.getElementById(category);
-        element.addEventListener('dragover', allowDrop);
-        element.addEventListener('drop', moveTo);
-        element.addEventListener('dragleave', removeHighlight);
-    });
+    // this if statement prevents errors when script is in addTask.html
+    if (window.location.href.includes('kanban-board.html')) {
+        const categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+        categories.forEach(category => {
+            const element = document.getElementById(category);
+            element.addEventListener('dragover', allowDrop);
+            element.addEventListener('drop', moveTo);
+            element.addEventListener('dragleave', removeHighlight);
+        });
+    }
 }
 
 /**
@@ -461,7 +464,7 @@ function pressCreateTask() {
     addTaskFromInputPage();
 }
 
-function getIdsFromStoredTasks(){
+function getIdsFromStoredTasks() {
     let existingIds = [];
     for (let i = 0; i < loadBoardFromLocalStorage().length; i++) {
         existingIds.push(loadBoardFromLocalStorage()[i].id);
@@ -881,12 +884,14 @@ function openDialog(inputCategory) {
 }
 
 function remindEventListener(i) {
-    document.getElementById('subtaskId' + i).addEventListener('blur', function (event) {
-        let boxStatus = document.getElementById('selectedSubtaskId' + i).checked;
-        let inputString = document.getElementById('subtaskId' + i).value;
-        console.log('box: ' + boxStatus + ' ---- value: ' + inputString);
-        currentDialogTask[0].subtasks[i] = inputString;
-    });
+    
+        document.getElementById('subtaskId' + i).addEventListener('blur', function (event) {
+            let boxStatus = document.getElementById('selectedSubtaskId' + i).checked;
+            let inputString = document.getElementById('subtaskId' + i).value;
+            console.log('box: ' + boxStatus + ' ---- value: ' + inputString);
+            currentDialogTask[0].subtasks[i] = inputString;
+        });
+    
 }
 
 function readCheckMark(i) {
