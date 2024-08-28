@@ -36,7 +36,6 @@ body {
     align-items: center;
     background-color: #2a3647;
     color: white;
-    width: 60%;
     padding-left: 32px;
     padding-right: 32px;
     }
@@ -222,6 +221,40 @@ body {
     display: block;
     }
     
+    }
+
+    @media (max-width: 650px) {
+        
+        .headerContainerContactLeft {
+            padding: 40px 0px 100px 0px;
+        }
+        
+        .headlineConactText {
+            font-size: 47px;
+        }
+
+        .subtitleHeadlineContact {
+            font-size: 20px;
+        }
+        
+        .headerImgContact {
+            height: 40px;
+        }
+
+        .profileImageContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .ProfilImgContact {
+            position: relative;
+            margin-top: -60px;
+        }
+
+        .formStructure {
+            
+        }
     }
     
     /* --- Mobile view Contactpage - End --- */
