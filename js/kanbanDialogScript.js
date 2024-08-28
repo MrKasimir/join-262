@@ -76,19 +76,6 @@ readCheckMark(currentDialogTask[0].subtasks.length);
 remindEventListener(currentDialogTask[0].subtasks.length);
 }
 
-function hitEventListener(){
-    document.getElementById('subtaskId').addEventListener('blur', function (event) {
-
-        let boxStatus = document.getElementById('selectedSubtaskId' + currentDialogTask[0].subtasks.length).checked;
-        let inputString = document.getElementById('subtaskId' + currentDialogTask[0].subtasks.length).value;
-        console.log('box: ' + boxStatus + ' ---- value: ' + inputString);
-        currentDialogTask[0].subtasks.push(inputString);
-    });
-}
-
-function calculateProgressInDialog() {
-}
-
 
 function makeEditable(containerId, textId, inputId) {
     const container = document.getElementById(containerId);
@@ -127,7 +114,7 @@ function makeEditableDropdown(containerId, textId, selectId) {
     const select = document.getElementById(selectId);
 
     if (!container || !text || !select) {
-        console.error(`Elemente nicht gefunden: ${containerId}, ${textId}, ${selectId}`);
+        //console.error(`Elemente nicht gefunden: ${containerId}, ${textId}, ${selectId}`);
         return;
     }
 
