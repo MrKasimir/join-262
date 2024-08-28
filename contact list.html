@@ -11,24 +11,24 @@
   
     <header class="joinSideBar">
         <div class="LogoDiv">
-          <img class="joinLogo" src="../assets/img/joinlogo.png" alt="" />
+          <img class="joinLogo" src="./assets/img/joinlogo.png" alt="" />
         </div>
   
         <div >
           <div onclick="window.location.href='http://127.0.0.1:5500/join-262/summaryUser.html';" class="iconsDiv">
-            <img class="sideBarIcons" src="../assets/img/summery.png" alt="" />
+            <img class="sideBarIcons" src="./assets/img/summery.png" alt="" />
             <p>Summery</p>
           </div>
           <div onclick="window.location.href='http://127.0.0.1:5500/join-262/AddTask.html';" class="iconsDiv">
-            <img class="sideBarIcons" src="../assets/img/addTask.png" alt="" />
+            <img class="sideBarIcons" src="./assets/img/addTask.png" alt="" />
             <p>Add Task</p>
           </div>
           <div onclick="window.location.href='http://127.0.0.1:5500/join-262/kanban-board.html';" class="iconsDiv3">
-            <img class="sideBarIcons" src="../assets/img/Board.png" alt="" />
+            <img class="sideBarIcons" src="./assets/img/Board.png" alt="" />
             <p>Board</p>
           </div>
           <div onclick="window.location.href='http://127.0.0.1:5500/join-262/contact/contact%20list.html';" class="iconsDiv4">
-            <img class="sideBarIcons" src="../assets/img/contacts.png" alt="" />
+            <img class="sideBarIcons" src="./assets/img/contacts.png" alt="" />
             <p>Contacts</p>
           </div>
         </div>
@@ -45,16 +45,17 @@
         <div class="description">
           <div>
             <p class="descriptionHeadline">Kanban Project Management Tool</p>
+            <img class="headBarMobileImg" src="./assets/img/JoinmobileLoggo.png">
           </div>
           <div class="descriptionImg">
-            <img class="qmImg" src="../assets/img/questionmark.png" alt="" />
-            <img class="circleImg" src="../assets/img/profil image.png" alt="" />
+            <img class="qmImg" src="./assets/img/questionmark.png" alt="" />
+            <img class="circleImg" src="./assets/img/profil image.png" alt="" />
           </div>
         </div>
   
         <div class="StructureRight">
             <div class="containerStructureListWidth">
-            <button onclick="window.location.href='http://127.0.0.1:5500/join-262/contact/contacts%20add.html';" class="AddNewContactListButtonAdd">Add new contact <img class="AddNewContactListButtonAddIcon" src="../assets/img/person_add.png"></button>
+            <button onclick="window.location.href='http://127.0.0.1:5501/join-262-main/contacts%20add.html';" class="AddNewContactListButtonAdd">Add new contact <img class="AddNewContactListButtonAddIcon" src="./assets/img/person_add.png"></button>
             <div>
                 <h1>A</h1>
                 <div class="borderLineContactList"></div>
@@ -192,23 +193,50 @@
             </div> 
            
                 <div class="contactListEditStructure"> <!-- Übergeordneter Container - Contacts and Edit - Start -->
-
+          
+        <div class="contactListMobileContactOverviewHeadlineStructure">
             <div class="contactListOverviewProfilHeadline">
               <h1 class="headlineContactListOverview">Contact</h1>
               <div class="borderLineContactListVertical"></div>
               <p class="subheadlineContactListOverview">Better with a Team</p>
             </div>
+            <div id="backToContactList" style="display:none;">
+              <img class="contactListBackIconImg" src="./assets/img/arrow-left-line.png" alt="Back Icon" />
+          </div>
+        </div>
 
           <div id="contactPageProfilOverview"> <!-- variabler Container - kommt in script - Profil and Edit - Start -->
 
         </div>
   
       </div> <!-- Übergeordneter Container - Contacts and Edit - Ende -->
-
+      
+      <div class="mobileSidebar">
+        <a class="mobileLink" href="summaryUser.html">
+            <div class="mobileSidebaricons">
+                <img class="mobileIconImg" src="assets/img/summery.png" alt="">Summary
+            </div>
+        </a>
+        <a class="mobileLink" href="kanban-board.html">
+            <div class="mobileSidebaricons">
+                <img class="mobileIconImg" src="assets/img/Board.png" alt="">Board
+            </div>
+        </a>
+        <a class="mobileLink" href="AddTask.html">
+            <div class="mobileSidebaricons">
+                <img class="mobileIconImg" src="assets/img/addTask.png" alt="">Add Tasks
+            </div>
+        </a>
+        <a class="mobileLink" href="contact list.html">
+            <div class="mobileSidebaricons">
+                <img class="mobileIconImg" src="assets/img/contacts.png" alt="">Contacts
+            </div>
+        </a>
+    </div>
       </section>
-
-      <script src='./js/script backend contact.js backend.js'></script>
       <script src='./js/script contact list.js'></script>
+      <script src='./js/script backend contact.js'></script>
+      
     
 </body>
 </html>
