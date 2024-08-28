@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -315,4 +316,234 @@
 
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="Css/kanban-style.css">
+    <link rel="stylesheet" href="Css/kanbanDialogStyle.css">
+    <link rel="stylesheet" href="Css/summary.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
+    <!-- <link rel="stylesheet" href="Css/fonts.css"> -->
+    <script src="js/kanban-script.js"></script>
+    <script src="js/kanbanDialogScript.js" defer></script>
+    <!-- <script src="js/kanbanContactBookScript.js" defer></script> -->
+
+    <title>kanban-board</title>
+</head>
+
+<body onload="onloadFunction()">
+    <div class="half-in-half">
+        <header class="joinSideBar" style="position: relative !important;">
+            <div class="LogoDiv">
+                <img class="joinLogo" src="assets/img/joinlogo.png" alt="" />
+            </div>
+            <div class="Catagory">
+                <div class="iconsDiv">
+                    <img class="sideBarIcons" src="assets/img/summery.png" alt="" />
+                    <a class="joinSidebarLinks" href="summaryUser.html">Summary</a>
+                </div>
+                <div class="iconsDiv">
+                    <img class="sideBarIcons" src="assets/img/addTask.png" alt="" />
+                    <a class="joinSidebarLinks" href="AddTask.html">Add Task</a>
+                </div>
+                <div class="iconsDiv3">
+                    <img class="sideBarIcons" src="assets/img/Board.png" alt="" />
+                    <a class="joinSidebarLinks" href="kanban-board.html">Board</a>
+                </div>
+                <div class="iconsDiv4">
+                    <img class="sideBarIcons" src="assets/img/contacts.png" alt="" />
+                    
+                    <a class="joinSidebarLinks" href="contact list.html">Contacts</a>
+                </div>
+            </div>
+            <div class="legalNotice" style="position: absolute; bottom: 50px;">
+                <a class="SideBarText" href="legalNotice.html">Legal Notice</a>
+                <br />
+                <a class="SideBarText" href="privacyPolicy.html">Privacy Policy</a>
+            </div>
+            <div class="sidebar-background">
+            </div>
+        </header>
+
+        <div class="mainframe">
+            <div class="board">
+                <div class="header">
+                    <div class="header-title">Kanban Project Management Tool</div>
+                    <div class="top-right-menu">
+                        <div><a class="helpLink" href="help.html">
+                                <img class="qmImg" src="assets/img/questionmark.png" alt="">
+                            </a>
+                        </div>
+                        <div class="circleContainer" onclick="switchOnOffMinimenue1()">
+                            <img style="cursor: pointer; width: 35px; height: 35px;" class="circleImg"
+                                src="assets/img/circle.png" alt="">
+                            <p id="topBannerName"  class="circleName" style="cursor: pointer;">...
+                            </p>
+                        </div>
+                    </div>
+                    <div id="miniMenue1" class="logOut adjust-margin d-none">
+                        <a href="legalNotice.html" class="sideMenuetext1">Legal Notice</a>
+                        <a href="privacyPolicy.html" class="sideMenuetext">Privacy Policy</a>
+                        <a href="login.html" class="sideMenuetext3">Log out</a>
+                    </div>
+                </div>
+
+                <!-- START: Kanban Dialog Card to edit Tasks within Kanban Board -->
+                <div id="overlay" class="overlay d-none">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="story-category" id="story-category-container">
+                                <span id="story-category-text" onclick="readStoryCategory()">Select Tasks
+                                    Category</span>
+                                <select id="story-category-select" style="display: none;">
+                                    <option value="User Story" onselect="readStoryCategory()" data-color="#007bff">User
+                                        Story</option>
+                                    <option value="Technical Task" onselect="readStoryCategory()" data-color="#20c997">
+                                        Technical Task</option>
+                                </select>
+                            </span>
+                            <span class="close-btn" onclick="pressXInDialog()">&times;</span>
+                        </div>
+                        <div class="card-title" id="title-container">
+                            <span id="title-text"></span>
+                            <input type="text" id="title-input" style="display: none;" />
+                        </div>
+                        <div class="card-subtitle" id="subtitle-container">
+                            <span id="subtitle-text"></span>
+                            <input type="text" id="subtitle-input" style="display: none;" />
+                        </div>
+                        <div class="">
+                            <div class="in-parallel" style="justify-content: left !important;">
+                                <h5>Due date: &nbsp;</h5>
+                                <div class="due-date ">
+                                    <span id="due-date-text">01/01/2025</span>
+                                    <input type="text" id="due-date-input" style="display: none;" />
+                                </div>
+                            </div>
+
+                            <!-- START: Priority section -->
+                            <div id="" class="priority-dialog">
+                                <h5 style="margin-bottom: 4px;">Priority</h5>
+                                <div class="in-parallel">
+                                    <div id="low-button" class="low-select" onclick="prioLowClick()"></div>
+                                    <div id="medium-button" class="medium-select" onclick="prioMediumClick()"></div>
+                                    <div id="urgent-button" class="urgent-select" onclick="prioUrgentClick()"></div>
+                                </div>
+                            </div>
+                            <!-- END: new Priority section -->
+                        </div>
+
+                        <!-- START: Section for ContactBook -->
+                        <div class="in-parallel" style="justify-content: left !important;">
+                            <h5 style="margin-right: 8px; margin-bottom: 4px;">Assigned To:</h5>
+                        </div>
+                        <div id='contactSelectionBoxId' class="contact-selection-field d-none">
+                            <div id="contactSelectionId" class="contact-selection-box">
+                                <div class="contact-row"></div>
+                            </div>
+                        </div>
+                        <!-- END: Section for ContactBook -->
+
+                        <ul class="subtasks" id="subtasks-list">
+                            <div class="in-parallel" style="justify-content: space-between !important;">
+                                <div style="margin-right: 8px;">
+                                    <h5 style="margin-bottom: -5px;">Subtasks </h5>
+                                </div>
+                                <div class="plus-btn" onclick="addSubtaskInputField()"><a>+</a>
+                                </div>
+                            </div>
+                            <div class="progress-section in-parallel">
+                            </div>
+                            <div id="subtasksId" class="subtasks-container d-none">
+                            </div>
+                        </ul>
+                        <div class="card-footer">
+                            <div id="cardMembersId" class="card-members">
+                                <!-- render contact initials here: cardMembersId -->
+                            </div>
+                            <span class="delete-btn" onclick="pressDeleteInDialog()"><img
+                                    src="./assets/img/delete-button.png" height="20px"></span>
+                            <span class="edit-btn" onclick="renderDialogOkButton()"><img
+                                    src="./assets/img/edit-button.png" height="20px"></span>
+                            <div class="ok-btn d-none" id="okButtonId" onclick="pressOkInDialog()"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ENDE: Kanban Dialog Card -->
+
+                <div class="input-container">
+                    <div class="header-title bold-font">Board</div>
+                    <div class="top-right-menu">
+                        <input id="inputField" placeholder="Find Task"></input>
+                        <div class="button" onclick="createTask()"><a href="./AddTask.html">Add Task +</a></div>
+                    </div>
+                </div>
+
+                <div class="dragdrop-container">
+                    <div class="board-category">
+                        <div class="wrap-container">
+                            <div class="in-parallel">
+                                <h3>Todo</h3>
+                                <div class="plus-symbol" onclick="openDialog('todo')"><a class="plus-text">+</a></div>
+                            </div>
+                            <div class="dragdrop-container">
+                                <div id="todo" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                                    ondragleave="removeHighlight(event)" class="standard-container">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="board-category">
+                        <div class="wrap-container">
+                            <div class="in-parallel">
+                                <h3>In Progress</h3>
+                                <div class="plus-symbol" onclick="openDialog('inProgress')"><a>+</a></div>
+                            </div>
+                            <div class="dragdrop-container">
+                                <div id="inProgress" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                                    ondragleave="removeHighlight(event)" class="standard-container"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="board-category">
+                        <div class="wrap-container">
+                            <div class="in-parallel">
+                                <h3>Await Feedback</h3>
+                                <div class="plus-symbol" onclick="openDialog('awaitFeedback')"><a>+</a></div>
+                            </div>
+                            <div class="dragdrop-container">
+                                <div id="awaitFeedback" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                                    ondragleave="removeHighlight(event)" class="standard-container"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="board-category">
+                        <div class="wrap-container">
+                            <div class="in-parallel">
+                                <h3>Done</h3>
+                                <div class="plus-symbol" onclick="openDialog('done')"><a>+</a></div>
+                            </div>
+                            <div class="dragdrop-container">
+                                <div id="done" ondrop="moveTo(event)" ondragover="allowDrop(event)"
+                                    ondragleave="removeHighlight(event)" class="standard-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+>>>>>>> 9a4876414f95f76d6b7d4ce9c6124f9c56f9a1e1
 </html>
