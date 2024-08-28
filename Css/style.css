@@ -661,15 +661,18 @@ p {
 }
 
 .addTask-button-urg.active {
-    background-color: rgb(255, 28, 28);
+    background-color: rgba(226, 63, 63, 0.849);
+    color: white;
 }
 
 .addTask-button-med.active {
+    color: white;
     background: #FFA800;
 }
 
 .addTask-button-low.active {
     background-color: rgb(38, 198, 38);
+    color: white;
 }
 
 .mobileSidebar{
