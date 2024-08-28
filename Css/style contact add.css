@@ -23,9 +23,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     background-color: #2a3647;
     color: white;
-    width: 60%;
+    width: 100%;
     padding-left: 20px;
     padding-right: 20px;
     }
@@ -68,7 +69,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    
     padding: 0px 32px 0px 32px;
     }
     
@@ -198,6 +199,11 @@ body {
     width: 30px; 
     height: 30px;
     }
+
+    .headerContainerCloseButtonWhiteStytle {
+        display: none;
+        cursor: pointer;
+    }
     
     
     /* --- Mobile view Contactpage - start --- */
@@ -208,7 +214,7 @@ body {
     }
     }
     
-    @media (max-width: 950px) {
+    @media (max-width: 1000px) {
     .contactWebsiteStructur {
     display: block;
     }
@@ -220,10 +226,49 @@ body {
     .ContainerContactRight {
     display: block;
     }
+
+    .headerContainerContactLeft {
+        padding: 40px 0px 100px 0px;
+    }
+
+    .profileImageContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ProfilImgContact {
+        position: relative;
+        margin-top: -60px;
+        margin-right: 0px;
+        margin-bottom: 32px;
+    }
+
+    .containerPageCloseImage {
+        display: none;
+    }
+
+    .headerContainerCloseButtonWhite {
+        margin-left: 80%;
+    }
     
+    .headerContainerCloseButtonWhiteStytle {
+        height: 60px;
+        display: block;
+        cursor: pointer;
+    }
+
+    .buttonContainer {
+        margin-bottom: 48px;
+    }
+
     }
 
     @media (max-width: 650px) {
+        
+        .headerContainerCloseButtonWhite {
+            margin-left: 80%;
+        }
         
         .headerContainerContactLeft {
             padding: 40px 0px 100px 0px;
@@ -250,11 +295,49 @@ body {
         .ProfilImgContact {
             position: relative;
             margin-top: -60px;
+            margin-right: 0px;
+            margin-bottom: 32px;
         }
 
         .formStructure {
-            
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: auto;
+            margin: 0px 32px 0px 32px;
         }
+
+        .containerPageCloseImage {
+            display: none;
+            }
+
+        .ContainerContactRight {
+                padding: 0;
+    }
+
+    .buttonsContactFormRight, .buttonsContactFormLeft {
+        font-size: 16px;
+        }
+
+    .buttonsContactFormRight {
+            padding: 0px 16px 0px 16px;
+        }
+
+    .buttonsContactFormLeft {
+
+            padding: 0px 16px 0px 16px;
+        }
+
+    .headerContainerCloseButtonWhiteStytle {
+        height: 60px;
+        display: block;
+        cursor: pointer;
+    }
+
+    .buttonContainer {
+        margin-bottom: 48px;
+    }
+
     }
     
     /* --- Mobile view Contactpage - End --- */
