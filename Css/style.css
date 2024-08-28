@@ -8,6 +8,12 @@ body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-style: normal;
+  overflow-y: hidden;
+}
+
+.input-mask{
+  border: 0px solid transparent;
+  
 }
 
 .card-login {
@@ -440,7 +446,8 @@ justify-content: center;
   display: flex;
   justify-content: space-between;
   margin-left: 110px;
-  margin-top: 200px;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 
 .description {
