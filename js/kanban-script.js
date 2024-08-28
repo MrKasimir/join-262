@@ -253,6 +253,10 @@ function updateKanbanBoard(i, category) {
         tasks[i].subtasksSelected,
         tasks[i].dueDate
     ];
+    for (let i = 0; i < tasks.length; i++) {
+        tasks[i].subtasksSelected.length = tasks[i].subtasks.length;
+    }
+
     /* console.log('kanbanDetailsAsJson :' + kanbanDetails);
     let kanbanDetailsAsJson = JSON.stringify(kanbanDetails); */
 
@@ -839,10 +843,12 @@ function remindEventListener(i) {
 }
 
 function readCheckMark(i) {
-    let boxStatus = document.getElementById('selectedSubtaskId' + i).checked;
-    if (boxStatus == false) currentDialogTask[0].subtasksSelected[i] = 'unchecked';
-    else if (boxStatus == true) currentDialogTask[0].subtasksSelected[i] = 'checked';
-    console.log(boxStatus);
+    if (document.getElementById('selectedSubtaskId' + i)) {
+        let boxStatus = document.getElementById('selectedSubtaskId' + i).checked;
+        if (boxStatus == false) currentDialogTask[0].subtasksSelected[i] = 'unchecked';
+        else if (boxStatus == true) currentDialogTask[0].subtasksSelected[i] = 'checked';
+        console.log(boxStatus);
+    }
 }
 
 function readStoryCategory() {
@@ -944,18 +950,6 @@ function pressXInDialog() {
     removeOverlay();
     renderByCategory();
 }
-// old save function 
-/* function saveDialogCardToTasks(){
-    pressEditInDialog();
-    // case: id of Dialog not in tasks yet => push Card from openDialog to tasks
-    if(!tasks[id].includes(currentDialogTask[0].id)) tasks.push(currentDialogTask[0]);
-    // case: id of Dialog already in tasks => save currentDialog Card at the right position in tasks
-    else tasks[currentDialogTask[0].id] = currentDialogTask[0];
-    removeOverlay();
-    renderByCategory();
-    // empty currentDialogTask completely
-    currentDialogTask = new Array;
-} */
 
 /**
  * Returns an array with all task IDs.
@@ -987,7 +981,7 @@ function saveDialogCardToTasks() {
         console.log('Position in tasks: ' + position);
         tasks[position] = currentDialogTask[0];
     }
-    
+
     removeOverlay();
     renderByCategory();
     // empty currentDialogTask completely
