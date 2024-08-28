@@ -34,27 +34,13 @@ let defaultTasks = [{
     'category': 'todo',
     'title': 'Create Title of your task here...',
     'titleCategory': 'User Story',
-    'description': 'Enter a description for your task',
-    'priority': 'Medium',
+    'description': 'This is a demo task',
+    'priority': 'Low',
     'assignedTo': ['Sophia Müller', 'Anton Maier'],
     'assignedInitials': ['SM', 'AM'],
     'assignedColorCodes': ['rgb(255, 122, 0)', 'rgb(31, 215, 193)'],
-    'subtasks': ['start 1st Dialog', 'create 1st subtask'],
-    'subtasksSelected': ['checked', 'unchecked'],
-    'dueDate': '28/08/2024'
-},
-{
-    'id': 1,
-    'category': 'inProgress',
-    'title': '2nd Title of your task here...',
-    'titleCategory': 'Technical Task',
-    'description': '2nd Description',
-    'priority': 'Urgent',
-    'assignedTo': ['Anton Maier'],
-    'assignedInitials': ['AM'],
-    'assignedColorCodes': ['rgb(31, 215, 193)'],
-    'subtasks': ['start 2nd Dialog', 'create 2nd subtask'],
-    'subtasksSelected': ['checked', 'checked'],
+    'subtasks': ['This is your first subtask'],
+    'subtasksSelected': ['unchecked'],
     'dueDate': '28/08/2024'
 }
 ];
@@ -170,6 +156,11 @@ async function onloadFunction() {
     if (window.location.href.includes('kanban-board.html')) {
         renderByCategory();
     }
+
+    // Wenn ein currentAddTask-Objekt im local storage ist, dann muss er im Dialog angezeigt werden
+    if (localStorage.getItem('currentAddTask') != null) {
+        openDialogFromCreateTaskClick();
+    }
 }
 
 /**
@@ -192,6 +183,15 @@ function loadBoardFromLocalStorage() {
         return JSON.parse(boardTasks);
     }
 }
+
+/* function loadCurrentAddTaskFromLocalStorage(){
+    const currentAddTask = localStorage.getItem('currentAddTask');
+    if(!currentAddTask){
+        return [];
+    } else{
+        return JSON.parse(currentAddTask);
+    }
+} */
 
 /**
  * Renders the tasks by their categories on the kanban board.
@@ -253,6 +253,8 @@ function updateKanbanBoard(i, category) {
         tasks[i].subtasksSelected,
         tasks[i].dueDate
     ];
+
+    // make sure that number of selected task check boxes is same as subtasks'
     for (let i = 0; i < tasks.length; i++) {
         tasks[i].subtasksSelected.length = tasks[i].subtasks.length;
     }
@@ -447,30 +449,70 @@ function getAddedTasksFromLocalStorage() {
 /**
  * Adds a task from the input fields on the add task page.
  */
-function addTaskFromInputPage() {
-    let newListOfTasks = loadBoardFromLocalStorage();
-    if (document.getElementById('Task-Title-id').value != '' && document.getElementById('Task-Describtion-id').value != '') {
-        newListOfTasks.push({
-            'id': newListOfTasks.length,
-            'category': 'todo',
-            'title': document.getElementById('Task-Title-id').value,
-            'titleCategory': 'NEW',
-            'description': document.getElementById('Task-Describtion-id').value,
-            'priority': 'NEW',
-            'assignedTo': document.getElementById('Task-choose-contact-id').value,
-            'subtasks': document.getElementById('Task-Subtask-Id').value,
-        });
-        clearAllInputFields();
-    }
-    localStorage.setItem('board', JSON.stringify(newListOfTasks));
-}
+/////////////////////////////////////////////////////////
+/////////////////////  START  ///////////////////////////
+///////////// add Task page Baustelle ///////////////////
+/////////////////////////////////////////////////////////
 
 /**
  * Redirects to the kanban board (from the addTask.html inputFields) after creating a task.
  */
-function CreatTaskbuttonOnclick() {
+function pressCreateTask() {
     addTaskFromInputPage();
+}
+
+function getIdsFromStoredTasks(){
+    let existingIds = [];
+    for (let i = 0; i < loadBoardFromLocalStorage().length; i++) {
+        existingIds.push(loadBoardFromLocalStorage()[i].id);
+    }
+    return existingIds;
+}
+
+function addTaskFromInputPage() {
+    currentDialogTask = new Array;
+    currentDialogTask = [{
+        'id': Math.max(...getIdsFromStoredTasks()) + 1,
+        'category': 'todo',
+        'title': document.getElementById('Task-Title-id').value,
+        'titleCategory': document.getElementById('story-selection-id').value,
+        'description': document.getElementById('Task-Describtion-id').value,
+        'priority': 'Medium',
+        'assignedTo': [],
+        'assignedInitials': [],
+        'assignedColorCodes': [],
+        'subtasks': [document.getElementById('Task-Subtask-Id').value],
+        'subtasksSelected': ['unchecked'],
+        'dueDate': document.getElementById('Task-Date-Id').value,
+    }];
+
+    /*    let newListOfTasks = loadBoardFromLocalStorage();
+       if (document.getElementById('Task-Title-id').value != '' && document.getElementById('Task-Describtion-id').value != '') {
+           newListOfTasks.push({
+               'id': newListOfTasks.length,
+               'category': 'todo',
+               'title': document.getElementById('Task-Title-id').value,
+               'titleCategory': 'NEW',
+               'description': document.getElementById('Task-Describtion-id').value,
+               'priority': 'NEW',
+               'assignedTo': document.getElementById('Task-choose-contact-id').value,
+               'subtasks': document.getElementById('Task-Subtask-Id').value,
+           });
+           clearAllInputFields();
+       }
+       localStorage.setItem('board', JSON.stringify(newListOfTasks)); */
+
+    localStorage.setItem('currentAddTask', JSON.stringify(currentDialogTask));
     window.location.href = './kanban-board.html';
+
+    // openDialogFromCreateTaskClick(); => wird nicht mehr ausgeführt, da window.location geändert
+}
+
+function openDialogFromCreateTaskClick() {
+    currentDialogTask = new Array;
+    currentDialogTask = JSON.parse(localStorage.getItem('currentAddTask'));
+    resetClickedDialogVisuals();
+    localStorage.removeItem('currentAddTask');
 }
 
 /**
@@ -484,6 +526,11 @@ function clearAllInputFields() {
     document.getElementById('Task-choose-Category-id').value = '';
     document.getElementById('Task-Subtask-Id').value = '';
 }
+
+/////////////////////////////////////////////////////////
+///////////// add Task page Baustelle ///////////////////
+/////////////////////  ENDE  ////////////////////////////
+/////////////////////////////////////////////////////////
 
 /**
  * Finds and highlights tasks based on the search input.
@@ -1015,7 +1062,7 @@ function switchOnOffMinimenue1() {
     if (document.getElementById('miniMenue1').classList.contains('d-none')) {
         document.getElementById('miniMenue1').classList.remove('d-none');
     }
-    else if(!document.getElementById('miniMenue1').classList.contains('d-none')){
+    else if (!document.getElementById('miniMenue1').classList.contains('d-none')) {
         document.getElementById('miniMenue1').classList.add('d-none');
     }
 }
