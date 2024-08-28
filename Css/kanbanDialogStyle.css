@@ -468,6 +468,7 @@ h5{
     width: 100%;
 }
 .relative-progress{
+    max-width: 100% !important;
     background-color: #4589ff;
     border-radius: 8px;
     height: 8px;
