@@ -1,13 +1,11 @@
 /**CSS für Legal Notice, Privacy Policy und Help**/
-*{
-  font-family: 'inter';
-}
+
 body{
     margin: 0;
-    background-color: rgb(246, 247, 248);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
-   
+    font: 'inter';
 }
 p {
   margin: 0px;
@@ -157,7 +155,7 @@ p {
   }
 
   .rightSideContent{
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-color: rgb(246, 247, 248);
     scroll-behavior: smooth;
@@ -176,8 +174,8 @@ p {
   .textContent{
     margin-top: 206px;
     margin-left: 358px;
-    height: fit-content;
-    width: fit-content;
+    height: auto;
+    width: 70%;
   }
 
   .textSections{
@@ -333,7 +331,118 @@ ol li {
   background: rgb(20, 175, 241);
 }
 
-.margin{
-  margin-bottom: 376px;
+
+/*Mobile ansicht */
+
+
+.joinMobileLoggo{
+  height: 40px;
+  margin-left: 20px;
+  width: 32px;
+  display: none;
+}
+.mobileLine{
+  width: 110px;
+  height: 2px;
+  background-color: rgb(20, 175, 241);
+  position: fixed;
+  top: 280px;
+  display: none;
+}
+.mobileSidebar{
+  display: none;
+  height: 100px;
+  width: 100%;
+  background-color: #2A3647;
+  position: fixed;
+  bottom: 0px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.mobileSidebaricons{
+  display: none; 
+  flex-direction: column;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-items: center;
+  padding: 15px;
+}
+.mobileLink{
+  text-decoration: none;
 }
 
+.mobileSidebaricons:hover{
+  background-color: #1d2633;
+  border-radius: 10px;
+}
+.mobileArrowButton{
+  display: none;
+}
+@media (max-width: 601px){
+  .mobileSidebaricons{
+    display: none;
+  }
+  .mobileSidebar{
+    display: none;
+  }
+}
+
+@media (max-width: 600px){
+
+  .joinSideBar{
+    display: none;
+   }
+
+   .description{
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+   }
+
+   .descriptionHeadline{
+    display: none;
+   }
+
+   .helpLink{
+    display: none;
+   }
+
+   .joinMobileLoggo{
+    display: flex;
+   }
+
+   
+
+  .mobileIconImg{
+    width: 40px;
+    display: flex;
+  }
+  .rightSideContent{
+    height:  fit-content;
+  }
+ 
+  .textContent{
+    margin-left: 50px;
+    width: 500px;
+    scroll-behavior: smooth;
+   }
+   
+   .mobileArrowButton{
+    display: flex;
+    width: 26px;
+    position: fixed;
+    left: 520px;
+    top: 140px;
+    cursor: pointer;
+   }
+
+   .legalNoticeHeadline{
+    font-size: 45px;
+   }
+}

@@ -6,10 +6,40 @@
     <title>Legal Notice</title>
     <link rel="stylesheet" href="Css/legalNotice.css">
     <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
-    <link rel="stylesheet" href="Css/fonts.css">
-    <link rel="stylesheet" href="Css/legalNoticeMobile.css">
-    <script src="js/legalNotice.js"></script>
-   
+    <script>
+      function openMenue() {
+    let miniMenue = document.querySelector('.logOut');
+    if (miniMenue.classList.contains('displayNone')) {
+        miniMenue.classList.remove('displayNone');
+    } else {
+        miniMenue.classList.add('displayNone');
+    }
+}
+
+function openMobileMenu() {
+    const sidebarIcons = document.getElementsByClassName('mobileSidebaricons');
+    const sidebar = document.querySelector('.mobileSidebar');
+    const isMenuOpen = sidebar.style.display === 'flex';
+
+    if (isMenuOpen) { // if else abfrage ob das menü geöffnet ist oder nicht
+                        // wenn ja display none wenn nein display flex
+        for (let i = 0; i < sidebarIcons.length; i++) {
+            sidebarIcons[i].style.display = 'none';
+        }
+        sidebar.style.display = 'none';
+    } else {
+        
+        for (let i = 0; i < sidebarIcons.length; i++) {
+            sidebarIcons[i].style.display = 'flex';
+        }
+        sidebar.style.display = 'flex';
+    }
+}
+
+
+
+
+    </script>
 </head>
 <body>
   <header class="joinSideBar">
@@ -69,8 +99,7 @@
       <section class="rightSideContent">
 
        <div class="textContent">
-        <img onclick="openMobileMenu()" class="mobileArrowButton" src="assets/img/leftArrowMobile.png" alt="">
-         <span class="legalNoticeHeadline"><h1>Legal Notic</h1> </span>
+         <span class="legalNoticeHeadline"><h1>Legal Notic</h1> <img onclick="openMobileMenu()" class="mobileArrowButton" src="assets/img/leftArrowMobile.png" alt=""></span>
          <div class="textSections">
          <h2>Imprint</h2>
          <ul>
@@ -113,7 +142,7 @@
 
         <div class="textSections">
           <h2>Disclaimer of warranties and limitation of liability</h2>
-          <p class="textSize ">Disclaimer of warranties and limitation of liability
+          <p class="textSize">Disclaimer of warranties and limitation of liability
             <span class="colorBlue">Join</span>  is provided "as is" without warranty of any kind, whether express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
              In no event will we, the listed students, or the <span class="colorBlue">Developer Akademie GmbH.</span>, be liable for any direct, indirect, incidental, special, consequential or exemplary damages, including but not limited to, damages for loss of profits, goodwill, use, data, or other intangible losses, even if we have been advised of the possibility of such damages,
              arising out of or in connection with the use or performance of <span class="colorBlue">Join</span> .</p>

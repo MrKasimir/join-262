@@ -8,44 +8,12 @@ body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-style: normal;
+  overflow-y: hidden;
 }
 
-.Join-Logo-signUp{
-  margin-top: 60px;
-  margin-left: 80px;
-  margin-bottom: 100px;
-}
-
-.input-container {
-  position: relative;
-}
-
-.input-icon {
-  position: absolute;
-  top: 30%;
-  right: 10px; /* Abstand von der rechten Seite des Containers */
-  transform: translateY(-50%);
-  width: 24px; /* Größe des Icons anpassen */
-  height: 24px; /* Größe des Icons anpassen */
-  pointer-events: none; /* Verhindert, dass das Bild interaktive Elemente blockiert */
-}
-
-.input-icon-mail{
-  position: absolute;
-  top: 30%;
-  right: 10px; /* Abstand von der rechten Seite des Containers */
-  transform: translateY(-50%);
-  width: 20px; /* Größe des Icons anpassen */
-  height: 20px; /* Größe des Icons anpassen */
-  pointer-events: none;
-}
-
-.email-input {
-  padding-right: 40px; /* Platz für das Bild */
-}
-
-.password-input {
-  padding-right: 40px; /* Platz für das Bild */
+.input-mask{
+  border: 0px solid transparent;
+  
 }
 
 .card-login {
@@ -66,26 +34,13 @@ body {
   justify-content: center;
 }
 
-.headline-Login-sign-up {
+.headline-Login--up {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 40px;
   font-weight: bold;
-}
-
-.headline-Login-sign-up1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 40px;
-  font-weight: bold;
-}
-
-.BackToLoginArrow {
-  width: 25px;
-  height: 25px;
 }
 
 .underline {
@@ -107,12 +62,7 @@ justify-content: center;
   border-radius: 10px;
   border-color: rgb(197, 199, 201);
   margin-bottom: 32px;
-  border: 1px solid #D1D1D1;
-}
-
-.email-input::placeholder {
-    opacity: 0.6;
-    padding-left: 10px;
+  border: 1px solid #D1D1D1
 }
 
 .password-input {
@@ -122,11 +72,6 @@ justify-content: center;
   border-color: rgb(197, 199, 201);
   margin-bottom: 32px;
   border: 1px solid #D1D1D1
-}
-
-.password-input::placeholder{
-  opacity: 0.6;
-  padding-left: 10px;
 }
 
 .Login-button {
@@ -140,11 +85,6 @@ justify-content: center;
   border: 1px;
 }
 
-.Login-button:hover {
-  background-color: #29ABE2;
-  cursor: pointer;
-}
-
 .guest-login-button {
   width: 177px;
   margin-left: 15px;
@@ -153,13 +93,6 @@ justify-content: center;
   background-color: white;
   color: #2A3647;
   font-weight: bold;
-}
-
-.guest-login-button:hover {
-  cursor: pointer;
-  color: #29ABE2;
-  border-color: #29ABE2;
-  box-shadow: none;
 }
 
 .button-section-from-login {
@@ -178,15 +111,6 @@ justify-content: center;
   font-weight: bold;
   gap: 10px;
   margin-left: 35px;
-}
-
-.Sign-up-button:hover { 
-  cursor: pointer;
-  background-color: #29ABE2;
-}
-
-.Sign-up-button a:hover {
-  background-color: #29ABE2;
 }
 
 .Sign-up-button a {
@@ -219,20 +143,12 @@ justify-content: center;
 }
 
 .input-fields-sign-up {
-  width: 100%;
+  width: 422px;
   height: 48px;
   border-radius: 10px;
   border: 1px solid #D1D1D1;
-  padding-right: 40px; /* Platz für das Bild */
   margin-bottom: 20px;
-  box-sizing: border-box;
 }
-
-.input-fields-sign-up::placeholder {
-  opacity: 0.6;
-  padding-left: 10px;
-}
-
 
 .privacy-link {
   color: #29ABE2;
@@ -254,6 +170,12 @@ justify-content: center;
   justify-content: space-between;
 }
 
+.Join-Logo {
+  width: 100px;
+  height: 120px;
+  margin-top: 80px;
+  margin-left: 77px;
+}
 
 .using-terms {
   width: 246px;
@@ -275,11 +197,6 @@ justify-content: center;
   margin-top: 40px;
 }
 
-.last-commit-for-signup-button:hover {
-  background-color: #29ABE2;
-  cursor: pointer;
-}
-
 .accept-privacy {
   color: #A8A8A8;
 }
@@ -298,10 +215,6 @@ justify-content: center;
 .joinLogo {
   width: 100px;
   height: 120px;
-}
-
-.mobileSidebar {
-  display: none;
 }
 
 .LogoDiv {
@@ -416,8 +329,7 @@ justify-content: center;
   width: 440px;
   height: 44px;
   border-radius: 10px;
-  border: 1px solid #D1D1D1;
-  background-image: url('assets/');
+  border: 1px solid #D1D1D1
 
 }
 
@@ -471,14 +383,7 @@ justify-content: center;
   width: 440px;
   height: 44px;
   border-radius: 10px;
-  background-color: white;
-}
-
-.addTask-multipychoice-input {
-  width: 440px;
-  height: 44px;
-  border-radius: 10px;
-  background-color: white;
+  border: 1px solid #D1D1D1
 }
 
 .suptask-input-addTask {
@@ -489,7 +394,7 @@ justify-content: center;
 }
 
 
-.addTask-button-low {
+.addTask-button {
   width: 136px;
   height: 48px;
   border-radius: 10px;
@@ -499,24 +404,9 @@ justify-content: center;
   margin-right: 16px;
 }
 
-.addTask-button-urg {
-  width: 136px;
-  height: 48px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 4px 0px #0000001A;
-  border: 1px solid #D1D1D1;
-  background: #FFFFFF;
-  margin-right: 16px;
-}
-
-.addTask-button-med {
-  width: 136px;
-  height: 48px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 4px 0px #0000001A;
-  border: 1px solid #D1D1D1;
-  background: #FFFFFF;
-  margin-right: 16px;
+.yellow {
+  background: #FFA800;
+  color: white;
 }
 
 .addTask-button-imgs {
@@ -537,12 +427,6 @@ justify-content: center;
   margin-right: 10px;
 }
 
-.addTask-clear-button:hover {
-cursor: pointer;
-border-color: #29ABE2;
-color: #29ABE2;
-}
-
 .addTask-creat-button {
   width: 110px;
   height: 56px;
@@ -550,13 +434,10 @@ color: #29ABE2;
   border: 1px solid #2A3647;
   background: #2A3647;
   color: white;
-  padding-top: 10px;
 }
 
 .addTask-creat-button:hover {
   cursor: pointer;
-  background-color: #29ABE2;
-  border: none;
 }
   
 
@@ -565,7 +446,8 @@ color: #29ABE2;
   display: flex;
   justify-content: space-between;
   margin-left: 110px;
-  margin-top: 200px;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 
 .description {
@@ -630,127 +512,6 @@ color: #29ABE2;
 
 p {
   margin: 0;
-}
-
-.addTask-button-urg,
-.addTask-button-med,
-.addTask-button-low {
-    background-color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.addTask-button-med:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.addTask-button-low:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.addTask-button-urg:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.logo-display-none {
-  display: none;
-}
-
-.addTask-button-urg.active {
-    background-color: rgba(226, 63, 63, 0.849);
-    color: white;
-}
-
-.addTask-button-med.active {
-    color: white;
-    background: #FFA800;
-}
-
-.addTask-button-low.active {
-    background-color: rgb(38, 198, 38);
-    color: white;
-}
-
-.mobileSidebar{
-  display: flex;
-  height: 100px;
-  width: 100%;
-  background-color: #2A3647;
-  position: fixed;
-  bottom: 0px;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-  cursor: pointer;
- }
-.mobileSidebaricons{
-display: flex;
-flex-direction: column;
-color: white;
-margin-left: 10px;
-margin-right: 10px;
-align-items: center;
-padding: 15px;
-display: none;
-margin-top: 10px;
-
-}
-.mobileLink{
-text-decoration: none;
-}
-.mobileIconImg{
-width: 40px;
-display: none;
-}
-.mobileSidebaricons:hover{
-background-color: #1d2633;
-border-radius: 10px;
-
-}
-
-
-
-
-
-
-.joinLogoContaineranimation {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Logo-Anfangsstatus */
-.joinLogoanimated {
-  position: absolute;
-  background-color: #F6F7F8;
-  width: 100px; /* Anfangsgröße */
-  height: 120px;
-  opacity: 1; 
-  animation: logoAnimation 1.5s ease forwards; /* Die Animation dauert 2 Sekunden */
-  z-index: 2;
-}
-
-/* Animation */
-@keyframes logoAnimation {
-  0% {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(10);
-  }
-
-  100% {
-    top: 0;
-    left: 0;
-    transform: translate(0, 0) scale(1);
-    width: 100px;
-    height: 100px;
-    margin-left: 77px;
-    margin-top: 80px;
-  }
 }
 
 @media (max-width: 700px) {
@@ -866,10 +627,6 @@ border-radius: 10px;
    .category-input-addTask {
     display: none;
    }
-
-   .mobileSidebar {
-    display: flex;
-   }
    
    .addTask-seperation-div {
     display: none;
@@ -886,7 +643,6 @@ border-radius: 10px;
    .addTask-headline {
     margin-left: 10px;
     margin-top: 120px;
-    font-size: 44px;
    }
 
    .description {
@@ -895,21 +651,21 @@ border-radius: 10px;
    }
 
    .addTask-due-date-input {
-    width: 365px;
+    width: 385px;
     height: 40px;
    }
 
    .addTask-describtion-input {
-    width: 365px;
+    width: 385px;
     height: 88px;
    }
 
    .addTask-contacts-multipychoice-input {
-    width: 365px;
+    width: 390px;
    }
 
    .addTask-title-input {
-    width: 365px;
+    width: 385px;
    }
 
    .addTask-last-div {
@@ -925,87 +681,9 @@ border-radius: 10px;
    .addTask-creat-button {
     width: 180px;
     height: 55;
-    margin-bottom: 150px;
 }
 
    .addTask-input-fields-div-last-mobile {
     margin-bottom: 0;
    }
-
-   .TextForCreatButton {
-    margin-bottom: 150px;
-   }
-
-   .joinMobileLoggo{
-    height: 40px;
-    margin-left: 20px;
-    width: 32px;
-    display: flex;
-  }
-  .mobileLine{
-    width: 110px;
-    height: 2px;
-    background-color: rgb(20, 175, 241);
-    position: fixed;
-    top: 280px;
-    display: flex;
-  }
-
-  .mobileSidebar {
-    height: 70px;
-  }
-  
-  .mobileSidebaricons{
-    display: flex;
-    flex-direction: column;
-    color: white;
-    margin-left: 10px;
-    margin-right: 10px;
-    align-items: center;
-    padding: 7px;
-    display: flex;
-
-  }
-  .mobileIconImg{
-    width: 30px;
-    display: flex;
-  }
-  .mobileSidebaricons:hover{
-    background-color: #1d2633;
-    border-radius: 10px;
-    display: flex;
-  }
-
-  .addTask-multipychoice-input {
-    display: none;
-  }
-
-  .d-button {
-    margin-right: 20px;
-  }
-
-  .descriptionHeadline {
-    display: none;
-  }
-
-  .qmImg {
-    display: none;
-  }
-
-  .logo-display-none {
-    display: flex;
-    width: 30px;
-    margin-left: 20px;
-  }
-
-  .circleName {
-    color: rgb(20, 175, 241);
-    z-index: 999;
-    position: absolute;
-    top: 50%;
-    left: 55%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    text-align: center;
-  }
 }

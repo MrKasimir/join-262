@@ -1,165 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Task</title>
-    <link rel="stylesheet" href="Css/style.css">
-    <script src="js/addTaskScript.js"></script>
-    <script src="js/kanban-script.js"></script>
-    <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
-    <link rel="stylesheet" href="Css/fonts.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Task</title>
+  <link rel="stylesheet" href="Css/style.css">
+  <script src="js/addTaskScript.js"></script>
+  <script src="js/kanban-script.js"></script>
+  <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
 </head>
+
 <body>
-    
-    <div class="display-flex">
-            <header class="joinSideBar">
-                <div class="LogoDiv">
-                  <img class="joinLogo" src="assets/img/capa logo white blue transparent.png" alt="" />
-                </div>
-                <div class="Catagory">
-                  <div class="iconsDiv">
-                    <img class="sideBarIcons" src="assets/img/summery.png" alt="" />
-                    <a class="joinSidebarLinks" href="summaryUser.html">Summary</a>
-                  </div>
-                  <div class="iconsDiv">
-                    <img class="sideBarIcons" src="assets/img/addTask.png" alt="" />
-                    <a class="joinSidebarLinks" href="AddTask.html">Add Task</a>
-                  </div>
-                  <div class="iconsDiv3">
-                    <img class="sideBarIcons" src="assets/img/Board.png" alt="" />
-                    <a class="joinSidebarLinks" href="kanban-board.html">Board</a>
-                  </div>
-                  <div class="iconsDiv4">
-                    <img class="sideBarIcons" src="assets/img/contacts.png" alt="" />
-                    <a class="joinSidebarLinks" href="contact/contact list.html">Contacts</a>
-                  </div>
-                </div>
-          
-                <div class="legalNotice">
-                  <a class="SideBarText" href="legalNotice.html">Legal Notice</a>
-                  <br />
-                  <a class="SideBarText" href="privacyPolicy.html">Privacy Policy</a>
-                </div>
-              </header>
-              
-              <div class="description">
-                <div>
-                  <p class="descriptionHeadline">Kanban Project Management Tool</p> <img class="logo-display-none" src="assets/img/JoinmobileLoggo.png" alt="">
-                </div>
-                <div class="descriptionImg">
-                  <a href="help.html">
-                  <img class="qmImg" src="assets/img/questionmark.png" alt="" />
-                  </a>
-                  <img onclick="openMenue()" class="circleImg" src="assets/img/circle.png" alt="" />
-                  <p onclick="openMenue()" class="circleName">G</p>
-                </div>
-              </div>
+
+  <div class="display-flex">
+    <header class="joinSideBar">
+      <div class="LogoDiv">
+        <img class="joinLogo" src="assets/img/capa logo white blue transparent.png" alt="" />
+      </div>
+      <div class="Catagory">
+        <div class="iconsDiv">
+          <img class="sideBarIcons" src="assets/img/summery.png" alt="" />
+          <a class="joinSidebarLinks" href="summaryUser.html">Summary</a>
+        </div>
+        <div class="iconsDiv">
+          <img class="sideBarIcons" src="assets/img/addTask.png" alt="" />
+          <a class="joinSidebarLinks" href="AddTask.html">Add Task</a>
+        </div>
+        <div class="iconsDiv3">
+          <img class="sideBarIcons" src="assets/img/Board.png" alt="" />
+          <a class="joinSidebarLinks" href="kanban-board.html">Board</a>
+        </div>
+        <div class="iconsDiv4">
+          <img class="sideBarIcons" src="assets/img/contacts.png" alt="" />
+          <a class="joinSidebarLinks" href="contact/contact list.html">Contacts</a>
+        </div>
+      </div>
+
+      <div class="legalNotice">
+        <a class="SideBarText" href="legalNotice.html">Legal Notice</a>
+        <br />
+        <a class="SideBarText" href="privacyPolicy.html">Privacy Policy</a>
+      </div>
+    </header>
+
+    <div class="description">
+      <div>
+        <p class="descriptionHeadline">Kanban Project Management Tool</p>
+      </div>
+      <div class="descriptionImg">
+        <a href="help.html">
+          <img class="qmImg" src="assets/img/questionmark.png" alt="" />
+        </a>
+        <img onclick="openMenue()" class="circleImg" src="assets/img/circle.png" alt="" />
+        <p onclick="openMenue()" class="circleName">G</p>
+      </div>
+    </div>
+
+    <div class="input-mask">
+      <div>
+        <h1 class="addTask-headline">Add Task</h1>
+      </div>
+
+      <div class="display-flex div-for-all-inputs">
+        <div>
+          <div class="addTask-input-fields-div">
+            Title*
+            <input id="Task-Title-id" placeholder="Enter a title" class="addTask-title-input" type="text">
+          </div>
+
+          <div class="addTask-input-fields-div">
+            Description
+            <input id="Task-Describtion-id" placeholder="Enter a description" class="addTask-describtion-input"
+              type="text">
+          </div>
+
+          <div class="addTask-input-fields-div ">
+            Assigned To
+            <form class="" action="/action_page.php">
+              <select class="addTask-contacts-multipychoice-input" name="contacts" id="Task-choose-contact-id">
+                <option class="dropDownMenue" value="">Select Contact to assign once task is created</option>
+<!--                 <option class="dropDownMenue" value="saab">Saab</option>
+                <option class="dropDownMenue" value="opel">Opel</option>
+                <option class="dropDownMenue" value="audi">Audi</option> -->
+              </select>
+            </form>
+          </div>
+        </div>
+
+        <div class="addTask-seperation-div">
+        </div>
 
         <div>
-            <div>
-              <h1 class="addTask-headline">Add Task</h1>
+          <div class="addTask-input-fields-div">
+            Due date*
+            <input id="Task-Date-Id" placeholder="dd/mm/yyyy" class="addTask-due-date-input" type="text">
+          </div>
+
+          <div class="addTask-input-fields-div-last-mobile">
+            Prio
+            <div class="addTask-buttons-flex">
+              <button class="addTask-button">Urgent <img class="addTask-button-imgs" src="/assets/img/Prio up.png"
+                  alt=""></button>
+              <button class="addTask-button yellow">Medium <img class="addTask-button-imgs"
+                  src="/assets/img/istgleichzeichen.png" alt=""></button>
+              <button class="addTask-button">Low <img class="addTask-button-imgs" src="/assets/img/Prio-down.png"
+                  alt=""></button>
             </div>
+          </div>
 
-            <div class="display-flex div-for-all-inputs">
-                <div>
-                  <div class="addTask-input-fields-div">
-                    Title*
-                    <input id="Task-Title-id" placeholder="Enter a title " class="addTask-title-input" type="text">
-                  </div>
+          <div class="addTask-input-fields-div ">
+            <p class="category-input-addTask">Category</p>
+            <form id="Task-choose-Category-id" class="category-input-addTask" action="/action_page.php">
+              <select class="addTask-contacts-multipychoice-input" name="contacts" id="story-selection-id">
+                <option value="User Story">User Story</option>
+                <option value="Technical Task">Technical Task</option>
+              </select>
+            </form>
+          </div>
 
-                  <div class="addTask-input-fields-div">
-                    Description
-                    <input id="Task-Describtion-id" placeholder="Enter a description" class="addTask-describtion-input" type="text">
-                  </div>
+          <div class="addTask-input-fields-div">
+            <p class="suptask-input-addTask-p">Subtasks</p>
+            <input id="Task-Subtask-Id" placeholder="Add one subtask, add more later..." class="suptask-input-addTask" type="text">
+          </div>
 
-                  <div class="addTask-input-fields-div">
-                    Assigned To
-                    <form class="" action="/action_page.php">
-                      <select class="addTask-contacts-multipychoice-input" name="assignedTo" id="Task-choose-contact-id">
-                        <option class="dropDownMenue" value="Wilhelm">Wilhelm</option>
-                        <option class="dropDownMenue" value="Enes">Enes</option>
-                        <option class="dropDownMenue" value="Dom">Dom</option>
-                        <option class="dropDownMenue" value="Leon">Leon</option>
-                      </select>
-                    </form>
-                </div>
-                
-                </div>
 
-                <div class="addTask-seperation-div">
-                </div>
-
-                <div>
-                  <div class="addTask-input-fields-div">
-                    Due date*
-                    <input id="Task-Date-Id" placeholder="dd/mm/yyyy" class="addTask-due-date-input" type="date">
-                </div>
-                
-
-                  <div class="addTask-input-fields-div-last-mobile">
-                    Prio
-                    <div class="addTask-buttons-flex">
-                      <button class="addTask-button-urg" data-priority="Urgent">Urgent <img class="addTask-button-imgs" src="/assets/img/Prio up.png" alt=""></button>
-                      <button class="addTask-button-med yellow" data-priority="Medium">Medium <img class="addTask-button-imgs" src="/assets/img/istgleichzeichen.png" alt=""></button>
-                      <button class="addTask-button-low" data-priority="Low">Low <img class="addTask-button-imgs" src="/assets/img/Prio-down.png" alt=""></button>
-
-                    </div>
-                  </div>
-
-                  <div class="addTask-input-fields-div">
-                    <p class="category-input-addTask">Category</p>
-                    <select class="addTask-multipychoice-input" name="category" id="Task-choose-Category-id">
-                        <option value="User Story">User Story</option>
-                        <option value="Technical Task">Technical Task</option>
-                    </select>
-                </div>
-                
-
-                  <div class="addTask-input-fields-div">
-                    <p class="suptask-input-addTask-p">Subtasks</p>
-                    <input id="Task-Subtask-Id" placeholder="Add new subtasks" class="suptask-input-addTask" type="text">
-                </div>
-
-                  
-                  </div>
-                </div>
-
-                <div class="addTask-last-div">
-                  <div>
-                    <p class="TextForCreatButton">this field ist required *</p>
-                  </div>
-                  <div>
-                    <button class="addTask-clear-button">Clear <img src="./assets/img/Vector.png" alt=""></button>
-                    <button onclick="CreatTaskbuttonOnclick()" class="addTask-creat-button darkblue">Creat Task <img src="./assets/img/check (2).png" alt=""></button>
-                  </div>
-                </div>
-
-            </div>
         </div>
+      </div>
+
+      <div class="addTask-last-div">
+        <div>
+          this field ist required *
+        </div>
+        <div>
+          <button class="addTask-clear-button">Clear <img src="./assets/img/Vector.png" alt=""></button>
+          <button onclick="pressCreateTask()" class="addTask-creat-button darkblue">Create Task <img
+              src="./assets/img/check (2).png" alt=""></button>
+        </div>
+      </div>
+
     </div>
+  </div>
+  </div>
 
-    <div class="mobileSidebar">
 
-      <div class="mobileSidebaricons" ><img class="mobileIconImg" src="assets/img/summery.png" alt="">Summary</div>
-      <div class="mobileSidebaricons" ><img class="mobileIconImg" src="assets/img/Board.png" alt="">Board</div>
-      <div class="mobileSidebaricons" ><img class="mobileIconImg" src="assets/img/addTask.png" alt="">Add Tasks</div>
-      <div class="mobileSidebaricons" ><img class="mobileIconImg" src="assets/img/contacts.png" alt="">Contacts</div>
-
-    </div>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-          const buttons = document.querySelectorAll('.addTask-buttons-flex button');
-      
-          buttons.forEach(button => {
-              button.addEventListener('click', function () {
-                  buttons.forEach(btn => btn.classList.remove('active'));
-                  this.classList.add('active');
-              });
-          });
-      });
-      </script>
-    
 </body>
+
 </html>

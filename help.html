@@ -6,10 +6,37 @@
     <title>Help</title>
     <link rel="stylesheet" href="Css/legalNotice.css">
     <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
-    <link rel="stylesheet" href="Css/fonts.css">
-    <link rel="stylesheet" href="Css/legalNoticeMobile.css">
-    <script src="js/legalNotice.js"></script>
-    
+    <script>
+      function openMenue() {
+    let miniMenue = document.querySelector('.logOut');
+    if (miniMenue.classList.contains('displayNone')) {
+        miniMenue.classList.remove('displayNone');
+    } else {
+        miniMenue.classList.add('displayNone');
+    }
+}
+
+function openMobileMenu() {
+    const sidebarIcons = document.getElementsByClassName('mobileSidebaricons');
+    const sidebar = document.querySelector('.mobileSidebar');
+    const isMenuOpen = sidebar.style.display === 'flex';
+
+    if (isMenuOpen) { // if else abfrage ob das menü geöffnet ist oder nicht
+                        // wenn ja display none wenn nein display flex
+        for (let i = 0; i < sidebarIcons.length; i++) {
+            sidebarIcons[i].style.display = 'none';
+        }
+        sidebar.style.display = 'none';
+    } else {
+        
+        for (let i = 0; i < sidebarIcons.length; i++) {
+            sidebarIcons[i].style.display = 'flex';
+        }
+        sidebar.style.display = 'flex';
+    }
+}
+
+    </script>
 </head>
 <body>
     <header class="joinSideBar">
@@ -69,8 +96,8 @@
       <section class="rightSideContent">
 
         <div class="textContent">
-          <img onclick="openMobileMenu()" class="mobileArrowButton" src="assets/img/leftArrowMobile.png" alt="">
-          <span class="legalNoticeHeadline"><h1 class="helpHeadline">Help</h1> </span>
+          <span class="legalNoticeHeadline"><h1 class="helpHeadline">Help</h1> <img onclick="openMobileMenu()" class="mobileArrowButton" src="assets/img/leftArrowMobile.png" alt=""></span>
+
           <div  class="textSections">
             <p class="textSize">Welcome to the help page for <span class="colorBlue">Join</span> , your guide to using our kanban project management tool.
                Here, we'll provide an overview of what Join is, how it can benefit you, and how to use it.</p>
@@ -142,7 +169,7 @@
          </div>
       </section> 
     
-      <div  class="mobileSidebar">
+      <div class="mobileSidebar">
         <a class="mobileLink" href="summaryUser.html">
             <div class="mobileSidebaricons">
                 <img class="mobileIconImg" src="assets/img/summery.png" alt="">Summary
