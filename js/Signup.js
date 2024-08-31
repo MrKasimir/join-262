@@ -2,6 +2,9 @@ const Base_URL =
   "https://join262-default-rtdb.europe-west1.firebasedatabase.app/";
 // SIGNUP
 let Contacts = [];
+ function init(){
+  fetchUserData();
+ }
 
 async function fetchHighestUserID() {
   // retrieves JSON file from server and searches it for highest ID
@@ -159,7 +162,7 @@ function saveLoggedInUser(user) {
     Name: user.Name,     // users Name
     id: user.id,     
   };
-  window.loggedinUser.push(userToSave);
+  window.loggedinUser = [userToSave];
   console.log("Logged in user:", window.loggedinUser);
   localStorage.setItem("loggedinUser", JSON.stringify(window.loggedinUser));
 }
@@ -167,7 +170,7 @@ function saveLoggedInUser(user) {
 console.log("signUpLogin.js loaded");
 
 // Fetch user data when the script loads
-fetchUserData();
+
 
 function guestLogin() {
   window.location.href = "summaryGuest.html";

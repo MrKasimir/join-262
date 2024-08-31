@@ -473,14 +473,14 @@ function getIdsFromStoredTasks() {
 }
 
 function addTaskFromInputPage() {
-    currentDialogTask = new Array;
+    
     currentDialogTask = [{
         'id': Math.max(...getIdsFromStoredTasks()) + 1,
         'category': 'todo',
         'title': document.getElementById('Task-Title-id').value,
         'titleCategory': document.getElementById('story-selection-id').value,
         'description': document.getElementById('Task-Describtion-id').value,
-        'priority': 'Medium',
+        'priority': currentDialogTask[0].priority,
         'assignedTo': [],
         'assignedInitials': [],
         'assignedColorCodes': [],
@@ -659,6 +659,10 @@ if (window.location.href.includes('kanban-board.html')) {
         document.getElementById('inputField').addEventListener('input', findTask);
     });
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////                 API-Anbindung                      ////////////////////////
+////////////////////////             für kanban task Board                  ////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 //push funktion die dafür sorgt, dass immer zum richtigen user mit dem richtigem path gepusht wird
 function pushIfUserLogOut() {
     const loggedInUser = JSON.parse(localStorage.getItem('loggedinUser'));
@@ -728,10 +732,85 @@ async function fetchUserData() {
 
     return data;
 }
+////////////////////////             für contactBook                        ////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//push funktion die dafür sorgt, dass immer zum richtigen user mit dem richtigem path gepusht wird
+function pushContactsIfUserLogOut() {
+    
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedinUser'));
+    if (!loggedInUser || !loggedInUser[0] || !loggedInUser[0].UserID) {
+        console.error('User not found in local storage');
+        return;
+    }
+
+    const userId = loggedInUser[0].UserID;
+    const contactBook = JSON.parse(localStorage.getItem('contactBook'));
+
+    if (!contactBook) {
+        console.log('No contactBook data to push');
+        return;
+    }
+
+    const apiUrl = `${BASE_URL}/User/${userId}/contactBook.json`;
+
+    fetch(apiUrl, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contactBook)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Data successfully pushed:', data);
+        })
+        .catch(error => {
+            console.error('Error pushing data:', error);
+        });
+}
+
+async function fetchUserContactData() {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedinUser'));
+    if (!loggedInUser || !loggedInUser[0] || !loggedInUser[0].UserID) {
+        console.error('User not found in local storage');
+        return;
+    }
+
+    const userId = loggedInUser[0].UserID;
+
+    const response = await fetch(`${BASE_URL}User/${userId}/contactBook.json`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+
+    if (!response.ok) {
+        console.error('Network response was not ok', response.statusText);
+        return;
+    }
+
+    const data = await response.json();
+    console.log("User Data:", data);
+
+    // Overwrite the defaultTasks array with the fetched data
+    /* defaultTasks = data;
+    console.log("Updated defaultTasks:", defaultTasks); */
+    let apiContactBook = data;
+    console.log('API-contactBook: ' + contactBook);
+    return data;
+}
+////////////////////////                   End of API                       ////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////// Dialog Card Funktions //////////////////////////////
-// TODO: Fehlende Werte ergänzen (nicht nur Titel)
 function refreshDialogDetails() {
     unRenderContactsInDialog();
     unclickAllPrioButtons();

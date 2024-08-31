@@ -4,17 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Summary User</title>
+    <link rel="stylesheet" href="Css/fonts.css">
     <link rel="stylesheet" href="Css/summary.css" />
     <link rel="stylesheet" href="Css/summaryMobile.css">
     <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
-    <link rel="stylesheet" href="Css/fonts.css">
   </head>
   <body onload="init()">
     <script src="js/SignUpLoginScript.js"></script>
+
     <header class="joinSideBar">
       <div class="LogoDiv">
         <img class="joinLogo" src="assets/img/joinlogo.png" alt="" />
       </div>
+      
       <div class="Catagory">
         <div class="iconsDiv">
           <img class="sideBarIcons" src="assets/img/summery.png" alt="" />
@@ -71,7 +73,7 @@
       <div class="headline">
         <h1 class="mainHeadline">Join 360</h1>
         <div class="line"></div>
-        <div><p class="subHeadline">Key Metrics at a Glance</p></div>
+        <div><p class="subHeadline">Key Metric at a Glance</p></div>
         <div class="mobileLine"></div>
       </div>
 
@@ -90,8 +92,8 @@
              </svg>
             </div>
             <div class="columnTask">
-              <h2 id="todoTasks">1</h2>
-              <p>To Do</p>
+              <h2 class="numberSize" id="todoTasks">1</h2>
+              <p class="textSize">To Do</p>
             </div>
           </div>
 
@@ -103,8 +105,8 @@
               </svg>
             </div>
             <div class="columnTask">
-              <h2 id="doneTasks">1</h2>
-              <p>Done</p>
+              <h2 class="numberSize" id="doneTasks">1</h2>
+              <p class="textSize">Done</p>
             </div>
           </div>
         </div>
@@ -114,8 +116,8 @@
               <img class="taskImg" src="assets/img/arrows.png" alt="" />
             </div>
             <div class="columnTask">
-              <h2 id="urgentTasks">1</h2>
-              <p>Urgent</p>
+              <h2 class="numberSize" id="urgentTasks">1</h2>
+              <p class="textSize">Urgent</p>
             </div>
           </div>
 
@@ -123,29 +125,29 @@
 
           <div class="box3">
             <div class="dateDaeadline">
-              <h3 id="userDate"></h3>
-              <p>Upcoming Deadline</p>
+              <h3  class="textSize" id="userDate"></h3>
+              <p class="textSize">Upcoming Deadline</p>
             </div>
           </div>
         </div>
 
         <div class="thirdLine">
           <div class="column">
-            <h2 id="taskInBoard">5</h2>
+            <h2 class="numberSize" id="taskInBoard">5</h2>
             <br />
-            <p>Tasks in Board</p>
+            <p class="textSize">Tasks in Board</p>
           </div>
 
           <div class="column">
-            <h2 id="tasksInProgress">2</h2>
+            <h2 class="numberSize" id="tasksInProgress">2</h2>
             <br />
-            <p>Tasks in Progress</p>
+            <p class="textSize">Tasks in Progress</p>
           </div>
 
           <div class="column">
-            <h2 id="awaitingFeedback">2</h2>
+            <h2 class="numberSize" id="awaitingFeedback">2</h2>
             <br />
-            <p>Awaiting Feedback</p>
+            <p class="textSize">Awaiting Feedback</p>
           </div>
         </div>
       </div>

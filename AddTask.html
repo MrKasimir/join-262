@@ -6,12 +6,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Task</title>
   <link rel="stylesheet" href="Css/style.css">
+  <!--   <link rel="stylesheet" href="Css/kanban-style.css"> -->
+  <link rel="stylesheet" href="Css/kanbanDialogStyle.css">
   <script src="js/addTaskScript.js"></script>
   <script src="js/kanban-script.js"></script>
   <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
+
+  <script>
+    function initializeAddTaskPage() {
+      console.log('hello world');
+      currentDialogTask = new Array;
+      currentDialogTask = [{
+        'id': Math.max(...getIdsFromStoredTasks()) + 1,
+        'category': 'todo',
+        'title': '',
+        'titleCategory': '',
+        'description': '',
+        'priority': '',
+        'assignedTo': [],
+        'assignedInitials': [],
+        'assignedColorCodes': [],
+        'subtasks': [],
+        'subtasksSelected': [],
+        'dueDate': '',
+      }];
+      if (currentDialogTask.length == 1) console.log(currentDialogTask)
+    }
+
+    function prioLowClick() {
+      unclickAllPrioButtons();
+      if (document.getElementById('low-button').classList.contains('low-select')) {
+        document.getElementById('low-button').classList.remove('low-select');
+        document.getElementById('low-button').classList.add('low-select-clicked');
+      } else {
+        document.getElementById('low-button').classList.add('low-select');
+        document.getElementById('low-button').classList.remove('low-select-clicked');
+      }
+      currentDialogTask[0]['priority'] = 'Low';
+      console.log('low selected');
+    }
+
+    function prioMediumClick() {
+      unclickAllPrioButtons();
+      if (document.getElementById('medium-button').classList.contains('medium-select')) {
+        document.getElementById('medium-button').classList.remove('medium-select');
+        document.getElementById('medium-button').classList.add('medium-select-clicked');
+      } else {
+        document.getElementById('medium-button').classList.add('medium-select');
+        document.getElementById('medium-button').classList.remove('medium-select-clicked');
+      }
+      currentDialogTask[0]['priority'] = 'Medium';
+      console.log('medium selected');
+    }
+
+    function prioUrgentClick() {
+      unclickAllPrioButtons();
+      if (document.getElementById('urgent-button').classList.contains('urgent-select')) {
+        document.getElementById('urgent-button').classList.remove('urgent-select');
+        document.getElementById('urgent-button').classList.add('urgent-select-clicked');
+      } else {
+        document.getElementById('urgent-button').classList.add('urgent-select');
+        document.getElementById('urgent-button').classList.remove('urgent-select-clicked');
+      }
+      currentDialogTask[0]['priority'] = 'Urgent';
+      console.log('urgent selected');
+    }
+
+    function unclickAllPrioButtons() {
+      document.getElementById('low-button').classList.remove('low-select-clicked');
+      document.getElementById('low-button').classList.add('low-select');
+      document.getElementById('medium-button').classList.remove('medium-select-clicked');
+      document.getElementById('medium-button').classList.add('medium-select');
+      document.getElementById('urgent-button').classList.remove('urgent-select-clicked');
+      document.getElementById('urgent-button').classList.add('urgent-select');
+    }
+  </script>
 </head>
 
-<body>
+<body onload="initializeAddTaskPage()">
 
   <div class="display-flex">
     <header class="joinSideBar">
@@ -80,7 +152,7 @@
             <form class="" action="/action_page.php">
               <select class="addTask-contacts-multipychoice-input" name="contacts" id="Task-choose-contact-id">
                 <option class="dropDownMenue" value="">Select Contact to assign once task is created</option>
-<!--                 <option class="dropDownMenue" value="saab">Saab</option>
+                <!--                 <option class="dropDownMenue" value="saab">Saab</option>
                 <option class="dropDownMenue" value="opel">Opel</option>
                 <option class="dropDownMenue" value="audi">Audi</option> -->
               </select>
@@ -100,14 +172,31 @@
           <div class="addTask-input-fields-div-last-mobile">
             Prio
             <div class="addTask-buttons-flex">
-              <button class="addTask-button">Urgent <img class="addTask-button-imgs" src="/assets/img/Prio up.png"
+
+              <div id="low-button" class="low-select" onclick="prioLowClick()"></div>
+              <div id="medium-button" class="medium-select" onclick="prioMediumClick()"></div>
+              <div id="urgent-button" class="urgent-select" onclick="prioUrgentClick()"></div>
+
+
+              <!-- <button class="addTask-button">Urgent <img class="addTask-button-imgs" src="/assets/img/Prio up.png"
                   alt=""></button>
               <button class="addTask-button yellow">Medium <img class="addTask-button-imgs"
                   src="/assets/img/istgleichzeichen.png" alt=""></button>
               <button class="addTask-button">Low <img class="addTask-button-imgs" src="/assets/img/Prio-down.png"
-                  alt=""></button>
+                  alt=""></button> -->
             </div>
           </div>
+
+          <!-- START: Priority section -->
+          <!--           <div id="" class="priority-dialog">
+            <a style="margin-bottom: 4px;">Priority</a>
+            <div class="in-parallel">
+              <div id="low-button" class="low-select" onclick="prioLowClick()"></div>
+              <div id="medium-button" class="medium-select" onclick="prioMediumClick()"></div>
+              <div id="urgent-button" class="urgent-select" onclick="prioUrgentClick()"></div>
+            </div>
+          </div> -->
+          <!-- END: new Priority section -->
 
           <div class="addTask-input-fields-div ">
             <p class="category-input-addTask">Category</p>
@@ -121,7 +210,8 @@
 
           <div class="addTask-input-fields-div">
             <p class="suptask-input-addTask-p">Subtasks</p>
-            <input id="Task-Subtask-Id" placeholder="Add one subtask, add more later..." class="suptask-input-addTask" type="text">
+            <input id="Task-Subtask-Id" placeholder="Add one subtask, add more later..." class="suptask-input-addTask"
+              type="text">
           </div>
 
 

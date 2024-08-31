@@ -83,6 +83,14 @@ justify-content: center;
   color: white;
   font-weight: bold;
   border: 1px;
+  cursor: pointer;
+}
+
+.Login-button:hover{
+  padding: 5px;
+  background-color: #29ABE2;
+  border: white 1px;
+
 }
 
 .guest-login-button {
@@ -93,6 +101,11 @@ justify-content: center;
   background-color: white;
   color: #2A3647;
   font-weight: bold;
+  cursor: pointer;
+}
+.guest-login-button:hover{
+  border: 4px  #2A3647 solid ;
+  padding: 5px;
 }
 
 .button-section-from-login {
@@ -195,6 +208,12 @@ justify-content: center;
   border-radius: 8px;
   color: white;
   margin-top: 40px;
+  cursor: pointer;
+}
+.last-commit-for-signup-button:hover {
+  padding: 5px;
+  background-color: #29ABE2;
+  border: white 1px;
 }
 
 .accept-privacy {
@@ -452,7 +471,7 @@ justify-content: center;
 
 .description {
   position: fixed;
-  left: 260px;
+  left: 315px;
   width: 91%;
   height: 96px;
   background-color: rgb(255, 255, 255);

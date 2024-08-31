@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary Guest</title>
-    <link rel="stylesheet" href="Css/summary.css">
-    <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
-    <link rel="stylesheet" href="Css/summaryMobile.css">
     <link rel="stylesheet" href="Css/fonts.css">
-  
+    <link rel="stylesheet" href="Css/summary.css">
+    <link rel="stylesheet" href="Css/summaryMobile.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/joinlogo.png">
 </head>
 <body onload="initGuest()">
  
@@ -95,8 +94,8 @@
                </svg>
               </div>
               <div class="columnTask">
-                <h2>1</h2>
-                <p>To Do</p>
+                <h2 class="numberSize" id="todoTasksGuest">1</h2>
+                <p class="textSize">To Do</p>
               </div>
             </div>
   
@@ -108,8 +107,8 @@
                 </svg>
               </div>
               <div class="columnTask">
-                <h2>1</h2>
-                <p>Done</p>
+                <h2 class="numberSize" id="doneTasksGuest" >1</h2>
+                <p class="textSize">Done</p>
               </div>
             </div>
           </div>
@@ -120,8 +119,8 @@
                 <img class="taskImg" src="assets/img/arrows.png" alt="" />
               </div>
               <div class="columnTask">
-                <h2>1</h2>
-                <p>Urgent</p>
+                <h2 class="numberSize" id="urgentTasksGuest">1</h2>
+                <p class="textSize">Urgent</p>
               </div>
             </div>
   
@@ -129,29 +128,29 @@
   
             <div class="box3">
               <div class="dateDaeadline">
-                <h3 id="guestDate">October 16, 2022</h3>
-                <p>Upcoming Deadline</p>
+                <h3 class="textSize" id="guestDate">October 16, 2024</h3>
+                <p class="textSize">Upcoming Deadline</p>
               </div>
             </div>
           </div>
   
           <div class="thirdLine">
             <div class="column">
-              <h2>5</h2>
+              <h2 class="numberSize" id="taskInBoardGuest">5</h2>
               <br />
-              <p>Tasks in Board</p>
+              <p class="textSize">Tasks in Board</p>
             </div>
   
             <div class="column">
-              <h2>2</h2>
+              <h2 class="numberSize" id="tasksInProgressGuest">2</h2>
               <br />
-              <p>Tasks in Progress</p>
+              <p class="textSize">Tasks in Progress</p>
             </div>
   
             <div class="column">
-              <h2>2</h2>
+              <h2 class="numberSize" id="awaitingFeedbackGuest" >2</h2>
               <br />
-              <p>Awaiting Feedback</p>
+              <p class="textSize">Awaiting Feedback</p>
             </div>
           </div>
         </div>

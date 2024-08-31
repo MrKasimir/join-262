@@ -299,11 +299,13 @@ body {
     background-repeat: no-repeat; /* Verhindert die Wiederholung des Hintergrundbildes */
     background-position: center; /* Positioniert das Bild in der Mitte */
     width: 30px;
+    
 }
 
 .task-priority-urgent {
     background-image: url('../assets/img/prio-urgent.png');
     color: white;
+    
 }
 
 .task-priority-medium {
@@ -327,6 +329,7 @@ body {
     background-repeat: no-repeat; /* Verhindert die Wiederholung des Hintergrundbildes */
     background-position: center; /* Positioniert das Bild in der Mitte */
     width: 30px;
+    caret-color: transparent;
 }
 
 .task-titlecategory {
